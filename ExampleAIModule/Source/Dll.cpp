@@ -15,9 +15,3 @@ BOOL APIENTRY DllMain(HMODULE, DWORD ul_reason_for_call, LPVOID)
 	}
 	return TRUE;
 }
-
-/*
-extern "C" __declspec(dllexport) DAPI::AIModule* newAIModule()
-{
-	return new ExampleAIModule();
-}*/

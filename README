@@ -1,0 +1,6 @@
+README
+
+Project Overview:
+DAPI (Diablo API) is intended to give AI developers the tools they need to make a bot for Diablo that will have the same information restrictions as a human player would.
+
+Currently the project is very early in development, and it is still being worked out exactly how to pull the data out of the Diablo game and provide it to bot authors.

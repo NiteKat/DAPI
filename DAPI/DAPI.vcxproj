@@ -19,18 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Interface\AIModule.cpp" />
-    <ClCompile Include="Source\Control.cpp" />
     <ClCompile Include="Source\Detours.cpp" />
     <ClCompile Include="Source\DLLMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\Enums.h" />
-    <ClInclude Include="Common\Player.h" />
+    <ClInclude Include="Common\Game.h" />
+    <ClInclude Include="Common\PlayerCharacter.h" />
     <ClInclude Include="Common\Structs.h" />
     <ClInclude Include="Include\DAPI.h" />
-    <ClInclude Include="Interface\AIModule.h" />
-    <ClInclude Include="Source\Control.h" />
     <ClInclude Include="Source\Detours.h" />
     <ClInclude Include="Source\Globals.h" />
   </ItemGroup>
@@ -111,7 +108,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>

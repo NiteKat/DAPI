@@ -453,3 +453,11 @@ struct ObjectStruct
 	int _oVar7;
 	int _oVar8;
 };
+
+struct TriggerStruct
+{
+	int _tx;
+	int _ty;
+	int _tmsg;
+	int _tlvl;
+};

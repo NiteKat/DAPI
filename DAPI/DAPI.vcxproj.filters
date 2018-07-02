@@ -16,23 +16,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Control.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Detours.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\DLLMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Interface\AIModule.cpp">
-      <Filter>Interface</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Control.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Detours.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -45,14 +36,14 @@
     <ClInclude Include="Common\Enums.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="Common\Player.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="Common\Structs.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="Interface\AIModule.h">
-      <Filter>Interface</Filter>
+    <ClInclude Include="Common\Game.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\PlayerCharacter.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

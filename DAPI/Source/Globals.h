@@ -23,9 +23,11 @@ namespace DAPI
 	auto inline CheckSpell = reinterpret_cast<bool(*)(int id, int sn, char st, bool manaonly)>(0x457584);
 	auto inline GetSpellLevel = reinterpret_cast<int(*)(int id, int sn)>(0x428A99);
 	auto inline UseScroll = reinterpret_cast<bool(__cdecl *)()>(0x41EB8B);
-	auto inline object = reinterpret_cast<ObjectStruct(*)[127]>(0x679C38);
-	auto inline item = reinterpret_cast<ItemStruct(*)[127]>(0x635A28);
-	auto inline dItem = reinterpret_cast<int(*)[112][112]>(0x5C9A10);
-	auto inline player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+	static auto inline object = reinterpret_cast<ObjectStruct(*)[127]>(0x679C38);
+	static auto inline item = reinterpret_cast<ItemStruct(*)[127]>(0x635A28);
+	static auto inline dItem = reinterpret_cast<int(*)[112][112]>(0x5C9A10);
+
+	static auto inline trigflag = reinterpret_cast<int(*)[5]>(0x6ABAC8);
+	static auto inline trigs = reinterpret_cast<TriggerStruct(*)[5]>(0x6ABAE0);
 
 }

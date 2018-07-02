@@ -8,7 +8,6 @@
 #include<math.h>
 #include<set>
 
-DAPI::AIModule* module = nullptr;
 HMODULE AIHandle = NULL;
 void(*onFrame)() = nullptr;
 
