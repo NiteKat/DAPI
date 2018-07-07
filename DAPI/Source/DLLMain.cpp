@@ -4,12 +4,14 @@
 #include"Detours.h"
 #include"../Common/Structs.h"
 #include"Control.h"
+#include"../Common/Game.h"
 //#include"../Interface/AIModule.h"
 #include<math.h>
 #include<set>
 
 HMODULE AIHandle = NULL;
 void(*onFrame)() = nullptr;
+extern "C" __declspec(dllexport) DAPI::Game Diablo;
 
 void __declspec(noinline) updateGameData()
 {

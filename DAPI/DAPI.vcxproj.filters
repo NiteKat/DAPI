@@ -45,5 +45,20 @@
     <ClInclude Include="Common\PlayerCharacter.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="Common\Trigger.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Point.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Object.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Monster.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Door.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

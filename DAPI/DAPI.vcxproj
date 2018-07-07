@@ -23,10 +23,15 @@
     <ClCompile Include="Source\DLLMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Common\Door.h" />
     <ClInclude Include="Common\Enums.h" />
     <ClInclude Include="Common\Game.h" />
+    <ClInclude Include="Common\Monster.h" />
+    <ClInclude Include="Common\Object.h" />
     <ClInclude Include="Common\PlayerCharacter.h" />
+    <ClInclude Include="Common\Point.h" />
     <ClInclude Include="Common\Structs.h" />
+    <ClInclude Include="Common\Trigger.h" />
     <ClInclude Include="Include\DAPI.h" />
     <ClInclude Include="Source\Detours.h" />
     <ClInclude Include="Source\Globals.h" />
