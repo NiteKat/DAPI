@@ -26,6 +26,7 @@
     <ClInclude Include="Common\Door.h" />
     <ClInclude Include="Common\Enums.h" />
     <ClInclude Include="Common\Game.h" />
+    <ClInclude Include="Common\Item.h" />
     <ClInclude Include="Common\Monster.h" />
     <ClInclude Include="Common\Object.h" />
     <ClInclude Include="Common\PlayerCharacter.h" />

@@ -24,15 +24,20 @@ namespace DAPI
 
 		bool isSolid() { return my_object->_oSolidFlag; }
 
+		bool isVisible() {
+			auto dFlags = reinterpret_cast<char(*)[112][112]>(0x5C6910);
+			return (*dFlags)[my_object->_ox][my_object->_oy] & 0x40;
+		}
+
 		int x() {
-			if (my_object)
+			if (my_object && isVisible())
 				return my_object->_ox;
 			else
 				return -1;
 		}
 
 		int y() {
-			if (my_object)
+			if (my_object && isVisible())
 				return my_object->_oy;
 			else
 				return -1;

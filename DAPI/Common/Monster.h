@@ -47,15 +47,20 @@ namespace DAPI
 			return false;
 		}
 
+		bool isVisible() {
+			auto dFlags = reinterpret_cast<char(*)[112][112]>(0x5C6910);
+			return (*dFlags)[my_monster->_mx][my_monster->_my] & 0x40;
+		}
+
 		auto x() {
-			if (my_monster)
+			if (my_monster && isVisible())
 				return my_monster->_mx;
 			else
 				return -1;
 		}
 
 		auto y() {
-			if (my_monster)
+			if (my_monster && isVisible())
 				return my_monster->_my;
 			else
 				return -1;

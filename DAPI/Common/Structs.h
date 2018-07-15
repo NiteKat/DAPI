@@ -461,3 +461,9 @@ struct TriggerStruct
 	int _tmsg;
 	int _tlvl;
 };
+
+struct TCmdParam1
+{
+	unsigned char bCmd;
+	unsigned short wParam1;
+};

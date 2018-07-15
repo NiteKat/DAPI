@@ -8,6 +8,16 @@ namespace DAPI
 		Door() { my_door = nullptr; }
 		Door(ObjectStruct* ndoor) { my_door = ndoor; }
 
+		int id() {
+			auto object = reinterpret_cast<ObjectStruct(*)[127]>(0x679C38);
+			for (int i = 1; i < 200; i++)
+			{
+				if (&(*object)[i] == my_door)
+					return i;
+			}
+			return -1;
+		}
+
 		bool isOpen() {
 			if (!my_door->_oVar4)
 				return false;
@@ -18,6 +28,25 @@ namespace DAPI
 			if (my_door->_oVar4 == 2)
 				return true;
 			return false;
+		}
+
+		bool isVisible() {
+			auto dFlags = reinterpret_cast<char(*)[112][112]>(0x5C6910);
+			return (*dFlags)[my_door->_ox][my_door->_oy] & 0x40;
+		}
+
+		int x() {
+			if (my_door && isVisible())
+				return my_door->_ox;
+			else
+				return -1;
+		}
+
+		int y() {
+			if (my_door && isVisible())
+				return my_door->_oy;
+			else
+				return -1;
 		}
 
 	private:

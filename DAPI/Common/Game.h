@@ -6,11 +6,33 @@
 #include"Object.h"
 #include"Monster.h"
 #include"Door.h"
+#include"Item.h"
 
 namespace DAPI
 {
 	struct Game
 	{
+		void test() {
+			static auto dFlags = reinterpret_cast<char(*)[112][112]>(0x5C6910);
+			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			if (dFlags && player)
+			{
+				int i = 0;
+				while (i < 1)
+					i++;
+			}
+			for (int x = 0; x < 112; x++)
+			{
+				for (int y = 0; y < 112; y++)
+				{
+					(*dFlags)[x][y] |= 0x40;
+					//(*dFlags)[x][y] &= ~0x80;
+					//(*dFlags)[x][y] &= ~0x02;
+					(*dFlags)[x][y] |= 0x01;
+				}
+			}
+		}
+
 		PlayerCharacter self() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			static auto myplr = reinterpret_cast<int(*)>(0x686444);
@@ -34,6 +56,7 @@ namespace DAPI
 		auto validObjects() {
 			std::vector<Object> return_value;
 			auto object = reinterpret_cast<ObjectStruct(*)[127]>(0x679C38);
+			auto dFlags = reinterpret_cast<char(*)[112][112]>(0x5C6910);
 			for (int i = 1; i < 127; i++)
 			{
 				bool add_object = false;
@@ -58,8 +81,13 @@ namespace DAPI
 				}
 				if (add_object)
 				{
-					Object new_object(&(*object)[i]);
-					return_value.push_back(new_object);
+					int ox = (*object)[i]._ox;
+					int oy = (*object)[i]._oy;
+					if ((*dFlags)[ox][oy] & 0x40)
+					{
+						Object new_object(&(*object)[i]);
+						return_value.push_back(new_object);
+					}
 				}
 			}
 			return return_value;
@@ -68,6 +96,7 @@ namespace DAPI
 		auto liveMonsters() {
 			std::vector<Monster> return_value;
 			auto monster = reinterpret_cast<MonsterStruct(*)[200]>(0x64D24C);
+			auto dFlags = reinterpret_cast<char(*)[112][112]>(0x5C6910);
 			for (int i = 1; i < 200; i++)
 			{
 				bool add_monster = false;
@@ -75,8 +104,13 @@ namespace DAPI
 					add_monster = true;
 				if (add_monster)
 				{
-					Monster new_monster(&(*monster)[i]);
-					return_value.push_back(new_monster);
+					int mx = (*monster)[i]._mx;
+					int my = (*monster)[i]._my;
+					if ((*dFlags)[mx][my] & 0x40)
+					{
+						Monster new_monster(&(*monster)[i]);
+						return_value.push_back(new_monster);
+					}
 				}
 			}
 			return return_value;
@@ -85,6 +119,7 @@ namespace DAPI
 		auto doors() {
 			std::vector<Door> return_value;
 			auto object = reinterpret_cast<ObjectStruct(*)[127]>(0x679C38);
+			auto dFlags = reinterpret_cast<char(*)[112][112]>(0x5C6910);
 			for (int i = 1; i < 127; i++)
 			{
 				bool add_door = false;
@@ -103,13 +138,39 @@ namespace DAPI
 				}
 				if (add_door)
 				{
-					Door new_door(&(*object)[i]);
-					return_value.push_back(new_door);
+					int dx = (*object)[i]._ox;
+					int dy = (*object)[i]._oy;
+					if ((*dFlags)[dx][dy] & 0x40)
+					{
+						Door new_door(&(*object)[i]);
+						return_value.push_back(new_door);
+					}
 				}
 			}
 			return return_value;
 		}
 
+		auto groundItems() {
+			std::vector<Item> return_value;
+			auto item = reinterpret_cast<ItemStruct(*)[127]>(0x635A28);
+			auto dFlags = reinterpret_cast<char(*)[112][112]>(0x5C6910);
+			auto dItem = reinterpret_cast<char(*)[112][112]>(0x5C9A10);
+			for (int i = 0; i < 127; i++)
+			{
+				bool add_item = false;
+				int ix = (*item)[i]._ix;
+				int iy = (*item)[i]._iy;
+				if ((*dItem)[ix][iy] == i + 1)
+				{
+					if ((*dFlags)[ix][iy] & 0x40)
+					{
+						Item new_item(&(*item)[i]);
+						return_value.push_back(new_item);
+					}
+				}
+			}
+			return return_value;
+		}
 	private:
 
 	};

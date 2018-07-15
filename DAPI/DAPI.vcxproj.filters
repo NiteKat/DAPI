@@ -60,5 +60,8 @@
     <ClInclude Include="Common\Door.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="Common\Item.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
