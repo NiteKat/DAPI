@@ -24,7 +24,7 @@ namespace DAPI
 
 		int groundId() {
 			auto item = reinterpret_cast<ItemStruct(*)[127]>(0x635A28);
-			for (int i = 1; i < 127; i++)
+			for (int i = 0; i < 127; i++)
 			{
 				if (&(*item)[i] == my_item)
 					return i;

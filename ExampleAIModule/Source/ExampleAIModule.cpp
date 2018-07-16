@@ -4,6 +4,7 @@ DAPI::Game test;
 DAPI::PlayerCharacter my_player = test.self();
 DAPI::Point target(-1, -1);
 std::mt19937 mt = std::mt19937(std::chrono::system_clock::now().time_since_epoch().count());
+int tileVisits[112][112] = { 0 };
 int frame_timer = 0;
 bool did_something;
 
@@ -160,12 +161,18 @@ extern "C" __declspec(dllexport) void onFrame()
 							my_player.mana() >= my_player.getRightClickSpellManaCost())
 						{
 							my_player.castSpell(closest_monster.futurex(), closest_monster.futurey());
-							frame_timer = 40;
+							frame_timer = 80;
 						}
 						else
 						{
 							my_player.attack(closest_monster);
-							if (my_player.walkPath()[0] != (char)-1 || (abs(closest_monster.futurex() - my_player.worldX()) < 2 && abs(closest_monster.futurey() - my_player.worldY()) < 2))
+							DAPI::Item weapon = my_player.getEquippedItem(DAPI::equip_slot::RIGHTHAND);
+							if (weapon.type() != DAPI::item_type::ITYPE_BOW)
+							{
+								if (my_player.walkPath()[0] != (char)-1 || (abs(closest_monster.futurex() - my_player.worldX()) < 2 && abs(closest_monster.futurey() - my_player.worldY()) < 2))
+									frame_timer = 40;
+							}
+							else
 								frame_timer = 40;
 						}
 					}
@@ -253,34 +260,8 @@ extern "C" __declspec(dllexport) void onFrame()
 				}
 				if (frame_timer == 0)
 				{
-					DAPI::direction direction = (DAPI::direction)getRandomInteger(0, 7);
-					switch (direction)
-					{
-					case DAPI::direction::DIRECTION_EAST:
-						my_player.walkToXY(my_player.worldX() + 1, my_player.worldY() - 1);
-						break;
-					case DAPI::direction::DIRECTION_NORTH:
-						my_player.walkToXY(my_player.worldX() - 1, my_player.worldY() - 1);
-						break;
-					case DAPI::direction::DIRECTION_NORTH_EAST:
-						my_player.walkToXY(my_player.worldX(), my_player.worldY() - 1);
-						break;
-					case DAPI::direction::DIRECTION_NORTH_WEST:
-						my_player.walkToXY(my_player.worldX() - 1, my_player.worldY());
-						break;
-					case DAPI::direction::DIRECTION_SOUTH:
-						my_player.walkToXY(my_player.worldX() + 1, my_player.worldY() + 1);
-						break;
-					case DAPI::direction::DIRECTION_SOUTH_EAST:
-						my_player.walkToXY(my_player.worldX() + 1, my_player.worldY());
-						break;
-					case DAPI::direction::DIRECTION_SOUTH_WEST:
-						my_player.walkToXY(my_player.worldX(), my_player.worldY() + 1);
-						break;
-					case DAPI::direction::DIRECTION_WEST:
-						my_player.walkToXY(my_player.worldX() - 1, my_player.worldY() + 1);
-						break;
-					}
+					walkWeightedRandomDirection();
+					frame_timer = 40;
 				}
 			}
 		}
@@ -291,4 +272,74 @@ int getRandomInteger(int min, int max)
 {
 	std::uniform_int_distribution<int> random_number(min, max);
 	return random_number(mt);
+}
+
+void walkWeightedRandomDirection()
+{
+	DAPI::Point target;
+	DAPI::Point east(my_player.worldX() + 1, my_player.worldY() - 1);
+	DAPI::Point north(my_player.worldX() - 1, my_player.worldY() - 1);
+	DAPI::Point northeast(my_player.worldX(), my_player.worldY() - 1);
+	DAPI::Point northwest(my_player.worldX() - 1, my_player.worldY());
+	DAPI::Point south(my_player.worldX() + 1, my_player.worldY() + 1);
+	DAPI::Point southeast(my_player.worldX() + 1, my_player.worldY());
+	DAPI::Point southwest(my_player.worldX(), my_player.worldY() + 1);
+	DAPI::Point west(my_player.worldX() - 1, my_player.worldY() + 1);
+	int eastscore = 100 - tileVisits[east.x][east.y];
+	int northscore = 100 - tileVisits[north.x][north.y];
+	int northeastscore = 100 - tileVisits[northeast.x][northeast.y];
+	int northwestscore = 100 - tileVisits[northwest.x][northwest.y];
+	int southscore = 100 - tileVisits[south.x][south.y];
+	int southeastscore = 100 - tileVisits[southeast.x][southeast.y];
+	int southwestscore = 100 - tileVisits[southwest.x][southwest.y];
+	int westscore = 100 - tileVisits[west.x][west.y];
+
+	int max_score = eastscore + northscore + northeastscore + northwestscore + southscore + southeastscore + southwestscore + westscore;
+	DAPI::direction direction;
+	int score = getRandomInteger(1, max_score);
+	if (score <= eastscore)
+	{
+		target.x = my_player.worldX() + 1;
+		target.y = my_player.worldY() - 1;
+	}
+	else if (score <= eastscore + northscore)
+	{
+		target.x = my_player.worldX() - 1;
+		target.y = my_player.worldY() - 1;
+	}
+	else if (score <= eastscore + northscore + northeastscore)
+	{
+		target.x = my_player.worldX();
+		target.y = my_player.worldY() - 1;
+	}
+	else if (score <= eastscore + northscore + northeastscore + northwestscore)
+	{
+		target.x = my_player.worldX() - 1;
+		target.y = my_player.worldY();
+	}
+	else if (score <= eastscore + northscore + northeastscore + northwestscore + southscore)
+	{
+		target.x = my_player.worldX() + 1;
+		target.y = my_player.worldY() + 1;
+	}
+	else if (score <= eastscore + northscore + northeastscore + northwestscore + southscore + southeastscore)
+	{
+		target.x = my_player.worldX() + 1;
+		target.y = my_player.worldY();
+	}
+	else if (score <= eastscore + northscore + northeastscore + northwestscore + southscore + southeastscore + southwestscore)
+	{
+		target.x = my_player.worldX();
+		target.y = my_player.worldY() + 1;
+	}
+	else
+	{
+		target.x = my_player.worldX() - 1;
+		target.y = my_player.worldY() + 1;
+	}
+	
+	my_player.walkToXY(target.x, target.y);
+	if (tileVisits[target.x][target.y] < 99)
+		tileVisits[target.x][target.y] += 1;
+	
 }
