@@ -121,6 +121,10 @@ namespace DAPI
 			}
 			return return_value;
 		}
+		_ui_classes getClass() {
+			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			return (_ui_classes)(*player)[my_pnum]._pClass;
+		}
 		Item getEquippedItem(equip_slot location)
 		{
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -164,6 +168,41 @@ namespace DAPI
 			Item noItem;
 			return noItem;
 		}
+		
+		std::vector<spell_id> getLearnedSpells()
+		{
+			std::vector<spell_id> return_value;
+			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			for (int i = 0; i < 37; i++)
+			{
+				if ((*player)[my_pnum]._pSplLvl[i] > 0)
+					return_value.push_back((spell_id)i);
+			}
+			return return_value;
+		}
+
+		spell_id getRightClickSpell()
+		{
+			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			return (spell_id)(*player)[my_pnum]._pRSpell;
+		}
+
+		int getRightClickSpellManaCost()
+		{
+			static auto GetManaAmount = reinterpret_cast<int(__fastcall *)(int id, int sn)>(0x45744E);
+			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			return (int)floor(GetManaAmount(my_pnum, (*player)[my_pnum]._pRSpell) / 64);
+		}
+
+		int getSpellLevel(spell_id id)
+		{
+			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			if (id < 37)
+				return (*player)[my_pnum]._pSplLvl[id];
+			else
+				return -1;
+		}
+
 		int hitPoints() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			return (int)floor((*player)[my_pnum]._pHitPoints / 64);
@@ -216,6 +255,10 @@ namespace DAPI
 		{
 			auto pcurs = reinterpret_cast<int(*)>(0x4B8CD0);
 			return *pcurs == 12;
+		}
+		int mana() {
+			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			return (int)floor((*player)[my_pnum]._pMana / 64);
 		}
 		int mode() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pmode; }
 		void openDoor(Door target) {
@@ -534,6 +577,17 @@ namespace DAPI
 						}
 					}
 				}
+			}
+			return false;
+		}
+		bool setRightClickSpell(spell_id id)
+		{
+			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			if (getSpellLevel(id) > 0)
+			{
+				(*player)[my_pnum]._pRSpell = id;
+				(*player)[my_pnum]._pRSplType = spell_type::RSPLTYPE_SPELL;
+				return true;
 			}
 			return false;
 		}

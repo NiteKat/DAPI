@@ -73,6 +73,7 @@ namespace DAPI
 				case _object_id::OBJ_TCHEST2:
 				case _object_id::OBJ_CHEST3:
 				case _object_id::OBJ_TCHEST3:
+				case _object_id::OBJ_SARC:
 					if ((*object)[i]._oSelFlag)
 						add_object = true;
 					break;

@@ -14,6 +14,13 @@ namespace DAPI
 		bool operator==(const Item& other) {
 			return (this->my_item) == (other.my_item);
 		}
+		
+		int armorClass() {
+			if (my_item)
+				return my_item->_iAC;
+			else
+				return -1;
+		}
 
 		int groundId() {
 			auto item = reinterpret_cast<ItemStruct(*)[127]>(0x635A28);
@@ -29,17 +36,17 @@ namespace DAPI
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			for (int i = 0; i < 7; i++)
 			{
-				if (&((*player[pnum]).InvBody[i]) == my_item)
+				if (&((*player)[pnum].InvBody[i]) == my_item)
 					return i;
 			}
 			for (int i = 0; i < 40; i++)
 			{
-				if (&((*player[pnum]).InvList[i]) == my_item)
+				if (&((*player)[pnum].InvList[i]) == my_item)
 					return i + 7;
 			}
 			for (int i = 0; i < 8; i++)
 			{
-				if (&((*player[pnum]).SpdList[i]) == my_item)
+				if (&((*player)[pnum].SpdList[i]) == my_item)
 					return i + 47;
 			}
 			return -1;
@@ -56,6 +63,20 @@ namespace DAPI
 			if (my_item)
 				return (*dFlags)[my_item->_ix][my_item->_iy] & 0x40;
 			return false;
+		}
+
+		int maxDamage() {
+			if (my_item)
+				return my_item->_iMaxDam;
+			else
+				return -1;
+		}
+
+		int minDamage() {
+			if (my_item)
+				return my_item->_iMinDam;
+			else
+				return -1;
 		}
 
 		int miscId()

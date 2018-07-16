@@ -426,5 +426,13 @@ namespace DAPI
 		BELT7 = 53,
 		BELT8 = 54
 	} equip_slot;
+
+	typedef enum
+	{
+		UI_WARRIOR = 0x0,
+		UI_ROGUE = 0x1,
+		UI_SORCERER = 0x2,
+		UI_NUM_CLASSES = 0x3,
+	} _ui_classes;
 }
 

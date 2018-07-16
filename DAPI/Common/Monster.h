@@ -52,6 +52,13 @@ namespace DAPI
 			return (*dFlags)[my_monster->_mx][my_monster->_my] & 0x40;
 		}
 
+		auto type() {
+			if (my_monster)
+				return my_monster->MData->mType;
+			else
+				return -1;
+		}
+
 		auto x() {
 			if (my_monster && isVisible())
 				return my_monster->_mx;

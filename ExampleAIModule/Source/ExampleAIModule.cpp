@@ -3,12 +3,13 @@
 DAPI::Game test;
 DAPI::PlayerCharacter my_player = test.self();
 DAPI::Point target(-1, -1);
+std::mt19937 mt = std::mt19937(std::chrono::system_clock::now().time_since_epoch().count());
 int frame_timer = 0;
 bool did_something;
 
 extern "C" __declspec(dllexport) void onFrame()
 {
-	DAPI::Item ring = my_player.getEquippedItem(DAPI::equip_slot::HEAD);
+	/*DAPI::Item ring = my_player.getEquippedItem(DAPI::equip_slot::HEAD);
 	if (ring.isValid())
 	{
 		my_player.putInCursor(ring);
@@ -23,18 +24,36 @@ extern "C" __declspec(dllexport) void onFrame()
 					break;
 				}
 			}
-		}		
+		}
+	}*/
+	
+	for (auto &spell : my_player.getLearnedSpells())
+	{
+		if (my_player.getRightClickSpell() != spell)
+		{
+			if (my_player.getSpellLevel(spell) > my_player.getSpellLevel(my_player.getRightClickSpell()))
+			{
+				my_player.setRightClickSpell(spell);
+			}
+		}
 	}
-	/*if (frame_timer > 0)
+	if (frame_timer > 0)
 		frame_timer--;
 	else
 	{
 		while (my_player.statPoints())
 		{
-			if (my_player.baseDexterity() < 60)
+			if (my_player.getClass() == DAPI::_ui_classes::UI_WARRIOR)
+			{
+				if (my_player.baseDexterity() < 60)
+					my_player.increaseDexterity();
+				else
+					my_player.increaseStrength();
+			}
+			else if (my_player.getClass() == DAPI::_ui_classes::UI_ROGUE)
 				my_player.increaseDexterity();
 			else
-				my_player.increaseStrength();
+				my_player.increaseMagic();
 		}
 		if (my_player.hitPoints() < 20)
 		{
@@ -43,6 +62,21 @@ extern "C" __declspec(dllexport) void onFrame()
 			{
 				if (item.miscId() == DAPI::item_misc_id::IMISC_HEAL ||
 					item.miscId() == DAPI::item_misc_id::IMISC_FULLHEAL ||
+					item.miscId() == DAPI::item_misc_id::IMISC_REJUV ||
+					item.miscId() == DAPI::item_misc_id::IMISC_FULLREJUV)
+				{
+					my_player.useItem(item);
+					break;
+				}
+			}
+		}
+		if (my_player.mana() < my_player.getRightClickSpellManaCost())
+		{
+			std::vector<DAPI::Item> my_belt = my_player.getBeltItems();
+			for (auto item : my_belt)
+			{
+				if (item.miscId() == DAPI::item_misc_id::IMISC_MANA ||
+					item.miscId() == DAPI::item_misc_id::IMISC_FULLMANA ||
 					item.miscId() == DAPI::item_misc_id::IMISC_REJUV ||
 					item.miscId() == DAPI::item_misc_id::IMISC_FULLREJUV)
 				{
@@ -122,9 +156,18 @@ extern "C" __declspec(dllexport) void onFrame()
 					}
 					if (closest_tiles < 24 && closest_tiles > 0)
 					{
-						my_player.attack(closest_monster);
-						if (my_player.walkPath()[0] != (char)-1 || (abs(closest_monster.futurex() - my_player.worldX()) < 2 && abs(closest_monster.futurey() - my_player.worldY())))
+						if (my_player.getRightClickSpell() != DAPI::spell_id::SPL_NULL &&
+							my_player.mana() >= my_player.getRightClickSpellManaCost())
+						{
+							my_player.castSpell(closest_monster.futurex(), closest_monster.futurey());
 							frame_timer = 40;
+						}
+						else
+						{
+							my_player.attack(closest_monster);
+							if (my_player.walkPath()[0] != (char)-1 || (abs(closest_monster.futurex() - my_player.worldX()) < 2 && abs(closest_monster.futurey() - my_player.worldY()) < 2))
+								frame_timer = 40;
+						}
 					}
 				}
 				if (ground_items.size() != 0 && frame_timer == 0)
@@ -208,6 +251,44 @@ extern "C" __declspec(dllexport) void onFrame()
 						frame_timer = 40;
 					}
 				}
+				if (frame_timer == 0)
+				{
+					DAPI::direction direction = (DAPI::direction)getRandomInteger(0, 7);
+					switch (direction)
+					{
+					case DAPI::direction::DIRECTION_EAST:
+						my_player.walkToXY(my_player.worldX() + 1, my_player.worldY() - 1);
+						break;
+					case DAPI::direction::DIRECTION_NORTH:
+						my_player.walkToXY(my_player.worldX() - 1, my_player.worldY() - 1);
+						break;
+					case DAPI::direction::DIRECTION_NORTH_EAST:
+						my_player.walkToXY(my_player.worldX(), my_player.worldY() - 1);
+						break;
+					case DAPI::direction::DIRECTION_NORTH_WEST:
+						my_player.walkToXY(my_player.worldX() - 1, my_player.worldY());
+						break;
+					case DAPI::direction::DIRECTION_SOUTH:
+						my_player.walkToXY(my_player.worldX() + 1, my_player.worldY() + 1);
+						break;
+					case DAPI::direction::DIRECTION_SOUTH_EAST:
+						my_player.walkToXY(my_player.worldX() + 1, my_player.worldY());
+						break;
+					case DAPI::direction::DIRECTION_SOUTH_WEST:
+						my_player.walkToXY(my_player.worldX(), my_player.worldY() + 1);
+						break;
+					case DAPI::direction::DIRECTION_WEST:
+						my_player.walkToXY(my_player.worldX() - 1, my_player.worldY() + 1);
+						break;
+					}
+				}
 			}
-		}*/
+		}
 	}
+}
+
+int getRandomInteger(int min, int max)
+{
+	std::uniform_int_distribution<int> random_number(min, max);
+	return random_number(mt);
+}
