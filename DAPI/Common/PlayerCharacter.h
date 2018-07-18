@@ -15,9 +15,9 @@ namespace DAPI
 			static auto MakePlrPath = reinterpret_cast<int(__fastcall *)(int, int, int, unsigned char)>(0x44FE9E);
 			static auto ClrPlrPath = reinterpret_cast<void(__fastcall *)(int pnum)>(0x44FD8A);
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
-			switch ((*player)[my_pnum].InvBody[4]._itype)
+			switch (static_cast<item_type>((*player)[my_pnum].InvBody[4]._itype))
 			{
-			case DAPI::item_type::ITYPE_BOW:
+			case item_type::ITYPE_BOW:
 				ClrPlrPath(my_pnum);
 				(*player)[my_pnum].destAction = 10;
 				(*player)[my_pnum].destParam1 = (unsigned char)x;
@@ -39,9 +39,9 @@ namespace DAPI
 			static auto ClrPlrPath = reinterpret_cast<void(__fastcall *)(int pnum)>(0x44FD8A);
 			int Xdif = abs((*player)[my_pnum].WorldX - target.futurex());
 			int Ydif = abs((*player)[my_pnum].WorldY - target.futurey());
-			switch ((*player)[my_pnum].InvBody[4]._itype)
+			switch (static_cast<item_type>((*player)[my_pnum].InvBody[4]._itype))
 			{
-			case DAPI::item_type::ITYPE_BOW:
+			case item_type::ITYPE_BOW:
 				ClrPlrPath(my_pnum);
 				(*player)[my_pnum].destAction = 22;
 				(*player)[my_pnum].destParam1 = target.id() - 1;
@@ -63,10 +63,10 @@ namespace DAPI
 			static auto CheckSpell = reinterpret_cast<bool(__fastcall *)(int id, int sn, char st, bool manaonly)>(0x457584);
 			static auto UseScroll = reinterpret_cast<bool(__cdecl *)()>(0x41EB8B);
 			static auto GetSpellLevel = reinterpret_cast<int(__fastcall *)(int id, int sn)>(0x428A99);
-			if ((*player)[my_pnum]._pRSpell <= spell_id::SPL_BONESPIRIT &&
-				spell_id::SPL_NULL < (*player)[my_pnum]._pRSpell)
+			if ((*player)[my_pnum]._pRSpell <= static_cast<int>(spell_id::SPL_BONESPIRIT) &&
+				static_cast<int>(spell_id::SPL_NULL) < (*player)[my_pnum]._pRSpell)
 			{
-				if ((*player)[my_pnum]._pRSplType == spell_type::RSPLTYPE_SPELL)
+				if ((*player)[my_pnum]._pRSplType == static_cast<int>(spell_type::RSPLTYPE_SPELL))
 				{
 					if (CheckSpell(0, (*player)[my_pnum]._pRSpell, (*player)[my_pnum]._pRSplType, 0))
 					{
@@ -80,7 +80,7 @@ namespace DAPI
 						(*player)[my_pnum]._pSplType = (*player)[my_pnum]._pRSplType;
 					}
 				}
-				else if ((*player)[my_pnum]._pRSplType == spell_type::RSPLTYPE_CHARGES)
+				else if ((*player)[my_pnum]._pRSplType == static_cast<int>(spell_type::RSPLTYPE_CHARGES))
 				{
 					ClrPlrPath(0);
 					(*player)[my_pnum].destAction = 12;
@@ -91,7 +91,7 @@ namespace DAPI
 					(*player)[my_pnum]._pSpell = (*player)[my_pnum]._pRSpell;
 					(*player)[my_pnum]._pSplType = (*player)[my_pnum]._pRSplType;
 				}
-				else if ((*player)[my_pnum]._pRSplType == spell_type::RSPLTYPE_SCROLL)
+				else if ((*player)[my_pnum]._pRSplType == static_cast<int>(spell_type::RSPLTYPE_SCROLL))
 				{
 					if (UseScroll())
 					{
@@ -128,9 +128,9 @@ namespace DAPI
 		Item getEquippedItem(equip_slot location)
 		{
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
-			if (location > -1 && location < 7 && (*player)[my_pnum].InvBody[location]._itype != item_type::ITYPE_NONE)
+			if (static_cast<int>(location) > -1 && static_cast<int>(location) < 7 && (*player)[my_pnum].InvBody[static_cast<int>(location)]._itype != static_cast<int>(item_type::ITYPE_NONE))
 			{
-				Item holditem(&(*player)[my_pnum].InvBody[location]);
+				Item holditem(&(*player)[my_pnum].InvBody[static_cast<int>(location)]);
 				return holditem;
 			}
 			else
@@ -148,7 +148,7 @@ namespace DAPI
 			std::vector<Item> return_value;
 			for (int i = 0; i < 40; i++)
 			{
-				if ((*player)[my_pnum].InvList[i]._itype != item_type::ITYPE_NONE)
+				if ((*player)[my_pnum].InvList[i]._itype != static_cast<int>(item_type::ITYPE_NONE))
 				{
 					Item item_to_add(&(*player)[my_pnum].InvList[i]);
 					return_value.push_back(item_to_add);
@@ -191,21 +191,21 @@ namespace DAPI
 		{
 			static auto GetManaAmount = reinterpret_cast<int(__fastcall *)(int id, int sn)>(0x45744E);
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
-			return (int)floor(GetManaAmount(my_pnum, (*player)[my_pnum]._pRSpell) / 64);
+			return static_cast<int>(floor(GetManaAmount(my_pnum, (*player)[my_pnum]._pRSpell) / 64));
 		}
 
 		int getSpellLevel(spell_id id)
 		{
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
-			if (id < 37)
-				return (*player)[my_pnum]._pSplLvl[id];
+			if (static_cast<int>(id) < 37)
+				return (*player)[my_pnum]._pSplLvl[static_cast<int>(id)];
 			else
 				return -1;
 		}
 
 		int hitPoints() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
-			return (int)floor((*player)[my_pnum]._pHitPoints / 64);
+			return static_cast<int>(floor((*player)[my_pnum]._pHitPoints / 64));
 		}
 		bool increaseDexterity() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -258,7 +258,7 @@ namespace DAPI
 		}
 		int mana() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
-			return (int)floor((*player)[my_pnum]._pMana / 64);
+			return static_cast<int>(floor((*player)[my_pnum]._pMana / 64));
 		}
 		int mode() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pmode; }
 		void openDoor(Door target) {
@@ -303,17 +303,17 @@ namespace DAPI
 			if (target > 0 && target < 55 && *pcurs == 12 + (*player)[my_pnum].HoldItem._iCurs)
 			{
 				ItemStruct temp;
-				temp._itype = item_type::ITYPE_NONE;
+				temp._itype = static_cast<int>(item_type::ITYPE_NONE);
 				if (target < 7)
 				{
-					if ((*player)[my_pnum].InvBody[target]._itype != item_type::ITYPE_NONE)
+					if ((*player)[my_pnum].InvBody[target]._itype != static_cast<int>(item_type::ITYPE_NONE))
 						temp = (*player)[my_pnum].InvBody[target];
 					(*player)[my_pnum].InvBody[target] = (*player)[my_pnum].HoldItem;
 				}
 				else if (target < 47)
 				{
 					int grid_index;
-					switch ((*player)[my_pnum].HoldItem._itype)
+					switch (static_cast<item_type>((*player)[my_pnum].HoldItem._itype))
 					{
 					case item_type::ITYPE_AMULET:
 					case item_type::ITYPE_GOLD:
@@ -507,13 +507,13 @@ namespace DAPI
 				else if (target < 55)
 				{
 					//belt
-					if ((*player)[my_pnum].HoldItem._itype != item_type::ITYPE_MISC)
+					if ((*player)[my_pnum].HoldItem._itype != static_cast<int>(item_type::ITYPE_MISC))
 						return false;
-					if ((*player)[my_pnum].SpdList[target - 47]._itype != item_type::ITYPE_NONE)
+					if ((*player)[my_pnum].SpdList[target - 47]._itype != static_cast<int>(item_type::ITYPE_NONE))
 						temp = (*player)[my_pnum].SpdList[target - 47];
 					(*player)[my_pnum].SpdList[target - 47] = (*player)[my_pnum].HoldItem;
 				}
-				if (temp._itype != item_type::ITYPE_NONE)
+				if (temp._itype != static_cast<int>(item_type::ITYPE_NONE))
 				{
 					(*player)[my_pnum].HoldItem = temp;
 					SetCursor((*player)[my_pnum].HoldItem._iCurs + 12);
@@ -538,7 +538,7 @@ namespace DAPI
 			static auto CalcPlrInv = reinterpret_cast<void(__fastcall *)(int p, bool Loadgfx)>(0x41FD3E);
 			static auto CheckItemStats = reinterpret_cast<void(__fastcall *)(int pnum)>(0x41D8BF);
 			auto pcurs = reinterpret_cast<int(*)>(0x4B8CD0);
-			if (target.type() != item_type::ITYPE_NONE)
+			if (target.type() != static_cast<int>(item_type::ITYPE_NONE))
 			{
 				if (*pcurs == 1)
 				{
@@ -550,7 +550,7 @@ namespace DAPI
 							if (target == temp)
 							{
 								(*player)[my_pnum].HoldItem = (*player)[my_pnum].InvBody[i];
-								(*player)[my_pnum].InvBody[i]._itype = item_type::ITYPE_NONE;
+								(*player)[my_pnum].InvBody[i]._itype = static_cast<int>(item_type::ITYPE_NONE);
 								CalcPlrInv(my_pnum, 1u);
 								CheckItemStats(my_pnum);
 								SetCursor((*player)[my_pnum].HoldItem._iCurs + 12);
@@ -562,7 +562,7 @@ namespace DAPI
 							if (target == temp)
 							{
 								(*player)[my_pnum].HoldItem = (*player)[my_pnum].InvList[i - 7];
-								(*player)[my_pnum].InvList[i - 7]._itype = item_type::ITYPE_NONE;
+								(*player)[my_pnum].InvList[i - 7]._itype = static_cast<int>(item_type::ITYPE_NONE);
 								for (int i = 0; i < 40; i++)
 								{
 									if ((*player)[my_pnum].InvGrid[i] == target.inventoryIndex(my_pnum) - 6 ||
@@ -585,8 +585,8 @@ namespace DAPI
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			if (getSpellLevel(id) > 0)
 			{
-				(*player)[my_pnum]._pRSpell = id;
-				(*player)[my_pnum]._pRSplType = spell_type::RSPLTYPE_SPELL;
+				(*player)[my_pnum]._pRSpell = static_cast<int>(id);
+				(*player)[my_pnum]._pRSplType = static_cast<int>(spell_type::RSPLTYPE_SPELL);
 				return true;
 			}
 			return false;
@@ -643,7 +643,7 @@ namespace DAPI
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			for (int i = 0; i < 40; i++)
 			{
-				if ((*player)[my_pnum].InvList[i]._itype == item_type::ITYPE_NONE)
+				if ((*player)[my_pnum].InvList[i]._itype == static_cast<int>(item_type::ITYPE_NONE))
 				{
 					(*player)[my_pnum].InvList[i] = item;
 					return i + 1;

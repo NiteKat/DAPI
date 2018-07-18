@@ -1,8 +1,9 @@
 #pragma once
+#include<cstdint>
 
 namespace DAPI
 {
-	typedef enum {
+	enum struct player_mode {
 		PLAYER_MODE_STANDING = 0,
 		PLAYER_MODE_WALKING_1 = 1,
 		PLAYER_MODE_WALKING_2 = 2,
@@ -15,9 +16,9 @@ namespace DAPI
 		PLAYER_MODE_CASTING_A_SPELL = 9,
 		PLAYER_MODE_CHANGING_LEVELS = 10,
 		PLAYER_MODE_QUITTING = 11,
-	} player_mode;
+	};
 
-	typedef enum {
+	enum struct direction {
 		DIRECTION_SOUTH = 0,
 		DIRECTION_SOUTH_WEST = 1,
 		DIRECTION_WEST = 2,
@@ -27,9 +28,9 @@ namespace DAPI
 		DIRECTION_EAST = 6,
 		DIRECTION_SOUTH_EAST = 7,
 		DIRECTION_OMNI = 8, ///< All directions.
-	} direction;
+	};
 
-	typedef enum {
+	enum struct _cmd_id {
 		CMD_STAND = 0,
 		CMD_WALKXY = 1,
 		CMD_ACK_PLRINFO = 2,
@@ -127,9 +128,9 @@ namespace DAPI
 		FAKE_CMD_SETID = 94,
 		FAKE_CMD_DROPID = 95,
 		NUM_CMDS = 96,
-	} _cmd_id;
+	};
 
-	typedef enum
+	enum struct spell_id : std::uint32_t
 	{
 		SPL_NULL = 0x0,
 		SPL_FIREBOLT = 0x1,
@@ -169,18 +170,18 @@ namespace DAPI
 		SPL_FLARE = 0x23,
 		SPL_BONESPIRIT = 0x24,
 		SPL_INVALID = 0xFFFFFFFF,
-	} spell_id;
+	};
 
-	typedef enum
+	enum struct spell_type
 	{
 		RSPLTYPE_SKILL = 0x0,
 		RSPLTYPE_SPELL = 0x1,
 		RSPLTYPE_SCROLL = 0x2,
 		RSPLTYPE_CHARGES = 0x3,
 		RSPLTYPE_INVALID = 0x4,
-	} spell_type;
+	};
 
-	typedef enum
+	enum struct _object_id
 	{
 		OBJ_L1LIGHT = 0x0,
 		OBJ_L1LDOOR = 0x1,
@@ -281,9 +282,9 @@ namespace DAPI
 		OBJ_SLAINHERO = 0x60,
 		OBJ_SIGNCHEST = 0x61,
 		OBJ_NULL_98 = 0x62,
-	} _object_id;
+	};
 
-	typedef enum
+	enum struct interface_mode
 	{
 		WM_DIAB = 0x401,
 		WM_DIABNEXTLVL = 0x402, // WM_USER+2
@@ -296,9 +297,9 @@ namespace DAPI
 		WM_DIABRETOWN = 0x409,
 		WM_DIABNEWGAME = 0x40A,
 		WM_DIABLOADGAME = 0x40B
-	} interface_mode;
+	};
 
-	typedef enum
+	enum struct item_type : std::uint32_t
 	{
 		ITYPE_MISC = 0x0,
 		ITYPE_SWORD = 0x1,
@@ -316,9 +317,9 @@ namespace DAPI
 		ITYPE_AMULET = 0xD,
 		ITYPE_0E = 0xE,
 		ITYPE_NONE = 0xFFFFFFFF,
-	} item_type;
+	};
 
-	typedef enum
+	enum struct item_misc_id : std::uint32_t
 	{
 		IMISC_NONE = 0x0,
 		IMISC_USEFIRST = 0x1,
@@ -366,9 +367,9 @@ namespace DAPI
 		IMISC_EAR = 0x2B,
 		IMISC_SPECELIX = 0x2C,
 		IMISC_INVALID = 0xFFFFFFFF,
-	}  item_misc_id;
+	} ;
 
-	typedef enum
+	enum struct equip_slot
 	{
 		HEAD = 0,
 		RIGHTRING = 1,
@@ -425,14 +426,14 @@ namespace DAPI
 		BELT6 = 52,
 		BELT7 = 53,
 		BELT8 = 54
-	} equip_slot;
+	};
 
-	typedef enum
+	enum struct  _ui_classes
 	{
 		UI_WARRIOR = 0x0,
 		UI_ROGUE = 0x1,
 		UI_SORCERER = 0x2,
 		UI_NUM_CLASSES = 0x3,
-	} _ui_classes;
+	};
 }
 

@@ -49,7 +49,7 @@ namespace DAPI
 			for (int i = 1; i < 127; i++)
 			{
 				bool add_object = false;
-				switch ((*object)[i]._otype)
+				switch (static_cast<_object_id>((*object)[i]._otype))
 				{
 				case _object_id::OBJ_BARREL:
 				case _object_id::OBJ_BARRELEX:
@@ -113,7 +113,7 @@ namespace DAPI
 			for (int i = 1; i < 127; i++)
 			{
 				bool add_door = false;
-				switch ((*object)[i]._otype)
+				switch (static_cast<_object_id>((*object)[i]._otype))
 				{
 				case _object_id::OBJ_L1LDOOR:
 				case _object_id::OBJ_L1RDOOR:

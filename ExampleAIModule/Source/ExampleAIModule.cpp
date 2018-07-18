@@ -3,7 +3,7 @@
 DAPI::Game test;
 DAPI::PlayerCharacter my_player = test.self();
 DAPI::Point target{-1, -1};
-std::mt19937 mt = std::mt19937(std::chrono::system_clock::now().time_since_epoch().count());
+std::mt19937 mt{ static_cast<unsigned int>(std::chrono::system_clock::now().time_since_epoch().count()) };
 int tileVisits[112][112] = { 0 };
 int frame_timer = 0;
 bool did_something;
@@ -61,10 +61,10 @@ extern "C" __declspec(dllexport) void onFrame()
 			std::vector<DAPI::Item> my_belt = my_player.getBeltItems();
 			for (auto item : my_belt)
 			{
-				if (item.miscId() == DAPI::item_misc_id::IMISC_HEAL ||
-					item.miscId() == DAPI::item_misc_id::IMISC_FULLHEAL ||
-					item.miscId() == DAPI::item_misc_id::IMISC_REJUV ||
-					item.miscId() == DAPI::item_misc_id::IMISC_FULLREJUV)
+				if (item.miscId() == static_cast<int>(DAPI::item_misc_id::IMISC_HEAL) ||
+					item.miscId() == static_cast<int>(DAPI::item_misc_id::IMISC_FULLHEAL) ||
+					item.miscId() == static_cast<int>(DAPI::item_misc_id::IMISC_REJUV) ||
+					item.miscId() == static_cast<int>(DAPI::item_misc_id::IMISC_FULLREJUV))
 				{
 					my_player.useItem(item);
 					break;
@@ -76,17 +76,17 @@ extern "C" __declspec(dllexport) void onFrame()
 			std::vector<DAPI::Item> my_belt = my_player.getBeltItems();
 			for (auto item : my_belt)
 			{
-				if (item.miscId() == DAPI::item_misc_id::IMISC_MANA ||
-					item.miscId() == DAPI::item_misc_id::IMISC_FULLMANA ||
-					item.miscId() == DAPI::item_misc_id::IMISC_REJUV ||
-					item.miscId() == DAPI::item_misc_id::IMISC_FULLREJUV)
+				if (item.miscId() == static_cast<int>(DAPI::item_misc_id::IMISC_MANA) ||
+					item.miscId() == static_cast<int>(DAPI::item_misc_id::IMISC_FULLMANA) ||
+					item.miscId() == static_cast<int>(DAPI::item_misc_id::IMISC_REJUV) ||
+					item.miscId() == static_cast<int>(DAPI::item_misc_id::IMISC_FULLREJUV))
 				{
 					my_player.useItem(item);
 					break;
 				}
 			}
 		}
-		if (my_player.mode() == DAPI::player_mode::PLAYER_MODE_STANDING)
+		if (my_player.mode() == static_cast<int>(DAPI::player_mode::PLAYER_MODE_STANDING))
 		{
 			if (my_player.dLevel() == 0)
 			{
@@ -167,7 +167,7 @@ extern "C" __declspec(dllexport) void onFrame()
 						{
 							my_player.attack(closest_monster);
 							DAPI::Item weapon = my_player.getEquippedItem(DAPI::equip_slot::RIGHTHAND);
-							if (weapon.type() != DAPI::item_type::ITYPE_BOW)
+							if (weapon.type() != static_cast<int>(DAPI::item_type::ITYPE_BOW))
 							{
 								if (my_player.walkPath()[0] != (char)-1 || (abs(closest_monster.futurex() - my_player.worldX()) < 2 && abs(closest_monster.futurey() - my_player.worldY()) < 2))
 									frame_timer = 40;
@@ -295,7 +295,6 @@ void walkWeightedRandomDirection()
 	int westscore = 100 - tileVisits[west.x][west.y];
 
 	int max_score = eastscore + northscore + northeastscore + northwestscore + southscore + southeastscore + southwestscore + westscore;
-	DAPI::direction direction;
 	int score = getRandomInteger(1, max_score);
 	if (score <= eastscore)
 	{
