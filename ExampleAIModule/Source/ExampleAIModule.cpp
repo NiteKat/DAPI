@@ -2,7 +2,7 @@
 
 DAPI::Game test;
 DAPI::PlayerCharacter my_player = test.self();
-DAPI::Point target(-1, -1);
+DAPI::Point target{-1, -1};
 std::mt19937 mt = std::mt19937(std::chrono::system_clock::now().time_since_epoch().count());
 int tileVisits[112][112] = { 0 };
 int frame_timer = 0;
@@ -108,14 +108,14 @@ extern "C" __declspec(dllexport) void onFrame()
 				else
 				{
 					int tiles = abs(target.x - my_player.worldX()) + abs(target.y - my_player.worldY());
-					DAPI::Point temp_target(target.x, target.y);
+					DAPI::Point temp_target{ target.x, target.y };
 					while (tiles > 24)
 					{
 						temp_target.x += (int)floor((my_player.worldX() - temp_target.x) / 2);
 						temp_target.y += (int)floor((my_player.worldY() - temp_target.y) / 2);
 						tiles = abs(temp_target.x - my_player.worldX()) + abs(temp_target.y - my_player.worldY());
 					}
-					if (temp_target.isClear())
+					if (!test.isSolid(temp_target))
 					{
 						my_player.walkToXY(temp_target.x, temp_target.y);
 						frame_timer = 40;
@@ -277,14 +277,14 @@ int getRandomInteger(int min, int max)
 void walkWeightedRandomDirection()
 {
 	DAPI::Point target;
-	DAPI::Point east(my_player.worldX() + 1, my_player.worldY() - 1);
-	DAPI::Point north(my_player.worldX() - 1, my_player.worldY() - 1);
-	DAPI::Point northeast(my_player.worldX(), my_player.worldY() - 1);
-	DAPI::Point northwest(my_player.worldX() - 1, my_player.worldY());
-	DAPI::Point south(my_player.worldX() + 1, my_player.worldY() + 1);
-	DAPI::Point southeast(my_player.worldX() + 1, my_player.worldY());
-	DAPI::Point southwest(my_player.worldX(), my_player.worldY() + 1);
-	DAPI::Point west(my_player.worldX() - 1, my_player.worldY() + 1);
+	DAPI::Point east{ my_player.worldX() + 1, my_player.worldY() - 1 };
+	DAPI::Point north{ my_player.worldX() - 1, my_player.worldY() - 1 };
+	DAPI::Point northeast{my_player.worldX(), my_player.worldY() - 1};
+	DAPI::Point northwest{my_player.worldX() - 1, my_player.worldY()};
+	DAPI::Point south{my_player.worldX() + 1, my_player.worldY() + 1};
+	DAPI::Point southeast{my_player.worldX() + 1, my_player.worldY()};
+	DAPI::Point southwest{my_player.worldX(), my_player.worldY() + 1};
+	DAPI::Point west{my_player.worldX() - 1, my_player.worldY() + 1};
 	int eastscore = 100 - tileVisits[east.x][east.y];
 	int northscore = 100 - tileVisits[north.x][north.y];
 	int northeastscore = 100 - tileVisits[northeast.x][northeast.y];
@@ -337,8 +337,8 @@ void walkWeightedRandomDirection()
 		target.x = my_player.worldX() - 1;
 		target.y = my_player.worldY() + 1;
 	}
-	
-	my_player.walkToXY(target.x, target.y);
+	if (!test.isSolid(target))
+		my_player.walkToXY(target.x, target.y);
 	if (tileVisits[target.x][target.y] < 99)
 		tileVisits[target.x][target.y] += 1;
 	

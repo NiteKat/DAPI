@@ -7,32 +7,12 @@
 #include"Monster.h"
 #include"Door.h"
 #include"Item.h"
+#include"Point.h"
 
 namespace DAPI
 {
 	struct Game
 	{
-		void test() {
-			static auto dFlags = reinterpret_cast<char(*)[112][112]>(0x5C6910);
-			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
-			if (dFlags && player)
-			{
-				int i = 0;
-				while (i < 1)
-					i++;
-			}
-			for (int x = 0; x < 112; x++)
-			{
-				for (int y = 0; y < 112; y++)
-				{
-					(*dFlags)[x][y] |= 0x40;
-					//(*dFlags)[x][y] &= ~0x80;
-					//(*dFlags)[x][y] &= ~0x02;
-					(*dFlags)[x][y] |= 0x01;
-				}
-			}
-		}
-
 		PlayerCharacter self() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			static auto myplr = reinterpret_cast<int(*)>(0x686444);
@@ -51,6 +31,15 @@ namespace DAPI
 			}
 			return return_value;
 
+		}
+
+		bool isSolid(DAPI::Point point) {
+			auto dPiece = reinterpret_cast<int(*)[112][112]>(0x5A5BD8);
+			static auto nSolidTable = reinterpret_cast<char(*)[2049]>(0x5BB2F0);
+			if (!(*dPiece)[point.x][point.y] || (*nSolidTable)[(*dPiece)[point.x][point.y]])
+				return true;
+			else
+				return false;
 		}
 
 		auto validObjects() {
