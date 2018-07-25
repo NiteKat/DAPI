@@ -26,11 +26,73 @@ namespace DAPI
 			std::vector<Trigger> return_value;
 			for (int loop = 0; loop < (*trigflag)[4]; loop++)
 			{
-				Trigger new_trigger(trigs[loop]);
+				Trigger new_trigger(&(*trigs)[loop]);
 				return_value.push_back(new_trigger);
 			}
 			return return_value;
 
+		}
+
+		std::vector<DAPI::Point> getOnScreenPoints() {
+			auto dPiece = reinterpret_cast<int(*)[112][112]>(0x5A5BD8);
+			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			static auto myplr = reinterpret_cast<int(*)>(0x686444);
+			std::vector<DAPI::Point> return_value;
+			int dx = -11;
+			int dy = 0;
+			int cells = 12;
+			for (int i = 0; i < 21; i++)
+			{
+				bool cells_are_11 = cells == 11;
+				cells += cells_are_11 - !cells_are_11;
+				dy -= cells_are_11;
+				dx += !cells_are_11;
+				for (int cur_cell = 0; cur_cell < cells; cur_cell++)
+				{
+					DAPI::Point new_point{ (*player)[*myplr].WorldX + dx + cur_cell, (*player)[*myplr].WorldY + dy + cur_cell };
+					return_value.push_back(new_point);
+				}
+			}
+			return return_value;
+		}
+
+		auto getOnScreenObjects() {
+			std::vector<Object> return_value;
+			auto object = reinterpret_cast<ObjectStruct(*)[127]>(0x679C38);
+			auto dObject = reinterpret_cast<char(*)[112][112]>(0x539C48);
+			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			static auto myplr = reinterpret_cast<int(*)>(0x686444);
+			int dx = -11;
+			int dy = 0;
+			int cells = 12;
+			for (int i = 0; i < 21; i++)
+			{
+				bool cells_are_11 = cells == 11;
+				cells += cells_are_11 - !cells_are_11;
+				dy -= cells_are_11;
+				dx += !cells_are_11;
+				for (int cur_cell = 0; cur_cell < cells; cur_cell++)
+				{
+					int index = (*dObject)[(*player)[*myplr].WorldX + dx + cur_cell][(*player)[*myplr].WorldY + dy + cur_cell];
+					if (0 < index)
+					{
+						switch (static_cast<_object_id>((*object)[index - 1]._otype))
+						{
+						case _object_id::OBJ_L1LDOOR:
+						case _object_id::OBJ_L1RDOOR:
+						case _object_id::OBJ_L2LDOOR:
+						case _object_id::OBJ_L2RDOOR:
+						case _object_id::OBJ_L3LDOOR:
+						case _object_id::OBJ_L3RDOOR:
+							break;
+						default:
+							DAPI::Object new_object(&(*object)[index - 1]);
+							return_value.push_back(new_object);
+						}
+					}
+				}
+			}
+			return return_value;
 		}
 
 		bool isSolid(DAPI::Point point) {
@@ -109,32 +171,50 @@ namespace DAPI
 		auto doors() {
 			std::vector<Door> return_value;
 			auto object = reinterpret_cast<ObjectStruct(*)[127]>(0x679C38);
-			auto dFlags = reinterpret_cast<char(*)[112][112]>(0x5C6910);
-			for (int i = 1; i < 127; i++)
+			auto dObject = reinterpret_cast<char(*)[112][112]>(0x539C48);
+			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			static auto myplr = reinterpret_cast<int(*)>(0x686444);
+			int dx = -11;
+			int dy = 0;
+			int cells = 12;
+			for (int i = 0; i < 21; i++)
 			{
-				bool add_door = false;
-				switch (static_cast<_object_id>((*object)[i]._otype))
+				bool cells_are_11 = cells == 11;
+				cells += cells_are_11 - !cells_are_11;
+				dy -= cells_are_11;
+				dx += !cells_are_11;
+				for (int cur_cell = 0; cur_cell < cells; cur_cell++)
 				{
-				case _object_id::OBJ_L1LDOOR:
-				case _object_id::OBJ_L1RDOOR:
-				case _object_id::OBJ_L2LDOOR:
-				case _object_id::OBJ_L2RDOOR:
-				case _object_id::OBJ_L3LDOOR:
-				case _object_id::OBJ_L3RDOOR:
-					add_door = true;
-					break;
-				default:
-					break;
-				}
-				if (add_door)
-				{
-					int dx = (*object)[i]._ox;
-					int dy = (*object)[i]._oy;
-					if ((*dFlags)[dx][dy] & 0x40)
+					int index = (*dObject)[(*player)[*myplr].WorldX + dx + cur_cell][(*player)[*myplr].WorldY + dy + cur_cell];
+					if (0 < index)
 					{
-						Door new_door(&(*object)[i]);
-						return_value.push_back(new_door);
+						switch (static_cast<_object_id>((*object)[index - 1]._otype))
+						{
+						case _object_id::OBJ_L1LDOOR:
+						case _object_id::OBJ_L1RDOOR:
+						case _object_id::OBJ_L2LDOOR:
+						case _object_id::OBJ_L2RDOOR:
+						case _object_id::OBJ_L3LDOOR:
+						case _object_id::OBJ_L3RDOOR:
+							return_value.push_back(DAPI::Door(&(*object)[index - 1]));
+						default:
+							break;
+						}
 					}
+				}
+			}
+			return return_value;
+		}
+
+		auto visiblePoints() {
+			auto dFlags = reinterpret_cast<char(*)[112][112]>(0x5C6910);
+			std::vector<Point> return_value;
+			for (int x = 0; x < 112; x++)
+			{
+				for (int y = 0; y < 112; y++)
+				{
+					if ((*dFlags)[x][y] & 0x40)
+						return_value.push_back(Point{ x, y });
 				}
 			}
 			return return_value;
@@ -143,18 +223,24 @@ namespace DAPI
 		auto groundItems() {
 			std::vector<Item> return_value;
 			auto item = reinterpret_cast<ItemStruct(*)[127]>(0x635A28);
-			auto dFlags = reinterpret_cast<char(*)[112][112]>(0x5C6910);
 			auto dItem = reinterpret_cast<char(*)[112][112]>(0x5C9A10);
-			for (int i = 0; i < 127; i++)
+			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			static auto myplr = reinterpret_cast<int(*)>(0x686444);
+			int dx = -11;
+			int dy = 0;
+			int cells = 12;
+			for (int i = 0; i < 21; i++)
 			{
-				bool add_item = false;
-				int ix = (*item)[i]._ix;
-				int iy = (*item)[i]._iy;
-				if ((*dItem)[ix][iy] == i + 1)
+				bool cells_are_11 = cells == 11;
+				cells += cells_are_11 - !cells_are_11;
+				dy -= cells_are_11;
+				dx += !cells_are_11;
+				for (int cur_cell = 0; cur_cell < cells; cur_cell++)
 				{
-					if ((*dFlags)[ix][iy] & 0x40)
+					int index = (*dItem)[(*player)[*myplr].WorldX + dx + cur_cell][(*player)[*myplr].WorldY + dy + cur_cell];
+					if (0 < index)
 					{
-						Item new_item(&(*item)[i]);
+						Item new_item(&(*item)[index - 1]);
 						return_value.push_back(new_item);
 					}
 				}

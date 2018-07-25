@@ -24,10 +24,14 @@ namespace DAPI
 
 		int groundId() {
 			auto item = reinterpret_cast<ItemStruct(*)[127]>(0x635A28);
-			for (int i = 0; i < 127; i++)
+			auto dItem = reinterpret_cast<char(*)[112][112]>(0x5C9A10);
+			if (my_item)
 			{
-				if (&(*item)[i] == my_item)
-					return i;
+				int index = (*dItem)[my_item->_ix][my_item->_iy];
+				if (index)
+					return index - 1;
+				else
+					return -1;
 			}
 			return -1;
 		}
@@ -95,13 +99,13 @@ namespace DAPI
 		}
 
 		int x() {
-			if (my_item && isVisible())
+			if (my_item)
 				return my_item->_ix;
 			return -1;
 		}
 
 		int y() {
-			if (my_item && isVisible())
+			if (my_item)
 				return my_item->_iy;
 			return -1;
 		}

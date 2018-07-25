@@ -10,18 +10,12 @@ namespace DAPI
 
 		int id() {
 			auto object = reinterpret_cast<ObjectStruct(*)[127]>(0x679C38);
-			for (int i = 1; i < 200; i++)
+			for (int i = 0; i < 200; i++)
 			{
 				if (&(*object)[i] == my_door)
 					return i;
 			}
 			return -1;
-		}
-
-		bool isOpen() {
-			if (!my_door->_oVar4)
-				return false;
-			return true;
 		}
 
 		bool isBlocked() {
@@ -30,20 +24,34 @@ namespace DAPI
 			return false;
 		}
 
+
+		bool isOpen() {
+			if (!my_door->_oVar4)
+				return false;
+			return true;
+		}
+
+		bool isValid() {
+			if (my_door)
+				return true;
+			else
+				return false;
+		}
+
 		bool isVisible() {
 			auto dFlags = reinterpret_cast<char(*)[112][112]>(0x5C6910);
 			return (*dFlags)[my_door->_ox][my_door->_oy] & 0x40;
 		}
 
 		int x() {
-			if (my_door && isVisible())
+			if (my_door)
 				return my_door->_ox;
 			else
 				return -1;
 		}
 
 		int y() {
-			if (my_door && isVisible())
+			if (my_door)
 				return my_door->_oy;
 			else
 				return -1;

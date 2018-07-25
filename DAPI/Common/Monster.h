@@ -41,6 +41,13 @@ namespace DAPI
 			return -1;
 		}
 
+		bool isAlive() {
+			if (my_monster && isVisible())
+				return 0 < my_monster->_mhitpoints;
+			else
+				return false;
+		}
+
 		bool isValid() {
 			if (my_monster)
 				return true;
