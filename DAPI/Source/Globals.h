@@ -3,9 +3,9 @@
 
 namespace DAPI
 {
-	typedef unsigned __int32 u32;
 
-	static const u32 hook_function = 0x408974;//0x46886B;
+
+
 
 	auto inline player_do_spell = reinterpret_cast<int(*)(int)>(0x44EAC6);
 	auto inline doAttack = reinterpret_cast<int(*)(int)>(0x44E6A6); //May not need.

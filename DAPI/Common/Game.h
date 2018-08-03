@@ -8,9 +8,17 @@
 #include"Door.h"
 #include"Item.h"
 #include"Point.h"
+#include<queue>
+#include"DrawRequest.h"
+#include<variant>
+
+
 
 namespace DAPI
 {
+	template<class... Ts> struct Overload : Ts... {using Ts::operator() ...; };
+	template<class...Ts> Overload(Ts...)->Overload<Ts...>;
+
 	struct Game
 	{
 		PlayerCharacter self() {
@@ -148,20 +156,30 @@ namespace DAPI
 		auto liveMonsters() {
 			std::vector<Monster> return_value;
 			auto monster = reinterpret_cast<MonsterStruct(*)[200]>(0x64D24C);
-			auto dFlags = reinterpret_cast<char(*)[112][112]>(0x5C6910);
-			for (int i = 1; i < 200; i++)
+			static auto dMonster = reinterpret_cast<int(*)[112][112]>(0x52D208);
+			static auto dFlags = reinterpret_cast<char(*)[112][112]>(0x5C6910);
+			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			static auto myplr = reinterpret_cast<int(*)>(0x686444);
+			int dx = -11;
+			int dy = 0;
+			int cells = 12;
+			for (int i = 0; i < 21; i++)
 			{
-				bool add_monster = false;
-				if ((*monster)[i]._mhitpoints > 0)
-					add_monster = true;
-				if (add_monster)
+				bool cells_are_11 = cells == 11;
+				cells += cells_are_11 - !cells_are_11;
+				dy -= cells_are_11;
+				dx += !cells_are_11;
+				for (int cur_cell = 0; cur_cell < cells; cur_cell++)
 				{
-					int mx = (*monster)[i]._mx;
-					int my = (*monster)[i]._my;
-					if ((*dFlags)[mx][my] & 0x40)
+					int index = (*dMonster)[(*player)[*myplr].WorldX + dx + cur_cell][(*player)[*myplr].WorldY + dy + cur_cell];
+					if (0 < index)
 					{
-						Monster new_monster(&(*monster)[i]);
-						return_value.push_back(new_monster);
+						if ((*dFlags)[(*player)[*myplr].WorldX + dx + cur_cell][(*player)[*myplr].WorldY + dy + cur_cell] & 0x40 &&
+							(*monster)[index]._mhitpoints > 0)
+						{
+							DAPI::Monster new_monster(&(*monster)[index]);
+							return_value.push_back(new_monster);
+						}
 					}
 				}
 			}
@@ -247,8 +265,58 @@ namespace DAPI
 			}
 			return return_value;
 		}
-	private:
 
+		template<typename T>
+		void drawTextToScreen(int x, int y, T &&string) {
+			draw_queue.emplace_back(StringDrawScreen{ x, y, std::forward<T>(string) });
+		}
+
+		void onDraw() {
+			static auto PrintGameStr = reinterpret_cast<void(__fastcall *)(int x, int y, char *str, int color)>(0x405681);
+			static auto dx_lock_mutex = reinterpret_cast<void(__cdecl *)()>(0x41569A);
+			static auto dx_unlock_mutex = reinterpret_cast<void(__cdecl *)()>(0x415725);
+			auto clean = [&] {
+				struct Cleanup {
+					Cleanup(drawQueueType &queue) : toClean{ queue } {}
+					~Cleanup() { toClean.clear(); }
+					drawQueueType &toClean;
+				};
+
+				return Cleanup(draw_queue);
+			}();
+
+			dx_lock_mutex();
+			for (auto &drawable : draw_queue) {
+				std::visit(Overload{
+					[](StringDrawScreen &text) {
+					PrintGameStr(text.x, text.y, text.s.data(), 3);
+					},
+					[](StringDrawMap &text) {
+					//Point print_location {tile}
+					}
+				}, drawable);
+			}
+			dx_unlock_mutex();
+		}
+
+	private:
+		struct StringDrawScreen {
+			int x, y;
+			std::string s;
+		};
+
+		struct StringDrawMap {
+			int x, y;
+			std::string s;
+		};
+
+		using DrawObject = std::variant<StringDrawScreen,
+			StringDrawMap
+			// add more here as needed
+		>;
+		using drawQueueType = std::vector<DrawObject>;
+		drawQueueType draw_queue;
+		
 	};
 
 	

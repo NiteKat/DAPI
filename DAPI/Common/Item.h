@@ -109,6 +109,12 @@ namespace DAPI
 				return my_item->_iy;
 			return -1;
 		}
+
+		struct Compare {
+			bool operator () (const Item& a, const Item& b) const {
+				return a.my_item < b.my_item;
+			}
+		};
 	private:
 		ItemStruct* my_item;
 	};

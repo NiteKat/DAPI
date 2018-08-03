@@ -160,7 +160,7 @@ extern "C" __declspec(dllexport) void onFrame()
 						if (my_player.getRightClickSpell() != DAPI::spell_id::SPL_NULL &&
 							my_player.mana() >= my_player.getRightClickSpellManaCost())
 						{
-							my_player.castSpell(closest_monster.futurex(), closest_monster.futurey());
+							my_player.castSpell(closest_monster);
 							frame_timer = 80;
 						}
 						else

@@ -4,5 +4,7 @@
 
 #include <windows.h>
 
+
+
 void PlaceDetour(DWORD dwAddressToPatch, DWORD dwDetourAddress, DWORD dwPadSize, BOOL bFlag);
 void PatchMemory(DWORD dwAddressToPatch, BYTE *pData, DWORD dwDataLength);

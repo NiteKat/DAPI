@@ -10,9 +10,12 @@ namespace DAPI
 {
 	struct PlayerCharacter
 	{
+		PlayerCharacter() : my_pnum{ 0 } { }
 		PlayerCharacter(int pnum) : my_pnum{ pnum } { }
 		void attack(int x, int y) {
-			static auto MakePlrPath = reinterpret_cast<int(__fastcall *)(int, int, int, unsigned char)>(0x44FE9E);
+			static auto NetSendCmdLoc = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y)>(0x43C8C7);
+			NetSendCmdLoc(1u, static_cast<unsigned char>(_cmd_id::CMD_ATTACKXY), x, y);
+			/*static auto MakePlrPath = reinterpret_cast<int(__fastcall *)(int, int, int, unsigned char)>(0x44FE9E);
 			static auto ClrPlrPath = reinterpret_cast<void(__fastcall *)(int pnum)>(0x44FD8A);
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			switch (static_cast<item_type>((*player)[my_pnum].InvBody[4]._itype))
@@ -28,13 +31,13 @@ namespace DAPI
 				(*player)[my_pnum].destAction = 9;
 				(*player)[my_pnum].destParam1 = x;
 				(*player)[my_pnum].destParam2 = y;
-			}
+			}*/
 		}
 		void attack(Monster target) {
-			/*static auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C8F3);
+			static auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
 			int mid = target.id();
-			NetSendCmdParam1(1u, _cmd_id::CMD_ATTACKID, mid);*/
-			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			NetSendCmdParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_ATTACKID), mid - 1);
+			/*static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			static auto MakePlrPath = reinterpret_cast<int(__fastcall *)(int, int, int, unsigned char)>(0x44FE9E);
 			static auto ClrPlrPath = reinterpret_cast<void(__fastcall *)(int pnum)>(0x44FD8A);
 			int Xdif = abs((*player)[my_pnum].WorldX - target.futurex());
@@ -51,14 +54,19 @@ namespace DAPI
 					MakePlrPath(my_pnum, target.futurex(), target.futurey(), 0);
 				(*player)[my_pnum].destAction = 20;
 				(*player)[my_pnum].destParam1 = (unsigned short)target.id() - 1;
-			}
+			}*/
 		}
 		int baseDexterity() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pBaseDex; }
 		int baseMagic() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pBaseMag; }
 		int baseStrength() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pBaseStr; }
 		int baseVitality() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pBaseVit; }
+		//Broken, need to fix. Use castSpell(Monster target) instead.
 		void castSpell(int x, int y) {
-			static auto ClrPlrPath = reinterpret_cast<void(__fastcall *)(int pnum)>(0x44FD8A);
+			static auto NetSendCmdLocParam2 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1, int wParam2)>(0x43C928);
+			static auto GetSpellLevel = reinterpret_cast<int(__fastcall *)(int id, int sn)>(0x428A99);
+			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			NetSendCmdLocParam2(1u, static_cast<unsigned char>(_cmd_id::CMD_SPELLXY), static_cast<unsigned char>(x), static_cast<unsigned char>(y), 21720 * my_pnum, GetSpellLevel(my_pnum, (*player)[my_pnum]._pRSpell));
+			/*static auto ClrPlrPath = reinterpret_cast<void(__fastcall *)(int pnum)>(0x44FD8A);
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			static auto CheckSpell = reinterpret_cast<bool(__fastcall *)(int id, int sn, char st, bool manaonly)>(0x457584);
 			static auto UseScroll = reinterpret_cast<bool(__cdecl *)()>(0x41EB8B);
@@ -105,9 +113,19 @@ namespace DAPI
 						(*player)[my_pnum]._pSplType = (*player)[my_pnum]._pRSplType;
 					}
 				}
-			}
+			}*/
+		}
+		void castSpell(Monster target)
+		{
+			static auto NetSendCmdParam3 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1, unsigned short wParam2, int wParam3)>(0x43CA04);
+			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			static auto GetSpellLevel = reinterpret_cast<int(__fastcall *)(int id, int sn)>(0x428A99);
+			NetSendCmdParam3(1u, static_cast<unsigned char>(_cmd_id::CMD_SPELLID), target.id() - 1, (*player)[my_pnum]._pRSpell, GetSpellLevel(my_pnum, (*player)[my_pnum]._pRSpell));
 		}
 		int dLevel() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum].plrlevel; }
+		bool dropIteminCursor() {
+
+		}
 		std::vector<Item> getBeltItems() {
 			std::vector<Item> return_value;
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -168,7 +186,6 @@ namespace DAPI
 			Item noItem;
 			return noItem;
 		}
-		
 		std::vector<spell_id> getLearnedSpells()
 		{
 			std::vector<spell_id> return_value;
@@ -262,27 +279,33 @@ namespace DAPI
 		}
 		int mode() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pmode; }
 		void openDoor(Door target) {
-			static auto MakePlrPath = reinterpret_cast<int(__fastcall *)(int, int, int, unsigned char)>(0x44FE9E);
+			static auto NetSendCmdLocParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1)>(0x43C8F3);
+			NetSendCmdLocParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_OPOBJXY), target.x(), target.y(), target.id());
+			/*static auto MakePlrPath = reinterpret_cast<int(__fastcall *)(int, int, int, unsigned char)>(0x44FE9E);
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			if (!target.isOpen())
 			{
 				MakePlrPath(my_pnum, target.x(), target.y(), 0);
 				(*player)[my_pnum].destAction = 13;
 				(*player)[my_pnum].destParam1 = target.id();
-			}
+			}*/
 		}
 		void operateObject(Object target) {
-			static auto MakePlrPath = reinterpret_cast<int(__fastcall *)(int, int, int, unsigned char)>(0x44FE9E);
+			static auto NetSendCmdLocParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1)>(0x43C8F3);
+			NetSendCmdLocParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_OPOBJXY), target.x(), target.y(), target.id());
+			/*static auto MakePlrPath = reinterpret_cast<int(__fastcall *)(int, int, int, unsigned char)>(0x44FE9E);
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			if (target.isSolid())
 				MakePlrPath(my_pnum, target.x(), target.y(), 0);
 			else
 				MakePlrPath(my_pnum, target.x(), target.y(), 1u);
 			(*player)[my_pnum].destAction = 13;
-			(*player)[my_pnum].destParam1 = target.id();
+			(*player)[my_pnum].destParam1 = target.id();*/
 		}
 		void pickupItem(Item target) {
-			static auto MakePlrPath = reinterpret_cast<int(__fastcall *)(int, int, int, unsigned char)>(0x44FE9E);
+			static auto NetSendCmdLocParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1)>(0x43C8F3);
+			NetSendCmdLocParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_GOTOAGETITEM), target.x(), target.y(), target.groundId());
+			/*static auto MakePlrPath = reinterpret_cast<int(__fastcall *)(int, int, int, unsigned char)>(0x44FE9E);
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			int ground_id = target.groundId();
 			if (ground_id != -1)
@@ -290,8 +313,7 @@ namespace DAPI
 				MakePlrPath(my_pnum, target.x(), target.y(), 0);
 				(*player)[my_pnum].destAction = 16;
 				(*player)[my_pnum].destParam1 = ground_id;
-			}
-
+			}*/
 		}
 		bool putCursorItem(int target)
 		{
@@ -594,14 +616,14 @@ namespace DAPI
 		int statPoints() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pStatPts; }
 		char* walkPath() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum].walkpath; }
 		void walkToXY(int x, int y) {
-			/*static auto NetSendCmdLoc = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y)>(0x43C8C7);
-			NetSendCmdLoc(1u, _cmd_id::CMD_WALKXY, x, y);*/
-			static auto ClrPlrPath = reinterpret_cast<void(__fastcall *)(int pnum)>(0x44FD8A);
+			static auto NetSendCmdLoc = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y)>(0x43C8C7);
+			NetSendCmdLoc(1u, static_cast<unsigned char>(_cmd_id::CMD_WALKXY), x, y);
+			/*static auto ClrPlrPath = reinterpret_cast<void(__fastcall *)(int pnum)>(0x44FD8A);
 			static auto MakePlrPath = reinterpret_cast<int(__fastcall *)(int, int, int, unsigned char)>(0x44FE9E);
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			ClrPlrPath(my_pnum);
 			MakePlrPath(my_pnum, (unsigned char)x, (unsigned char)y, 1u);
-			(*player)[my_pnum].destAction = -1;
+			(*player)[my_pnum].destAction = -1;*/
 		}
 		void useItem(Item target)
 		{
