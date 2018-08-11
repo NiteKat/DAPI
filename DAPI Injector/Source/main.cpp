@@ -4,9 +4,11 @@
 
 int main()
 {
-	auto game_window = FindWindowA(NULL, "DIABLO");
+	auto game_window = FindWindowA(NULL, "Diablo");
 	if (!game_window)
-		return 1;
+	{
+
+	}
 	auto dll_path = "DAPI.dll";
 	DWORD process_id;
 	DWORD hLibModule;

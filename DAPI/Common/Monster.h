@@ -32,8 +32,8 @@ namespace DAPI
 		}
 
 		int id() {
-			auto monster = reinterpret_cast<MonsterStruct(*)[200]>(0x64D24C);
-			for (int i = 1; i < 200; i++)
+			auto monster = reinterpret_cast<MonsterStruct(*)[200]>(0x64D330);
+			for (int i = 0; i < 200; i++)
 			{
 				if (&(*monster)[i] == my_monster)
 					return i;
@@ -59,11 +59,11 @@ namespace DAPI
 			return (*dFlags)[my_monster->_mx][my_monster->_my] & 0x40;
 		}
 
-		auto type() {
+		_monster_id type() {
 			if (my_monster)
-				return my_monster->MData->mType;
+				return static_cast<_monster_id>(my_monster->MType->mtype);
 			else
-				return -1;
+				return _monster_id::NONE;
 		}
 
 		auto x() {

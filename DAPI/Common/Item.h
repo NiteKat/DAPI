@@ -1,5 +1,6 @@
 #pragma once
 #include"Structs.h"
+#include<string>
 
 namespace DAPI
 {
@@ -14,10 +15,28 @@ namespace DAPI
 		bool operator==(const Item& other) {
 			return (this->my_item) == (other.my_item);
 		}
+
+		bool operator!=(const Item& other) {
+			return (this->my_item) != (other.my_item);
+		}
 		
 		int armorClass() {
 			if (my_item)
 				return my_item->_iAC;
+			else
+				return -1;
+		}
+
+		item_class itemClass() {
+			if (my_item)
+				return static_cast<item_class>(my_item->_iCurs);
+			else
+				return item_class::NONE;
+		}
+
+		int currentDurability() {
+			if (my_item)
+				return my_item->_iDurability;
 			else
 				return -1;
 		}
@@ -83,12 +102,29 @@ namespace DAPI
 				return -1;
 		}
 
+		int maxDurability() {
+			if (my_item)
+				return my_item->_iMaxDur;
+			else
+				return -1;
+		}
+
 		int miscId()
 		{
 			if (my_item)
 				return my_item->_iMiscId;
 			else
 				return -1;
+		}
+
+		std::string name()
+		{
+			std::string return_value;
+			if (my_item)
+				return_value = my_item->_iName;
+			else
+				return_value = "";
+			return return_value;
 		}
 
 		int type() {
