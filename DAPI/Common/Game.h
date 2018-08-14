@@ -348,6 +348,11 @@ namespace DAPI
 			return myself;
 		}
 
+		bool singlePlayer() {
+			auto gbMaxPlayers = reinterpret_cast<char*>(0x679660);
+			return *gbMaxPlayers == 1;
+		}
+
 		bool sellItem(Item& item) {
 			auto stext = reinterpret_cast<STextStruct(*)[24]>(0x69FB40);
 			auto stextsval = reinterpret_cast<int*>(0x6A8A38);
