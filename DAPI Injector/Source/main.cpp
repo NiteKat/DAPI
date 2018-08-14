@@ -1,13 +1,27 @@
 #pragma once
 #include<Windows.h>
 #include<fstream>
+#include<sstream>
+#include<direct.h>
 
 int main()
 {
+	bool window_found = true;
 	auto game_window = FindWindowA(NULL, "Diablo");
 	if (!game_window)
 	{
-
+		std::ifstream pathfile;
+		pathfile.open("E:\\DAPI\\injector.ini");
+		if (!pathfile)
+			return 6;
+		std::string path;
+		pathfile >> path;
+		_chdir(path.data());
+		pathfile >> path;
+		ShellExecute(NULL, "open", path.data(), "", "", SW_SHOWDEFAULT);
+		Sleep(10000);
+		while(!game_window)
+			game_window = FindWindowA(NULL, "Diablo");
 	}
 	auto dll_path = "DAPI.dll";
 	DWORD process_id;

@@ -33,6 +33,60 @@ namespace DAPI
 			return return_value;
 
 		}
+
+		bool buyItem(Item& item) {
+			auto stext = reinterpret_cast<STextStruct(*)[24]>(0x69FB40);
+			auto stextsval = reinterpret_cast<int*>(0x6A8A38);
+			auto stextup = reinterpret_cast<int*>(0x69F108);
+			auto stextsel = reinterpret_cast<int*>(0x6A8A28);
+			auto stextsmax = reinterpret_cast<int*>(0x6A09E4);
+			auto STextDown = reinterpret_cast<void(__cdecl *)()>(0x45A757);
+			auto STextEnter = reinterpret_cast<void(*)()>(0x45BF34);
+			auto stextflag = reinterpret_cast<char*>(0x6AA705);
+			if (static_cast<talk_id>(*stextflag) == talk_id::STORE_SBUY ||
+				static_cast<talk_id>(*stextflag) == talk_id::STORE_WBUY ||
+				static_cast<talk_id>(*stextflag) == talk_id::STORE_HBUY ||
+				static_cast<talk_id>(*stextflag) == talk_id::STORE_BBOY)
+			{
+				bool found_item = false;
+				do {
+					for (int i = 0; i < 24; i++) {
+						if ((*stext)[i]._ssel) {
+							std::string item_name = item.name();
+							std::string option_name = (*stext)[i]._sstr;
+							int idx = *stextsval + ((i - *stextup) >> 2);
+							if (option_name == item_name) {
+								//item found.
+								found_item = true;
+								*stextsel = i;
+							}
+						}
+					}
+					if (found_item)
+						break;
+					//if not found, scroll down if possible.
+					if (!found_item && *stextsval < *stextsmax) {
+						if (!(*stextsval)) {
+							//Haven't scrolled yet, need to move to scroll position.
+							for (int i = 3; 0 < i; i--) {
+								STextDown();
+							}
+						}
+						//Scroll down one.
+						STextDown();
+					}
+					else if (*stextsval == *stextsmax) //Cannot scroll anymore and item not found.
+						break;
+				} while (true);
+				if (!found_item)
+					return false;
+				//found item, move to confirm screen.
+				STextEnter();
+				STextEnter();
+				return true;
+			}
+			return false;
+		}
 		
 		cursor_id cursor() {
 			static auto pcurs = reinterpret_cast<int(*)>(0x4B8CD0);
@@ -77,6 +131,16 @@ namespace DAPI
 			return return_value;
 		}
 
+		bool exitStore() {
+			auto STextEsc = reinterpret_cast<void(__cdecl *)()>(0x45A584);
+			auto stextflag = reinterpret_cast<char*>(0x6AA705);
+			if (*stextflag) {
+				STextEsc();
+				return true;
+			}
+			return false;
+		}
+
 		auto getOnScreenObjects() {
 			std::vector<Object> return_value;
 			auto object = reinterpret_cast<ObjectStruct(*)[127]>(0x679C38);
@@ -116,7 +180,7 @@ namespace DAPI
 			return return_value;
 		}
 
-		std::vector<DAPI::Point> getOnScreenPoints() {
+		std::vector<Point> getOnScreenPoints() {
 			auto dPiece = reinterpret_cast<int(*)[112][112]>(0x5A5BD8);
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			static auto myplr = reinterpret_cast<int(*)>(0x686444);
@@ -172,7 +236,7 @@ namespace DAPI
 			return invflag;
 		}
 
-		bool isSolid(DAPI::Point point) {
+		bool isSolid(Point point) {
 			auto dPiece = reinterpret_cast<int(*)[112][112]>(0x5A5BD8);
 			static auto nSolidTable = reinterpret_cast<char(*)[2049]>(0x5BB2F0);
 			if (!(*dPiece)[point.x][point.y] || (*nSolidTable)[(*dPiece)[point.x][point.y]])
@@ -214,11 +278,125 @@ namespace DAPI
 			return return_value;
 		}
 
+		std::vector<Item> openStoreItems() {
+			auto stextflag = reinterpret_cast<char*>(0x6AA705);
+			auto smithitem = reinterpret_cast<ItemStruct(*)[20]>(0x6A8A40);
+			auto witchitem = reinterpret_cast<ItemStruct(*)[20]>(0x6A4EF8);
+			auto healitem = reinterpret_cast<ItemStruct(*)[20]>(0x6A6BC0);
+			auto premiumitem = reinterpret_cast<ItemStruct(*)[20]>(0x69F290);
+			auto storehold = reinterpret_cast<ItemStruct(*)[48]>(0x6A09F0);
+			std::vector<Item> return_value;
+			switch (static_cast<talk_id>(*stextflag)) {
+			case talk_id::STORE_SBUY:
+				for (auto& item : *smithitem) {
+					if (static_cast<item_type>(item._itype) != item_type::ITYPE_NONE)
+						return_value.push_back(Item(&item));
+					else
+						break;
+				}
+				break;
+			case talk_id::STORE_SPBUY:
+				for (auto& item : *premiumitem) {
+					if (static_cast<item_type>(item._itype) != item_type::ITYPE_NONE)
+						return_value.push_back(Item(&item));
+					else
+						break;
+				}
+				break;
+			case talk_id::STORE_WBUY:
+				for (auto& item : *witchitem) {
+					if (static_cast<item_type>(item._itype) != item_type::ITYPE_NONE)
+						return_value.push_back(Item(&item));
+					else
+						break;
+				}
+				break;
+			case talk_id::STORE_HBUY:
+				for (auto& item : *healitem) {
+					if (static_cast<item_type>(item._itype) != item_type::ITYPE_NONE)
+						return_value.push_back(Item(&item));
+					else
+						break;
+				}
+				break;
+			case talk_id::STORE_BBOY:
+				break;
+			case talk_id::STORE_SSELL:
+			case talk_id::STORE_WSELL:
+				for (auto& item : *storehold) {
+					if (static_cast<item_type>(item._itype) != item_type::ITYPE_NONE)
+						return_value.push_back(Item(&item));
+					else
+						break;
+				}
+				break;
+			default:
+				break;
+			}
+			return return_value;
+		}
+
+		char qTextFlag() {
+			auto qtextflag = reinterpret_cast<char*>(0x646d00);
+			return *qtextflag;
+		}
+
 		PlayerCharacter self() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			static auto myplr = reinterpret_cast<int(*)>(0x686444);
 			PlayerCharacter myself(*myplr);
 			return myself;
+		}
+
+		bool sellItem(Item& item) {
+			auto stext = reinterpret_cast<STextStruct(*)[24]>(0x69FB40);
+			auto stextsval = reinterpret_cast<int*>(0x6A8A38);
+			auto stextup = reinterpret_cast<int*>(0x69F108);
+			auto stextsel = reinterpret_cast<int*>(0x6A8A28);
+			auto stextsmax = reinterpret_cast<int*>(0x6A09E4);
+			auto STextDown = reinterpret_cast<void(__cdecl *)()>(0x45A757);
+			auto STextEnter = reinterpret_cast<void(*)()>(0x45BF34);
+			auto stextflag = reinterpret_cast<char*>(0x6AA705);
+			bool found_item = false;
+			if (static_cast<talk_id>(*stextflag) == talk_id::STORE_SSELL || static_cast<talk_id>(*stextflag) == talk_id::STORE_WSELL)
+			{
+				do {
+					for (int i = 0; i < 24; i++) {
+						if ((*stext)[i]._ssel) {
+							std::string item_name = item.name();
+							std::string option_name = (*stext)[i]._sstr;
+							int idx = *stextsval + ((i - *stextup) >> 2);
+							if (option_name == item_name) {
+								//item found.
+								found_item = true;
+								*stextsel = i;
+							}
+						}
+					}
+					if (found_item)
+						break;
+					//if not found, scroll down if possible.
+					if (!found_item && *stextsval < *stextsmax) {
+						if (!(*stextsval)) {
+							//Haven't scrolled yet, need to move to scroll position.
+							for (int i = 3; 0 < i; i--) {
+								STextDown();
+							}
+						}
+						//Scroll down one.
+						STextDown();
+					}
+					else if (*stextsval == *stextsmax) //Cannot scroll anymore and item not found.
+						break;
+				} while (true);
+				if (!found_item)
+					return false;
+				//found item, move to confirm screen.
+				STextEnter();
+				STextEnter();
+				return true;
+			}
+			return false;
 		}
 
 		void toggleInventory() {
@@ -227,6 +405,41 @@ namespace DAPI
 				*invflag = 0;
 			else
 				*invflag = 1;
+		}
+
+		talk_id textFlag() {
+			auto stextflag = reinterpret_cast<char*>(0x6AA705);
+			return static_cast<talk_id>(*stextflag);
+		}
+
+		std::vector<Towner> towners() {
+			static auto towner = reinterpret_cast<TownerStruct(*)[16]>(0x6AAC38);
+			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			static auto myplr = reinterpret_cast<int(*)>(0x686444);
+			std::vector<Towner> return_value;
+			if ((*player)[*myplr].plrlevel == 0)
+			{
+				for (int i = 0; i < 16; i++) {
+					return_value.push_back(Towner(&(*towner)[i]));
+				}
+				return return_value;
+			}
+			else 
+				return return_value;
+		}
+
+		std::vector<STextStruct> townerOptions() {
+			auto stextflag = reinterpret_cast<char*>(0x6AA705);
+			auto stext = reinterpret_cast<STextStruct(*)[24]>(0x69FB40);
+			std::vector<STextStruct> return_value;
+			if (stextflag) {
+				for (auto& item : *stext) {
+					if (item._ssel)
+						return_value.push_back(item);
+				}
+			}
+
+			return return_value;
 		}
 
 		auto validObjects() {

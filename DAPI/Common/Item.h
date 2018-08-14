@@ -8,11 +8,11 @@ namespace DAPI
 	{
 		Item() { my_item = nullptr; }
 
-		Item(ItemStruct* nmy_item) {
-			my_item = nmy_item;
+		Item(ItemStruct* new_item) {
+			my_item = new_item;
 		}
 
-		bool operator==(const Item& other) {
+		bool operator==(const Item& other) const {
 			return (this->my_item) == (other.my_item);
 		}
 
@@ -127,11 +127,34 @@ namespace DAPI
 			return return_value;
 		}
 
+		int requiredDexterity() {
+			if (my_item)
+				return my_item->_iMinDex;
+			else
+				return -1;
+		}
+
+		int requiredMagic() {
+			if (my_item)
+				return my_item->_iMinMag;
+		}
+
+		int requiredStrength() {
+			if (my_item)
+				return my_item->_iMinStr;
+			else
+				return -1;
+		}
+
 		int type() {
 			if (my_item)
 				return my_item->_itype;
 			else
 				return -1;
+		}
+
+		int value() {
+			return my_item->_ivalue;
 		}
 
 		int x() {

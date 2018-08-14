@@ -467,3 +467,59 @@ struct TCmdParam1
 	unsigned char bCmd;
 	unsigned short wParam1;
 };
+
+struct TNQ
+{
+	unsigned char _qsttype;
+	unsigned char _qstmsg;
+	unsigned char _qstmsgact;
+};
+
+struct TownerStruct
+{
+	int _tmode;
+	int _ttype;
+	int _tx;
+	int _ty;
+	int _txoff;
+	int _tyoff;
+	int _txvel;
+	int _tyvel;
+	int _tdir;
+	void *_tAnimData; // unsigned char *
+	int _tAnimDelay;
+	int _tAnimCnt;
+	int _tAnimLen;
+	int _tAnimFrame;
+	int _tAnimFrameCnt;
+	int _tAnimOrder;
+	int _tAnimWidth;
+	int _tAnimWidth2;
+	int _tTenPer;
+	int _teflag;
+	int _tbtcnt;
+	int _tSelFlag;
+	int _tMsgSaid;
+	TNQ qsts[16];
+	int _tSeed;
+	int _tVar1;
+	int _tVar2;
+	int _tVar3;
+	int _tVar4;
+	char _tName[32];
+	int _tNAnim[8]; // unsigned char *
+	int _tNFrames;
+	char *_tNData; // unsigned char *
+};
+
+struct STextStruct
+{
+	int _sx;
+	int _syoff;
+	char _sstr[128];
+	int _sjust;
+	int _sclr;
+	int _sline;
+	int _ssel;
+	int _sval;
+};

@@ -6,6 +6,7 @@
 #include"Item.h"
 #include<vector>
 #include<sstream>
+#include"Towner.h"
 
 namespace DAPI
 {
@@ -244,6 +245,11 @@ namespace DAPI
 				return (*player)[my_pnum]._pSplLvl[static_cast<int>(id)];
 			else
 				return -1;
+		}
+
+		int gold() {
+			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			return (*player)[my_pnum]._pGold;
 		}
 
 		int hitPoints() {
@@ -654,6 +660,23 @@ namespace DAPI
 			setCursor(cursor_id::CURSOR_HAND);
 			return false;
 		}
+		void selectStoreOption(STextStruct& option) {
+			auto stextflag = reinterpret_cast<char*>(0x6AA705);
+			auto stextsel = reinterpret_cast<int*>(0x6A8A28);
+			auto STextEnter = reinterpret_cast<void(*)()>(0x45BF34);
+			auto stext = reinterpret_cast<STextStruct(*)[24]>(0x69FB40);
+			if (*stextflag){
+				for (int i = 0; i < 24; i++) {
+					std::string soption = option._sstr;
+					std::string sstext = (*stext)[i]._sstr;
+					if (soption == sstext) {
+						*stextsel = i;
+						STextEnter();
+						break;
+					}
+				}
+			}
+		}
 		bool setRightClickSpell(spell_id id)
 		{
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -674,6 +697,13 @@ namespace DAPI
 			return false;
 		}
 		int statPoints() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pStatPts; }
+		void talkToTowner(Towner towner) {
+			static auto NetSendCmdLocParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1)>(0x43C8F3);
+			if (okToAct()) {
+				if (-1 < towner.id() && towner.id() < 16)
+					NetSendCmdLocParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_TALKXY), towner.x(), towner.y(), towner.id());
+			}
+		}
 		char* walkPath() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum].walkpath; }
 		void walkToXY(int x, int y) {
 			static auto NetSendCmdLoc = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y)>(0x43C8C7);
@@ -745,6 +775,10 @@ namespace DAPI
 		void setCursor(cursor_id new_cursor) {
 			static auto pcurs = reinterpret_cast<int(*)>(0x4E8CD0);
 			*pcurs = static_cast<int>(new_cursor);
+		}
+		bool okToAct() {
+			auto stextflag = reinterpret_cast<char*>(0x6AA705);
+			return !*stextflag;
 		}
 	};
 }
