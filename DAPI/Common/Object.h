@@ -22,8 +22,6 @@ namespace DAPI
 			return -1;
 		}
 
-		bool isOpen() { return !my_object->_oSelFlag; }
-
 		bool isSolid() { return my_object->_oSolidFlag; }
 
 		bool isValid() {
