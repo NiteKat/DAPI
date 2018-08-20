@@ -36,6 +36,10 @@ namespace DAPI
 			return (*dFlags)[my_object->_ox][my_object->_oy] & 0x40;
 		}
 
+		bool selectable() {
+			return my_object->_oSelFlag;
+		}
+
 		_object_id type() {
 			if (my_object)
 			{
