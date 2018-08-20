@@ -4,7 +4,9 @@
 #include<sstream>
 #include<direct.h>
 
-int main()
+
+
+/*int main()
 {
 	bool window_found = true;
 	auto game_window = FindWindowA(NULL, "Diablo");
@@ -46,4 +48,4 @@ int main()
 	CloseHandle(thread);
 	VirtualFreeEx(process, vae_return, sizeof(dll_path), MEM_RELEASE);
 	return 0;
-}
+}*/

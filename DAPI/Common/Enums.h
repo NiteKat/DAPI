@@ -791,5 +791,44 @@ namespace DAPI
 		QTYPE_VB = 0xF,
 		QTYPE_INVALID = 0xFFFFFFFF,
 	};
+
+	enum _talker_id
+	{
+		TOWN_SMITH = 0x0,
+		TOWN_HEALER = 0x1,
+		TOWN_DEADGUY = 0x2,
+		TOWN_TAVERN = 0x3,
+		TOWN_STORY = 0x4,
+		TOWN_DRUNK = 0x5,
+		TOWN_WITCH = 0x6,
+		TOWN_BMAID = 0x7,
+		TOWN_PEGBOY = 0x8,
+		TOWN_COW = 0x9,
+		TOWN_PRIEST = 0xA,
+		TOWN_INVALID = -0x1
+	};
+
+	enum MON_MODE
+	{
+		MM_STAND = 0,
+		MM_WALK = 1,
+		MM_WALK2 = 2,
+		MM_WALK3 = 3,
+		MM_ATTACK = 4,
+		MM_GOTHIT = 5,
+		MM_DEATH = 6,
+		MM_SATTACK = 7,
+		MM_FADEIN = 8,
+		MM_FADEOUT = 9,
+		MM_RATTACK = 10,
+		MM_SPSTAND = 11,
+		MM_RSPATTACK = 12,
+		MM_DELAY = 13,
+		MM_CHARGE = 14,
+		MM_STONE = 15,
+		MM_HEAL = 16,
+		MM_TALK = 17,
+		MM_INVALID = -0X1
+	};
 }
 

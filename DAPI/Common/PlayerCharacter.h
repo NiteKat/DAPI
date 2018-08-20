@@ -7,6 +7,7 @@
 #include<vector>
 #include<sstream>
 #include"Towner.h"
+#include"Point.h"
 
 namespace DAPI
 {
@@ -695,6 +696,10 @@ namespace DAPI
 				return true;
 			}
 			return false;
+		}
+		void shiftAttack(Point target) {
+			auto NetSendCmdLoc = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y)>(0x43C8C7);
+			NetSendCmdLoc(1u, static_cast<unsigned char>(_cmd_id::CMD_SATTACKXY), target.x, target.y);
 		}
 		int statPoints() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pStatPts; }
 		void talkToTowner(Towner towner) {

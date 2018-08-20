@@ -59,6 +59,13 @@ namespace DAPI
 			return (*dFlags)[my_monster->_mx][my_monster->_my] & 0x40;
 		}
 
+		MON_MODE mode() {
+			if (my_monster)
+				return static_cast<MON_MODE>(my_monster->_mmode);
+			else
+				return MON_MODE::MM_INVALID;
+		}
+
 		_monster_id type() {
 			if (my_monster)
 				return static_cast<_monster_id>(my_monster->MType->mtype);

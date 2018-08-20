@@ -27,6 +27,8 @@ namespace DAPI
 				return -1;
 		}
 
+
+
 		item_class itemClass() {
 			if (my_item)
 				return static_cast<item_class>(my_item->_iCurs);

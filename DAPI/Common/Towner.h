@@ -19,11 +19,24 @@ namespace DAPI
 			return -1;
 		}
 
+		bool isValid() {
+			if (my_towner)
+				return true;
+			return false;
+		}
+
 		std::string name() {
 			if (my_towner)
 				return my_towner->_tName;
 			else
 				return "INVALID";
+		}
+
+		_talker_id type() {
+			if (my_towner)
+				return static_cast<_talker_id>(my_towner->_ttype);
+			else
+				return _talker_id::TOWN_INVALID;
 		}
 
 		int x() {

@@ -278,6 +278,29 @@ namespace DAPI
 			return return_value;
 		}
 
+		Item matchingInventoryItem(Item& sell_item) {
+			auto stextflag = reinterpret_cast<char*>(0x6AA705);
+			auto storehold = reinterpret_cast<ItemStruct(*)[48]>(0x6A09F0);
+			auto storehidx = reinterpret_cast<char(*)[48]>(0x6A89F0);
+			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			auto myplr = reinterpret_cast<int(*)>(0x686444);
+			if (static_cast<talk_id>(*stextflag) == talk_id::STORE_SSELL ||
+				static_cast<talk_id>(*stextflag) == talk_id::STORE_WSELL) {
+				for (int i = 0; i < 48; i++) {
+					if (Item(&(*storehold)[i]) == sell_item) {
+						char index = (*storehidx)[i];
+						if (index < 0) {
+							return Item(&(*player)[*myplr].SpdList[~index]);
+						}
+						else {
+							return Item(&(*player)[*myplr].InvList[index]);
+						}
+					}
+				}
+			}
+			return Item();
+		}
+
 		std::vector<Item> openStoreItems() {
 			auto stextflag = reinterpret_cast<char*>(0x6AA705);
 			auto smithitem = reinterpret_cast<ItemStruct(*)[20]>(0x6A8A40);
@@ -339,6 +362,11 @@ namespace DAPI
 		char qTextFlag() {
 			auto qtextflag = reinterpret_cast<char*>(0x646d00);
 			return *qtextflag;
+		}
+
+		void quit() {
+			auto gamemenu_quit_game = reinterpret_cast<void(*)()>(0x41893B);
+			gamemenu_quit_game();
 		}
 
 		PlayerCharacter self() {
