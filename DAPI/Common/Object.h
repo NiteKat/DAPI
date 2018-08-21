@@ -38,6 +38,14 @@ namespace DAPI
 			return my_object->_oSelFlag;
 		}
 
+		shrine_type shrineType() {
+			if (my_object && static_cast<_object_id>(my_object->_otype) == _object_id::OBJ_SHRINEL || static_cast<_object_id>(my_object->_otype) == _object_id::OBJ_SHRINER) {
+				return static_cast<shrine_type>(my_object->_oVar1);
+			}
+			else
+				return shrine_type::NONE;
+		}
+
 		_object_id type() {
 			if (my_object)
 			{

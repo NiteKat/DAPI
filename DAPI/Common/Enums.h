@@ -808,7 +808,7 @@ namespace DAPI
 		TOWN_INVALID = -0x1
 	};
 
-	enum MON_MODE
+	enum struct MON_MODE
 	{
 		MM_STAND = 0,
 		MM_WALK = 1,
@@ -829,6 +829,36 @@ namespace DAPI
 		MM_HEAL = 16,
 		MM_TALK = 17,
 		MM_INVALID = -0X1
+	};
+
+	enum struct shrine_type {
+		MYSTERIOUS = 0x0,
+		HIDDEN = 0x1,
+		GLOOMY = 0x2,
+		WEIRD = 0x3,
+		MAGICAL = 0x4,
+		STONE = 0x5,
+		RELIGIOUS = 0x6,
+		ENCHANTED = 0x7,
+		THAUMATURGIC = 0x8,
+		FASCINATING = 0x9,
+		CRYPTIC = 0xA,
+		MAGICAL2 = 0xB,
+		ELDRITCH = 0xC,
+		EERIE = 0xD,
+		DIVINE = 0xE,
+		HOLY = 0xF,
+		SACRED = 0x10,
+		SPIRITUAL = 0x11,
+		SPOOKY = 0x12,
+		ABANDONED = 0x13,
+		CREEPY = 0x14,
+		QUIET = 0x15,
+		SECLUDED = 0x16,
+		ORANTE = 0x17,
+		GLIMMERING = 0x18,
+		TAINTED = 0x19,
+		NONE = -0x1
 	};
 }
 

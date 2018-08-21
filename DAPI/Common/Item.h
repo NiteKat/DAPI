@@ -148,6 +148,13 @@ namespace DAPI
 				return -1;
 		}
 
+		spell_id spell() {
+			if (my_item)
+				return static_cast<spell_id>(my_item->_iSpell);
+			else
+				return spell_id::SPL_NULL;
+		}
+
 		int type() {
 			if (my_item)
 				return my_item->_itype;
