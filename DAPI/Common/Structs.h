@@ -523,3 +523,12 @@ struct STextStruct
 	int _ssel;
 	int _sval;
 };
+
+struct ScrollStruct
+{
+	int _sxoff;
+	int _syoff;
+	int _sdx;
+	int _sdy;
+	int _sdir;
+};

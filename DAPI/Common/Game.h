@@ -534,11 +534,19 @@ namespace DAPI
 		void drawTextToScreen(int x, int y, T &&string) {
 			draw_queue.emplace_back(StringDrawScreen{ x, y, std::forward<T>(string) });
 		}
+		
+		template<typename T>
+		void drawTextToMap(int x, int y, T &&string) {
+			draw_queue.emplace_back(StringDrawMap{ x, y, std::forward<T>(string) });
+		}
 
 		void onDraw() {
 			static auto PrintGameStr = reinterpret_cast<void(__fastcall *)(int x, int y, char *str, int color)>(0x405681);
 			static auto dx_lock_mutex = reinterpret_cast<void(__cdecl *)()>(0x41569A);
 			static auto dx_unlock_mutex = reinterpret_cast<void(__cdecl *)()>(0x415725);
+			static auto ScrollInfo = reinterpret_cast<ScrollStruct*>(0x5BDAF8);
+			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			static auto myplr = reinterpret_cast<int(*)>(0x686444);
 			auto clean = [&] {
 				struct Cleanup {
 					Cleanup(drawQueueType &queue) : toClean{ queue } {}
@@ -557,6 +565,29 @@ namespace DAPI
 					},
 					[](StringDrawMap &text) {
 					//Point print_location {tile}
+						int row = text.x - player[*myplr]->WorldX;
+						int col = text.y - player[*myplr]->WorldY;
+						int walkStandX = ScrollInfo->_sxoff;// +plr[myplr]._pyoff;
+						int walkStandY = ScrollInfo->_syoff;// +plr[myplr]._pxoff;
+						if (player[*myplr]->_pmode == static_cast<int>(player_mode::PLAYER_MODE_WALKING_2) && ScrollInfo->_sdir == 4) {
+							walkStandX += 32;
+							walkStandY += 16;
+						}
+						else if (player[*myplr]->_pmode == static_cast<int>(player_mode::PLAYER_MODE_WALKING_2) && ScrollInfo->_sdir == 5) {
+							walkStandY += 32;
+						}
+
+						else if (player[*myplr]->_pmode == static_cast<int>(player_mode::PLAYER_MODE_WALKING_2) && ScrollInfo->_sdir == 6) {
+							walkStandX += -32;
+							walkStandY += 16;
+						}
+
+						int x2 = 32 * (row - col) + (200 * (walkStandX) / 100 >> 1);
+						int y2 = 16 * (row + col) + (200 * (walkStandY) / 100 >> 1) - 16;
+						int print_x = x2 + 330;
+						int print_y = y2 + 160;
+						if (0 < print_x && 0 < print_y && print_x < 640 && print_y < 480)
+							PrintGameStr(print_x, print_y, text.s.data(), 3);
 					}
 				}, drawable);
 			}
