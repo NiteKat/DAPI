@@ -532,3 +532,19 @@ struct ScrollStruct
 	int _sdy;
 	int _sdir;
 };
+
+struct InvXY
+{
+	int X;
+	int Y;
+};
+
+struct PortalStruct
+{
+	int open;
+	int x;
+	int y;
+	int level;
+	int ltype;
+	int setlvl;
+};

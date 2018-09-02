@@ -5,6 +5,9 @@
 #include<sstream>
 #include<direct.h>
 #include"Injector.h"
+#include"AutoMenu.h"
+
+HWND characterNameText;
 
 LRESULT CALLBACK WndProc(
 	_In_ HWND	hwnd,
@@ -36,6 +39,19 @@ LRESULT CALLBACK WndProc(
 					_T("DAPI Launcher"),
 					NULL
 				);
+			}
+			else {
+				/*if (!setDiablo()) {
+					MessageBox(
+						NULL,
+						_T("Automenu Failed"),
+						_T("DAPI Launcher"),
+						NULL
+					);
+				}
+				else {
+					/*Auto Menu here.
+				}*/
 			}
 			break;
 		default:
@@ -98,7 +114,7 @@ int CALLBACK WinMain(
 		szTitle,
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, CW_USEDEFAULT,
-		150, 100,
+		250, 100,
 		NULL,
 		NULL,
 		hInstance,
@@ -119,14 +135,28 @@ int CALLBACK WinMain(
 		_T("Launch Diablo"), /*Button text.*/
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON, /*Styles*/
 		10, /*x position.*/
-		10, /*y position.*/
+		40, /*y position.*/
 		100, /*Button width.*/
 		20, /*Button height.*/
 		hWnd, /*Parent window.*/
 		NULL, /*No menu*/
 		(HINSTANCE)GetWindowLong(hWnd, GWL_HINSTANCE), /*hInstance of parent window.*/
 		NULL); /*Pointer not needed.*/
-
+	
+	/*Build the DLL name textbox*/
+	characterNameText = CreateWindow(
+		_T("Edit"), /*Edit class*/
+		_T("DAPI"), /*Default Value - We can load information froma  config file later*/
+		WS_CHILD | WS_VISIBLE | ES_LEFT | WS_BORDER, /*Styles*/
+		10, /*x position.*/
+		10, /*y position*/
+		200, /*width.*/
+		20, /*height*/
+		hWnd, /*Parent window*/
+		NULL, /*no menu*/
+		(HINSTANCE)GetWindowLong(hWnd, GWL_HINSTANCE), /*hInstance of parent window.*/
+		NULL); /*Pointer not needed*/
+	
 	/*Make window visible*/
 	// The parameters to ShowWindow explained:  
 	// hWnd: the value returned from CreateWindow  

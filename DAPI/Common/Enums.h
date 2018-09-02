@@ -860,5 +860,19 @@ namespace DAPI
 		TAINTED = 0x19,
 		NONE = -0x1
 	};
+
+	enum struct item_equip_type
+	{
+		ILOC_NONE = 0x0,
+		ILOC_ONEHAND = 0x1,
+		ILOC_TWOHAND = 0x2,
+		ILOC_ARMOR = 0x3,
+		ILOC_HELM = 0x4,
+		ILOC_RING = 0x5,
+		ILOC_AMULET = 0x6,
+		ILOC_UNEQUIPABLE = 0x7,
+		ILOC_BELT = 0x8,
+		ILOC_INVALID = -1,
+	};
 }
 

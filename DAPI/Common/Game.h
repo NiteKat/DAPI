@@ -11,6 +11,7 @@
 #include<queue>
 #include"DrawRequest.h"
 #include<variant>
+#include"Portal.h"
 
 
 
@@ -141,6 +142,15 @@ namespace DAPI
 			return false;
 		}
 
+		std::vector<Portal> getPortals() {
+			auto portal = reinterpret_cast<PortalStruct(*)[4]>(0x69BC98);
+			std::vector<Portal> return_value;
+			for (int i = 0; i < 4; i++) {
+				return_value.push_back(Portal(&(*portal)[i]));
+			}
+			return return_value;
+		}
+		
 		auto getOnScreenObjects() {
 			std::vector<Object> return_value;
 			auto object = reinterpret_cast<ObjectStruct(*)[127]>(0x679C38);
@@ -179,7 +189,7 @@ namespace DAPI
 			}
 			return return_value;
 		}
-
+		
 		std::vector<Point> getOnScreenPoints() {
 			auto dPiece = reinterpret_cast<int(*)[112][112]>(0x5A5BD8);
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);

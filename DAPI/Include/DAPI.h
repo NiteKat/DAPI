@@ -8,3 +8,4 @@
 #include"../Common/Monster.h"
 #include"../Common/Object.h"
 #include"../Common/Item.h"
+#include"../Common/Portal.h"

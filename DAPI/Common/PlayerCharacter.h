@@ -130,8 +130,12 @@ namespace DAPI
 			if (*pcurs == 1)
 				NetSendCmdParam3(1u, static_cast<unsigned char>(_cmd_id::CMD_SPELLID), target.id(), (*player)[my_pnum]._pRSpell, GetSpellLevel(my_pnum, (*player)[my_pnum]._pRSpell));
 		}
-
 		int characterLevel() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pLevel; }
+		void chat(std::string text) {
+			auto NetSendCmdString = reinterpret_cast<void(*)(int, const char*)>(0x43D064);
+			auto myplr = reinterpret_cast<int(*)>(0x686444);
+			NetSendCmdString(1 << *myplr, text.data());
+		}
 		int dLevel() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum].plrlevel; }
 		bool dropIteminCursor() {
 			auto TryInvPut = reinterpret_cast<int(__cdecl *)()>(0x41E2F9);
@@ -192,12 +196,24 @@ namespace DAPI
 		std::vector<Item> getInventoryItems() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			std::vector<Item> return_value;
+			/*
 			for (int i = 0; i < 40; i++)
 			{
 				if ((*player)[my_pnum].InvList[i]._itype != static_cast<int>(item_type::ITYPE_NONE))
 				{
+					for (int j = 0; j < 40; j++) {
+						if (abs((*player)[my_pnum].InvGrid[j]) == )
+					}
 					Item item_to_add(&(*player)[my_pnum].InvList[i]);
 					return_value.push_back(item_to_add);
+				}
+			}*/
+			bool used[40] = { false };
+			for (int i = 0; i < 40; i++) {
+				int index = (*player)[my_pnum].InvGrid[i];
+				if (index != 0 && !used[abs(index) - 1]) {
+					return_value.push_back(Item(&(*player)[my_pnum].InvList[abs(index) - 1]));
+					used[abs(index) - 1] = true;
 				}
 			}
 			return return_value;
@@ -230,6 +246,73 @@ namespace DAPI
 		{
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			return (spell_id)(*player)[my_pnum]._pRSpell;
+		}
+
+		std::vector<spell_id> getScrollSpells() {
+			std::vector<spell_id> return_value;
+			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			auto myplr = reinterpret_cast<int(*)>(0x686444);
+			if ((*player)[*myplr]._pScrlSpells[0] & 0x1 == 1) {
+				return_value.push_back(spell_id::SPL_FIREBOLT);
+			}
+			if ((*player)[*myplr]._pScrlSpells[0] & 0x2 == 1) {
+				return_value.push_back(spell_id::SPL_HEAL);
+			}
+			if ((*player)[*myplr]._pScrlSpells[0] & 0x4 == 1) {
+				return_value.push_back(spell_id::SPL_LIGHTNING);
+			}
+			if ((*player)[*myplr]._pScrlSpells[0] & 0x8 == 1) {
+				return_value.push_back(spell_id::SPL_FLASH);
+			}
+			if ((*player)[*myplr]._pScrlSpells[0] & 0x10 == 1) {
+				return_value.push_back(spell_id::SPL_IDENTIFY);
+			}
+			if ((*player)[*myplr]._pScrlSpells[0] & 0x20 == 1) {
+				return_value.push_back(spell_id::SPL_FIREWALL);
+			}
+			if ((*player)[*myplr]._pScrlSpells[0] & 0x40 == 1) {
+				return_value.push_back(spell_id::SPL_TOWN);
+			}
+			if ((*player)[*myplr]._pScrlSpells[0] & 0x80 == 1) {
+				return_value.push_back(spell_id::SPL_STONE);
+			}
+			if ((*player)[*myplr]._pScrlSpells[0] & 0x100 == 1) {
+				return_value.push_back(spell_id::SPL_INFRA);
+			}
+			if ((*player)[*myplr]._pScrlSpells[0] & 0x200 == 1) {
+				return_value.push_back(spell_id::SPL_RNDTELEPORT);
+			}
+			if ((*player)[*myplr]._pScrlSpells[0] & 0x400 == 1) {
+				return_value.push_back(spell_id::SPL_MANASHIELD);
+			}
+			if ((*player)[*myplr]._pScrlSpells[0] & 0x800 == 1) {
+				return_value.push_back(spell_id::SPL_FIREBALL);
+			}
+			if ((*player)[*myplr]._pScrlSpells[0] & 0x1000 == 1) {
+				return_value.push_back(spell_id::SPL_GUARDIAN);
+			}
+			if ((*player)[*myplr]._pScrlSpells[0] & 0x2000 == 1) {
+				return_value.push_back(spell_id::SPL_CHAIN);
+			}
+			if ((*player)[*myplr]._pScrlSpells[0] & 0x4000 == 1) {
+				return_value.push_back(spell_id::SPL_WAVE);
+			}
+			if ((*player)[*myplr]._pScrlSpells[0] & 0x8000 == 1) {
+				return_value.push_back(spell_id::SPL_DOOMSERP);
+			}
+			if ((*player)[*myplr]._pScrlSpells[1] & 0x1 == 1) {
+				return_value.push_back(spell_id::SPL_TELEKINESIS);
+			}
+			if ((*player)[*myplr]._pScrlSpells[1] & 0x2 == 1) {
+				return_value.push_back(spell_id::SPL_HEALOTHER);
+			}
+			if ((*player)[*myplr]._pScrlSpells[1] & 0x4 == 1) {
+				return_value.push_back(spell_id::SPL_FLARE);
+			}
+			if ((*player)[*myplr]._pScrlSpells[1] & 0x8 == 1) {
+				return_value.push_back(spell_id::SPL_BONESPIRIT);
+			}
+			return return_value;
 		}
 
 		int getRightClickSpellManaCost()
@@ -359,10 +442,57 @@ namespace DAPI
 				(*player)[my_pnum].destParam1 = ground_id;
 			}*/
 		}
-		bool putCursorItem(int target)
+		void putCursorItem(int target)
 		{
 			auto pcurs = reinterpret_cast<int(*)>(0x4B8CD0);
-			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			auto myplr = reinterpret_cast<int(*)>(0x686444);
+			auto CheckInvPaste = reinterpret_cast<void(__fastcall *)(int pnum, int mx, int my)>(0x41C783);
+			auto InvRect = reinterpret_cast<InvXY(*)[73]>(0x47AE60);
+			if (12 <= *pcurs && my_pnum == *myplr && static_cast<equip_slot>(target) <= equip_slot::BELT8) {
+				int mx = 0;
+				int my = 0;
+				if (static_cast<equip_slot>(target) == equip_slot::HEAD) {
+					mx = (*InvRect)[0].X + 1;//456;//
+					my = (*InvRect)[0].Y - 1;//5;//
+				}
+				else if (static_cast<equip_slot>(target) == equip_slot::LEFTRING) {
+					mx = (*InvRect)[4].X + 1;
+					my = (*InvRect)[4].Y - 1;
+				}
+				else if (static_cast<equip_slot>(target) == equip_slot::RIGHTRING) {
+					mx = (*InvRect)[5].X + 1;
+					my = (*InvRect)[5].Y - 1;
+				}
+				else if (static_cast<equip_slot>(target) == equip_slot::AMULET) {
+					mx = (*InvRect)[6].X + 1;
+					my = (*InvRect)[6].Y - 1;
+				}
+				else if (static_cast<equip_slot>(target) == equip_slot::LEFTHAND) {
+					mx = (*InvRect)[7].X + 1; //571;//
+					my = (*InvRect)[7].Y - 1; //78;// 
+				}
+				else if (static_cast<equip_slot>(target) == equip_slot::RIGHTHAND) {
+					mx = (*InvRect)[13].X + 1;//339;// 
+					my = (*InvRect)[13].Y - 1;//79;//
+				}
+				else if (static_cast<equip_slot>(target) == equip_slot::BODY) {
+					mx = (*InvRect)[19].X + 1;//458; //
+					my = (*InvRect)[19].Y - 1;//80;// 
+				}
+				else if (target < 47) {
+					int index = 18 + target;
+					mx = (*InvRect)[index].X + 2; //338 + ((target - 7) % 10) * 30; // //338
+					my = (*InvRect)[index].Y - 20;//224 + ((target - 7) / 10) * 30;; //224
+				}
+				else if (target <= 54) {
+						int index = 18 + target;
+						mx = 210 + (target - 47) * 30;//(*InvRect)[index].X + 10;
+						my = 370;//(*InvRect)[index].Y - 10;
+				}
+				CheckInvPaste(*myplr, mx, my);
+			}
+
+			/*static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			static auto SetCursor = reinterpret_cast<void(__fastcall *)(int i)>(0x40746B);
 			static auto CalcPlrInv = reinterpret_cast<void(__fastcall *)(int p, bool Loadgfx)>(0x41FD3E);
 			static auto CheckItemStats = reinterpret_cast<void(__fastcall *)(int pnum)>(0x41D8BF);
@@ -595,11 +725,87 @@ namespace DAPI
 				return true;
 			}
 			else
-				return false;
+				return false;*/
 		}
-		bool putInCursor(Item target)
+		void putInCursor(Item target)
 		{
-			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			auto pcurs = reinterpret_cast<int(*)>(0x4B8CD0);
+			auto myplr = reinterpret_cast<int(*)>(0x686444);
+			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			auto CheckInvCut = reinterpret_cast<void(__fastcall *)(int pnum, int mx, int my)>(0x41D378);
+			auto InvRect = reinterpret_cast<InvXY(*)[73]>(0x47AE60);
+			if (static_cast<item_type>(target.type()) == item_type::ITYPE_NONE)
+				return;
+			int mx = 0;
+			int my = 0;
+			if (*pcurs < 12 && my_pnum == *myplr) {
+				for (int i = 0; i < 55; i++) {
+					if (i < 7) {
+						Item temp(&(*player)[my_pnum].InvBody[i]);
+						if (target == temp)
+						{
+							switch (static_cast<equip_slot>(i)) {
+							case equip_slot::HEAD:
+								mx = (*InvRect)[0].X + 1;//456;//
+								my = (*InvRect)[0].Y - 1;//5;//
+								break;
+							case equip_slot::LEFTRING:
+								mx = (*InvRect)[4].X + 1;
+								my = (*InvRect)[4].Y - 1;
+								break;
+							case equip_slot::RIGHTRING:
+								mx = (*InvRect)[5].X + 1;
+								my = (*InvRect)[5].Y - 1;
+								break;
+							case equip_slot::AMULET:
+								mx = (*InvRect)[6].X + 1;
+								my = (*InvRect)[6].Y - 1;
+								break;
+							case equip_slot::LEFTHAND:
+								mx = (*InvRect)[7].X + 1; //571;//
+								my = (*InvRect)[7].Y - 1; //78;// 
+								break;
+							case equip_slot::RIGHTHAND:
+								mx = (*InvRect)[13].X + 1;//339;// 
+								my = (*InvRect)[13].Y - 1;//79;//
+								break;
+							case equip_slot::BODY:
+								mx = (*InvRect)[19].X + 1;//458;//
+								my = (*InvRect)[19].Y - 1;//80;// 
+								break;
+							}
+						}
+					}
+					else if (i < 47) {
+						Item temp(&(*player)[my_pnum].InvList[i - 7]);
+						if (target == temp) {
+							for (int rect_index = 0; rect_index < 40; rect_index++) {
+								if ((*player)[*myplr].InvGrid[rect_index] == i - 6) {
+									int index = rect_index + 25;
+									mx = (*InvRect)[index].X + 1; //338 + (rect_index % 10) * 30; // //338
+									my = (*InvRect)[index].Y - 1; //224 + (rect_index / 10) * 30;// //224
+									break;
+								}
+							}
+							break;
+						}
+					}
+					else {
+						Item temp(&(*player)[my_pnum].SpdList[i - 47]);
+						if (target == temp)
+						{
+							int index = 18 + i;
+							mx = 210 + (i - 47) * 30;//(*InvRect)[index].X + 10;
+							my = 370;//(*InvRect)[index].Y - 10;
+							break;
+						}
+					}
+				}
+				if (mx != 0 && my != 0) {
+					CheckInvCut(*myplr, mx, my);
+				}
+			}
+			/*static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			static auto SetCursor = reinterpret_cast<void(__fastcall *)(int i)>(0x40746B);
 			static auto CalcPlrInv = reinterpret_cast<void(__fastcall *)(int p, bool Loadgfx)>(0x41FD3E);
 			static auto CheckItemStats = reinterpret_cast<void(__fastcall *)(int pnum)>(0x41D8BF);
@@ -648,7 +854,7 @@ namespace DAPI
 					}
 				}
 			}
-			return false;
+			return false;*/
 		}
 		bool repair(Item target) {
 			static auto DoRepair = reinterpret_cast<void(__fastcall *)(int pnum, int cii)>(0x422C9C);

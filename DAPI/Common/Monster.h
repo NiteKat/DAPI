@@ -11,6 +11,10 @@ namespace DAPI
 		Monster(MonsterStruct* nmonster) {
 			my_monster = nmonster;
 		}
+		bool operator==(const Monster& other) const {
+			return (this->my_monster) == (other.my_monster);
+		}
+		
 
 		auto futurex() {
 			if (my_monster)

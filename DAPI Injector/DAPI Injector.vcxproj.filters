@@ -26,5 +26,8 @@
     <ClInclude Include="Source\Injector.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\AutoMenu.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

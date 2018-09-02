@@ -69,5 +69,8 @@
     <ClInclude Include="Common\Towner.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="Common\Portal.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

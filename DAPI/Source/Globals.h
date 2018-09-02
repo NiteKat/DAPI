@@ -16,7 +16,6 @@ namespace DAPI
 	auto inline FindPath = reinterpret_cast<int(*)(bool, int, int, int, int, int, char*)>(0x4493D4); //func, int PosOkArg, int sx, int sy, int dx, int dy, char *path
 	auto inline dMonster = reinterpret_cast<int(*)[112][112]>(0x52D208);
 	auto inline monster = reinterpret_cast<MonsterStruct(*)[200]>(0x64D330);
-	auto inline NetSendCmdString = reinterpret_cast<void(*)(int, const char*)>(0x43D064);
 	auto inline ClrPlrPath = reinterpret_cast<void(*)(int pnum)>(0x44FD8A);
 	auto inline UseInvItem = reinterpret_cast<int(*)(int pnum, int cii)>(0x41ED29);
 	auto inline GetManaAmount = reinterpret_cast<int(*)(int id, int sn)>(0x45744E);

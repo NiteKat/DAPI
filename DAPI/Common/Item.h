@@ -27,6 +27,13 @@ namespace DAPI
 				return -1;
 		}
 
+		item_equip_type equipType() {
+			if (my_item)
+				return static_cast<item_equip_type>(my_item->_iLoc);
+			else
+				return item_equip_type::ILOC_INVALID;
+		}
+
 
 
 		item_class itemClass() {
