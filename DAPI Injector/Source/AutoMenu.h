@@ -2,17 +2,18 @@
 #include <windows.h>
 #include<WinUser.h>
 #include<vector>
+#include<iostream>
 
 BOOL CALLBACK EnumWindowsProc(HWND, LPARAM);
 LRESULT CALLBACK WindowProcedure(HWND, UINT, WPARAM, LPARAM);
 std::vector<HWND> buttons;
 HWND diablo;
 
-oid ReloadMenuButtons() {
+void ReloadMenuButtons() {
 	diablo = FindWindow("SDlgDialog", NULL);
 	buttons.clear();
 	EnumChildWindows(diablo, EnumWindowsProc, NULL);
-	cout << "VECTOR SIZE: " << buttons.size() << endl;
+	std::cout << "VECTOR SIZE: " << buttons.size() << std::endl;
 }
 
 void PressEnter() {
@@ -23,7 +24,7 @@ void PressEnter() {
 
 void SelectMenuButton(int i) {
 	if (i >= buttons.size()) {
-		cout << "ERROR: selectmenubutton index " << i << " exceeds vector size " << buttons.size() << endl;
+		std::cout << "ERROR: selectmenubutton index " << i << " exceeds vector size " << buttons.size() << std::endl;
 		return;
 	}
 	if (i == 0) {

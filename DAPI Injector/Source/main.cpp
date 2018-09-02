@@ -5,7 +5,7 @@
 #include<sstream>
 #include<direct.h>
 #include"Injector.h"
-#include"AutoMenu.h"
+//#include"AutoMenu.h"
 
 HWND characterNameText;
 
