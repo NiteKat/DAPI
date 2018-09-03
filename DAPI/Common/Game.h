@@ -262,6 +262,8 @@ namespace DAPI
 			static auto dFlags = reinterpret_cast<char(*)[112][112]>(0x5C6910);
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			static auto myplr = reinterpret_cast<int(*)>(0x686444);
+			auto nummonsters = reinterpret_cast<int(*)>(0x64D328);
+			auto monstactive = reinterpret_cast<int(*)[200]>(0x64D008);
 			int dx = -11;
 			int dy = 0;
 			int cells = 12;
@@ -276,11 +278,15 @@ namespace DAPI
 					int index = (*dMonster)[(*player)[*myplr].WorldX + dx + cur_cell][(*player)[*myplr].WorldY + dy + cur_cell];
 					if (0 < index)
 					{
-						if ((*dFlags)[(*player)[*myplr].WorldX + dx + cur_cell][(*player)[*myplr].WorldY + dy + cur_cell] & 0x40 &&
-							(*monster)[index - 1]._mhitpoints > 0)
-						{
-							DAPI::Monster new_monster(&(*monster)[index - 1]);
-							return_value.push_back(new_monster);
+						for (int j = 0; j < *nummonsters; j++) {
+							if ((*monstactive)[j] == index - 1) {
+								if ((*dFlags)[(*player)[*myplr].WorldX + dx + cur_cell][(*player)[*myplr].WorldY + dy + cur_cell] & 0x40 &&
+									(*monster)[index - 1]._mhitpoints > 0)
+								{
+									DAPI::Monster new_monster(&(*monster)[index - 1]);
+									return_value.push_back(new_monster);
+								}
+							}
 						}
 					}
 				}
