@@ -15,50 +15,17 @@ namespace DAPI
 	{
 		PlayerCharacter() : my_pnum{ 0 } { }
 		PlayerCharacter(int pnum) : my_pnum{ pnum } { }
-		void attack(int x, int y) {
-			static auto NetSendCmdLoc = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y)>(0x43C8C7);
-			NetSendCmdLoc(1u, static_cast<unsigned char>(_cmd_id::CMD_ATTACKXY), x, y);
-			/*static auto MakePlrPath = reinterpret_cast<int(__fastcall *)(int, int, int, unsigned char)>(0x44FE9E);
-			static auto ClrPlrPath = reinterpret_cast<void(__fastcall *)(int pnum)>(0x44FD8A);
-			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
-			switch (static_cast<item_type>((*player)[my_pnum].InvBody[4]._itype))
-			{
-			case item_type::ITYPE_BOW:
-				ClrPlrPath(my_pnum);
-				(*player)[my_pnum].destAction = 10;
-				(*player)[my_pnum].destParam1 = (unsigned char)x;
-				(*player)[my_pnum].destParam2 = (unsigned char)y;
-				break;
-			default:
-				MakePlrPath(my_pnum, (unsigned char)x, (unsigned char)y, 0);
-				(*player)[my_pnum].destAction = 9;
-				(*player)[my_pnum].destParam1 = x;
-				(*player)[my_pnum].destParam2 = y;
-			}*/
-		}
 		void attack(Monster target) {
-			static auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
+			auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
+			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			auto myplr = reinterpret_cast<int(*)>(0x686444);
 			int mid = target.id();
-			if (mid != -1)
-				NetSendCmdParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_ATTACKID), mid);
-			/*static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
-			static auto MakePlrPath = reinterpret_cast<int(__fastcall *)(int, int, int, unsigned char)>(0x44FE9E);
-			static auto ClrPlrPath = reinterpret_cast<void(__fastcall *)(int pnum)>(0x44FD8A);
-			int Xdif = abs((*player)[my_pnum].WorldX - target.futurex());
-			int Ydif = abs((*player)[my_pnum].WorldY - target.futurey());
-			switch (static_cast<item_type>((*player)[my_pnum].InvBody[4]._itype))
-			{
-			case item_type::ITYPE_BOW:
-				ClrPlrPath(my_pnum);
-				(*player)[my_pnum].destAction = 22;
-				(*player)[my_pnum].destParam1 = target.id() - 1;
-				break;
-			default:
-				if (Xdif > 1 || Ydif > 1)
-					MakePlrPath(my_pnum, target.futurex(), target.futurey(), 0);
-				(*player)[my_pnum].destAction = 20;
-				(*player)[my_pnum].destParam1 = (unsigned short)target.id() - 1;
-			}*/
+			if (mid != -1) {
+				if (static_cast<item_type>((*player)[*myplr].InvBody[4]._itype) == item_type::ITYPE_BOW || static_cast<item_type>((*player)[*myplr].InvBody[5]._itype) == item_type::ITYPE_BOW)
+					NetSendCmdParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_RATTACKID), mid);
+				else
+					NetSendCmdParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_ATTACKID), mid);
+			}
 		}
 		int baseDexterity() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pBaseDex; }
 		int baseMagic() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pBaseMag; }
@@ -905,7 +872,12 @@ namespace DAPI
 		}
 		void shiftAttack(Point target) {
 			auto NetSendCmdLoc = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y)>(0x43C8C7);
-			NetSendCmdLoc(1u, static_cast<unsigned char>(_cmd_id::CMD_SATTACKXY), target.x, target.y);
+			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			auto myplr = reinterpret_cast<int(*)>(0x686444);
+			if (static_cast<item_type>((*player)[*myplr].InvBody[4]._itype) == item_type::ITYPE_BOW || static_cast<item_type>((*player)[*myplr].InvBody[5]._itype) == item_type::ITYPE_BOW)
+				NetSendCmdLoc(1u, static_cast<unsigned char>(_cmd_id::CMD_RATTACKXY), target.x, target.y);
+			else
+				NetSendCmdLoc(1u, static_cast<unsigned char>(_cmd_id::CMD_SATTACKXY), target.x, target.y);
 		}
 		int statPoints() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pStatPts; }
 		void talkToTowner(Towner towner) {
