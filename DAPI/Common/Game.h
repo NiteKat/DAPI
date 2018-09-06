@@ -47,7 +47,8 @@ namespace DAPI
 			if (static_cast<talk_id>(*stextflag) == talk_id::STORE_SBUY ||
 				static_cast<talk_id>(*stextflag) == talk_id::STORE_WBUY ||
 				static_cast<talk_id>(*stextflag) == talk_id::STORE_HBUY ||
-				static_cast<talk_id>(*stextflag) == talk_id::STORE_BBOY)
+				static_cast<talk_id>(*stextflag) == talk_id::STORE_BBOY ||
+				static_cast<talk_id>(*stextflag) == talk_id::STORE_SREPAIR)
 			{
 				bool found_item = false;
 				do {
@@ -336,6 +337,14 @@ namespace DAPI
 				break;
 			case talk_id::STORE_SPBUY:
 				for (auto& item : *premiumitem) {
+					if (static_cast<item_type>(item._itype) != item_type::ITYPE_NONE)
+						return_value.push_back(Item(&item));
+					else
+						break;
+				}
+				break;
+			case talk_id::STORE_SREPAIR:
+				for (auto& item : *storehold) {
 					if (static_cast<item_type>(item._itype) != item_type::ITYPE_NONE)
 						return_value.push_back(Item(&item));
 					else
