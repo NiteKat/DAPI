@@ -189,7 +189,7 @@ namespace DAPI
 		{
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			auto pcurs = reinterpret_cast<int(*)>(0x4B8CD0);
-			if (*pcurs > 12)
+			if (*pcurs >= 12)
 			{
 				Item holditem(&(*player)[my_pnum].HoldItem);
 				return holditem;
