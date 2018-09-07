@@ -308,44 +308,44 @@ namespace DAPI
 			return static_cast<int>(floor((*player)[my_pnum]._pHitPoints / 64));
 		}
 		bool increaseDexterity() {
-			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
+			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			if ((*player)[my_pnum]._pStatPts > 0)
 			{
-				(*player)[my_pnum]._pBaseDex++;
-				(*player)[my_pnum]._pDexterity++;
+				NetSendCmdParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_ADDDEX), 1u);
 				(*player)[my_pnum]._pStatPts--;
 				return true;
 			}
 			return false;
 		}
 		bool increaseMagic() {
-			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
+			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			if ((*player)[my_pnum]._pStatPts > 0)
 			{
-				(*player)[my_pnum]._pBaseMag++;
-				(*player)[my_pnum]._pMagic++;
+				NetSendCmdParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_ADDMAG), 1u);
 				(*player)[my_pnum]._pStatPts--;
 				return true;
 			}
 			return false;
 		}
 		bool increaseStrength() {
-			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
+			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			if ((*player)[my_pnum]._pStatPts > 0)
 			{
-				(*player)[my_pnum]._pBaseStr++;
-				(*player)[my_pnum]._pStrength++;
+				NetSendCmdParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_ADDSTR), 1u);
 				(*player)[my_pnum]._pStatPts--;
 				return true;
 			}
 			return false;
 		}
 		bool increaseVitality() {
-			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
+			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			if ((*player)[my_pnum]._pStatPts > 0)
 			{
-				(*player)[my_pnum]._pBaseVit++;
-				(*player)[my_pnum]._pVitality++;
+				NetSendCmdParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_ADDVIT), 1u);
 				(*player)[my_pnum]._pStatPts--;
 				return true;
 			}
