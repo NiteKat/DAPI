@@ -16,10 +16,13 @@ DAPI::Game Diablo;
 typedef unsigned __int32 u32;
 static const u32 hook_function = 0x408A06;//0x408974;//0x46886B;
 static const u32 hook_function2 = 0x4565F0;
+static const u32 hook_function3 = 0x4406B7;
 int hook1 = 0;
 int hook2 = 0;
 int hook_count = 0;
 int times_greater_1 = 0;
+bool seedOverride = false;
+int seed = 0;
 
 
 void __declspec(noinline) updateGameData()
@@ -142,6 +145,10 @@ void __declspec(noinline) runBot()
 	}
 }
 
+extern "C" int trampoline3(int i) {
+	return seedOverride ? seed : time(NULL);
+}
+
 HANDLE CreateUniqueEvent()
 {
 	static char szEventName[32];
@@ -174,6 +181,7 @@ BOOL APIENTRY DllMain(HMODULE, DWORD ul_reason_for_call, LPVOID)
 		auto process = GetCurrentProcess();
 		PlaceDetour(hook_function, (DWORD)trampoline, 0, true);
 		PlaceDetour(hook_function2, (DWORD)trampoline2, 0, true);
+		PlaceDetour(hook_function3, (DWORD)trampoline3, 0, false);
 		break;
 	}
 	return TRUE;
