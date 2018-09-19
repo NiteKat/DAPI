@@ -27,6 +27,13 @@ namespace DAPI
 				return -1;
 		}
 
+		int charges() {
+			if (my_item)
+				return my_item->_iCharges;
+			else
+				return -1;
+		}
+
 		item_equip_type equipType() {
 			if (my_item)
 				return static_cast<item_equip_type>(my_item->_iLoc);
@@ -64,6 +71,13 @@ namespace DAPI
 			return -1;
 		}
 
+		bool identified() {
+			if (my_item)
+				return static_cast<bool>(my_item->_iMagical) && static_cast<bool>(my_item->_iIdentified);
+			else
+				return false;
+		}
+
 		int inventoryIndex(int pnum) {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			for (int i = 0; i < 7; i++)
@@ -97,6 +111,20 @@ namespace DAPI
 			return false;
 		}
 
+		bool magical() {
+			if (my_item)
+				return static_cast<bool>(my_item->_iMagical);
+			else
+				return false;
+		}
+
+		int maxCharges() {
+			if (my_item)
+				return my_item->_iMaxCharges;
+			else
+				return -1;
+		}
+
 		int maxDamage() {
 			if (my_item)
 				return my_item->_iMaxDam;
@@ -118,6 +146,13 @@ namespace DAPI
 				return -1;
 		}
 
+		bool meetStatRequirements() {
+			if (my_item)
+				return static_cast<bool>(my_item->_iStatFlag);
+			else
+				return false;
+		}
+
 		int miscId()
 		{
 			if (my_item)
@@ -129,11 +164,191 @@ namespace DAPI
 		std::string name()
 		{
 			std::string return_value;
-			if (my_item)
-				return_value = my_item->_iName;
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return_value = my_item->_iIName;
+				else
+					return_value = my_item->_iName;
+			}
 			else
 				return_value = "";
 			return return_value;
+		}
+
+		int plusDamage() {
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return my_item->_iPLDamMod;
+				else
+					return 0;
+			}
+			else
+				return 0;
+		}
+
+		int plusDamageFromEnemies() {
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return my_item->_iPLGetHit;
+				else
+					return 0;
+			}
+			else
+				return 0;
+		}
+
+		int plusDexterity() {
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return my_item->_iPLDex;
+				else
+					return 0;
+			}
+			else
+				return 0;
+		}
+
+		int plusFireResistPercent() {
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return my_item->_iPLFR;
+				else
+					return 0;
+			}
+			else
+				return 0;
+		}
+
+		int plusLife() {
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return static_cast<int>(floor(my_item->_iPLHP / 64));
+				else
+					return 0;
+			}
+			else
+				return 0;
+		}
+
+		int plusLightningResistPercent() {
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return my_item->_iPLLR;
+				else
+					return 0;
+			}
+			else
+				return 0;
+		}
+
+		int plusLightRadiusPercent() {
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return my_item->_iPLLight;
+				else
+					return 0;
+			}
+			else
+				return 0;
+		}
+
+		int plusMagic() {
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return my_item->_iPLMag;
+				else
+					return 0;
+			}
+			else
+				return 0;
+		}
+
+		int plusMagicResistPercent() {
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return my_item->_iPLMR;
+				else
+					return 0;
+			}
+			else
+				return 0;
+		}
+
+		int plusMana() {
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return static_cast<int>(floor(my_item->_iPLMana / 64));
+				else
+					return 0;
+			}
+			else
+				return 0;
+		}
+
+		int plusPercentArmorClass() {
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return my_item->_iAC;
+				else
+					return 0;
+			}
+			else
+				return 0;
+		}
+
+		int plusPercentDamage() {
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return my_item->_iPLDam;
+				else
+					return 0;
+			}
+			else
+				return 0;
+		}
+
+		int plusSpellLevel() {
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return my_item->_iSplLvlAdd;
+				else
+					return 0;
+			}
+			else
+				return 0;
+		}
+
+		int plusStrength() {
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return my_item->_iPLStr;
+				else
+					return 0;
+			}
+			else
+				return 0;
+		}
+
+		int plusVitality() {
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return my_item->_iPLVit;
+				else
+					return 0;
+			}
+			else
+				return 0;
+		}
+
+		int plusToHit() {
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return my_item->_iPLToHit;
+				else
+					return 0;
+			}
+			else
+				return 0;
 		}
 
 		int requiredDexterity() {
@@ -167,6 +382,17 @@ namespace DAPI
 				return my_item->_itype;
 			else
 				return -1;
+		}
+
+		_unique_items uniqueId() {
+			if (my_item) {
+				if (my_item->_iIdentified)
+					return static_cast<_unique_items>(my_item->_iUid);
+				else
+					return _unique_items::UITEM_CLEAVER;
+			}
+			else
+				return _unique_items::UITEM_CLEAVER;
 		}
 
 		int value() {

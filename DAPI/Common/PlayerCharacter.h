@@ -33,60 +33,19 @@ namespace DAPI
 		int baseVitality() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pBaseVit; }
 		//Broken, need to fix. Use castSpell(Monster target) instead.
 		void castSpell(int x, int y) {
-			static auto NetSendCmdLocParam2 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1, int wParam2)>(0x43C928);
-			static auto GetSpellLevel = reinterpret_cast<int(__fastcall *)(int id, int sn)>(0x428A99);
-			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			auto NetSendCmdLocParam2 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1, int wParam2)>(0x43C928);
+			auto GetSpellLevel = reinterpret_cast<int(__fastcall *)(int id, int sn)>(0x428A99);
+			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			auto pcurs = reinterpret_cast<int(*)>(0x4B8CD0);
-			if (*pcurs == 1)
-				NetSendCmdLocParam2(1u, static_cast<unsigned char>(_cmd_id::CMD_SPELLXY), static_cast<unsigned char>(x), static_cast<unsigned char>(y), 21720 * my_pnum, GetSpellLevel(my_pnum, (*player)[my_pnum]._pRSpell));
-			/*static auto ClrPlrPath = reinterpret_cast<void(__fastcall *)(int pnum)>(0x44FD8A);
-			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
-			static auto CheckSpell = reinterpret_cast<bool(__fastcall *)(int id, int sn, char st, bool manaonly)>(0x457584);
-			static auto UseScroll = reinterpret_cast<bool(__cdecl *)()>(0x41EB8B);
-			static auto GetSpellLevel = reinterpret_cast<int(__fastcall *)(int id, int sn)>(0x428A99);
-			if ((*player)[my_pnum]._pRSpell <= static_cast<int>(spell_id::SPL_BONESPIRIT) &&
-				static_cast<int>(spell_id::SPL_NULL) < (*player)[my_pnum]._pRSpell)
-			{
-				if ((*player)[my_pnum]._pRSplType == static_cast<int>(spell_type::RSPLTYPE_SPELL))
-				{
-					if (CheckSpell(0, (*player)[my_pnum]._pRSpell, (*player)[my_pnum]._pRSplType, 0))
-					{
-						ClrPlrPath(0);
-						(*player)[my_pnum].destAction = 12;
-						(*player)[my_pnum].destParam1 = (unsigned char)x;
-						(*player)[my_pnum].destParam2 = (unsigned char)y;
-						(*player)[my_pnum].destParam3 = GetSpellLevel(0, (*player)[my_pnum]._pRSpell);
-						(*player)[my_pnum]._pSplFrom = 0;
-						(*player)[my_pnum]._pSpell = (*player)[my_pnum]._pRSpell;
-						(*player)[my_pnum]._pSplType = (*player)[my_pnum]._pRSplType;
-					}
+			auto UseScroll = reinterpret_cast<bool(__cdecl *)()>(0x41EB8B);
+			if (*pcurs == 1) {
+				if ((*player)[my_pnum]._pRSplType == static_cast<int>(spell_type::RSPLTYPE_SCROLL)) {
+					if(UseScroll())
+						NetSendCmdLocParam2(1u, static_cast<unsigned char>(_cmd_id::CMD_SPELLXY), static_cast<unsigned char>(x), static_cast<unsigned char>(y), (*player)[my_pnum]._pRSpell, GetSpellLevel(my_pnum, (*player)[my_pnum]._pRSpell));
 				}
-				else if ((*player)[my_pnum]._pRSplType == static_cast<int>(spell_type::RSPLTYPE_CHARGES))
-				{
-					ClrPlrPath(0);
-					(*player)[my_pnum].destAction = 12;
-					(*player)[my_pnum].destParam1 = x;
-					(*player)[my_pnum].destParam2 = y;
-					(*player)[my_pnum].destParam3 = GetSpellLevel(0, (*player)[my_pnum]._pRSpell);
-					(*player)[my_pnum]._pSplFrom = 0;
-					(*player)[my_pnum]._pSpell = (*player)[my_pnum]._pRSpell;
-					(*player)[my_pnum]._pSplType = (*player)[my_pnum]._pRSplType;
-				}
-				else if ((*player)[my_pnum]._pRSplType == static_cast<int>(spell_type::RSPLTYPE_SCROLL))
-				{
-					if (UseScroll())
-					{
-						ClrPlrPath(0);
-						(*player)[my_pnum].destAction = 12;
-						(*player)[my_pnum].destParam1 = x;
-						(*player)[my_pnum].destParam2 = y;
-						(*player)[my_pnum].destParam3 = GetSpellLevel(0, (*player)[my_pnum]._pRSpell);
-						(*player)[my_pnum]._pSplFrom = 0;
-						(*player)[my_pnum]._pSpell = (*player)[my_pnum]._pRSpell;
-						(*player)[my_pnum]._pSplType = (*player)[my_pnum]._pRSplType;
-					}
-				}
-			}*/
+				else
+					NetSendCmdLocParam2(1u, static_cast<unsigned char>(_cmd_id::CMD_SPELLXY), static_cast<unsigned char>(x), static_cast<unsigned char>(y), 21720 * my_pnum, GetSpellLevel(my_pnum, (*player)[my_pnum]._pRSpell));
+			}
 		}
 		void castSpell(Monster target)
 		{
@@ -219,64 +178,64 @@ namespace DAPI
 			std::vector<spell_id> return_value;
 			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			auto myplr = reinterpret_cast<int(*)>(0x686444);
-			if ((*player)[*myplr]._pScrlSpells[0] & 0x1 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[0]) & 0x1) {
 				return_value.push_back(spell_id::SPL_FIREBOLT);
 			}
-			if ((*player)[*myplr]._pScrlSpells[0] & 0x2 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[0]) & 0x2) {
 				return_value.push_back(spell_id::SPL_HEAL);
 			}
-			if ((*player)[*myplr]._pScrlSpells[0] & 0x4 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[0]) & 0x4) {
 				return_value.push_back(spell_id::SPL_LIGHTNING);
 			}
-			if ((*player)[*myplr]._pScrlSpells[0] & 0x8 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[0]) & 0x8) {
 				return_value.push_back(spell_id::SPL_FLASH);
 			}
-			if ((*player)[*myplr]._pScrlSpells[0] & 0x10 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[0]) & 0x10) {
 				return_value.push_back(spell_id::SPL_IDENTIFY);
 			}
-			if ((*player)[*myplr]._pScrlSpells[0] & 0x20 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[0]) & 0x20) {
 				return_value.push_back(spell_id::SPL_FIREWALL);
 			}
-			if ((*player)[*myplr]._pScrlSpells[0] & 0x40 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[0]) & 0x40) {
 				return_value.push_back(spell_id::SPL_TOWN);
 			}
-			if ((*player)[*myplr]._pScrlSpells[0] & 0x80 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[0]) & 0x80) {
 				return_value.push_back(spell_id::SPL_STONE);
 			}
-			if ((*player)[*myplr]._pScrlSpells[0] & 0x100 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[0]) & 0x100) {
 				return_value.push_back(spell_id::SPL_INFRA);
 			}
-			if ((*player)[*myplr]._pScrlSpells[0] & 0x200 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[0]) & 0x200) {
 				return_value.push_back(spell_id::SPL_RNDTELEPORT);
 			}
-			if ((*player)[*myplr]._pScrlSpells[0] & 0x400 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[0]) & 0x400) {
 				return_value.push_back(spell_id::SPL_MANASHIELD);
 			}
-			if ((*player)[*myplr]._pScrlSpells[0] & 0x800 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[0]) & 0x800) {
 				return_value.push_back(spell_id::SPL_FIREBALL);
 			}
-			if ((*player)[*myplr]._pScrlSpells[0] & 0x1000 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[0]) & 0x1000) {
 				return_value.push_back(spell_id::SPL_GUARDIAN);
 			}
-			if ((*player)[*myplr]._pScrlSpells[0] & 0x2000 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[0]) & 0x2000) {
 				return_value.push_back(spell_id::SPL_CHAIN);
 			}
-			if ((*player)[*myplr]._pScrlSpells[0] & 0x4000 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[0]) & 0x4000) {
 				return_value.push_back(spell_id::SPL_WAVE);
 			}
-			if ((*player)[*myplr]._pScrlSpells[0] & 0x8000 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[0]) & 0x8000) {
 				return_value.push_back(spell_id::SPL_DOOMSERP);
 			}
-			if ((*player)[*myplr]._pScrlSpells[1] & 0x1 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[1]) & 0x1) {
 				return_value.push_back(spell_id::SPL_TELEKINESIS);
 			}
-			if ((*player)[*myplr]._pScrlSpells[1] & 0x2 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[1]) & 0x2) {
 				return_value.push_back(spell_id::SPL_HEALOTHER);
 			}
-			if ((*player)[*myplr]._pScrlSpells[1] & 0x4 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[1]) & 0x4) {
 				return_value.push_back(spell_id::SPL_FLARE);
 			}
-			if ((*player)[*myplr]._pScrlSpells[1] & 0x8 == 1) {
+			if (((*player)[*myplr]._pScrlSpells[1]) & 0x8) {
 				return_value.push_back(spell_id::SPL_BONESPIRIT);
 			}
 			return return_value;
@@ -307,6 +266,11 @@ namespace DAPI
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			return static_cast<int>(floor((*player)[my_pnum]._pHitPoints / 64));
 		}
+
+		int id() {
+			return my_pnum;
+		}
+
 		bool increaseDexterity() {
 			auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
 			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -318,6 +282,7 @@ namespace DAPI
 			}
 			return false;
 		}
+
 		bool increaseMagic() {
 			auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
 			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -329,6 +294,7 @@ namespace DAPI
 			}
 			return false;
 		}
+
 		bool increaseStrength() {
 			auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
 			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -340,6 +306,7 @@ namespace DAPI
 			}
 			return false;
 		}
+
 		bool increaseVitality() {
 			auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
 			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -351,24 +318,30 @@ namespace DAPI
 			}
 			return false;
 		}
+
 		bool isHoldingItem()
 		{
 			auto pcurs = reinterpret_cast<int(*)>(0x4B8CD0);
 			return *pcurs == 12;
 		}
+
 		int mana() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			return static_cast<int>(floor((*player)[my_pnum]._pMana / 64));
 		}
+
 		int maxHitPoints() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			return static_cast<int>(floor((*player)[my_pnum]._pMaxHP / 64));
 		}
+
 		int maxMana() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			return static_cast<int>(floor((*player)[my_pnum]._pMaxMana / 64));
 		}
+
 		int mode() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pmode; }
+
 		void openDoor(Door target) {
 			static auto NetSendCmdLocParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1)>(0x43C8F3);
 			NetSendCmdLocParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_OPOBJXY), target.x(), target.y(), target.id());
@@ -382,6 +355,7 @@ namespace DAPI
 				(*player)[my_pnum].destParam1 = target.id();
 			}*/
 		}
+
 		void operateObject(Object target) {
 			static auto NetSendCmdLocParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1)>(0x43C8F3);
 			static auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
@@ -396,6 +370,7 @@ namespace DAPI
 			(*player)[my_pnum].destAction = 13;
 			(*player)[my_pnum].destParam1 = target.id();*/
 		}
+
 		void pickupItem(Item target) {
 			static auto NetSendCmdLocParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1)>(0x43C8F3);
 			NetSendCmdLocParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_GOTOAGETITEM), target.x(), target.y(), target.groundId());
@@ -409,6 +384,7 @@ namespace DAPI
 				(*player)[my_pnum].destParam1 = ground_id;
 			}*/
 		}
+
 		void putCursorItem(int target)
 		{
 			auto pcurs = reinterpret_cast<int(*)>(0x4B8CD0);
@@ -853,7 +829,7 @@ namespace DAPI
 		}
 		bool setRightClickSpell(spell_id id)
 		{
-			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			if (id == spell_id::SPL_REPAIR || id == spell_id::SPL_DISARM || id == spell_id::SPL_RECHARGE)
 			{
 				(*player)[my_pnum]._pRSpell = static_cast<int>(id);
@@ -869,6 +845,17 @@ namespace DAPI
 				return true;
 			}
 			return false;
+		}
+		bool setRightClickSpell(spell_id id, spell_type type)
+		{
+			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			auto SetSpell = reinterpret_cast<void(__cdecl *)()>(0x403F69);
+			auto pSpell = reinterpret_cast<int(*)>(0x4B8834);
+			auto pSplType = reinterpret_cast<int(*)>(0x4B8954);
+			*pSpell = static_cast<int>(id);
+			*pSplType = static_cast<int>(type);
+			SetSpell();
+			return true;
 		}
 		void shiftAttack(Point target) {
 			auto NetSendCmdLoc = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y)>(0x43C8C7);

@@ -8,6 +8,15 @@ namespace DAPI {
 
 		Portal() { my_portal = nullptr; }
 
+		int id() {
+			auto portal = reinterpret_cast<PortalStruct(*)[4]>(0x69BC98);
+			for (int i = 0; i < 4; i++) {
+				if (&((*portal)[i]) == my_portal)
+					return i;
+			}
+			return -1;
+		}
+
 		bool open() {
 			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			auto myplr = reinterpret_cast<int(*)>(0x686444);

@@ -12,6 +12,10 @@ namespace DAPI
 			my_object = nObject;
 		}
 
+		bool operator==(const Object& other) const {
+			return (this->my_object) == (other.my_object);
+		}
+
 		int id() {
 			auto object = reinterpret_cast<ObjectStruct(*)[127]>(0x679C38);
 			for (int i = 0; i < 200; i++)

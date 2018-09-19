@@ -42,7 +42,7 @@ namespace DAPI
 			auto stextsel = reinterpret_cast<int*>(0x6A8A28);
 			auto stextsmax = reinterpret_cast<int*>(0x6A09E4);
 			auto STextDown = reinterpret_cast<void(__cdecl *)()>(0x45A757);
-			auto STextEnter = reinterpret_cast<void(*)()>(0x45BF34);
+			auto STextEnter = reinterpret_cast<void(__cdecl *)()>(0x45BF34);
 			auto stextflag = reinterpret_cast<char*>(0x6AA705);
 			if (static_cast<talk_id>(*stextflag) == talk_id::STORE_SBUY ||
 				static_cast<talk_id>(*stextflag) == talk_id::STORE_WBUY ||
@@ -242,6 +242,58 @@ namespace DAPI
 			return return_value;
 		}
 
+		bool identifyItem(Item item) {
+			auto stext = reinterpret_cast<STextStruct(*)[24]>(0x69FB40);
+			auto stextsval = reinterpret_cast<int*>(0x6A8A38);
+			auto stextup = reinterpret_cast<int*>(0x69F108);
+			auto stextsel = reinterpret_cast<int*>(0x6A8A28);
+			auto stextsmax = reinterpret_cast<int*>(0x6A09E4);
+			auto STextDown = reinterpret_cast<void(__cdecl *)()>(0x45A757);
+			auto STextEnter = reinterpret_cast<void(*)()>(0x45BF34);
+			auto stextflag = reinterpret_cast<char*>(0x6AA705);
+			bool found_item = false;
+			if (static_cast<talk_id>(*stextflag) == talk_id::STORE_SIDENTIFY)
+			{
+				do {
+					for (int i = 0; i < 24; i++) {
+						if ((*stext)[i]._ssel) {
+							std::string item_name = item.name();
+							std::string option_name = (*stext)[i]._sstr;
+							int idx = *stextsval + ((i - *stextup) >> 2);
+							if (option_name == item_name) {
+								//item found.
+								found_item = true;
+								*stextsel = i;
+							}
+						}
+					}
+					if (found_item)
+						break;
+					//if not found, scroll down if possible.
+					if (!found_item && *stextsval < *stextsmax) {
+						if (!(*stextsval)) {
+							//Haven't scrolled yet, need to move to scroll position.
+							for (int i = 3; 0 < i; i--) {
+								STextDown();
+							}
+						}
+						//Scroll down one.
+						STextDown();
+					}
+					else if (*stextsval == *stextsmax) //Cannot scroll anymore and item not found.
+						break;
+				} while (true);
+				if (!found_item)
+					return false;
+				//found item, move to confirm screen.
+				STextEnter();
+				STextEnter();
+				STextEnter();
+				return true;
+			}
+			return false;
+		}
+
 		bool isInventoryOpen() {
 			static auto invflag = reinterpret_cast<int*>(0x634CB8);
 			return invflag;
@@ -343,7 +395,9 @@ namespace DAPI
 						break;
 				}
 				break;
+			case talk_id::STORE_SIDENTIFY:
 			case talk_id::STORE_SREPAIR:
+			case talk_id::STORE_WRECHARGE:
 				for (auto& item : *storehold) {
 					if (static_cast<item_type>(item._itype) != item_type::ITYPE_NONE)
 						return_value.push_back(Item(&item));
@@ -394,6 +448,57 @@ namespace DAPI
 			gamemenu_quit_game();
 		}
 
+		bool rechargeItem(Item& item) {
+			auto stext = reinterpret_cast<STextStruct(*)[24]>(0x69FB40);
+			auto stextsval = reinterpret_cast<int*>(0x6A8A38);
+			auto stextup = reinterpret_cast<int*>(0x69F108);
+			auto stextsel = reinterpret_cast<int*>(0x6A8A28);
+			auto stextsmax = reinterpret_cast<int*>(0x6A09E4);
+			auto STextDown = reinterpret_cast<void(__cdecl *)()>(0x45A757);
+			auto STextEnter = reinterpret_cast<void(__cdecl *)()>(0x45BF34);
+			auto stextflag = reinterpret_cast<char*>(0x6AA705);
+			bool found_item = false;
+			if (static_cast<talk_id>(*stextflag) == talk_id::STORE_WRECHARGE)
+			{
+				do {
+					for (int i = 0; i < 24; i++) {
+						if ((*stext)[i]._ssel) {
+							std::string item_name = item.name();
+							std::string option_name = (*stext)[i]._sstr;
+							int idx = *stextsval + ((i - *stextup) >> 2);
+							if (option_name == item_name) {
+								//item found.
+								found_item = true;
+								*stextsel = i;
+							}
+						}
+					}
+					if (found_item)
+						break;
+					//if not found, scroll down if possible.
+					if (!found_item && *stextsval < *stextsmax) {
+						if (!(*stextsval)) {
+							//Haven't scrolled yet, need to move to scroll position.
+							for (int i = 3; 0 < i; i--) {
+								STextDown();
+							}
+						}
+						//Scroll down one.
+						STextDown();
+					}
+					else if (*stextsval == *stextsmax) //Cannot scroll anymore and item not found.
+						break;
+				} while (true);
+				if (!found_item)
+					return false;
+				//found item, move to confirm screen.
+				STextEnter();
+				STextEnter();
+				return true;
+			}
+			return false;
+		}
+
 		PlayerCharacter self() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			static auto myplr = reinterpret_cast<int(*)>(0x686444);
@@ -413,7 +518,7 @@ namespace DAPI
 			auto stextsel = reinterpret_cast<int*>(0x6A8A28);
 			auto stextsmax = reinterpret_cast<int*>(0x6A09E4);
 			auto STextDown = reinterpret_cast<void(__cdecl *)()>(0x45A757);
-			auto STextEnter = reinterpret_cast<void(*)()>(0x45BF34);
+			auto STextEnter = reinterpret_cast<void(__cdecl *)()>(0x45BF34);
 			auto stextflag = reinterpret_cast<char*>(0x6AA705);
 			bool found_item = false;
 			if (static_cast<talk_id>(*stextflag) == talk_id::STORE_SSELL || static_cast<talk_id>(*stextflag) == talk_id::STORE_WSELL)

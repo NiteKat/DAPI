@@ -8,6 +8,10 @@ namespace DAPI
 		Door() { my_door = nullptr; }
 		Door(ObjectStruct* ndoor) { my_door = ndoor; }
 
+		bool operator==(const Door& other) const {
+			return (this->my_door) == (other.my_door);
+		}
+
 		int id() {
 			auto object = reinterpret_cast<ObjectStruct(*)[127]>(0x679C38);
 			for (int i = 0; i < 200; i++)
