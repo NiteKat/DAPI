@@ -15,6 +15,9 @@ namespace DAPI
 	{
 		PlayerCharacter() : my_pnum{ 0 } { }
 		PlayerCharacter(int pnum) : my_pnum{ pnum } { }
+
+		//Issues an attack order as if you left clicked on the monster
+		//passed to the function.
 		void attack(Monster target) {
 			auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
 			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -27,11 +30,21 @@ namespace DAPI
 					NetSendCmdParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_ATTACKID), mid);
 			}
 		}
+
+		//Returns the base Dexterity of the character.
 		int baseDexterity() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pBaseDex; }
+
+		//Returns the base Magic of the character.
 		int baseMagic() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pBaseMag; }
+
+		//Returns the basae Strength of the character.
 		int baseStrength() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pBaseStr; }
+
+		//Returns the baase Vitality of the character.
 		int baseVitality() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pBaseVit; }
-		//Broken, need to fix. Use castSpell(Monster target) instead.
+
+		//Casts the spell set as the right click spell, as if you right clicked (or shift right clicked)
+		//with no monsters selected.
 		void castSpell(int x, int y) {
 			auto NetSendCmdLocParam2 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1, int wParam2)>(0x43C928);
 			auto GetSpellLevel = reinterpret_cast<int(__fastcall *)(int id, int sn)>(0x428A99);
@@ -47,6 +60,8 @@ namespace DAPI
 					NetSendCmdLocParam2(1u, static_cast<unsigned char>(_cmd_id::CMD_SPELLXY), static_cast<unsigned char>(x), static_cast<unsigned char>(y), (*player)[my_pnum]._pRSpell, GetSpellLevel(my_pnum, (*player)[my_pnum]._pRSpell));
 			}
 		}
+
+		//Casts the spell set as the right click spell, as if you right clicked with a monster selected.
 		void castSpell(Monster target)
 		{
 			static auto NetSendCmdParam3 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1, unsigned short wParam2, int wParam3)>(0x43CA04);
@@ -56,13 +71,21 @@ namespace DAPI
 			if (*pcurs == 1)
 				NetSendCmdParam3(1u, static_cast<unsigned char>(_cmd_id::CMD_SPELLID), target.id(), (*player)[my_pnum]._pRSpell, GetSpellLevel(my_pnum, (*player)[my_pnum]._pRSpell));
 		}
+
+		//Returns the level of the character.
 		int characterLevel() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pLevel; }
+
+		//Broken, will crash game.
 		void chat(std::string text) {
 			auto NetSendCmdString = reinterpret_cast<void(*)(int, const char*)>(0x43D064);
 			auto myplr = reinterpret_cast<int(*)>(0x686444);
 			NetSendCmdString(1 << *myplr, text.data());
 		}
+
+		//Returns the dungeon level on which the character is located. 0 is returned for town.
 		int dLevel() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum].plrlevel; }
+
+		//If an item is held in the cursor, it will be dropped on the ground if there is room.
 		bool dropIteminCursor() {
 			auto TryInvPut = reinterpret_cast<int(__cdecl *)()>(0x41E2F9);
 			auto NetSendCmdPItem = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y)>(0x43CCF8);
@@ -79,6 +102,8 @@ namespace DAPI
 			}
 			return false;
 		}
+
+		//Returns all of the items in the belt.
 		std::vector<Item> getBeltItems() {
 			std::vector<Item> return_value;
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -97,10 +122,14 @@ namespace DAPI
 			}
 			return return_value;
 		}
+
+		//Returns the class of the character.
 		_ui_classes getClass() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			return (_ui_classes)(*player)[my_pnum]._pClass;
 		}
+
+		//Returns the item equipped at the location passed to the function.
 		Item getEquippedItem(equip_slot location)
 		{
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -115,10 +144,19 @@ namespace DAPI
 				return emptyitem;
 			}
 		}
+
+		//Returns the inventory grid, which exists as a char* [40]. 0-9 is the top row,
+		//10-19 is the second row, 20-29 is the third row, and 30-34 is the bottom row.
+		//The values indicate the index (plus one if positive, minus one if negative
+		//in the inventory list of the item occupying that slot. If an item occupies more
+		//than one square, one of the squares will be a positive value while the others
+		//will be a negative value.
 		char* getInventoryGrid() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			return (*player)[my_pnum].InvGrid;
 		}
+
+		//Returns all of the items sitting in the 10x4 inventory of the character.
 		std::vector<Item> getInventoryItems() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			std::vector<Item> return_value;
@@ -144,6 +182,8 @@ namespace DAPI
 			}
 			return return_value;
 		}
+
+		//Returns the item held in the cursor.
 		Item getItemInCursor()
 		{
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -156,6 +196,9 @@ namespace DAPI
 			Item noItem;
 			return noItem;
 		}
+
+		//Returns all spells whose levels are greater than 0 for the character. These
+		//are the spells that your character has learned, and can cast using Mana.
 		std::vector<spell_id> getLearnedSpells()
 		{
 			std::vector<spell_id> return_value;
@@ -167,18 +210,22 @@ namespace DAPI
 			}
 			return return_value;
 		}
+
+		//Returns the amount of Mana required to cast the spell passed to it.
 		int getSpellManaCost(DAPI::spell_id spell) {
 			auto GetManaAmount = reinterpret_cast<int(__fastcall *)(int id, int sn)>(0x45744E);
 			return static_cast<int>(floor(GetManaAmount(my_pnum, static_cast<int>(spell)) / 64));
 
 		}
 
+		//Returns which spell is set as the right click spell.
 		spell_id getRightClickSpell()
 		{
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			return (spell_id)(*player)[my_pnum]._pRSpell;
 		}
 
+		//Returns all spells that you can set to right click that you have as scrolls.
 		std::vector<spell_id> getScrollSpells() {
 			std::vector<spell_id> return_value;
 			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -246,6 +293,7 @@ namespace DAPI
 			return return_value;
 		}
 
+		//Gets the Mana required to cast the right click spell.
 		int getRightClickSpellManaCost()
 		{
 			auto GetManaAmount = reinterpret_cast<int(__fastcall *)(int id, int sn)>(0x45744E);
@@ -253,6 +301,7 @@ namespace DAPI
 			return static_cast<int>(floor(GetManaAmount(my_pnum, (*player)[my_pnum]._pRSpell) / 64));
 		}
 
+		//Returns the level of the spell passed to the function.
 		int getSpellLevel(spell_id id)
 		{
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -262,20 +311,24 @@ namespace DAPI
 				return -1;
 		}
 
+		//Returns the total amount of gold the character has.
 		int gold() {
 			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			return (*player)[my_pnum]._pGold;
 		}
 
+		//Returns the current Life of the character.
 		int hitPoints() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			return static_cast<int>(floor((*player)[my_pnum]._pHitPoints / 64));
 		}
 
+		//Returns the index at which the character is stored in the Player array.
 		int id() {
 			return my_pnum;
 		}
 
+		//If the character has stat points to spend, spends one point on Dexterity.
 		bool increaseDexterity() {
 			auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
 			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -288,6 +341,7 @@ namespace DAPI
 			return false;
 		}
 
+		//If the character has stat points to spend, spends one point on Magic.
 		bool increaseMagic() {
 			auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
 			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -300,6 +354,7 @@ namespace DAPI
 			return false;
 		}
 
+		//If the character has stat points to spend, spends one point on Strength.
 		bool increaseStrength() {
 			auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
 			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -312,6 +367,7 @@ namespace DAPI
 			return false;
 		}
 
+		//If the character has stat points to spend, spends one point on Vitality.
 		bool increaseVitality() {
 			auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
 			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -324,29 +380,35 @@ namespace DAPI
 			return false;
 		}
 
+		//Returns true if you have an item held in the cursor.
 		bool isHoldingItem()
 		{
 			auto pcurs = reinterpret_cast<int(*)>(0x4B8CD0);
 			return *pcurs == 12;
 		}
 
+		//Returns the current Mana value for the character.
 		int mana() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			return static_cast<int>(floor((*player)[my_pnum]._pMana / 64));
 		}
 
+		//Returns the maximum Life for the character.
 		int maxHitPoints() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			return static_cast<int>(floor((*player)[my_pnum]._pMaxHP / 64));
 		}
 
+		//Returns the maximum Mana for the character.
 		int maxMana() {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			return static_cast<int>(floor((*player)[my_pnum]._pMaxMana / 64));
 		}
 
+		//Returns the current mode for the character.
 		int mode() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pmode; }
 
+		//Issues a command to open the door passed to the function, as if you left clicked on the door.
 		void openDoor(Door target) {
 			static auto NetSendCmdLocParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1)>(0x43C8F3);
 			NetSendCmdLocParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_OPOBJXY), target.x(), target.y(), target.id());
@@ -361,6 +423,7 @@ namespace DAPI
 			}*/
 		}
 
+		//Issues a command to operate the object passed to the function, as if you left clicked the object.
 		void operateObject(Object target) {
 			static auto NetSendCmdLocParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1)>(0x43C8F3);
 			static auto NetSendCmdParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1)>(0x43C9AB);
@@ -376,6 +439,8 @@ namespace DAPI
 			(*player)[my_pnum].destParam1 = target.id();*/
 		}
 
+		//Issues a command to auto get the item passed to the function, as if you left clicked the item
+		//with your inventory closed.
 		void pickupItem(Item target) {
 			static auto NetSendCmdLocParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1)>(0x43C8F3);
 			NetSendCmdLocParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_GOTOAGETITEM), target.x(), target.y(), target.groundId());
@@ -390,6 +455,8 @@ namespace DAPI
 			}*/
 		}
 
+		//Picks up the item in the equip_slot passed to the function, putting it into the cursor.
+		//Recommneded to use the version that takes an item instead of an equip_slot parameter.
 		void putCursorItem(int target)
 		{
 			auto pcurs = reinterpret_cast<int(*)>(0x4B8CD0);
@@ -675,6 +742,9 @@ namespace DAPI
 			else
 				return false;*/
 		}
+
+		//Picks up the item passed to the function, and puts it in the cursor, so long as the item is
+		//either equipped, in the character's inventory, or in their belt.
 		void putInCursor(Item target)
 		{
 			auto pcurs = reinterpret_cast<int(*)>(0x4B8CD0);
@@ -804,6 +874,9 @@ namespace DAPI
 			}
 			return false;*/
 		}
+		
+		//If the cursor is the repair icon, this will simulate left clicking the item in your inventory
+		//or equip location.
 		bool repair(Item target) {
 			static auto DoRepair = reinterpret_cast<void(__fastcall *)(int pnum, int cii)>(0x422C9C);
 			if (target.isValid() && target.inventoryIndex(my_pnum) > -1)
@@ -815,6 +888,8 @@ namespace DAPI
 			setCursor(cursor_id::CURSOR_HAND);
 			return false;
 		}
+
+		//Selects the store option passed to it, assuming the option exists.
 		void selectStoreOption(STextStruct& option) {
 			auto stextflag = reinterpret_cast<char*>(0x6AA705);
 			auto stextsel = reinterpret_cast<int*>(0x6A8A28);
@@ -832,6 +907,8 @@ namespace DAPI
 				}
 			}
 		}
+
+		//DO NOT USE.
 		bool setRightClickSpell(spell_id id)
 		{
 			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -851,6 +928,10 @@ namespace DAPI
 			}
 			return false;
 		}
+
+		//Sets the right click spell to the spell, and spell type, passed to the function. Use spell
+		//type to indicate if you're setting it as a charge, scroll, or known spell. If this is not
+		//set correctly, you could end up casting the null spell.
 		bool setRightClickSpell(spell_id id, spell_type type)
 		{
 			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -862,6 +943,9 @@ namespace DAPI
 			SetSpell();
 			return true;
 		}
+
+		//Issues an attack command at the x, y coordinates indicated by the Point passed to it.
+		//This simulates shift left clicking at that point.
 		void shiftAttack(Point target) {
 			auto NetSendCmdLoc = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y)>(0x43C8C7);
 			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -871,7 +955,12 @@ namespace DAPI
 			else
 				NetSendCmdLoc(1u, static_cast<unsigned char>(_cmd_id::CMD_SATTACKXY), target.x, target.y);
 		}
+
+		//Returns the number of stat points the character has available to spend.
 		int statPoints() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum]._pStatPts; }
+
+		//Issues a talk command targetting the towner passed to the function. Simulates left clicking
+		//with a towner selected.
 		void talkToTowner(Towner towner) {
 			static auto NetSendCmdLocParam1 = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1)>(0x43C8F3);
 			if (okToAct()) {
@@ -879,7 +968,13 @@ namespace DAPI
 					NetSendCmdLocParam1(1u, static_cast<unsigned char>(_cmd_id::CMD_TALKXY), towner.x(), towner.y(), towner.id());
 			}
 		}
+
+		//Returns the walk path generated by Diablo for the character. The walk path does not contain
+		//coordinates, but instead contains the directions the character should step.
 		char* walkPath() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum].walkpath; }
+
+		//Issues a walk command to the x and y coordinates passed to the function. Simulates a left click
+		//on that tile with nothing selected.
 		void walkToXY(int x, int y) {
 			static auto NetSendCmdLoc = reinterpret_cast<void(__fastcall *)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y)>(0x43C8C7);
 			NetSendCmdLoc(1u, static_cast<unsigned char>(_cmd_id::CMD_WALKXY), x, y);
@@ -890,6 +985,8 @@ namespace DAPI
 			MakePlrPath(my_pnum, (unsigned char)x, (unsigned char)y, 1u);
 			(*player)[my_pnum].destAction = -1;*/
 		}
+
+		//Uses the item passed to the function, assuming it is in the character's inventory or belt.
 		void useItem(Item target)
 		{
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -898,6 +995,8 @@ namespace DAPI
 			if (inv_index != -1)
 				UseInvItem(my_pnum, inv_index);
 		}
+
+		//Uses the item at the equip_slot passed to the function.
 		void useItem(int i) {
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			static auto UseInvItem = reinterpret_cast<int(__fastcall *)(int pnum, int cii)>(0x41ED29);
@@ -912,6 +1011,8 @@ namespace DAPI
 					UseInvItem(my_pnum, i);
 			}
 		}
+
+		//DO NOT USE
 		void rangeAttack(int x, int y) {
 			static auto ClrPlrPath = reinterpret_cast<void(__fastcall *)(int pnum)>(0x44FD8A);
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -920,7 +1021,9 @@ namespace DAPI
 			(*player)[my_pnum].destParam1 = x;
 			(*player)[my_pnum].destParam2 = y;
 		}
+
 		int worldX() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum].WorldX; }
+
 		int worldY() { static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448); return (*player)[my_pnum].WorldY; }
 		
 		
