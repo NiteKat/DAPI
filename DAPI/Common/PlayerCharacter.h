@@ -44,7 +44,7 @@ namespace DAPI
 						NetSendCmdLocParam2(1u, static_cast<unsigned char>(_cmd_id::CMD_SPELLXY), static_cast<unsigned char>(x), static_cast<unsigned char>(y), (*player)[my_pnum]._pRSpell, GetSpellLevel(my_pnum, (*player)[my_pnum]._pRSpell));
 				}
 				else
-					NetSendCmdLocParam2(1u, static_cast<unsigned char>(_cmd_id::CMD_SPELLXY), static_cast<unsigned char>(x), static_cast<unsigned char>(y), 21720 * my_pnum, GetSpellLevel(my_pnum, (*player)[my_pnum]._pRSpell));
+					NetSendCmdLocParam2(1u, static_cast<unsigned char>(_cmd_id::CMD_SPELLXY), static_cast<unsigned char>(x), static_cast<unsigned char>(y), (*player)[my_pnum]._pRSpell, GetSpellLevel(my_pnum, (*player)[my_pnum]._pRSpell));
 			}
 		}
 		void castSpell(Monster target)
@@ -167,6 +167,11 @@ namespace DAPI
 			}
 			return return_value;
 		}
+		int getSpellManaCost(DAPI::spell_id spell) {
+			auto GetManaAmount = reinterpret_cast<int(__fastcall *)(int id, int sn)>(0x45744E);
+			return static_cast<int>(floor(GetManaAmount(my_pnum, static_cast<int>(spell)) / 64));
+
+		}
 
 		spell_id getRightClickSpell()
 		{
@@ -243,8 +248,8 @@ namespace DAPI
 
 		int getRightClickSpellManaCost()
 		{
-			static auto GetManaAmount = reinterpret_cast<int(__fastcall *)(int id, int sn)>(0x45744E);
-			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			auto GetManaAmount = reinterpret_cast<int(__fastcall *)(int id, int sn)>(0x45744E);
+			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			return static_cast<int>(floor(GetManaAmount(my_pnum, (*player)[my_pnum]._pRSpell) / 64));
 		}
 
@@ -399,16 +404,16 @@ namespace DAPI
 					my = (*InvRect)[0].Y - 1;//5;//
 				}
 				else if (static_cast<equip_slot>(target) == equip_slot::LEFTRING) {
-					mx = (*InvRect)[4].X + 1;
-					my = (*InvRect)[4].Y - 1;
+					mx = (*InvRect)[5].X + 2;
+					my = (*InvRect)[5].Y - 15;
 				}
 				else if (static_cast<equip_slot>(target) == equip_slot::RIGHTRING) {
-					mx = (*InvRect)[5].X + 1;
-					my = (*InvRect)[5].Y - 1;
+					mx = (*InvRect)[4].X + 2;
+					my = (*InvRect)[4].Y - 15;
 				}
 				else if (static_cast<equip_slot>(target) == equip_slot::AMULET) {
-					mx = (*InvRect)[6].X + 1;
-					my = (*InvRect)[6].Y - 1;
+					mx = (*InvRect)[6].X + 2;
+					my = (*InvRect)[6].Y - 15;
 				}
 				else if (static_cast<equip_slot>(target) == equip_slot::LEFTHAND) {
 					mx = (*InvRect)[7].X + 1; //571;//

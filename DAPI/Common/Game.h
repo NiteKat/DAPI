@@ -499,9 +499,16 @@ namespace DAPI
 			return false;
 		}
 
+		void restartInTown() {
+			auto gamemenu_restart_town = reinterpret_cast<void(__cdecl *)()>(0x418A42);
+			auto deathflag = reinterpret_cast<int*>(0x69B7B0);
+			if (deathflag)
+				gamemenu_restart_town();
+		}
+
 		PlayerCharacter self() {
-			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
-			static auto myplr = reinterpret_cast<int(*)>(0x686444);
+			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
+			auto myplr = reinterpret_cast<int(*)>(0x686444);
 			PlayerCharacter myself(*myplr);
 			return myself;
 		}

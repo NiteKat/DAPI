@@ -1,5 +1,6 @@
 #pragma once
 #include"Structs.h"
+#include<string>
 
 namespace DAPI
 {
@@ -68,6 +69,13 @@ namespace DAPI
 				return static_cast<MON_MODE>(my_monster->_mmode);
 			else
 				return MON_MODE::MM_INVALID;
+		}
+
+		std::string name() {
+			if (my_monster)
+				return static_cast<std::string>(my_monster->mName);
+			else
+				return static_cast<std::string>("Invalid Monster");
 		}
 
 		_monster_id type() {
