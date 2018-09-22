@@ -22,6 +22,7 @@ namespace DAPI
 
 	struct Game
 	{
+		//Returns a vectors of all triggers on the current floor that are active.
 		auto activeTriggers() {
 			auto trigflag = reinterpret_cast<int(*)[5]>(0x6ABAC8);
 			auto trigs = reinterpret_cast<TriggerStruct(*)[5]>(0x6ABAE0);
@@ -35,6 +36,8 @@ namespace DAPI
 
 		}
 
+		//If you are in one of the shop item lists, or the smith repair screen,
+		//then the item passed to this function will be purchased or repaired.
 		bool buyItem(Item& item) {
 			auto stext = reinterpret_cast<STextStruct(*)[24]>(0x69FB40);
 			auto stextsval = reinterpret_cast<int*>(0x6A8A38);
@@ -89,12 +92,17 @@ namespace DAPI
 			}
 			return false;
 		}
-		
+
+		//Returns the icon used for the cursor. You can use the enum cursor_id
+		//to determine what the cursor is. If the cursor is CURSOR_FIRSTITEM or
+		//greater, then the cursor is currently an item, and you can determine what it
+		//is using enum item_class plus CURSOR_FIRSTITEM.
 		cursor_id cursor() {
 			static auto pcurs = reinterpret_cast<int(*)>(0x4B8CD0);
 			return static_cast<cursor_id>(*pcurs);
 		}
 
+		//Returns a vector of all doors that are on screen.
 		auto doors() {
 			std::vector<Door> return_value;
 			auto object = reinterpret_cast<ObjectStruct(*)[127]>(0x679C38);
@@ -133,6 +141,7 @@ namespace DAPI
 			return return_value;
 		}
 
+		//Simulates pressing the Escape key in a store menu.
 		bool exitStore() {
 			auto STextEsc = reinterpret_cast<void(__cdecl *)()>(0x45A584);
 			auto stextflag = reinterpret_cast<char*>(0x6AA705);
@@ -143,6 +152,7 @@ namespace DAPI
 			return false;
 		}
 
+		//Returns all portal slots.
 		std::vector<Portal> getPortals() {
 			auto portal = reinterpret_cast<PortalStruct(*)[4]>(0x69BC98);
 			std::vector<Portal> return_value;
@@ -152,6 +162,7 @@ namespace DAPI
 			return return_value;
 		}
 		
+		//Returns a vector of all objects, excluding doors, that are on screen.
 		auto getOnScreenObjects() {
 			std::vector<Object> return_value;
 			auto object = reinterpret_cast<ObjectStruct(*)[127]>(0x679C38);
@@ -191,6 +202,7 @@ namespace DAPI
 			return return_value;
 		}
 		
+		//Returns the x, y pair of all tiles that are on screen.
 		std::vector<Point> getOnScreenPoints() {
 			auto dPiece = reinterpret_cast<int(*)[112][112]>(0x5A5BD8);
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -214,6 +226,7 @@ namespace DAPI
 			return return_value;
 		}
 
+		//Returns all items that are on the ground on screen.
 		auto groundItems() {
 			std::vector<Item> return_value;
 			auto item = reinterpret_cast<ItemStruct(*)[127]>(0x635A28);
@@ -242,6 +255,8 @@ namespace DAPI
 			return return_value;
 		}
 
+		//Identifies the item passed to the function if the Identify Items menu
+		//with Cain is open.
 		bool identifyItem(Item item) {
 			auto stext = reinterpret_cast<STextStruct(*)[24]>(0x69FB40);
 			auto stextsval = reinterpret_cast<int*>(0x6A8A38);
@@ -294,11 +309,14 @@ namespace DAPI
 			return false;
 		}
 
+		//Returns true if the inventory screen is open.
 		bool isInventoryOpen() {
 			static auto invflag = reinterpret_cast<int*>(0x634CB8);
 			return invflag;
 		}
 
+		//Returns true if the x, y coordinates contained in point are flagged as
+		//solid.
 		bool isSolid(Point point) {
 			auto dPiece = reinterpret_cast<int(*)[112][112]>(0x5A5BD8);
 			static auto nSolidTable = reinterpret_cast<char(*)[2049]>(0x5BB2F0);
@@ -308,6 +326,8 @@ namespace DAPI
 				return false;
 		}
 
+		//Returns a vector of all monsters that are alive, on screen, and the tile
+		//they are standing on is flagged as visible.
 		auto liveMonsters() {
 			std::vector<Monster> return_value;
 			auto monster = reinterpret_cast<MonsterStruct(*)[200]>(0x64D330);
@@ -347,6 +367,8 @@ namespace DAPI
 			return return_value;
 		}
 
+		//Returns the inventory item being referenced by sell_item when a store's
+		//sell menu is open.
 		Item matchingInventoryItem(Item& sell_item) {
 			auto stextflag = reinterpret_cast<char*>(0x6AA705);
 			auto storehold = reinterpret_cast<ItemStruct(*)[48]>(0x6A09F0);
@@ -370,6 +392,7 @@ namespace DAPI
 			return Item();
 		}
 
+		//Returns the items listed in the store menu that is open.
 		std::vector<Item> openStoreItems() {
 			auto stextflag = reinterpret_cast<char*>(0x6AA705);
 			auto smithitem = reinterpret_cast<ItemStruct(*)[20]>(0x6A8A40);
@@ -438,16 +461,21 @@ namespace DAPI
 			return return_value;
 		}
 
+		//Returns the value of the qTextFlag, which indicates if a towner gossip/quest
+		//box is open, or if you are reading one of the books in the dungeon.
 		char qTextFlag() {
 			auto qtextflag = reinterpret_cast<char*>(0x646d00);
 			return *qtextflag;
 		}
 
+		//Quits Diablo as if you opened the menu and choose Quit Diablo.
 		void quit() {
 			auto gamemenu_quit_game = reinterpret_cast<void(*)()>(0x41893B);
 			gamemenu_quit_game();
 		}
 
+		//If the Recharge staves menu is open, selects the passed item to recharge, if it
+		//is listed in the store menu.
 		bool rechargeItem(Item& item) {
 			auto stext = reinterpret_cast<STextStruct(*)[24]>(0x69FB40);
 			auto stextsval = reinterpret_cast<int*>(0x6A8A38);
@@ -498,7 +526,9 @@ namespace DAPI
 			}
 			return false;
 		}
-
+		
+		//If your character is dead, simulates selecting the Restart in Town option from
+		//the menu.
 		void restartInTown() {
 			auto gamemenu_restart_town = reinterpret_cast<void(__cdecl *)()>(0x418A42);
 			auto deathflag = reinterpret_cast<int*>(0x69B7B0);
@@ -506,6 +536,7 @@ namespace DAPI
 				gamemenu_restart_town();
 		}
 
+		//Returns a PlayerCharacter that points at your character.
 		PlayerCharacter self() {
 			auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
 			auto myplr = reinterpret_cast<int(*)>(0x686444);
@@ -513,11 +544,13 @@ namespace DAPI
 			return myself;
 		}
 
+		//Returns true if playing in Single Player mode.
 		bool singlePlayer() {
 			auto gbMaxPlayers = reinterpret_cast<char*>(0x679660);
 			return *gbMaxPlayers == 1;
 		}
 
+		//Sells the passed item if it is listed in the shop's sell menu.
 		bool sellItem(Item& item) {
 			auto stext = reinterpret_cast<STextStruct(*)[24]>(0x69FB40);
 			auto stextsval = reinterpret_cast<int*>(0x6A8A38);
@@ -569,6 +602,7 @@ namespace DAPI
 			return false;
 		}
 
+		//Opens or closes the inventory screen.
 		void toggleInventory() {
 			static auto invflag = reinterpret_cast<int*>(0x634CB8);
 			if (invflag)
@@ -577,11 +611,13 @@ namespace DAPI
 				*invflag = 1;
 		}
 
+		//Returns the talkFlag value, which indicates which towner menu you are currently in.
 		talk_id textFlag() {
 			auto stextflag = reinterpret_cast<char*>(0x6AA705);
 			return static_cast<talk_id>(*stextflag);
 		}
 
+		//Returns a reference to all of the towners if you are in town.
 		std::vector<Towner> towners() {
 			static auto towner = reinterpret_cast<TownerStruct(*)[16]>(0x6AAC38);
 			static auto player = reinterpret_cast<PlayerStruct(*)[4]>(0x686448);
@@ -598,6 +634,7 @@ namespace DAPI
 				return return_value;
 		}
 
+		//If speaking with  a towner, returns the available options you can select.
 		std::vector<STextStruct> townerOptions() {
 			auto stextflag = reinterpret_cast<char*>(0x6AA705);
 			auto stext = reinterpret_cast<STextStruct(*)[24]>(0x69FB40);
@@ -612,6 +649,8 @@ namespace DAPI
 			return return_value;
 		}
 
+		//Returns barrels, chests, and sarcophagus that are selectable, and whose tiles are
+		//flagged as visible.
 		auto validObjects() {
 			std::vector<Object> return_value;
 			auto object = reinterpret_cast<ObjectStruct(*)[127]>(0x679C38);
@@ -653,6 +692,7 @@ namespace DAPI
 			return return_value;
 		}
 
+		//Returns all Points where the tiles are flagged as visible.
 		auto visiblePoints() {
 			auto dFlags = reinterpret_cast<char(*)[112][112]>(0x5C6910);
 			std::vector<Point> return_value;
@@ -667,16 +707,19 @@ namespace DAPI
 			return return_value;
 		}
 
+		//Request that the string parameter be written to the screen where x and y indicate.
 		template<typename T>
 		void drawTextToScreen(int x, int y, T &&string) {
 			draw_queue.emplace_back(StringDrawScreen{ x, y, std::forward<T>(string) });
 		}
 		
+		//Request that the string be written to the map at the tile indicated by x and y.
 		template<typename T>
 		void drawTextToMap(int x, int y, T &&string) {
 			draw_queue.emplace_back(StringDrawMap{ x, y, std::forward<T>(string) });
 		}
 
+		//Called by DAPI.dll. Do not call this in your code.
 		void onDraw() {
 			static auto PrintGameStr = reinterpret_cast<void(__fastcall *)(int x, int y, char *str, int color)>(0x405681);
 			static auto dx_lock_mutex = reinterpret_cast<void(__cdecl *)()>(0x41569A);
