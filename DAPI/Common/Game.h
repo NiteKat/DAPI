@@ -51,6 +51,7 @@ namespace DAPI
 				static_cast<talk_id>(*stextflag) == talk_id::STORE_WBUY ||
 				static_cast<talk_id>(*stextflag) == talk_id::STORE_HBUY ||
 				static_cast<talk_id>(*stextflag) == talk_id::STORE_BBOY ||
+				static_cast<talk_id>(*stextflag) == talk_id::STORE_SPBUY ||
 				static_cast<talk_id>(*stextflag) == talk_id::STORE_SREPAIR)
 			{
 				bool found_item = false;
