@@ -30,6 +30,14 @@ namespace DAPI
 		DIRECTION_OMNI = 8, ///< All directions.
 	};
 
+	enum struct _difficulty
+	{
+		DIFF_NORMAL = 0x0,
+		DIFF_NIGHTMARE = 0x1,
+		DIFF_HELL = 0x2,
+		NUM_DIFFICULTIES = 0x3,
+	};
+
 	enum struct _cmd_id {
 		CMD_STAND = 0,
 		CMD_WALKXY = 1,
@@ -968,6 +976,22 @@ namespace DAPI
 		UITEM_CONSTRICT = 0x58,
 		UITEM_ENGAGE = 0x59,
 		UITEM_INVALID = 0x5A,
+	};
+
+	enum struct monster_flag {
+		MFLAG_HIDDEN = 0x01,
+		MFLAG_LOCK_ANIMATION = 0x02,
+		MFLAG_ALLOW_SPECIAL = 0x04,
+		MFLAG_NOHEAL = 0x08,
+		MFLAG_TARGETS_MONSTER = 0x10,
+		MFLAG_GOLEM = 0x20,
+		MFLAG_QUEST_COMPLETE = 0x40,
+		MFLAG_KNOCKBACK = 0x80,
+		MFLAG_SEARCH = 0x100,
+		MFLAG_CAN_OPEN_DOOR = 0x200,
+		MFLAG_NO_ENEMY = 0x400,
+		MFLAG_UNUSED = 0x800,
+		MFLAG_NOLIFESTEAL = 0x1000
 	};
 }
 

@@ -103,6 +103,12 @@ namespace DAPI
 			return static_cast<cursor_id>(*pcurs);
 		}
 
+		//Returns the difficulty of the current game.
+		_difficulty difficulty() {
+			auto gnDifficulty = reinterpret_cast<int*>(0x5B70E4);
+			return static_cast<_difficulty>(*gnDifficulty);
+		}
+
 		//Returns a vector of all doors that are on screen.
 		auto doors() {
 			std::vector<Door> return_value;
@@ -328,7 +334,8 @@ namespace DAPI
 		}
 
 		//Returns a vector of all monsters that are alive, on screen, and the tile
-		//they are standing on is flagged as visible.
+		//they are standing on is flagged as visible, and the monster is not flagged
+		//as invisible.
 		auto liveMonsters() {
 			std::vector<Monster> return_value;
 			auto monster = reinterpret_cast<MonsterStruct(*)[200]>(0x64D330);
@@ -355,7 +362,8 @@ namespace DAPI
 						for (int j = 0; j < *nummonsters; j++) {
 							if ((*monstactive)[j] == index - 1) {
 								if ((*dFlags)[(*player)[*myplr].WorldX + dx + cur_cell][(*player)[*myplr].WorldY + dy + cur_cell] & 0x40 &&
-									(*monster)[index - 1]._mhitpoints > 0)
+									(*monster)[index - 1]._mhitpoints > 0 &&
+									(*monster)[index - 1]._mFlags & static_cast<int>(monster_flag::MFLAG_HIDDEN))
 								{
 									DAPI::Monster new_monster(&(*monster)[index - 1]);
 									return_value.push_back(new_monster);
