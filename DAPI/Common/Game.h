@@ -363,7 +363,7 @@ namespace DAPI
 							if ((*monstactive)[j] == index - 1) {
 								if ((*dFlags)[(*player)[*myplr].WorldX + dx + cur_cell][(*player)[*myplr].WorldY + dy + cur_cell] & 0x40 &&
 									(*monster)[index - 1]._mhitpoints > 0 &&
-									(*monster)[index - 1]._mFlags & static_cast<int>(monster_flag::MFLAG_HIDDEN))
+									!((*monster)[index - 1]._mFlags & static_cast<int>(monster_flag::MFLAG_HIDDEN)))
 								{
 									DAPI::Monster new_monster(&(*monster)[index - 1]);
 									return_value.push_back(new_monster);
