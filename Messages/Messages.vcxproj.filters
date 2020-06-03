@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Protofiles">
+      <UniqueIdentifier>{8454100d-6aa8-4667-a3e9-b12a3a530e95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated">
+      <UniqueIdentifier>{63d65d39-da70-4ea9-ae30-c2a4bf37ce95}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="message.proto">
+      <Filter>Protofiles</Filter>
+    </None>
+    <None Include="init.proto">
+      <Filter>Protofiles</Filter>
+    </None>
+    <None Include="game.proto">
+      <Filter>Protofiles</Filter>
+    </None>
+    <None Include="data.proto">
+      <Filter>Protofiles</Filter>
+    </None>
+    <None Include="command.proto">
+      <Filter>Protofiles</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="generated\cpp\data.pb.cc">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\cpp\game.pb.cc">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\cpp\init.pb.cc">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\cpp\message.pb.cc">
+      <Filter>Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\cpp\command.pb.cc">
+      <Filter>Generated</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="generated\cpp\data.pb.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="generated\cpp\game.pb.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="generated\cpp\init.pb.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="generated\cpp\message.pb.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="generated\cpp\command.pb.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

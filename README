@@ -5,6 +5,8 @@ DAPI (Diablo API) is intended to give AI developers the tools they need to make 
 
 Currently the project is very early in development, meaning that breaking changes to the API can happen, and there is no official change/version tracker yet. Please feel free to use the API at this time for early development, but understand that the information available to your bot could change, function calls could change, etc. In addition, documentation of the API is not strong, but these are things that will come in time.
 
+The API has gone through a radical redesign, there is now a server/client relationship using Google Protobuf for communication. This allows the frontend to be in different languages instead of just C++. This project will focus on supporting 
+
 Capabilities:
 
 Write an AI capable of playing the game any way a human could imagine playing the game: Designed for PvP, PvE, Iron Man Challenge, Speedrunning, etc.
@@ -13,10 +15,10 @@ Read all relevant aspects of the game state that would be available to a human p
 
 Get basic information on items in the game.
 
-Get basic inforamtion on the monsters and other players in the game.
+Get basic information on the monsters and other players in the game.
 
 Study and research real-time AI algorithms in a commercial ARPG environment.
 
 Legal
 
-Diablo is a trademark of Blizzard Entertainment. DAPI is a third party "hack." While Diablo is no longer for sale from Blizzard Entertainment, and is considered by some to be Abandonware, it is in a grey area and thus no links to any downloads of Diablo or Diablo CDs will be posted through this github.
+Diablo is a trademark of Blizzard Entertainment. DAPI is a third party "hack." Diablo is available through GOG's website. No links to any downloads of Diablo, or Diablo CDs, will be posted through this github.
