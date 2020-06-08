@@ -294,6 +294,8 @@ namespace DAPI
     auto portal = reinterpret_cast<DiabloInternal::PortalStruct(*)>(0x69BC98);
     auto qtextflag = reinterpret_cast<BOOLEAN(*)>(0x646D00);
     auto qtextptr = reinterpret_cast<char(**)>(0x646CF8);
+    auto nobjects = reinterpret_cast<int(*)>(0x679A34);
+    auto objectactive = reinterpret_cast<int(*)>(0x679838);
 
     auto fullFillItemInfo = [&](int itemID, DiabloInternal::ItemStruct* item) {
 
@@ -1373,11 +1375,11 @@ namespace DAPI
 
     if (plr[*myplr].plrlevel != 0)
     {
-      for (int i = 0; i < 127; i++)
+      for (int i = 0; i < *nobjects; i++)
       {
-        if (isOnScreen(object[i]._ox, object[i]._oy))
+        if (isOnScreen(object[objectactive[i]]._ox, object[objectactive[i]]._oy))
         {
-          fillObject(i, object[i]);
+          fillObject(objectactive[i], object[objectactive[i]]);
           /*switch (static_cast<DiabloInternal::ObjectID>(object[i]._otype))
           {
           case DiabloInternal::ObjectID::BARREL:
@@ -1944,7 +1946,7 @@ namespace DAPI
     if (storehidx[idx] >= 0)
       RemoveInvItem(*myplr, storehidx[idx]);
     else
-      RemoveSpdBarItem(*myplr, -(storehidx[idx]));
+      RemoveSpdBarItem(*myplr, -(storehidx[idx] + 1));
     cost = storehold[idx]._iIvalue;
     *storenumh -= 1;
     if (idx != *storenumh)
