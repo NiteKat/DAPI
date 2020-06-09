@@ -2118,8 +2118,7 @@ namespace DAPI
 
     if (CanTalkToMonster(index))
       NetSendCmdParam1(1u, static_cast<unsigned char>(CommandType::ATTACKID), index);
-
-    if (plr[*myplr].InvBody[4]._itype == 3 || plr[*myplr].InvBody[5]._itype == 3)
+    else if (plr[*myplr].InvBody[4]._itype == 3 || plr[*myplr].InvBody[5]._itype == 3)
       NetSendCmdParam1(1u, static_cast<unsigned char>(CommandType::RATTACKID), index);
     else
       NetSendCmdParam1(1u, static_cast<unsigned char>(CommandType::ATTACKID), index);
