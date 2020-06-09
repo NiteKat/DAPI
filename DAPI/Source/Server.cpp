@@ -1461,7 +1461,7 @@ namespace DAPI
 
   bool Server::OKToAct()
   {
-    return !data->stextflag && data->pcurs == 1;
+    return !data->stextflag && data->pcurs == 1 && !data->qtextflag;
   }
 
   void Server::move(int x, int y)

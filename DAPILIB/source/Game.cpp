@@ -168,7 +168,7 @@ namespace DAPI
 
   bool Game::OKToAct()
   {
-    return !data->stextflag && data->pauseMode != 2 && !data->menuOpen && static_cast<CursorType>(data->cursor) == CursorType::HAND;
+    return !data->stextflag && data->pauseMode != 2 && !data->menuOpen && static_cast<CursorType>(data->cursor) == CursorType::HAND && !data->qtextflag;
   }
 
   bool Game::OKToActStore()
