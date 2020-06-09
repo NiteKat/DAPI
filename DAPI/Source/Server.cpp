@@ -1320,6 +1320,7 @@ namespace DAPI
         m->set_futy(monster[monstactive[i]]._mfuty);
         m->set_type(monster[monstactive[i]].MType->mtype);
         m->set_name(monster[monstactive[i]].mName);
+        m->set_unique(static_cast<bool>(monster[monstactive[i]]._uniqtype));
       }
     }
 

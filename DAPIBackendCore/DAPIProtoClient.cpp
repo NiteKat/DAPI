@@ -73,7 +73,7 @@ namespace DAPI
     broadcastMessage->SerializeToArray(&buffer[0], size);
     packet.append(buffer.get(), size);
 
-    sf::IpAddress server = /*"10.0.0.220";*/sf::IpAddress::Broadcast;
+    sf::IpAddress server = "10.0.0.220";//sf::IpAddress::Broadcast;
     unsigned short port = 1024;
 
     udpSocket.send(packet, server, port);

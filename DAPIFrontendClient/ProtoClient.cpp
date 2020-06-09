@@ -277,6 +277,7 @@ namespace DAPI
             game.data->monsterList[index].data->futy = monster.futy();
             game.data->monsterList[index].data->type = static_cast<MonsterType>(monster.type());
             game.data->monsterList[index].data->name = monster.name();
+            game.data->monsterList[index].data->unique = monster.unique();
           }
           game.data->objectList.clear();
           for (auto& object : frameUpdate.objectdata())

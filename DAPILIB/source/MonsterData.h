@@ -134,5 +134,6 @@ namespace DAPI
     int resists[3];
     MonsterType type;
     std::string name;
+    bool unique;
   };
 }

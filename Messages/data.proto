@@ -39,6 +39,7 @@ message MonsterData {
 	string name = 6;
 	sint32 type = 7;
 	sint32 kills = 8;
+	bool unique = 9;
 }
 
 message TriggerData {

@@ -1243,6 +1243,7 @@ const int MonsterData::kFutyFieldNumber;
 const int MonsterData::kNameFieldNumber;
 const int MonsterData::kTypeFieldNumber;
 const int MonsterData::kKillsFieldNumber;
+const int MonsterData::kUniqueFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 MonsterData::MonsterData()
@@ -1261,16 +1262,16 @@ MonsterData::MonsterData(const MonsterData& from)
     name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
   }
   ::memcpy(&index_, &from.index_,
-    static_cast<size_t>(reinterpret_cast<char*>(&kills_) -
-    reinterpret_cast<char*>(&index_)) + sizeof(kills_));
+    static_cast<size_t>(reinterpret_cast<char*>(&unique_) -
+    reinterpret_cast<char*>(&index_)) + sizeof(unique_));
   // @@protoc_insertion_point(copy_constructor:dapi.data.MonsterData)
 }
 
 void MonsterData::SharedCtor() {
   name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&index_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&kills_) -
-      reinterpret_cast<char*>(&index_)) + sizeof(kills_));
+      reinterpret_cast<char*>(&unique_) -
+      reinterpret_cast<char*>(&index_)) + sizeof(unique_));
 }
 
 MonsterData::~MonsterData() {
@@ -1299,8 +1300,8 @@ void MonsterData::Clear() {
 
   name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&index_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&kills_) -
-      reinterpret_cast<char*>(&index_)) + sizeof(kills_));
+      reinterpret_cast<char*>(&unique_) -
+      reinterpret_cast<char*>(&index_)) + sizeof(unique_));
   _internal_metadata_.Clear();
 }
 
@@ -1434,6 +1435,20 @@ bool MonsterData::MergePartialFromCodedStream(
         break;
       }
 
+      // bool unique = 9;
+      case 9: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(72u /* 72 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &unique_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -1505,6 +1520,11 @@ void MonsterData::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteSInt32(8, this->kills(), output);
   }
 
+  // bool unique = 9;
+  if (this->unique() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(9, this->unique(), output);
+  }
+
   output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
                    static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
   // @@protoc_insertion_point(serialize_end:dapi.data.MonsterData)
@@ -1572,6 +1592,11 @@ size_t MonsterData::ByteSizeLong() const {
         this->kills());
   }
 
+  // bool unique = 9;
+  if (this->unique() != 0) {
+    total_size += 1 + 1;
+  }
+
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
@@ -1614,6 +1639,9 @@ void MonsterData::MergeFrom(const MonsterData& from) {
   if (from.kills() != 0) {
     set_kills(from.kills());
   }
+  if (from.unique() != 0) {
+    set_unique(from.unique());
+  }
 }
 
 void MonsterData::CopyFrom(const MonsterData& from) {
@@ -1642,6 +1670,7 @@ void MonsterData::InternalSwap(MonsterData* other) {
   swap(futy_, other->futy_);
   swap(type_, other->type_);
   swap(kills_, other->kills_);
+  swap(unique_, other->unique_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 

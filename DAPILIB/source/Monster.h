@@ -16,6 +16,7 @@ namespace DAPI
     std::string getName() { return data->name; }
     MonsterType getType() { return data->type; }
     int getKills() { return data->kills; }
+    bool isUnique() { return data->unique; }
 
     std::shared_ptr<MonsterData> data;
   };
