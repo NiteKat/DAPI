@@ -1584,10 +1584,10 @@ class PlayerData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
 
   // accessors -------------------------------------------------------
 
-  // repeated uint32 _pSplLvl = 10;
+  // repeated uint32 _pSplLvl = 11;
   int _pspllvl_size() const;
   void clear__pspllvl();
-  static const int kPSplLvlFieldNumber = 10;
+  static const int kPSplLvlFieldNumber = 11;
   ::google::protobuf::uint32 _pspllvl(int index) const;
   void set__pspllvl(int index, ::google::protobuf::uint32 value);
   void add__pspllvl(::google::protobuf::uint32 value);
@@ -1596,10 +1596,10 @@ class PlayerData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
       mutable__pspllvl();
 
-  // repeated sint32 InvBody = 37;
+  // repeated sint32 InvBody = 38;
   int invbody_size() const;
   void clear_invbody();
-  static const int kInvBodyFieldNumber = 37;
+  static const int kInvBodyFieldNumber = 38;
   ::google::protobuf::int32 invbody(int index) const;
   void set_invbody(int index, ::google::protobuf::int32 value);
   void add_invbody(::google::protobuf::int32 value);
@@ -1608,10 +1608,10 @@ class PlayerData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
       mutable_invbody();
 
-  // repeated sint32 InvList = 38;
+  // repeated sint32 InvList = 39;
   int invlist_size() const;
   void clear_invlist();
-  static const int kInvListFieldNumber = 38;
+  static const int kInvListFieldNumber = 39;
   ::google::protobuf::int32 invlist(int index) const;
   void set_invlist(int index, ::google::protobuf::int32 value);
   void add_invlist(::google::protobuf::int32 value);
@@ -1620,10 +1620,10 @@ class PlayerData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
       mutable_invlist();
 
-  // repeated sint32 InvGrid = 39;
+  // repeated sint32 InvGrid = 40;
   int invgrid_size() const;
   void clear_invgrid();
-  static const int kInvGridFieldNumber = 39;
+  static const int kInvGridFieldNumber = 40;
   ::google::protobuf::int32 invgrid(int index) const;
   void set_invgrid(int index, ::google::protobuf::int32 value);
   void add_invgrid(::google::protobuf::int32 value);
@@ -1632,10 +1632,10 @@ class PlayerData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
       mutable_invgrid();
 
-  // repeated sint32 SpdList = 40;
+  // repeated sint32 SpdList = 41;
   int spdlist_size() const;
   void clear_spdlist();
-  static const int kSpdListFieldNumber = 40;
+  static const int kSpdListFieldNumber = 41;
   ::google::protobuf::int32 spdlist(int index) const;
   void set_spdlist(int index, ::google::protobuf::int32 value);
   void add_spdlist(::google::protobuf::int32 value);
@@ -1644,9 +1644,9 @@ class PlayerData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
       mutable_spdlist();
 
-  // string _pName = 14;
+  // string _pName = 15;
   void clear__pname();
-  static const int kPNameFieldNumber = 14;
+  static const int kPNameFieldNumber = 15;
   const ::std::string& _pname() const;
   void set__pname(const ::std::string& value);
   #if LANG_CXX11
@@ -1658,255 +1658,261 @@ class PlayerData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::std::string* release__pname();
   void set_allocated__pname(::std::string* _pname);
 
-  // sint32 pnum = 1;
+  // sint32 _pmode = 1;
+  void clear__pmode();
+  static const int kPmodeFieldNumber = 1;
+  ::google::protobuf::int32 _pmode() const;
+  void set__pmode(::google::protobuf::int32 value);
+
+  // sint32 pnum = 2;
   void clear_pnum();
-  static const int kPnumFieldNumber = 1;
+  static const int kPnumFieldNumber = 2;
   ::google::protobuf::int32 pnum() const;
   void set_pnum(::google::protobuf::int32 value);
 
-  // sint32 plrlevel = 2;
+  // sint32 plrlevel = 3;
   void clear_plrlevel();
-  static const int kPlrlevelFieldNumber = 2;
+  static const int kPlrlevelFieldNumber = 3;
   ::google::protobuf::int32 plrlevel() const;
   void set_plrlevel(::google::protobuf::int32 value);
 
-  // sint32 _px = 3;
+  // sint32 _px = 4;
   void clear__px();
-  static const int kPxFieldNumber = 3;
+  static const int kPxFieldNumber = 4;
   ::google::protobuf::int32 _px() const;
   void set__px(::google::protobuf::int32 value);
 
-  // sint32 _py = 4;
+  // sint32 _py = 5;
   void clear__py();
-  static const int kPyFieldNumber = 4;
+  static const int kPyFieldNumber = 5;
   ::google::protobuf::int32 _py() const;
   void set__py(::google::protobuf::int32 value);
 
-  // sint32 _pfutx = 5;
+  // sint32 _pfutx = 6;
   void clear__pfutx();
-  static const int kPfutxFieldNumber = 5;
+  static const int kPfutxFieldNumber = 6;
   ::google::protobuf::int32 _pfutx() const;
   void set__pfutx(::google::protobuf::int32 value);
 
-  // sint32 _pfuty = 6;
+  // sint32 _pfuty = 7;
   void clear__pfuty();
-  static const int kPfutyFieldNumber = 6;
+  static const int kPfutyFieldNumber = 7;
   ::google::protobuf::int32 _pfuty() const;
   void set__pfuty(::google::protobuf::int32 value);
 
-  // sint32 _pdir = 7;
+  // sint32 _pdir = 8;
   void clear__pdir();
-  static const int kPdirFieldNumber = 7;
+  static const int kPdirFieldNumber = 8;
   ::google::protobuf::int32 _pdir() const;
   void set__pdir(::google::protobuf::int32 value);
 
-  // sint32 _pRSpell = 8;
+  // sint32 _pRSpell = 9;
   void clear__prspell();
-  static const int kPRSpellFieldNumber = 8;
+  static const int kPRSpellFieldNumber = 9;
   ::google::protobuf::int32 _prspell() const;
   void set__prspell(::google::protobuf::int32 value);
 
-  // uint64 _pMemSpells = 11;
-  void clear__pmemspells();
-  static const int kPMemSpellsFieldNumber = 11;
-  ::google::protobuf::uint64 _pmemspells() const;
-  void set__pmemspells(::google::protobuf::uint64 value);
-
-  // uint64 _pAblSpells = 12;
-  void clear__pablspells();
-  static const int kPAblSpellsFieldNumber = 12;
-  ::google::protobuf::uint64 _pablspells() const;
-  void set__pablspells(::google::protobuf::uint64 value);
-
-  // uint32 _pRsplType = 9;
+  // uint32 _pRsplType = 10;
   void clear__prspltype();
-  static const int kPRsplTypeFieldNumber = 9;
+  static const int kPRsplTypeFieldNumber = 10;
   ::google::protobuf::uint32 _prspltype() const;
   void set__prspltype(::google::protobuf::uint32 value);
 
-  // uint32 _pClass = 15;
-  void clear__pclass();
-  static const int kPClassFieldNumber = 15;
-  ::google::protobuf::uint32 _pclass() const;
-  void set__pclass(::google::protobuf::uint32 value);
+  // uint64 _pMemSpells = 12;
+  void clear__pmemspells();
+  static const int kPMemSpellsFieldNumber = 12;
+  ::google::protobuf::uint64 _pmemspells() const;
+  void set__pmemspells(::google::protobuf::uint64 value);
 
-  // uint64 _pScrlSpells = 13;
+  // uint64 _pAblSpells = 13;
+  void clear__pablspells();
+  static const int kPAblSpellsFieldNumber = 13;
+  ::google::protobuf::uint64 _pablspells() const;
+  void set__pablspells(::google::protobuf::uint64 value);
+
+  // uint64 _pScrlSpells = 14;
   void clear__pscrlspells();
-  static const int kPScrlSpellsFieldNumber = 13;
+  static const int kPScrlSpellsFieldNumber = 14;
   ::google::protobuf::uint64 _pscrlspells() const;
   void set__pscrlspells(::google::protobuf::uint64 value);
 
-  // uint32 _pStrength = 16;
+  // uint32 _pClass = 16;
+  void clear__pclass();
+  static const int kPClassFieldNumber = 16;
+  ::google::protobuf::uint32 _pclass() const;
+  void set__pclass(::google::protobuf::uint32 value);
+
+  // uint32 _pStrength = 17;
   void clear__pstrength();
-  static const int kPStrengthFieldNumber = 16;
+  static const int kPStrengthFieldNumber = 17;
   ::google::protobuf::uint32 _pstrength() const;
   void set__pstrength(::google::protobuf::uint32 value);
 
-  // uint32 _pBaseStr = 17;
+  // uint32 _pBaseStr = 18;
   void clear__pbasestr();
-  static const int kPBaseStrFieldNumber = 17;
+  static const int kPBaseStrFieldNumber = 18;
   ::google::protobuf::uint32 _pbasestr() const;
   void set__pbasestr(::google::protobuf::uint32 value);
 
-  // uint32 _pMagic = 18;
+  // uint32 _pMagic = 19;
   void clear__pmagic();
-  static const int kPMagicFieldNumber = 18;
+  static const int kPMagicFieldNumber = 19;
   ::google::protobuf::uint32 _pmagic() const;
   void set__pmagic(::google::protobuf::uint32 value);
 
-  // uint32 _pBaseMag = 19;
+  // uint32 _pBaseMag = 20;
   void clear__pbasemag();
-  static const int kPBaseMagFieldNumber = 19;
+  static const int kPBaseMagFieldNumber = 20;
   ::google::protobuf::uint32 _pbasemag() const;
   void set__pbasemag(::google::protobuf::uint32 value);
 
-  // uint32 _pDexterity = 20;
+  // uint32 _pDexterity = 21;
   void clear__pdexterity();
-  static const int kPDexterityFieldNumber = 20;
+  static const int kPDexterityFieldNumber = 21;
   ::google::protobuf::uint32 _pdexterity() const;
   void set__pdexterity(::google::protobuf::uint32 value);
 
-  // uint32 _pBaseDex = 21;
+  // uint32 _pBaseDex = 22;
   void clear__pbasedex();
-  static const int kPBaseDexFieldNumber = 21;
+  static const int kPBaseDexFieldNumber = 22;
   ::google::protobuf::uint32 _pbasedex() const;
   void set__pbasedex(::google::protobuf::uint32 value);
 
-  // uint32 _pVitality = 22;
+  // uint32 _pVitality = 23;
   void clear__pvitality();
-  static const int kPVitalityFieldNumber = 22;
+  static const int kPVitalityFieldNumber = 23;
   ::google::protobuf::uint32 _pvitality() const;
   void set__pvitality(::google::protobuf::uint32 value);
 
-  // uint32 _pBaseVit = 23;
+  // uint32 _pBaseVit = 24;
   void clear__pbasevit();
-  static const int kPBaseVitFieldNumber = 23;
+  static const int kPBaseVitFieldNumber = 24;
   ::google::protobuf::uint32 _pbasevit() const;
   void set__pbasevit(::google::protobuf::uint32 value);
 
-  // uint32 _pStatPts = 24;
+  // uint32 _pStatPts = 25;
   void clear__pstatpts();
-  static const int kPStatPtsFieldNumber = 24;
+  static const int kPStatPtsFieldNumber = 25;
   ::google::protobuf::uint32 _pstatpts() const;
   void set__pstatpts(::google::protobuf::uint32 value);
 
-  // uint32 _pDamageMod = 25;
+  // uint32 _pDamageMod = 26;
   void clear__pdamagemod();
-  static const int kPDamageModFieldNumber = 25;
+  static const int kPDamageModFieldNumber = 26;
   ::google::protobuf::uint32 _pdamagemod() const;
   void set__pdamagemod(::google::protobuf::uint32 value);
 
-  // uint32 _pHitPoints = 26;
+  // uint32 _pHitPoints = 27;
   void clear__phitpoints();
-  static const int kPHitPointsFieldNumber = 26;
+  static const int kPHitPointsFieldNumber = 27;
   ::google::protobuf::uint32 _phitpoints() const;
   void set__phitpoints(::google::protobuf::uint32 value);
 
-  // uint32 _pMaxHP = 27;
+  // uint32 _pMaxHP = 28;
   void clear__pmaxhp();
-  static const int kPMaxHPFieldNumber = 27;
+  static const int kPMaxHPFieldNumber = 28;
   ::google::protobuf::uint32 _pmaxhp() const;
   void set__pmaxhp(::google::protobuf::uint32 value);
 
-  // sint32 _pMana = 28;
+  // sint32 _pMana = 29;
   void clear__pmana();
-  static const int kPManaFieldNumber = 28;
+  static const int kPManaFieldNumber = 29;
   ::google::protobuf::int32 _pmana() const;
   void set__pmana(::google::protobuf::int32 value);
 
-  // uint32 _pMaxMana = 29;
+  // uint32 _pMaxMana = 30;
   void clear__pmaxmana();
-  static const int kPMaxManaFieldNumber = 29;
+  static const int kPMaxManaFieldNumber = 30;
   ::google::protobuf::uint32 _pmaxmana() const;
   void set__pmaxmana(::google::protobuf::uint32 value);
 
-  // uint32 _pLevel = 30;
+  // uint32 _pLevel = 31;
   void clear__plevel();
-  static const int kPLevelFieldNumber = 30;
+  static const int kPLevelFieldNumber = 31;
   ::google::protobuf::uint32 _plevel() const;
   void set__plevel(::google::protobuf::uint32 value);
 
-  // uint32 _pExperience = 31;
+  // uint32 _pExperience = 32;
   void clear__pexperience();
-  static const int kPExperienceFieldNumber = 31;
+  static const int kPExperienceFieldNumber = 32;
   ::google::protobuf::uint32 _pexperience() const;
   void set__pexperience(::google::protobuf::uint32 value);
 
-  // uint32 _pArmorClass = 32;
+  // uint32 _pArmorClass = 33;
   void clear__parmorclass();
-  static const int kPArmorClassFieldNumber = 32;
+  static const int kPArmorClassFieldNumber = 33;
   ::google::protobuf::uint32 _parmorclass() const;
   void set__parmorclass(::google::protobuf::uint32 value);
 
-  // uint32 _pMagResist = 33;
+  // uint32 _pMagResist = 34;
   void clear__pmagresist();
-  static const int kPMagResistFieldNumber = 33;
+  static const int kPMagResistFieldNumber = 34;
   ::google::protobuf::uint32 _pmagresist() const;
   void set__pmagresist(::google::protobuf::uint32 value);
 
-  // uint32 _pFireResist = 34;
+  // uint32 _pFireResist = 35;
   void clear__pfireresist();
-  static const int kPFireResistFieldNumber = 34;
+  static const int kPFireResistFieldNumber = 35;
   ::google::protobuf::uint32 _pfireresist() const;
   void set__pfireresist(::google::protobuf::uint32 value);
 
-  // uint32 _pLightResist = 35;
+  // uint32 _pLightResist = 36;
   void clear__plightresist();
-  static const int kPLightResistFieldNumber = 35;
+  static const int kPLightResistFieldNumber = 36;
   ::google::protobuf::uint32 _plightresist() const;
   void set__plightresist(::google::protobuf::uint32 value);
 
-  // uint32 _pGold = 36;
+  // uint32 _pGold = 37;
   void clear__pgold();
-  static const int kPGoldFieldNumber = 36;
+  static const int kPGoldFieldNumber = 37;
   ::google::protobuf::uint32 _pgold() const;
   void set__pgold(::google::protobuf::uint32 value);
 
-  // sint32 HoldItem = 41;
+  // sint32 HoldItem = 42;
   void clear_holditem();
-  static const int kHoldItemFieldNumber = 41;
+  static const int kHoldItemFieldNumber = 42;
   ::google::protobuf::int32 holditem() const;
   void set_holditem(::google::protobuf::int32 value);
 
-  // uint32 _pIAC = 42;
+  // uint32 _pIAC = 43;
   void clear__piac();
-  static const int kPIACFieldNumber = 42;
+  static const int kPIACFieldNumber = 43;
   ::google::protobuf::uint32 _piac() const;
   void set__piac(::google::protobuf::uint32 value);
 
-  // uint32 _pIMinDam = 43;
+  // uint32 _pIMinDam = 44;
   void clear__pimindam();
-  static const int kPIMinDamFieldNumber = 43;
+  static const int kPIMinDamFieldNumber = 44;
   ::google::protobuf::uint32 _pimindam() const;
   void set__pimindam(::google::protobuf::uint32 value);
 
-  // uint32 _pIMaxDam = 44;
+  // uint32 _pIMaxDam = 45;
   void clear__pimaxdam();
-  static const int kPIMaxDamFieldNumber = 44;
+  static const int kPIMaxDamFieldNumber = 45;
   ::google::protobuf::uint32 _pimaxdam() const;
   void set__pimaxdam(::google::protobuf::uint32 value);
 
-  // uint32 _pIBonusDam = 45;
+  // uint32 _pIBonusDam = 46;
   void clear__pibonusdam();
-  static const int kPIBonusDamFieldNumber = 45;
+  static const int kPIBonusDamFieldNumber = 46;
   ::google::protobuf::uint32 _pibonusdam() const;
   void set__pibonusdam(::google::protobuf::uint32 value);
 
-  // uint32 _pIBonusToHit = 46;
+  // uint32 _pIBonusToHit = 47;
   void clear__pibonustohit();
-  static const int kPIBonusToHitFieldNumber = 46;
+  static const int kPIBonusToHitFieldNumber = 47;
   ::google::protobuf::uint32 _pibonustohit() const;
   void set__pibonustohit(::google::protobuf::uint32 value);
 
-  // uint32 _pIBonusAC = 47;
+  // uint32 _pIBonusAC = 48;
   void clear__pibonusac();
-  static const int kPIBonusACFieldNumber = 47;
+  static const int kPIBonusACFieldNumber = 48;
   ::google::protobuf::uint32 _pibonusac() const;
   void set__pibonusac(::google::protobuf::uint32 value);
 
-  // uint32 _pIBonusDamMod = 48;
+  // uint32 _pIBonusDamMod = 49;
   void clear__pibonusdammod();
-  static const int kPIBonusDamModFieldNumber = 48;
+  static const int kPIBonusDamModFieldNumber = 49;
   ::google::protobuf::uint32 _pibonusdammod() const;
   void set__pibonusdammod(::google::protobuf::uint32 value);
 
@@ -1925,6 +1931,7 @@ class PlayerData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 > spdlist_;
   mutable int _spdlist_cached_byte_size_;
   ::google::protobuf::internal::ArenaStringPtr _pname_;
+  ::google::protobuf::int32 _pmode_;
   ::google::protobuf::int32 pnum_;
   ::google::protobuf::int32 plrlevel_;
   ::google::protobuf::int32 _px_;
@@ -1933,11 +1940,11 @@ class PlayerData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::google::protobuf::int32 _pfuty_;
   ::google::protobuf::int32 _pdir_;
   ::google::protobuf::int32 _prspell_;
+  ::google::protobuf::uint32 _prspltype_;
   ::google::protobuf::uint64 _pmemspells_;
   ::google::protobuf::uint64 _pablspells_;
-  ::google::protobuf::uint32 _prspltype_;
-  ::google::protobuf::uint32 _pclass_;
   ::google::protobuf::uint64 _pscrlspells_;
+  ::google::protobuf::uint32 _pclass_;
   ::google::protobuf::uint32 _pstrength_;
   ::google::protobuf::uint32 _pbasestr_;
   ::google::protobuf::uint32 _pmagic_;
@@ -3415,7 +3422,21 @@ inline void ItemData::set_ididx(::google::protobuf::int32 value) {
 
 // PlayerData
 
-// sint32 pnum = 1;
+// sint32 _pmode = 1;
+inline void PlayerData::clear__pmode() {
+  _pmode_ = 0;
+}
+inline ::google::protobuf::int32 PlayerData::_pmode() const {
+  // @@protoc_insertion_point(field_get:dapi.data.PlayerData._pmode)
+  return _pmode_;
+}
+inline void PlayerData::set__pmode(::google::protobuf::int32 value) {
+  
+  _pmode_ = value;
+  // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pmode)
+}
+
+// sint32 pnum = 2;
 inline void PlayerData::clear_pnum() {
   pnum_ = 0;
 }
@@ -3429,7 +3450,7 @@ inline void PlayerData::set_pnum(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData.pnum)
 }
 
-// sint32 plrlevel = 2;
+// sint32 plrlevel = 3;
 inline void PlayerData::clear_plrlevel() {
   plrlevel_ = 0;
 }
@@ -3443,7 +3464,7 @@ inline void PlayerData::set_plrlevel(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData.plrlevel)
 }
 
-// sint32 _px = 3;
+// sint32 _px = 4;
 inline void PlayerData::clear__px() {
   _px_ = 0;
 }
@@ -3457,7 +3478,7 @@ inline void PlayerData::set__px(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._px)
 }
 
-// sint32 _py = 4;
+// sint32 _py = 5;
 inline void PlayerData::clear__py() {
   _py_ = 0;
 }
@@ -3471,7 +3492,7 @@ inline void PlayerData::set__py(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._py)
 }
 
-// sint32 _pfutx = 5;
+// sint32 _pfutx = 6;
 inline void PlayerData::clear__pfutx() {
   _pfutx_ = 0;
 }
@@ -3485,7 +3506,7 @@ inline void PlayerData::set__pfutx(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pfutx)
 }
 
-// sint32 _pfuty = 6;
+// sint32 _pfuty = 7;
 inline void PlayerData::clear__pfuty() {
   _pfuty_ = 0;
 }
@@ -3499,7 +3520,7 @@ inline void PlayerData::set__pfuty(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pfuty)
 }
 
-// sint32 _pdir = 7;
+// sint32 _pdir = 8;
 inline void PlayerData::clear__pdir() {
   _pdir_ = 0;
 }
@@ -3513,7 +3534,7 @@ inline void PlayerData::set__pdir(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pdir)
 }
 
-// sint32 _pRSpell = 8;
+// sint32 _pRSpell = 9;
 inline void PlayerData::clear__prspell() {
   _prspell_ = 0;
 }
@@ -3527,7 +3548,7 @@ inline void PlayerData::set__prspell(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pRSpell)
 }
 
-// uint32 _pRsplType = 9;
+// uint32 _pRsplType = 10;
 inline void PlayerData::clear__prspltype() {
   _prspltype_ = 0u;
 }
@@ -3541,7 +3562,7 @@ inline void PlayerData::set__prspltype(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pRsplType)
 }
 
-// repeated uint32 _pSplLvl = 10;
+// repeated uint32 _pSplLvl = 11;
 inline int PlayerData::_pspllvl_size() const {
   return _pspllvl_.size();
 }
@@ -3571,7 +3592,7 @@ PlayerData::mutable__pspllvl() {
   return &_pspllvl_;
 }
 
-// uint64 _pMemSpells = 11;
+// uint64 _pMemSpells = 12;
 inline void PlayerData::clear__pmemspells() {
   _pmemspells_ = GOOGLE_ULONGLONG(0);
 }
@@ -3585,7 +3606,7 @@ inline void PlayerData::set__pmemspells(::google::protobuf::uint64 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pMemSpells)
 }
 
-// uint64 _pAblSpells = 12;
+// uint64 _pAblSpells = 13;
 inline void PlayerData::clear__pablspells() {
   _pablspells_ = GOOGLE_ULONGLONG(0);
 }
@@ -3599,7 +3620,7 @@ inline void PlayerData::set__pablspells(::google::protobuf::uint64 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pAblSpells)
 }
 
-// uint64 _pScrlSpells = 13;
+// uint64 _pScrlSpells = 14;
 inline void PlayerData::clear__pscrlspells() {
   _pscrlspells_ = GOOGLE_ULONGLONG(0);
 }
@@ -3613,7 +3634,7 @@ inline void PlayerData::set__pscrlspells(::google::protobuf::uint64 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pScrlSpells)
 }
 
-// string _pName = 14;
+// string _pName = 15;
 inline void PlayerData::clear__pname() {
   _pname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3666,7 +3687,7 @@ inline void PlayerData::set_allocated__pname(::std::string* _pname) {
   // @@protoc_insertion_point(field_set_allocated:dapi.data.PlayerData._pName)
 }
 
-// uint32 _pClass = 15;
+// uint32 _pClass = 16;
 inline void PlayerData::clear__pclass() {
   _pclass_ = 0u;
 }
@@ -3680,7 +3701,7 @@ inline void PlayerData::set__pclass(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pClass)
 }
 
-// uint32 _pStrength = 16;
+// uint32 _pStrength = 17;
 inline void PlayerData::clear__pstrength() {
   _pstrength_ = 0u;
 }
@@ -3694,7 +3715,7 @@ inline void PlayerData::set__pstrength(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pStrength)
 }
 
-// uint32 _pBaseStr = 17;
+// uint32 _pBaseStr = 18;
 inline void PlayerData::clear__pbasestr() {
   _pbasestr_ = 0u;
 }
@@ -3708,7 +3729,7 @@ inline void PlayerData::set__pbasestr(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pBaseStr)
 }
 
-// uint32 _pMagic = 18;
+// uint32 _pMagic = 19;
 inline void PlayerData::clear__pmagic() {
   _pmagic_ = 0u;
 }
@@ -3722,7 +3743,7 @@ inline void PlayerData::set__pmagic(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pMagic)
 }
 
-// uint32 _pBaseMag = 19;
+// uint32 _pBaseMag = 20;
 inline void PlayerData::clear__pbasemag() {
   _pbasemag_ = 0u;
 }
@@ -3736,7 +3757,7 @@ inline void PlayerData::set__pbasemag(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pBaseMag)
 }
 
-// uint32 _pDexterity = 20;
+// uint32 _pDexterity = 21;
 inline void PlayerData::clear__pdexterity() {
   _pdexterity_ = 0u;
 }
@@ -3750,7 +3771,7 @@ inline void PlayerData::set__pdexterity(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pDexterity)
 }
 
-// uint32 _pBaseDex = 21;
+// uint32 _pBaseDex = 22;
 inline void PlayerData::clear__pbasedex() {
   _pbasedex_ = 0u;
 }
@@ -3764,7 +3785,7 @@ inline void PlayerData::set__pbasedex(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pBaseDex)
 }
 
-// uint32 _pVitality = 22;
+// uint32 _pVitality = 23;
 inline void PlayerData::clear__pvitality() {
   _pvitality_ = 0u;
 }
@@ -3778,7 +3799,7 @@ inline void PlayerData::set__pvitality(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pVitality)
 }
 
-// uint32 _pBaseVit = 23;
+// uint32 _pBaseVit = 24;
 inline void PlayerData::clear__pbasevit() {
   _pbasevit_ = 0u;
 }
@@ -3792,7 +3813,7 @@ inline void PlayerData::set__pbasevit(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pBaseVit)
 }
 
-// uint32 _pStatPts = 24;
+// uint32 _pStatPts = 25;
 inline void PlayerData::clear__pstatpts() {
   _pstatpts_ = 0u;
 }
@@ -3806,7 +3827,7 @@ inline void PlayerData::set__pstatpts(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pStatPts)
 }
 
-// uint32 _pDamageMod = 25;
+// uint32 _pDamageMod = 26;
 inline void PlayerData::clear__pdamagemod() {
   _pdamagemod_ = 0u;
 }
@@ -3820,7 +3841,7 @@ inline void PlayerData::set__pdamagemod(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pDamageMod)
 }
 
-// uint32 _pHitPoints = 26;
+// uint32 _pHitPoints = 27;
 inline void PlayerData::clear__phitpoints() {
   _phitpoints_ = 0u;
 }
@@ -3834,7 +3855,7 @@ inline void PlayerData::set__phitpoints(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pHitPoints)
 }
 
-// uint32 _pMaxHP = 27;
+// uint32 _pMaxHP = 28;
 inline void PlayerData::clear__pmaxhp() {
   _pmaxhp_ = 0u;
 }
@@ -3848,7 +3869,7 @@ inline void PlayerData::set__pmaxhp(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pMaxHP)
 }
 
-// sint32 _pMana = 28;
+// sint32 _pMana = 29;
 inline void PlayerData::clear__pmana() {
   _pmana_ = 0;
 }
@@ -3862,7 +3883,7 @@ inline void PlayerData::set__pmana(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pMana)
 }
 
-// uint32 _pMaxMana = 29;
+// uint32 _pMaxMana = 30;
 inline void PlayerData::clear__pmaxmana() {
   _pmaxmana_ = 0u;
 }
@@ -3876,7 +3897,7 @@ inline void PlayerData::set__pmaxmana(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pMaxMana)
 }
 
-// uint32 _pLevel = 30;
+// uint32 _pLevel = 31;
 inline void PlayerData::clear__plevel() {
   _plevel_ = 0u;
 }
@@ -3890,7 +3911,7 @@ inline void PlayerData::set__plevel(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pLevel)
 }
 
-// uint32 _pExperience = 31;
+// uint32 _pExperience = 32;
 inline void PlayerData::clear__pexperience() {
   _pexperience_ = 0u;
 }
@@ -3904,7 +3925,7 @@ inline void PlayerData::set__pexperience(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pExperience)
 }
 
-// uint32 _pArmorClass = 32;
+// uint32 _pArmorClass = 33;
 inline void PlayerData::clear__parmorclass() {
   _parmorclass_ = 0u;
 }
@@ -3918,7 +3939,7 @@ inline void PlayerData::set__parmorclass(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pArmorClass)
 }
 
-// uint32 _pMagResist = 33;
+// uint32 _pMagResist = 34;
 inline void PlayerData::clear__pmagresist() {
   _pmagresist_ = 0u;
 }
@@ -3932,7 +3953,7 @@ inline void PlayerData::set__pmagresist(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pMagResist)
 }
 
-// uint32 _pFireResist = 34;
+// uint32 _pFireResist = 35;
 inline void PlayerData::clear__pfireresist() {
   _pfireresist_ = 0u;
 }
@@ -3946,7 +3967,7 @@ inline void PlayerData::set__pfireresist(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pFireResist)
 }
 
-// uint32 _pLightResist = 35;
+// uint32 _pLightResist = 36;
 inline void PlayerData::clear__plightresist() {
   _plightresist_ = 0u;
 }
@@ -3960,7 +3981,7 @@ inline void PlayerData::set__plightresist(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pLightResist)
 }
 
-// uint32 _pGold = 36;
+// uint32 _pGold = 37;
 inline void PlayerData::clear__pgold() {
   _pgold_ = 0u;
 }
@@ -3974,7 +3995,7 @@ inline void PlayerData::set__pgold(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pGold)
 }
 
-// repeated sint32 InvBody = 37;
+// repeated sint32 InvBody = 38;
 inline int PlayerData::invbody_size() const {
   return invbody_.size();
 }
@@ -4004,7 +4025,7 @@ PlayerData::mutable_invbody() {
   return &invbody_;
 }
 
-// repeated sint32 InvList = 38;
+// repeated sint32 InvList = 39;
 inline int PlayerData::invlist_size() const {
   return invlist_.size();
 }
@@ -4034,7 +4055,7 @@ PlayerData::mutable_invlist() {
   return &invlist_;
 }
 
-// repeated sint32 InvGrid = 39;
+// repeated sint32 InvGrid = 40;
 inline int PlayerData::invgrid_size() const {
   return invgrid_.size();
 }
@@ -4064,7 +4085,7 @@ PlayerData::mutable_invgrid() {
   return &invgrid_;
 }
 
-// repeated sint32 SpdList = 40;
+// repeated sint32 SpdList = 41;
 inline int PlayerData::spdlist_size() const {
   return spdlist_.size();
 }
@@ -4094,7 +4115,7 @@ PlayerData::mutable_spdlist() {
   return &spdlist_;
 }
 
-// sint32 HoldItem = 41;
+// sint32 HoldItem = 42;
 inline void PlayerData::clear_holditem() {
   holditem_ = 0;
 }
@@ -4108,7 +4129,7 @@ inline void PlayerData::set_holditem(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData.HoldItem)
 }
 
-// uint32 _pIAC = 42;
+// uint32 _pIAC = 43;
 inline void PlayerData::clear__piac() {
   _piac_ = 0u;
 }
@@ -4122,7 +4143,7 @@ inline void PlayerData::set__piac(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pIAC)
 }
 
-// uint32 _pIMinDam = 43;
+// uint32 _pIMinDam = 44;
 inline void PlayerData::clear__pimindam() {
   _pimindam_ = 0u;
 }
@@ -4136,7 +4157,7 @@ inline void PlayerData::set__pimindam(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pIMinDam)
 }
 
-// uint32 _pIMaxDam = 44;
+// uint32 _pIMaxDam = 45;
 inline void PlayerData::clear__pimaxdam() {
   _pimaxdam_ = 0u;
 }
@@ -4150,7 +4171,7 @@ inline void PlayerData::set__pimaxdam(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pIMaxDam)
 }
 
-// uint32 _pIBonusDam = 45;
+// uint32 _pIBonusDam = 46;
 inline void PlayerData::clear__pibonusdam() {
   _pibonusdam_ = 0u;
 }
@@ -4164,7 +4185,7 @@ inline void PlayerData::set__pibonusdam(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pIBonusDam)
 }
 
-// uint32 _pIBonusToHit = 46;
+// uint32 _pIBonusToHit = 47;
 inline void PlayerData::clear__pibonustohit() {
   _pibonustohit_ = 0u;
 }
@@ -4178,7 +4199,7 @@ inline void PlayerData::set__pibonustohit(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pIBonusToHit)
 }
 
-// uint32 _pIBonusAC = 47;
+// uint32 _pIBonusAC = 48;
 inline void PlayerData::clear__pibonusac() {
   _pibonusac_ = 0u;
 }
@@ -4192,7 +4213,7 @@ inline void PlayerData::set__pibonusac(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pIBonusAC)
 }
 
-// uint32 _pIBonusDamMod = 48;
+// uint32 _pIBonusDamMod = 49;
 inline void PlayerData::clear__pibonusdammod() {
   _pibonusdammod_ = 0u;
 }

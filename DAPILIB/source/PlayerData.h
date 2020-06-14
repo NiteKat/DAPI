@@ -6,6 +6,21 @@
 
 namespace DAPI
 {
+  enum struct PlayerMode {
+    STAND = 0,
+    WALK = 1,
+    WALK2 = 2,
+    WALK3 = 3,
+    ATTACK = 4,
+    RATTACK = 5,
+    BLOCK = 6,
+    GOTHIT = 7,
+    DEATH = 8,
+    SPELL = 9,
+    NEWLVL = 10,
+    QUIT = 11,
+  };
+
   enum struct ClassID
   {
     WARRIOR = 0x0,
@@ -26,6 +41,7 @@ namespace DAPI
 
   struct PlayerData
   {
+    PlayerMode _pmode;
     int pnum;
     int plrlevel;
     int _px;

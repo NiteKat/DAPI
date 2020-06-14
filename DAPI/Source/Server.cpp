@@ -626,6 +626,7 @@ namespace DAPI
 
       if (*myplr == i)
       {
+        data->playerList[i]._pmode = plr[i]._pmode;
         data->playerList[i].plrlevel = plr[i].plrlevel;
         data->playerList[i]._px = plr[i]._px;
         data->playerList[i]._py = plr[i]._py;
@@ -774,6 +775,7 @@ namespace DAPI
       }
       else if ((*dFlags)[plr[i]._px][plr[i]._py] & 0x40)
       {
+        data->playerList[i]._pmode = plr[i]._pmode;
         data->playerList[i].plrlevel = plr[i].plrlevel;
         data->playerList[i]._px = plr[i]._px;
         data->playerList[i]._py = plr[i]._py;
@@ -837,6 +839,7 @@ namespace DAPI
       }
       else
       {
+        data->playerList[i]._pmode = 0;
         data->playerList[i].plrlevel = -1;
         data->playerList[i]._px = -1;
         data->playerList[i]._py = -1;
@@ -899,6 +902,7 @@ namespace DAPI
         data->playerList[i]._pIBonusDamMod = -1;
       }
 
+      playerData->set__pmode(data->playerList[i]._pmode);
       playerData->set_plrlevel(data->playerList[i].plrlevel);
       playerData->set__px(data->playerList[i]._px);
       playerData->set__py(data->playerList[i]._py);

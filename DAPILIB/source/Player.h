@@ -58,6 +58,7 @@ namespace DAPI
     int getMaxLife() { return data->_pMaxHP >> 6; }
     int getMaxMana() { return data->_pMaxMana >> 6; }
     int* getInventoryGrid() { return data->InvGrid; }
+    PlayerMode getMode() { return data->_pmode; }
     std::shared_ptr<Item> getEquippedItem(InvBodyLocation location);
     std::vector<std::shared_ptr<Item>> getInventoryItems();
     std::vector<std::shared_ptr<Item>> getSpeedItems();

@@ -9,6 +9,7 @@ namespace DAPI
 
   struct PlayerData
   {
+    int _pmode;
     int pnum;
     int plrlevel;
     int _px;

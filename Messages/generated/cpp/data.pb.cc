@@ -4270,6 +4270,7 @@ void ItemData::InternalSwap(ItemData* other) {
 void PlayerData::InitAsDefaultInstance() {
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int PlayerData::kPmodeFieldNumber;
 const int PlayerData::kPnumFieldNumber;
 const int PlayerData::kPlrlevelFieldNumber;
 const int PlayerData::kPxFieldNumber;
@@ -4340,17 +4341,17 @@ PlayerData::PlayerData(const PlayerData& from)
   if (from._pname().size() > 0) {
     _pname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from._pname_);
   }
-  ::memcpy(&pnum_, &from.pnum_,
+  ::memcpy(&_pmode_, &from._pmode_,
     static_cast<size_t>(reinterpret_cast<char*>(&_pibonusdammod_) -
-    reinterpret_cast<char*>(&pnum_)) + sizeof(_pibonusdammod_));
+    reinterpret_cast<char*>(&_pmode_)) + sizeof(_pibonusdammod_));
   // @@protoc_insertion_point(copy_constructor:dapi.data.PlayerData)
 }
 
 void PlayerData::SharedCtor() {
   _pname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&pnum_, 0, static_cast<size_t>(
+  ::memset(&_pmode_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_pibonusdammod_) -
-      reinterpret_cast<char*>(&pnum_)) + sizeof(_pibonusdammod_));
+      reinterpret_cast<char*>(&_pmode_)) + sizeof(_pibonusdammod_));
 }
 
 PlayerData::~PlayerData() {
@@ -4383,9 +4384,9 @@ void PlayerData::Clear() {
   invgrid_.Clear();
   spdlist_.Clear();
   _pname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&pnum_, 0, static_cast<size_t>(
+  ::memset(&_pmode_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_pibonusdammod_) -
-      reinterpret_cast<char*>(&pnum_)) + sizeof(_pibonusdammod_));
+      reinterpret_cast<char*>(&_pmode_)) + sizeof(_pibonusdammod_));
   _internal_metadata_.Clear();
 }
 
@@ -4405,10 +4406,24 @@ bool PlayerData::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // sint32 pnum = 1;
+      // sint32 _pmode = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
+                 input, &_pmode_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // sint32 pnum = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
@@ -4419,10 +4434,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // sint32 plrlevel = 2;
-      case 2: {
+      // sint32 plrlevel = 3;
+      case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
@@ -4433,10 +4448,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // sint32 _px = 3;
-      case 3: {
+      // sint32 _px = 4;
+      case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
@@ -4447,10 +4462,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // sint32 _py = 4;
-      case 4: {
+      // sint32 _py = 5;
+      case 5: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(40u /* 40 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
@@ -4461,10 +4476,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // sint32 _pfutx = 5;
-      case 5: {
+      // sint32 _pfutx = 6;
+      case 6: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(40u /* 40 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(48u /* 48 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
@@ -4475,10 +4490,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // sint32 _pfuty = 6;
-      case 6: {
+      // sint32 _pfuty = 7;
+      case 7: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(48u /* 48 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(56u /* 56 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
@@ -4489,10 +4504,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // sint32 _pdir = 7;
-      case 7: {
+      // sint32 _pdir = 8;
+      case 8: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(56u /* 56 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(64u /* 64 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
@@ -4503,10 +4518,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // sint32 _pRSpell = 8;
-      case 8: {
+      // sint32 _pRSpell = 9;
+      case 9: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(64u /* 64 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(72u /* 72 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
@@ -4517,10 +4532,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pRsplType = 9;
-      case 9: {
+      // uint32 _pRsplType = 10;
+      case 10: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(72u /* 72 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(80u /* 80 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4531,29 +4546,29 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated uint32 _pSplLvl = 10;
-      case 10: {
+      // repeated uint32 _pSplLvl = 11;
+      case 11: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(82u /* 82 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(90u /* 90 & 0xFF */)) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, this->mutable__pspllvl())));
         } else if (
             static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(80u /* 80 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(88u /* 88 & 0xFF */)) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 1, 82u, input, this->mutable__pspllvl())));
+                 1, 90u, input, this->mutable__pspllvl())));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // uint64 _pMemSpells = 11;
-      case 11: {
+      // uint64 _pMemSpells = 12;
+      case 12: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(88u /* 88 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(96u /* 96 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
@@ -4564,10 +4579,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint64 _pAblSpells = 12;
-      case 12: {
+      // uint64 _pAblSpells = 13;
+      case 13: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(96u /* 96 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(104u /* 104 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
@@ -4578,10 +4593,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint64 _pScrlSpells = 13;
-      case 13: {
+      // uint64 _pScrlSpells = 14;
+      case 14: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(104u /* 104 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(112u /* 112 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
@@ -4592,10 +4607,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // string _pName = 14;
-      case 14: {
+      // string _pName = 15;
+      case 15: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(114u /* 114 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(122u /* 122 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable__pname()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -4608,10 +4623,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pClass = 15;
-      case 15: {
+      // uint32 _pClass = 16;
+      case 16: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(120u /* 120 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(128u /* 128 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4622,10 +4637,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pStrength = 16;
-      case 16: {
+      // uint32 _pStrength = 17;
+      case 17: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(128u /* 128 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(136u /* 136 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4636,10 +4651,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pBaseStr = 17;
-      case 17: {
+      // uint32 _pBaseStr = 18;
+      case 18: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(136u /* 136 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(144u /* 144 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4650,10 +4665,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pMagic = 18;
-      case 18: {
+      // uint32 _pMagic = 19;
+      case 19: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(144u /* 144 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(152u /* 152 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4664,10 +4679,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pBaseMag = 19;
-      case 19: {
+      // uint32 _pBaseMag = 20;
+      case 20: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(152u /* 152 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(160u /* 160 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4678,10 +4693,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pDexterity = 20;
-      case 20: {
+      // uint32 _pDexterity = 21;
+      case 21: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(160u /* 160 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(168u /* 168 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4692,10 +4707,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pBaseDex = 21;
-      case 21: {
+      // uint32 _pBaseDex = 22;
+      case 22: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(168u /* 168 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(176u /* 176 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4706,10 +4721,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pVitality = 22;
-      case 22: {
+      // uint32 _pVitality = 23;
+      case 23: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(176u /* 176 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(184u /* 184 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4720,10 +4735,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pBaseVit = 23;
-      case 23: {
+      // uint32 _pBaseVit = 24;
+      case 24: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(184u /* 184 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(192u /* 192 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4734,10 +4749,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pStatPts = 24;
-      case 24: {
+      // uint32 _pStatPts = 25;
+      case 25: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(192u /* 192 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(200u /* 200 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4748,10 +4763,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pDamageMod = 25;
-      case 25: {
+      // uint32 _pDamageMod = 26;
+      case 26: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(200u /* 200 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(208u /* 208 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4762,10 +4777,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pHitPoints = 26;
-      case 26: {
+      // uint32 _pHitPoints = 27;
+      case 27: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(208u /* 208 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(216u /* 216 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4776,10 +4791,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pMaxHP = 27;
-      case 27: {
+      // uint32 _pMaxHP = 28;
+      case 28: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(216u /* 216 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(224u /* 224 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4790,10 +4805,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // sint32 _pMana = 28;
-      case 28: {
+      // sint32 _pMana = 29;
+      case 29: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(224u /* 224 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(232u /* 232 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
@@ -4804,10 +4819,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pMaxMana = 29;
-      case 29: {
+      // uint32 _pMaxMana = 30;
+      case 30: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(232u /* 232 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(240u /* 240 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4818,10 +4833,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pLevel = 30;
-      case 30: {
+      // uint32 _pLevel = 31;
+      case 31: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(240u /* 240 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(248u /* 248 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4832,10 +4847,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pExperience = 31;
-      case 31: {
+      // uint32 _pExperience = 32;
+      case 32: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(248u /* 248 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(0u /* 256 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4846,10 +4861,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pArmorClass = 32;
-      case 32: {
+      // uint32 _pArmorClass = 33;
+      case 33: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(0u /* 256 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(8u /* 264 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4860,10 +4875,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pMagResist = 33;
-      case 33: {
+      // uint32 _pMagResist = 34;
+      case 34: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(8u /* 264 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(16u /* 272 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4874,10 +4889,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pFireResist = 34;
-      case 34: {
+      // uint32 _pFireResist = 35;
+      case 35: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(16u /* 272 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(24u /* 280 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4888,10 +4903,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pLightResist = 35;
-      case 35: {
+      // uint32 _pLightResist = 36;
+      case 36: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(24u /* 280 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(32u /* 288 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4902,10 +4917,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pGold = 36;
-      case 36: {
+      // uint32 _pGold = 37;
+      case 37: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(32u /* 288 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(40u /* 296 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -4916,86 +4931,86 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated sint32 InvBody = 37;
-      case 37: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(42u /* 298 & 0xFF */)) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
-                 input, this->mutable_invbody())));
-        } else if (
-            static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(40u /* 296 & 0xFF */)) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
-                 2, 298u, input, this->mutable_invbody())));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // repeated sint32 InvList = 38;
+      // repeated sint32 InvBody = 38;
       case 38: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(50u /* 306 & 0xFF */)) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
-                 input, this->mutable_invlist())));
+                 input, this->mutable_invbody())));
         } else if (
             static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(48u /* 304 & 0xFF */)) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
-                 2, 306u, input, this->mutable_invlist())));
+                 2, 306u, input, this->mutable_invbody())));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // repeated sint32 InvGrid = 39;
+      // repeated sint32 InvList = 39;
       case 39: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(58u /* 314 & 0xFF */)) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
-                 input, this->mutable_invgrid())));
+                 input, this->mutable_invlist())));
         } else if (
             static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(56u /* 312 & 0xFF */)) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
-                 2, 314u, input, this->mutable_invgrid())));
+                 2, 314u, input, this->mutable_invlist())));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // repeated sint32 SpdList = 40;
+      // repeated sint32 InvGrid = 40;
       case 40: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(66u /* 322 & 0xFF */)) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
-                 input, this->mutable_spdlist())));
+                 input, this->mutable_invgrid())));
         } else if (
             static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(64u /* 320 & 0xFF */)) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
-                 2, 322u, input, this->mutable_spdlist())));
+                 2, 322u, input, this->mutable_invgrid())));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // sint32 HoldItem = 41;
+      // repeated sint32 SpdList = 41;
       case 41: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(74u /* 330 & 0xFF */)) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
+                 input, this->mutable_spdlist())));
+        } else if (
+            static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(72u /* 328 & 0xFF */)) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
+                 2, 330u, input, this->mutable_spdlist())));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // sint32 HoldItem = 42;
+      case 42: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(80u /* 336 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
@@ -5006,10 +5021,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pIAC = 42;
-      case 42: {
+      // uint32 _pIAC = 43;
+      case 43: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(80u /* 336 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(88u /* 344 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -5020,10 +5035,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pIMinDam = 43;
-      case 43: {
+      // uint32 _pIMinDam = 44;
+      case 44: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(88u /* 344 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(96u /* 352 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -5034,10 +5049,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pIMaxDam = 44;
-      case 44: {
+      // uint32 _pIMaxDam = 45;
+      case 45: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(96u /* 352 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(104u /* 360 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -5048,10 +5063,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pIBonusDam = 45;
-      case 45: {
+      // uint32 _pIBonusDam = 46;
+      case 46: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(104u /* 360 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(112u /* 368 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -5062,10 +5077,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pIBonusToHit = 46;
-      case 46: {
+      // uint32 _pIBonusToHit = 47;
+      case 47: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(112u /* 368 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(120u /* 376 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -5076,10 +5091,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pIBonusAC = 47;
-      case 47: {
+      // uint32 _pIBonusAC = 48;
+      case 48: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(120u /* 376 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(128u /* 384 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -5090,10 +5105,10 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 _pIBonusDamMod = 48;
-      case 48: {
+      // uint32 _pIBonusDamMod = 49;
+      case 49: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(128u /* 384 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(136u /* 392 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -5130,54 +5145,59 @@ void PlayerData::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // sint32 pnum = 1;
+  // sint32 _pmode = 1;
+  if (this->_pmode() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteSInt32(1, this->_pmode(), output);
+  }
+
+  // sint32 pnum = 2;
   if (this->pnum() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt32(1, this->pnum(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteSInt32(2, this->pnum(), output);
   }
 
-  // sint32 plrlevel = 2;
+  // sint32 plrlevel = 3;
   if (this->plrlevel() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt32(2, this->plrlevel(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteSInt32(3, this->plrlevel(), output);
   }
 
-  // sint32 _px = 3;
+  // sint32 _px = 4;
   if (this->_px() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt32(3, this->_px(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteSInt32(4, this->_px(), output);
   }
 
-  // sint32 _py = 4;
+  // sint32 _py = 5;
   if (this->_py() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt32(4, this->_py(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteSInt32(5, this->_py(), output);
   }
 
-  // sint32 _pfutx = 5;
+  // sint32 _pfutx = 6;
   if (this->_pfutx() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt32(5, this->_pfutx(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteSInt32(6, this->_pfutx(), output);
   }
 
-  // sint32 _pfuty = 6;
+  // sint32 _pfuty = 7;
   if (this->_pfuty() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt32(6, this->_pfuty(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteSInt32(7, this->_pfuty(), output);
   }
 
-  // sint32 _pdir = 7;
+  // sint32 _pdir = 8;
   if (this->_pdir() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt32(7, this->_pdir(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteSInt32(8, this->_pdir(), output);
   }
 
-  // sint32 _pRSpell = 8;
+  // sint32 _pRSpell = 9;
   if (this->_prspell() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt32(8, this->_prspell(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteSInt32(9, this->_prspell(), output);
   }
 
-  // uint32 _pRsplType = 9;
+  // uint32 _pRsplType = 10;
   if (this->_prspltype() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(9, this->_prspltype(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(10, this->_prspltype(), output);
   }
 
-  // repeated uint32 _pSplLvl = 10;
+  // repeated uint32 _pSplLvl = 11;
   if (this->_pspllvl_size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteTag(10, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    ::google::protobuf::internal::WireFormatLite::WriteTag(11, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
     output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
         __pspllvl_cached_byte_size_));
   }
@@ -5186,144 +5206,144 @@ void PlayerData::SerializeWithCachedSizes(
       this->_pspllvl(i), output);
   }
 
-  // uint64 _pMemSpells = 11;
+  // uint64 _pMemSpells = 12;
   if (this->_pmemspells() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64(11, this->_pmemspells(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt64(12, this->_pmemspells(), output);
   }
 
-  // uint64 _pAblSpells = 12;
+  // uint64 _pAblSpells = 13;
   if (this->_pablspells() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64(12, this->_pablspells(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt64(13, this->_pablspells(), output);
   }
 
-  // uint64 _pScrlSpells = 13;
+  // uint64 _pScrlSpells = 14;
   if (this->_pscrlspells() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64(13, this->_pscrlspells(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt64(14, this->_pscrlspells(), output);
   }
 
-  // string _pName = 14;
+  // string _pName = 15;
   if (this->_pname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->_pname().data(), static_cast<int>(this->_pname().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "dapi.data.PlayerData._pName");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      14, this->_pname(), output);
+      15, this->_pname(), output);
   }
 
-  // uint32 _pClass = 15;
+  // uint32 _pClass = 16;
   if (this->_pclass() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(15, this->_pclass(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(16, this->_pclass(), output);
   }
 
-  // uint32 _pStrength = 16;
+  // uint32 _pStrength = 17;
   if (this->_pstrength() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(16, this->_pstrength(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(17, this->_pstrength(), output);
   }
 
-  // uint32 _pBaseStr = 17;
+  // uint32 _pBaseStr = 18;
   if (this->_pbasestr() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(17, this->_pbasestr(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(18, this->_pbasestr(), output);
   }
 
-  // uint32 _pMagic = 18;
+  // uint32 _pMagic = 19;
   if (this->_pmagic() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(18, this->_pmagic(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(19, this->_pmagic(), output);
   }
 
-  // uint32 _pBaseMag = 19;
+  // uint32 _pBaseMag = 20;
   if (this->_pbasemag() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(19, this->_pbasemag(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(20, this->_pbasemag(), output);
   }
 
-  // uint32 _pDexterity = 20;
+  // uint32 _pDexterity = 21;
   if (this->_pdexterity() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(20, this->_pdexterity(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(21, this->_pdexterity(), output);
   }
 
-  // uint32 _pBaseDex = 21;
+  // uint32 _pBaseDex = 22;
   if (this->_pbasedex() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(21, this->_pbasedex(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(22, this->_pbasedex(), output);
   }
 
-  // uint32 _pVitality = 22;
+  // uint32 _pVitality = 23;
   if (this->_pvitality() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(22, this->_pvitality(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(23, this->_pvitality(), output);
   }
 
-  // uint32 _pBaseVit = 23;
+  // uint32 _pBaseVit = 24;
   if (this->_pbasevit() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(23, this->_pbasevit(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(24, this->_pbasevit(), output);
   }
 
-  // uint32 _pStatPts = 24;
+  // uint32 _pStatPts = 25;
   if (this->_pstatpts() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(24, this->_pstatpts(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(25, this->_pstatpts(), output);
   }
 
-  // uint32 _pDamageMod = 25;
+  // uint32 _pDamageMod = 26;
   if (this->_pdamagemod() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(25, this->_pdamagemod(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(26, this->_pdamagemod(), output);
   }
 
-  // uint32 _pHitPoints = 26;
+  // uint32 _pHitPoints = 27;
   if (this->_phitpoints() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(26, this->_phitpoints(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(27, this->_phitpoints(), output);
   }
 
-  // uint32 _pMaxHP = 27;
+  // uint32 _pMaxHP = 28;
   if (this->_pmaxhp() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(27, this->_pmaxhp(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(28, this->_pmaxhp(), output);
   }
 
-  // sint32 _pMana = 28;
+  // sint32 _pMana = 29;
   if (this->_pmana() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt32(28, this->_pmana(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteSInt32(29, this->_pmana(), output);
   }
 
-  // uint32 _pMaxMana = 29;
+  // uint32 _pMaxMana = 30;
   if (this->_pmaxmana() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(29, this->_pmaxmana(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(30, this->_pmaxmana(), output);
   }
 
-  // uint32 _pLevel = 30;
+  // uint32 _pLevel = 31;
   if (this->_plevel() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(30, this->_plevel(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(31, this->_plevel(), output);
   }
 
-  // uint32 _pExperience = 31;
+  // uint32 _pExperience = 32;
   if (this->_pexperience() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(31, this->_pexperience(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(32, this->_pexperience(), output);
   }
 
-  // uint32 _pArmorClass = 32;
+  // uint32 _pArmorClass = 33;
   if (this->_parmorclass() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(32, this->_parmorclass(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(33, this->_parmorclass(), output);
   }
 
-  // uint32 _pMagResist = 33;
+  // uint32 _pMagResist = 34;
   if (this->_pmagresist() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(33, this->_pmagresist(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(34, this->_pmagresist(), output);
   }
 
-  // uint32 _pFireResist = 34;
+  // uint32 _pFireResist = 35;
   if (this->_pfireresist() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(34, this->_pfireresist(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(35, this->_pfireresist(), output);
   }
 
-  // uint32 _pLightResist = 35;
+  // uint32 _pLightResist = 36;
   if (this->_plightresist() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(35, this->_plightresist(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(36, this->_plightresist(), output);
   }
 
-  // uint32 _pGold = 36;
+  // uint32 _pGold = 37;
   if (this->_pgold() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(36, this->_pgold(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(37, this->_pgold(), output);
   }
 
-  // repeated sint32 InvBody = 37;
+  // repeated sint32 InvBody = 38;
   if (this->invbody_size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteTag(37, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    ::google::protobuf::internal::WireFormatLite::WriteTag(38, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
     output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
         _invbody_cached_byte_size_));
   }
@@ -5332,9 +5352,9 @@ void PlayerData::SerializeWithCachedSizes(
       this->invbody(i), output);
   }
 
-  // repeated sint32 InvList = 38;
+  // repeated sint32 InvList = 39;
   if (this->invlist_size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteTag(38, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    ::google::protobuf::internal::WireFormatLite::WriteTag(39, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
     output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
         _invlist_cached_byte_size_));
   }
@@ -5343,9 +5363,9 @@ void PlayerData::SerializeWithCachedSizes(
       this->invlist(i), output);
   }
 
-  // repeated sint32 InvGrid = 39;
+  // repeated sint32 InvGrid = 40;
   if (this->invgrid_size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteTag(39, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    ::google::protobuf::internal::WireFormatLite::WriteTag(40, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
     output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
         _invgrid_cached_byte_size_));
   }
@@ -5354,9 +5374,9 @@ void PlayerData::SerializeWithCachedSizes(
       this->invgrid(i), output);
   }
 
-  // repeated sint32 SpdList = 40;
+  // repeated sint32 SpdList = 41;
   if (this->spdlist_size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteTag(40, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    ::google::protobuf::internal::WireFormatLite::WriteTag(41, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
     output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
         _spdlist_cached_byte_size_));
   }
@@ -5365,44 +5385,44 @@ void PlayerData::SerializeWithCachedSizes(
       this->spdlist(i), output);
   }
 
-  // sint32 HoldItem = 41;
+  // sint32 HoldItem = 42;
   if (this->holditem() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt32(41, this->holditem(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteSInt32(42, this->holditem(), output);
   }
 
-  // uint32 _pIAC = 42;
+  // uint32 _pIAC = 43;
   if (this->_piac() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(42, this->_piac(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(43, this->_piac(), output);
   }
 
-  // uint32 _pIMinDam = 43;
+  // uint32 _pIMinDam = 44;
   if (this->_pimindam() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(43, this->_pimindam(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(44, this->_pimindam(), output);
   }
 
-  // uint32 _pIMaxDam = 44;
+  // uint32 _pIMaxDam = 45;
   if (this->_pimaxdam() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(44, this->_pimaxdam(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(45, this->_pimaxdam(), output);
   }
 
-  // uint32 _pIBonusDam = 45;
+  // uint32 _pIBonusDam = 46;
   if (this->_pibonusdam() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(45, this->_pibonusdam(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(46, this->_pibonusdam(), output);
   }
 
-  // uint32 _pIBonusToHit = 46;
+  // uint32 _pIBonusToHit = 47;
   if (this->_pibonustohit() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(46, this->_pibonustohit(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(47, this->_pibonustohit(), output);
   }
 
-  // uint32 _pIBonusAC = 47;
+  // uint32 _pIBonusAC = 48;
   if (this->_pibonusac() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(47, this->_pibonusac(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(48, this->_pibonusac(), output);
   }
 
-  // uint32 _pIBonusDamMod = 48;
+  // uint32 _pIBonusDamMod = 49;
   if (this->_pibonusdammod() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(48, this->_pibonusdammod(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(49, this->_pibonusdammod(), output);
   }
 
   output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
@@ -5416,7 +5436,7 @@ size_t PlayerData::ByteSizeLong() const {
 
   total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
 
-  // repeated uint32 _pSplLvl = 10;
+  // repeated uint32 _pSplLvl = 11;
   {
     size_t data_size = ::google::protobuf::internal::WireFormatLite::
       UInt32Size(this->_pspllvl_);
@@ -5432,7 +5452,7 @@ size_t PlayerData::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  // repeated sint32 InvBody = 37;
+  // repeated sint32 InvBody = 38;
   {
     size_t data_size = ::google::protobuf::internal::WireFormatLite::
       SInt32Size(this->invbody_);
@@ -5448,7 +5468,7 @@ size_t PlayerData::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  // repeated sint32 InvList = 38;
+  // repeated sint32 InvList = 39;
   {
     size_t data_size = ::google::protobuf::internal::WireFormatLite::
       SInt32Size(this->invlist_);
@@ -5464,7 +5484,7 @@ size_t PlayerData::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  // repeated sint32 InvGrid = 39;
+  // repeated sint32 InvGrid = 40;
   {
     size_t data_size = ::google::protobuf::internal::WireFormatLite::
       SInt32Size(this->invgrid_);
@@ -5480,7 +5500,7 @@ size_t PlayerData::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  // repeated sint32 SpdList = 40;
+  // repeated sint32 SpdList = 41;
   {
     size_t data_size = ::google::protobuf::internal::WireFormatLite::
       SInt32Size(this->spdlist_);
@@ -5496,301 +5516,308 @@ size_t PlayerData::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  // string _pName = 14;
+  // string _pName = 15;
   if (this->_pname().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->_pname());
   }
 
-  // sint32 pnum = 1;
+  // sint32 _pmode = 1;
+  if (this->_pmode() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::SInt32Size(
+        this->_pmode());
+  }
+
+  // sint32 pnum = 2;
   if (this->pnum() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::SInt32Size(
         this->pnum());
   }
 
-  // sint32 plrlevel = 2;
+  // sint32 plrlevel = 3;
   if (this->plrlevel() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::SInt32Size(
         this->plrlevel());
   }
 
-  // sint32 _px = 3;
+  // sint32 _px = 4;
   if (this->_px() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::SInt32Size(
         this->_px());
   }
 
-  // sint32 _py = 4;
+  // sint32 _py = 5;
   if (this->_py() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::SInt32Size(
         this->_py());
   }
 
-  // sint32 _pfutx = 5;
+  // sint32 _pfutx = 6;
   if (this->_pfutx() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::SInt32Size(
         this->_pfutx());
   }
 
-  // sint32 _pfuty = 6;
+  // sint32 _pfuty = 7;
   if (this->_pfuty() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::SInt32Size(
         this->_pfuty());
   }
 
-  // sint32 _pdir = 7;
+  // sint32 _pdir = 8;
   if (this->_pdir() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::SInt32Size(
         this->_pdir());
   }
 
-  // sint32 _pRSpell = 8;
+  // sint32 _pRSpell = 9;
   if (this->_prspell() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::SInt32Size(
         this->_prspell());
   }
 
-  // uint64 _pMemSpells = 11;
-  if (this->_pmemspells() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt64Size(
-        this->_pmemspells());
-  }
-
-  // uint64 _pAblSpells = 12;
-  if (this->_pablspells() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt64Size(
-        this->_pablspells());
-  }
-
-  // uint32 _pRsplType = 9;
+  // uint32 _pRsplType = 10;
   if (this->_prspltype() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_prspltype());
   }
 
-  // uint32 _pClass = 15;
-  if (this->_pclass() != 0) {
+  // uint64 _pMemSpells = 12;
+  if (this->_pmemspells() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt32Size(
-        this->_pclass());
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        this->_pmemspells());
   }
 
-  // uint64 _pScrlSpells = 13;
+  // uint64 _pAblSpells = 13;
+  if (this->_pablspells() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        this->_pablspells());
+  }
+
+  // uint64 _pScrlSpells = 14;
   if (this->_pscrlspells() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt64Size(
         this->_pscrlspells());
   }
 
-  // uint32 _pStrength = 16;
+  // uint32 _pClass = 16;
+  if (this->_pclass() != 0) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->_pclass());
+  }
+
+  // uint32 _pStrength = 17;
   if (this->_pstrength() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pstrength());
   }
 
-  // uint32 _pBaseStr = 17;
+  // uint32 _pBaseStr = 18;
   if (this->_pbasestr() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pbasestr());
   }
 
-  // uint32 _pMagic = 18;
+  // uint32 _pMagic = 19;
   if (this->_pmagic() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pmagic());
   }
 
-  // uint32 _pBaseMag = 19;
+  // uint32 _pBaseMag = 20;
   if (this->_pbasemag() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pbasemag());
   }
 
-  // uint32 _pDexterity = 20;
+  // uint32 _pDexterity = 21;
   if (this->_pdexterity() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pdexterity());
   }
 
-  // uint32 _pBaseDex = 21;
+  // uint32 _pBaseDex = 22;
   if (this->_pbasedex() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pbasedex());
   }
 
-  // uint32 _pVitality = 22;
+  // uint32 _pVitality = 23;
   if (this->_pvitality() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pvitality());
   }
 
-  // uint32 _pBaseVit = 23;
+  // uint32 _pBaseVit = 24;
   if (this->_pbasevit() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pbasevit());
   }
 
-  // uint32 _pStatPts = 24;
+  // uint32 _pStatPts = 25;
   if (this->_pstatpts() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pstatpts());
   }
 
-  // uint32 _pDamageMod = 25;
+  // uint32 _pDamageMod = 26;
   if (this->_pdamagemod() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pdamagemod());
   }
 
-  // uint32 _pHitPoints = 26;
+  // uint32 _pHitPoints = 27;
   if (this->_phitpoints() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_phitpoints());
   }
 
-  // uint32 _pMaxHP = 27;
+  // uint32 _pMaxHP = 28;
   if (this->_pmaxhp() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pmaxhp());
   }
 
-  // sint32 _pMana = 28;
+  // sint32 _pMana = 29;
   if (this->_pmana() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::SInt32Size(
         this->_pmana());
   }
 
-  // uint32 _pMaxMana = 29;
+  // uint32 _pMaxMana = 30;
   if (this->_pmaxmana() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pmaxmana());
   }
 
-  // uint32 _pLevel = 30;
+  // uint32 _pLevel = 31;
   if (this->_plevel() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_plevel());
   }
 
-  // uint32 _pExperience = 31;
+  // uint32 _pExperience = 32;
   if (this->_pexperience() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pexperience());
   }
 
-  // uint32 _pArmorClass = 32;
+  // uint32 _pArmorClass = 33;
   if (this->_parmorclass() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_parmorclass());
   }
 
-  // uint32 _pMagResist = 33;
+  // uint32 _pMagResist = 34;
   if (this->_pmagresist() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pmagresist());
   }
 
-  // uint32 _pFireResist = 34;
+  // uint32 _pFireResist = 35;
   if (this->_pfireresist() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pfireresist());
   }
 
-  // uint32 _pLightResist = 35;
+  // uint32 _pLightResist = 36;
   if (this->_plightresist() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_plightresist());
   }
 
-  // uint32 _pGold = 36;
+  // uint32 _pGold = 37;
   if (this->_pgold() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pgold());
   }
 
-  // sint32 HoldItem = 41;
+  // sint32 HoldItem = 42;
   if (this->holditem() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::SInt32Size(
         this->holditem());
   }
 
-  // uint32 _pIAC = 42;
+  // uint32 _pIAC = 43;
   if (this->_piac() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_piac());
   }
 
-  // uint32 _pIMinDam = 43;
+  // uint32 _pIMinDam = 44;
   if (this->_pimindam() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pimindam());
   }
 
-  // uint32 _pIMaxDam = 44;
+  // uint32 _pIMaxDam = 45;
   if (this->_pimaxdam() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pimaxdam());
   }
 
-  // uint32 _pIBonusDam = 45;
+  // uint32 _pIBonusDam = 46;
   if (this->_pibonusdam() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pibonusdam());
   }
 
-  // uint32 _pIBonusToHit = 46;
+  // uint32 _pIBonusToHit = 47;
   if (this->_pibonustohit() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pibonustohit());
   }
 
-  // uint32 _pIBonusAC = 47;
+  // uint32 _pIBonusAC = 48;
   if (this->_pibonusac() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->_pibonusac());
   }
 
-  // uint32 _pIBonusDamMod = 48;
+  // uint32 _pIBonusDamMod = 49;
   if (this->_pibonusdammod() != 0) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
@@ -5823,6 +5850,9 @@ void PlayerData::MergeFrom(const PlayerData& from) {
 
     _pname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from._pname_);
   }
+  if (from._pmode() != 0) {
+    set__pmode(from._pmode());
+  }
   if (from.pnum() != 0) {
     set_pnum(from.pnum());
   }
@@ -5847,20 +5877,20 @@ void PlayerData::MergeFrom(const PlayerData& from) {
   if (from._prspell() != 0) {
     set__prspell(from._prspell());
   }
+  if (from._prspltype() != 0) {
+    set__prspltype(from._prspltype());
+  }
   if (from._pmemspells() != 0) {
     set__pmemspells(from._pmemspells());
   }
   if (from._pablspells() != 0) {
     set__pablspells(from._pablspells());
   }
-  if (from._prspltype() != 0) {
-    set__prspltype(from._prspltype());
+  if (from._pscrlspells() != 0) {
+    set__pscrlspells(from._pscrlspells());
   }
   if (from._pclass() != 0) {
     set__pclass(from._pclass());
-  }
-  if (from._pscrlspells() != 0) {
-    set__pscrlspells(from._pscrlspells());
   }
   if (from._pstrength() != 0) {
     set__pstrength(from._pstrength());
@@ -5975,6 +6005,7 @@ void PlayerData::InternalSwap(PlayerData* other) {
   spdlist_.InternalSwap(&other->spdlist_);
   _pname_.Swap(&other->_pname_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
+  swap(_pmode_, other->_pmode_);
   swap(pnum_, other->pnum_);
   swap(plrlevel_, other->plrlevel_);
   swap(_px_, other->_px_);
@@ -5983,11 +6014,11 @@ void PlayerData::InternalSwap(PlayerData* other) {
   swap(_pfuty_, other->_pfuty_);
   swap(_pdir_, other->_pdir_);
   swap(_prspell_, other->_prspell_);
+  swap(_prspltype_, other->_prspltype_);
   swap(_pmemspells_, other->_pmemspells_);
   swap(_pablspells_, other->_pablspells_);
-  swap(_prspltype_, other->_prspltype_);
-  swap(_pclass_, other->_pclass_);
   swap(_pscrlspells_, other->_pscrlspells_);
+  swap(_pclass_, other->_pclass_);
   swap(_pstrength_, other->_pstrength_);
   swap(_pbasestr_, other->_pbasestr_);
   swap(_pmagic_, other->_pmagic_);
