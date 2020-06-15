@@ -160,6 +160,7 @@ namespace DAPI
           for (auto& player : frameUpdate.playerdata())
           {
             int pnum = player.pnum();
+            game.data->playerList[pnum].data->_pmode = static_cast<PlayerMode>(player._pmode());
             game.data->playerList[pnum].data->pnum = pnum;
             game.data->playerList[pnum].data->plrlevel = player.plrlevel();
             game.data->playerList[pnum].data->_px = player._px();
