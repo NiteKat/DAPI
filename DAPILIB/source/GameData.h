@@ -29,6 +29,8 @@ namespace DAPI
     bool invflag;
     bool qtextflag;
     std::string qtext;
+    int currlevel;
+    bool setlevel;
     
     std::map<int, Player> playerList;
     std::map<int, Item> itemList;

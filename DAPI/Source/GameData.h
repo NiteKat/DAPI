@@ -63,6 +63,8 @@ namespace DAPI
     bool chrflag;
     bool invflag;
     bool qtextflag;
+    int currlevel;
+    bool setlevel;
 
     std::map<int, PlayerData> playerList;
     std::vector<ItemData> itemList;

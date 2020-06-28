@@ -18,6 +18,8 @@ namespace DAPI
     std::shared_ptr<Tile> getDungeonPiece(int x, int y);
     bool questTextFlag() { return data->qtextflag; }
     std::string getQuestText() { return data->qtext; }
+    int getDungeonLevel() { return data->currlevel; }
+    bool isSetLevel() { return data->setlevel; }
 
     std::vector<std::shared_ptr<Item>> getItemsOnGround();
     std::vector<std::shared_ptr<Towner>> getTowners();

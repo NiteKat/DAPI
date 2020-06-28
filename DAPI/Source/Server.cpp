@@ -296,6 +296,9 @@ namespace DAPI
     auto qtextptr = reinterpret_cast<char(**)>(0x646CF8);
     auto nobjects = reinterpret_cast<int(*)>(0x679A34);
     auto objectactive = reinterpret_cast<int(*)>(0x679838);
+    auto currlevel = reinterpret_cast<BYTE(*)>(0x5BB1EE);
+    auto setlevel = reinterpret_cast<BOOLEAN(*)>(0x5CF31D);
+    auto setlvlnum = reinterpret_cast<BYTE(*)>(0x5CCB10);
 
     auto fullFillItemInfo = [&](int itemID, DiabloInternal::ItemStruct* item) {
 
@@ -514,6 +517,13 @@ namespace DAPI
     update->set_invflag(*invflag);
     data->qtextflag = *qtextflag;
     update->set_qtextflag(*qtextflag);
+    if (!*setlevel)
+      data->currlevel = static_cast<int>(*currlevel);
+    else
+      data->currlevel = static_cast<int>(*setlvlnum);
+    update->set_currlevel(*currlevel);
+    data->setlevel = static_cast<bool>(*setlevel);
+    update->set_setlevel(*setlevel);
     if (*qtextflag)
       update->set_qtext(*qtextptr);
     else
@@ -1202,7 +1212,7 @@ namespace DAPI
 
     
 
-    if (plr[*myplr].plrlevel != 0)
+    if (*currlevel != 0)
     {
       for (auto &townerData : data->townerList)
       {

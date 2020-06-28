@@ -22,7 +22,6 @@ namespace DAPI
   {
     Player();
     int getID() { return data->pnum; }
-    int getDungeonLevel() { return data->plrlevel; }
     int getX() { return data->_px; }
     int getY() { return data->_py; }
     int getFutureX() { return data->_pfutx; }

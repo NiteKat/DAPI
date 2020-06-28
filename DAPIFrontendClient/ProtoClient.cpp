@@ -65,6 +65,8 @@ namespace DAPI
           game.data->invflag = frameUpdate.invflag();
           game.data->qtextflag = frameUpdate.qtextflag();
           game.data->qtext = frameUpdate.qtext();
+          game.data->currlevel = frameUpdate.currlevel();
+          game.data->setlevel = frameUpdate.setlevel();
           for (int x = 0; x < 112; x++)
           {
             for (int y = 0; y < 112; y++)

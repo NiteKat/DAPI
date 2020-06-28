@@ -14,17 +14,19 @@ message FrameUpdate {
 	bool invflag = 7;
 	bool qtextflag = 8;
 	string qtext = 9;
+	uint32 currlevel = 10;
+	bool setlevel = 11;
 	
-	repeated dapi.data.TileData dPiece = 10;
-	repeated dapi.data.PlayerData playerData = 11;
-	repeated dapi.data.ItemData itemData = 12;
-	repeated uint32 groundItemID = 13;
-	repeated dapi.data.TownerData townerData = 14;
-	repeated uint32 storeOption = 15;
-	repeated uint32 storeItems = 16;
-	repeated dapi.data.TriggerData triggerData = 17;
-	repeated dapi.data.MonsterData monsterData = 18;
-	repeated dapi.data.ObjectData objectData = 19;
-	repeated dapi.data.MissileData missileData = 20;
-	repeated dapi.data.PortalData portalData = 21;
+	repeated dapi.data.TileData dPiece = 12;
+	repeated dapi.data.PlayerData playerData = 13;
+	repeated dapi.data.ItemData itemData = 14;
+	repeated uint32 groundItemID = 15;
+	repeated dapi.data.TownerData townerData = 16;
+	repeated uint32 storeOption = 17;
+	repeated uint32 storeItems = 18;
+	repeated dapi.data.TriggerData triggerData = 19;
+	repeated dapi.data.MonsterData monsterData = 20;
+	repeated dapi.data.ObjectData objectData = 21;
+	repeated dapi.data.MissileData missileData = 22;
+	repeated dapi.data.PortalData portalData = 23;
 }
