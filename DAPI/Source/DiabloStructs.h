@@ -24,6 +24,28 @@ namespace DiabloInternal
 
   #define MAXQUESTS 16
 
+  enum struct QuestState {
+    NOTAVAIL = 0,
+    INIT = 1,
+    ACTIVE = 2,
+    DONE = 3
+  };
+
+  typedef struct QuestStruct {
+    unsigned char _qlevel;
+    unsigned char _qtype;
+    unsigned char _qactive;
+    unsigned char _qlvltype;
+    int _qtx;
+    int _qty;
+    unsigned char _qslvl;
+    unsigned char _qidx;
+    unsigned char _qmsg;
+    unsigned char _qvar1;
+    unsigned char _qvar2;
+    int _qlog;
+  } QuestStruct;
+
   typedef struct PortalStruct {
     BOOL open;
     int x;

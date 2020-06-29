@@ -299,6 +299,8 @@ namespace DAPI
     auto currlevel = reinterpret_cast<BYTE(*)>(0x5BB1EE);
     auto setlevel = reinterpret_cast<BOOLEAN(*)>(0x5CF31D);
     auto setlvlnum = reinterpret_cast<BYTE(*)>(0x5CCB10);
+    auto numtrigs = reinterpret_cast<int(*)>(0x6ABAD8);
+    auto quests = reinterpret_cast<DiabloInternal::QuestStruct(*)>(0x69BD10);
 
     auto fullFillItemInfo = [&](int itemID, DiabloInternal::ItemStruct* item) {
 
@@ -548,7 +550,7 @@ namespace DAPI
       }
     }
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < *numtrigs; i++)
     {
       if (isOnScreen(trigs[i]._tx, trigs[i]._ty))
       {
@@ -557,6 +559,20 @@ namespace DAPI
         trigger->set_x(trigs[i]._tx);
         trigger->set_y(trigs[i]._ty);
         trigger->set_type(trigs[i]._tmsg);
+      }
+    }
+
+    for (int i = 0; i < MAXQUESTS; i++)
+    {
+      if (*currlevel == quests[i]._qlevel &&
+        quests[i]._qslvl != 0 &&
+        static_cast<DiabloInternal::QuestState>(quests[i]._qactive) != DiabloInternal::QuestState::NOTAVAIL)
+      {
+        auto trigger = update->add_triggerdata();
+        trigger->set_lvl(quests[i]._qslvl);
+        trigger->set_x(quests[i]._qtx);
+        trigger->set_y(quests[i]._qty);
+        trigger->set_type(1029);
       }
     }
 
