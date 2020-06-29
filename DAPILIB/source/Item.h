@@ -45,8 +45,8 @@ namespace DAPI
     int getAddedDexterity() { return data->_iPLDex; }
     int getAddedVitality() { return data->_iPLVit; }
     int getDamageFromEnemies() { return data->_iPLGetHit; }
-    int getAddedLife() { return data->_iPLHP; }
-    int getAddedMana() { return data->_iPLMana; }
+    int getAddedLife() { return data->_iPLHP >> 6; }
+    int getAddedMana() { return data->_iPLMana >> 6; }
     int getAddedLightRadius() { return data->_iPLLight; }
     int getAddedDamage() { return data->_iPLDamMod; }
     bool meetRequirements() { return data->_iStatFlag; }
