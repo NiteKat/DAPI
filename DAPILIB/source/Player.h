@@ -29,6 +29,7 @@ namespace DAPI
     int getDirection() { return data->_pdir; }
     Spell getRightClickSpell() { return Spell{ static_cast<SpellID>(data->_pRSpell), static_cast<SpellTypeID>(data->_pRSplType) }; }
     int getSpellLevel(Spell spell) { return data->_pSplLvl[static_cast<int>(spell.getID())]; }
+    int getSpellLevel(SpellID spellID) { return data->_pSplLvl[static_cast<int>(spellID)]; }
     CharacterClass getClass();
     std::string getName() { return data->_pName; }
     int getLife() { return data->_pHitPoints >> 6; }
