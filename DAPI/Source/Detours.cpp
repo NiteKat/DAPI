@@ -21,3 +21,12 @@ void PlaceDetour(DWORD dwAddressToPatch, DWORD dwDetourAddress, DWORD dwPadSize,
 
   VirtualProtect((LPVOID)dwAddressToPatch, (dwPadSize + 5), dwOldProtect, &dwOldProtect);
 }
+
+void Patch(DWORD dwAddressToPatch, std::string assem, DWORD dwPadSize)
+{
+  DWORD dwOldProtect = NULL;
+  VirtualProtect((LPVOID)dwAddressToPatch, (dwPadSize + 5), PAGE_EXECUTE_READWRITE, &dwOldProtect);
+  for (int i = 0; i < assem.size(); i++)
+    *(BYTE*)(dwAddressToPatch + i) = assem[i];
+  VirtualProtect((LPVOID)dwAddressToPatch, (dwPadSize + 5), dwOldProtect, &dwOldProtect);
+}

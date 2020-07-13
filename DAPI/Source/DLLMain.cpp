@@ -8,6 +8,7 @@
 typedef unsigned __int32 u32;
 
 static const u32 hook_function = 0x408A06;
+static const u32 speed_offset = 0x441219;
 
 DAPI::Game Diablo;
 
@@ -79,6 +80,7 @@ BOOL APIENTRY DllMain(HMODULE, DWORD ul_reason_for_call, LPVOID)
       return FALSE;
     auto process = GetCurrentProcess();
     PlaceDetour(hook_function, (DWORD)trampoline, 0, true);
+    Patch(speed_offset, "\xB0\x01\x90", 0);
     break;
   }
   return TRUE;
