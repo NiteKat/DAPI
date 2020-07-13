@@ -87,6 +87,12 @@
     <ClInclude Include="source\Portal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\QuestData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Quest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Game.cpp">

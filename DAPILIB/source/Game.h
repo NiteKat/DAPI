@@ -20,6 +20,7 @@ namespace DAPI
     std::string getQuestText() { return data->qtext; }
     int getDungeonLevel() { return data->currlevel; }
     bool isSetLevel() { return data->setlevel; }
+    Quest getQuest(QuestID id);
 
     std::vector<std::shared_ptr<Item>> getItemsOnGround();
     std::vector<std::shared_ptr<Towner>> getTowners();
@@ -30,6 +31,7 @@ namespace DAPI
     std::vector<Object> getObjects();
     std::vector<Missile> getMissiles();
     std::vector<Portal> getPortals();
+    std::vector<Quest> getQuests();
 
     bool isOnScreen(int x, int y);
     bool OKToAct();

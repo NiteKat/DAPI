@@ -3,6 +3,11 @@ option optimize_for = LITE_RUNTIME;
 
 package dapi.data;
 
+message QuestData {
+	uint32 id = 1;
+	uint32 state = 2;
+}
+
 message PortalData {
 	uint32 x = 1;
 	uint32 y = 2;

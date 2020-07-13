@@ -23,6 +23,7 @@ extern PROTOBUF_INTERNAL_EXPORT_protobuf_data_2eproto ::google::protobuf::intern
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_data_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_ObjectData;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_data_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_PlayerData;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_data_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_PortalData;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_data_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_QuestData;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_data_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_TileData;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_data_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_TownerData;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_data_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_TriggerData;
@@ -48,8 +49,8 @@ static void InitDefaultsFrameUpdate() {
   ::dapi::game::FrameUpdate::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<9> scc_info_FrameUpdate =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 9, InitDefaultsFrameUpdate}, {
+::google::protobuf::internal::SCCInfo<10> scc_info_FrameUpdate =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 10, InitDefaultsFrameUpdate}, {
       &protobuf_data_2eproto::scc_info_TileData.base,
       &protobuf_data_2eproto::scc_info_PlayerData.base,
       &protobuf_data_2eproto::scc_info_ItemData.base,
@@ -58,7 +59,8 @@ static void InitDefaultsFrameUpdate() {
       &protobuf_data_2eproto::scc_info_MonsterData.base,
       &protobuf_data_2eproto::scc_info_ObjectData.base,
       &protobuf_data_2eproto::scc_info_MissileData.base,
-      &protobuf_data_2eproto::scc_info_PortalData.base,}};
+      &protobuf_data_2eproto::scc_info_PortalData.base,
+      &protobuf_data_2eproto::scc_info_QuestData.base,}};
 
 void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_FrameUpdate.base);
@@ -99,6 +101,9 @@ void FrameUpdate::clear_missiledata() {
 void FrameUpdate::clear_portaldata() {
   portaldata_.Clear();
 }
+void FrameUpdate::clear_questdata() {
+  questdata_.Clear();
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int FrameUpdate::kPlayerFieldNumber;
 const int FrameUpdate::kStextflagFieldNumber;
@@ -123,6 +128,7 @@ const int FrameUpdate::kMonsterDataFieldNumber;
 const int FrameUpdate::kObjectDataFieldNumber;
 const int FrameUpdate::kMissileDataFieldNumber;
 const int FrameUpdate::kPortalDataFieldNumber;
+const int FrameUpdate::kQuestDataFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 FrameUpdate::FrameUpdate()
@@ -146,7 +152,8 @@ FrameUpdate::FrameUpdate(const FrameUpdate& from)
       monsterdata_(from.monsterdata_),
       objectdata_(from.objectdata_),
       missiledata_(from.missiledata_),
-      portaldata_(from.portaldata_) {
+      portaldata_(from.portaldata_),
+      questdata_(from.questdata_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   qtext_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (from.qtext().size() > 0) {
@@ -201,6 +208,7 @@ void FrameUpdate::Clear() {
   objectdata_.Clear();
   missiledata_.Clear();
   portaldata_.Clear();
+  questdata_.Clear();
   qtext_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&player_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&setlevel_) -
@@ -545,6 +553,18 @@ bool FrameUpdate::MergePartialFromCodedStream(
         break;
       }
 
+      // repeated .dapi.data.QuestData questData = 24;
+      case 24: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(194u /* 194 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+                input, add_questdata()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -745,6 +765,15 @@ void FrameUpdate::SerializeWithCachedSizes(
       output);
   }
 
+  // repeated .dapi.data.QuestData questData = 24;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->questdata_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      24,
+      this->questdata(static_cast<int>(i)),
+      output);
+  }
+
   output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
                    static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
   // @@protoc_insertion_point(serialize_end:dapi.game.FrameUpdate)
@@ -903,6 +932,17 @@ size_t FrameUpdate::ByteSizeLong() const {
     }
   }
 
+  // repeated .dapi.data.QuestData questData = 24;
+  {
+    unsigned int count = static_cast<unsigned int>(this->questdata_size());
+    total_size += 2UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->questdata(static_cast<int>(i)));
+    }
+  }
+
   // string qtext = 9;
   if (this->qtext().size() > 0) {
     total_size += 1 +
@@ -999,6 +1039,7 @@ void FrameUpdate::MergeFrom(const FrameUpdate& from) {
   objectdata_.MergeFrom(from.objectdata_);
   missiledata_.MergeFrom(from.missiledata_);
   portaldata_.MergeFrom(from.portaldata_);
+  questdata_.MergeFrom(from.questdata_);
   if (from.qtext().size() > 0) {
 
     qtext_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.qtext_);
@@ -1064,6 +1105,7 @@ void FrameUpdate::InternalSwap(FrameUpdate* other) {
   CastToBase(&objectdata_)->InternalSwap(CastToBase(&other->objectdata_));
   CastToBase(&missiledata_)->InternalSwap(CastToBase(&other->missiledata_));
   CastToBase(&portaldata_)->InternalSwap(CastToBase(&other->portaldata_));
+  CastToBase(&questdata_)->InternalSwap(CastToBase(&other->questdata_));
   qtext_.Swap(&other->qtext_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   swap(player_, other->player_);

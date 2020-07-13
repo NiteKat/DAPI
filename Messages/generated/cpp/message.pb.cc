@@ -20,7 +20,7 @@ namespace protobuf_command_2eproto {
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<24> scc_info_Command;
 }  // namespace protobuf_command_2eproto
 namespace protobuf_game_2eproto {
-extern PROTOBUF_INTERNAL_EXPORT_protobuf_game_2eproto ::google::protobuf::internal::SCCInfo<9> scc_info_FrameUpdate;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_game_2eproto ::google::protobuf::internal::SCCInfo<10> scc_info_FrameUpdate;
 }  // namespace protobuf_game_2eproto
 namespace protobuf_init_2eproto {
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_init_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_ClientBroadcast;

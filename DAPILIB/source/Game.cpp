@@ -91,6 +91,15 @@ namespace DAPI
     return returnValue;
   }
 
+  Quest Game::getQuest(QuestID id)
+  {
+    for (int i = 0; i < data->questList.size(); i++)
+    {
+      if (data->questList[i].getID() == id)
+        return data->questList[i];
+    }
+  }
+
   std::vector<std::shared_ptr<Towner>> Game::getTowners()
   {
     std::vector<std::shared_ptr<Towner>> returnValue;
@@ -164,6 +173,11 @@ namespace DAPI
   std::vector<Portal> Game::getPortals()
   {
     return data->portalList;
+  }
+
+  std::vector<Quest> Game::getQuests()
+  {
+    return data->questList;
   }
 
   bool Game::OKToAct()

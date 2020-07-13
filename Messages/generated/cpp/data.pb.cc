@@ -18,6 +18,11 @@
 
 namespace dapi {
 namespace data {
+class QuestDataDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<QuestData>
+      _instance;
+} _QuestData_default_instance_;
 class PortalDataDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<PortalData>
@@ -66,6 +71,20 @@ class PlayerDataDefaultTypeInternal {
 }  // namespace data
 }  // namespace dapi
 namespace protobuf_data_2eproto {
+static void InitDefaultsQuestData() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::dapi::data::_QuestData_default_instance_;
+    new (ptr) ::dapi::data::QuestData();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::dapi::data::QuestData::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_QuestData =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsQuestData}, {}};
+
 static void InitDefaultsPortalData() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -193,6 +212,7 @@ static void InitDefaultsPlayerData() {
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsPlayerData}, {}};
 
 void InitDefaults() {
+  ::google::protobuf::internal::InitSCC(&scc_info_QuestData.base);
   ::google::protobuf::internal::InitSCC(&scc_info_PortalData.base);
   ::google::protobuf::internal::InitSCC(&scc_info_MissileData.base);
   ::google::protobuf::internal::InitSCC(&scc_info_ObjectData.base);
@@ -207,6 +227,224 @@ void InitDefaults() {
 }  // namespace protobuf_data_2eproto
 namespace dapi {
 namespace data {
+
+// ===================================================================
+
+void QuestData::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int QuestData::kIdFieldNumber;
+const int QuestData::kStateFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+QuestData::QuestData()
+  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_data_2eproto::scc_info_QuestData.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:dapi.data.QuestData)
+}
+QuestData::QuestData(const QuestData& from)
+  : ::google::protobuf::MessageLite(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&id_, &from.id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&state_) -
+    reinterpret_cast<char*>(&id_)) + sizeof(state_));
+  // @@protoc_insertion_point(copy_constructor:dapi.data.QuestData)
+}
+
+void QuestData::SharedCtor() {
+  ::memset(&id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&state_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(state_));
+}
+
+QuestData::~QuestData() {
+  // @@protoc_insertion_point(destructor:dapi.data.QuestData)
+  SharedDtor();
+}
+
+void QuestData::SharedDtor() {
+}
+
+void QuestData::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const QuestData& QuestData::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_data_2eproto::scc_info_QuestData.base);
+  return *internal_default_instance();
+}
+
+
+void QuestData::Clear() {
+// @@protoc_insertion_point(message_clear_start:dapi.data.QuestData)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&state_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(state_));
+  _internal_metadata_.Clear();
+}
+
+bool QuestData::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
+      &_internal_metadata_);
+  ::google::protobuf::io::StringOutputStream unknown_fields_output(
+      unknown_fields_setter.buffer());
+  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
+      &unknown_fields_output, false);
+  // @@protoc_insertion_point(parse_start:dapi.data.QuestData)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // uint32 id = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &id_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // uint32 state = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &state_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+            input, tag, &unknown_fields_stream));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:dapi.data.QuestData)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:dapi.data.QuestData)
+  return false;
+#undef DO_
+}
+
+void QuestData::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:dapi.data.QuestData)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 id = 1;
+  if (this->id() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->id(), output);
+  }
+
+  // uint32 state = 2;
+  if (this->state() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->state(), output);
+  }
+
+  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
+                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  // @@protoc_insertion_point(serialize_end:dapi.data.QuestData)
+}
+
+size_t QuestData::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dapi.data.QuestData)
+  size_t total_size = 0;
+
+  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
+
+  // uint32 id = 1;
+  if (this->id() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->id());
+  }
+
+  // uint32 state = 2;
+  if (this->state() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->state());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void QuestData::CheckTypeAndMergeFrom(
+    const ::google::protobuf::MessageLite& from) {
+  MergeFrom(*::google::protobuf::down_cast<const QuestData*>(&from));
+}
+
+void QuestData::MergeFrom(const QuestData& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:dapi.data.QuestData)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.id() != 0) {
+    set_id(from.id());
+  }
+  if (from.state() != 0) {
+    set_state(from.state());
+  }
+}
+
+void QuestData::CopyFrom(const QuestData& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dapi.data.QuestData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool QuestData::IsInitialized() const {
+  return true;
+}
+
+void QuestData::Swap(QuestData* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void QuestData::InternalSwap(QuestData* other) {
+  using std::swap;
+  swap(id_, other->id_);
+  swap(state_, other->state_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::std::string QuestData::GetTypeName() const {
+  return "dapi.data.QuestData";
+}
+
 
 // ===================================================================
 
@@ -6061,6 +6299,9 @@ void PlayerData::InternalSwap(PlayerData* other) {
 }  // namespace dapi
 namespace google {
 namespace protobuf {
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::data::QuestData* Arena::CreateMaybeMessage< ::dapi::data::QuestData >(Arena* arena) {
+  return Arena::CreateInternal< ::dapi::data::QuestData >(arena);
+}
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::data::PortalData* Arena::CreateMaybeMessage< ::dapi::data::PortalData >(Arena* arena) {
   return Arena::CreateInternal< ::dapi::data::PortalData >(arena);
 }

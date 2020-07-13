@@ -29,4 +29,5 @@ message FrameUpdate {
 	repeated dapi.data.ObjectData objectData = 21;
 	repeated dapi.data.MissileData missileData = 22;
 	repeated dapi.data.PortalData portalData = 23;
+	repeated dapi.data.QuestData questData = 24;
 }

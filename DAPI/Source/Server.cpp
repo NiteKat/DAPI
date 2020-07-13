@@ -564,6 +564,13 @@ namespace DAPI
 
     for (int i = 0; i < MAXQUESTS; i++)
     {
+      auto quest = update->add_questdata();
+      quest->set_id(i);
+      if (quests[i]._qactive == 2)
+        quest->set_state(quests[i]._qactive);
+      else
+        quest->set_state(0);
+
       if (*currlevel == quests[i]._qlevel &&
         quests[i]._qslvl != 0 &&
         static_cast<DiabloInternal::QuestState>(quests[i]._qactive) != DiabloInternal::QuestState::NOTAVAIL)

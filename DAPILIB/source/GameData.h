@@ -10,6 +10,7 @@
 #include "Object.h"
 #include "Missile.h"
 #include "Portal.h"
+#include "Quest.h"
 
 
 namespace DAPI
@@ -43,5 +44,6 @@ namespace DAPI
     std::vector<Object> objectList;
     std::vector<Missile> missileList;
     std::vector<Portal> portalList;
+    std::vector<Quest> questList;
   };
 };

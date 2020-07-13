@@ -37,7 +37,7 @@ namespace protobuf_data_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[9];
+  static const ::google::protobuf::internal::ParseTable schema[10];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -63,6 +63,9 @@ extern PlayerDataDefaultTypeInternal _PlayerData_default_instance_;
 class PortalData;
 class PortalDataDefaultTypeInternal;
 extern PortalDataDefaultTypeInternal _PortalData_default_instance_;
+class QuestData;
+class QuestDataDefaultTypeInternal;
+extern QuestDataDefaultTypeInternal _QuestData_default_instance_;
 class TileData;
 class TileDataDefaultTypeInternal;
 extern TileDataDefaultTypeInternal _TileData_default_instance_;
@@ -82,6 +85,7 @@ template<> ::dapi::data::MonsterData* Arena::CreateMaybeMessage<::dapi::data::Mo
 template<> ::dapi::data::ObjectData* Arena::CreateMaybeMessage<::dapi::data::ObjectData>(Arena*);
 template<> ::dapi::data::PlayerData* Arena::CreateMaybeMessage<::dapi::data::PlayerData>(Arena*);
 template<> ::dapi::data::PortalData* Arena::CreateMaybeMessage<::dapi::data::PortalData>(Arena*);
+template<> ::dapi::data::QuestData* Arena::CreateMaybeMessage<::dapi::data::QuestData>(Arena*);
 template<> ::dapi::data::TileData* Arena::CreateMaybeMessage<::dapi::data::TileData>(Arena*);
 template<> ::dapi::data::TownerData* Arena::CreateMaybeMessage<::dapi::data::TownerData>(Arena*);
 template<> ::dapi::data::TriggerData* Arena::CreateMaybeMessage<::dapi::data::TriggerData>(Arena*);
@@ -91,6 +95,114 @@ namespace dapi {
 namespace data {
 
 // ===================================================================
+
+class QuestData : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.data.QuestData) */ {
+ public:
+  QuestData();
+  virtual ~QuestData();
+
+  QuestData(const QuestData& from);
+
+  inline QuestData& operator=(const QuestData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  QuestData(QuestData&& from) noexcept
+    : QuestData() {
+    *this = ::std::move(from);
+  }
+
+  inline QuestData& operator=(QuestData&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const QuestData& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const QuestData* internal_default_instance() {
+    return reinterpret_cast<const QuestData*>(
+               &_QuestData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  void Swap(QuestData* other);
+  friend void swap(QuestData& a, QuestData& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline QuestData* New() const final {
+    return CreateMaybeMessage<QuestData>(NULL);
+  }
+
+  QuestData* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<QuestData>(arena);
+  }
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    final;
+  void CopyFrom(const QuestData& from);
+  void MergeFrom(const QuestData& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  void DiscardUnknownFields();
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(QuestData* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::std::string GetTypeName() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // uint32 id = 1;
+  void clear_id();
+  static const int kIdFieldNumber = 1;
+  ::google::protobuf::uint32 id() const;
+  void set_id(::google::protobuf::uint32 value);
+
+  // uint32 state = 2;
+  void clear_state();
+  static const int kStateFieldNumber = 2;
+  ::google::protobuf::uint32 state() const;
+  void set_state(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:dapi.data.QuestData)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::uint32 id_;
+  ::google::protobuf::uint32 state_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_data_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
 
 class PortalData : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.data.PortalData) */ {
  public:
@@ -126,7 +238,7 @@ class PortalData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
                &_PortalData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   void Swap(PortalData* other);
   friend void swap(PortalData& a, PortalData& b) {
@@ -241,7 +353,7 @@ class MissileData : public ::google::protobuf::MessageLite /* @@protoc_insertion
                &_MissileData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   void Swap(MissileData* other);
   friend void swap(MissileData& a, MissileData& b) {
@@ -384,7 +496,7 @@ class ObjectData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
                &_ObjectData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   void Swap(ObjectData* other);
   friend void swap(ObjectData& a, ObjectData& b) {
@@ -534,7 +646,7 @@ class MonsterData : public ::google::protobuf::MessageLite /* @@protoc_insertion
                &_MonsterData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   void Swap(MonsterData* other);
   friend void swap(MonsterData& a, MonsterData& b) {
@@ -699,7 +811,7 @@ class TriggerData : public ::google::protobuf::MessageLite /* @@protoc_insertion
                &_TriggerData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   void Swap(TriggerData* other);
   friend void swap(TriggerData& a, TriggerData& b) {
@@ -821,7 +933,7 @@ class TileData : public ::google::protobuf::MessageLite /* @@protoc_insertion_po
                &_TileData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   void Swap(TileData* other);
   friend void swap(TileData& a, TileData& b) {
@@ -950,7 +1062,7 @@ class TownerData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
                &_TownerData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   void Swap(TownerData* other);
   friend void swap(TownerData& a, TownerData& b) {
@@ -1087,7 +1199,7 @@ class ItemData : public ::google::protobuf::MessageLite /* @@protoc_insertion_po
                &_ItemData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   void Swap(ItemData* other);
   friend void swap(ItemData& a, ItemData& b) {
@@ -1533,7 +1645,7 @@ class PlayerData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
                &_PlayerData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   void Swap(PlayerData* other);
   friend void swap(PlayerData& a, PlayerData& b) {
@@ -1986,6 +2098,38 @@ class PlayerData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// QuestData
+
+// uint32 id = 1;
+inline void QuestData::clear_id() {
+  id_ = 0u;
+}
+inline ::google::protobuf::uint32 QuestData::id() const {
+  // @@protoc_insertion_point(field_get:dapi.data.QuestData.id)
+  return id_;
+}
+inline void QuestData::set_id(::google::protobuf::uint32 value) {
+  
+  id_ = value;
+  // @@protoc_insertion_point(field_set:dapi.data.QuestData.id)
+}
+
+// uint32 state = 2;
+inline void QuestData::clear_state() {
+  state_ = 0u;
+}
+inline ::google::protobuf::uint32 QuestData::state() const {
+  // @@protoc_insertion_point(field_get:dapi.data.QuestData.state)
+  return state_;
+}
+inline void QuestData::set_state(::google::protobuf::uint32 value) {
+  
+  state_ = value;
+  // @@protoc_insertion_point(field_set:dapi.data.QuestData.state)
+}
+
+// -------------------------------------------------------------------
+
 // PortalData
 
 // uint32 x = 1;
@@ -4230,6 +4374,8 @@ inline void PlayerData::set__pibonusdammod(::google::protobuf::uint32 value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

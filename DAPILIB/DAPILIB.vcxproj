@@ -149,6 +149,8 @@
     <ClInclude Include="source\PlayerData.h" />
     <ClInclude Include="source\Portal.h" />
     <ClInclude Include="source\PortalData.h" />
+    <ClInclude Include="source\Quest.h" />
+    <ClInclude Include="source\QuestData.h" />
     <ClInclude Include="source\Spell.h" />
     <ClInclude Include="source\Tile.h" />
     <ClInclude Include="source\TileData.h" />

@@ -290,6 +290,18 @@ class FrameUpdate : public ::google::protobuf::MessageLite /* @@protoc_insertion
   const ::google::protobuf::RepeatedPtrField< ::dapi::data::PortalData >&
       portaldata() const;
 
+  // repeated .dapi.data.QuestData questData = 24;
+  int questdata_size() const;
+  void clear_questdata();
+  static const int kQuestDataFieldNumber = 24;
+  ::dapi::data::QuestData* mutable_questdata(int index);
+  ::google::protobuf::RepeatedPtrField< ::dapi::data::QuestData >*
+      mutable_questdata();
+  const ::dapi::data::QuestData& questdata(int index) const;
+  ::dapi::data::QuestData* add_questdata();
+  const ::google::protobuf::RepeatedPtrField< ::dapi::data::QuestData >&
+      questdata() const;
+
   // string qtext = 9;
   void clear_qtext();
   static const int kQtextFieldNumber = 9;
@@ -383,6 +395,7 @@ class FrameUpdate : public ::google::protobuf::MessageLite /* @@protoc_insertion
   ::google::protobuf::RepeatedPtrField< ::dapi::data::ObjectData > objectdata_;
   ::google::protobuf::RepeatedPtrField< ::dapi::data::MissileData > missiledata_;
   ::google::protobuf::RepeatedPtrField< ::dapi::data::PortalData > portaldata_;
+  ::google::protobuf::RepeatedPtrField< ::dapi::data::QuestData > questdata_;
   ::google::protobuf::internal::ArenaStringPtr qtext_;
   ::google::protobuf::uint32 player_;
   ::google::protobuf::int32 stextflag_;
@@ -932,6 +945,33 @@ inline const ::google::protobuf::RepeatedPtrField< ::dapi::data::PortalData >&
 FrameUpdate::portaldata() const {
   // @@protoc_insertion_point(field_list:dapi.game.FrameUpdate.portalData)
   return portaldata_;
+}
+
+// repeated .dapi.data.QuestData questData = 24;
+inline int FrameUpdate::questdata_size() const {
+  return questdata_.size();
+}
+inline ::dapi::data::QuestData* FrameUpdate::mutable_questdata(int index) {
+  // @@protoc_insertion_point(field_mutable:dapi.game.FrameUpdate.questData)
+  return questdata_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::dapi::data::QuestData >*
+FrameUpdate::mutable_questdata() {
+  // @@protoc_insertion_point(field_mutable_list:dapi.game.FrameUpdate.questData)
+  return &questdata_;
+}
+inline const ::dapi::data::QuestData& FrameUpdate::questdata(int index) const {
+  // @@protoc_insertion_point(field_get:dapi.game.FrameUpdate.questData)
+  return questdata_.Get(index);
+}
+inline ::dapi::data::QuestData* FrameUpdate::add_questdata() {
+  // @@protoc_insertion_point(field_add:dapi.game.FrameUpdate.questData)
+  return questdata_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::dapi::data::QuestData >&
+FrameUpdate::questdata() const {
+  // @@protoc_insertion_point(field_list:dapi.game.FrameUpdate.questData)
+  return questdata_;
 }
 
 #ifdef __GNUC__

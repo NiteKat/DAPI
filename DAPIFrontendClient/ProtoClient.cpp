@@ -87,6 +87,13 @@ namespace DAPI
             game.data->triggerList[game.data->triggerList.size() - 1].data->y = trigger.y();
             game.data->triggerList[game.data->triggerList.size() - 1].data->type = static_cast<TriggerType>(trigger.type());
           }
+          game.data->questList.clear();
+          for (auto& quest : frameUpdate.questdata())
+          {
+            game.data->questList.push_back(DAPI::Quest{});
+            game.data->questList[game.data->questList.size() - 1].data->id = static_cast<QuestID>(quest.id());
+            game.data->questList[game.data->questList.size() - 1].data->state = static_cast<QuestState>(quest.state());
+          }
           for (auto& dPiece : frameUpdate.dpiece())
           {
             game.data->dPiece[dPiece.x()][dPiece.y()].data->type = dPiece.type();
