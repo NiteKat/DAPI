@@ -67,6 +67,7 @@ namespace DAPI
           game.data->qtext = frameUpdate.qtext();
           game.data->currlevel = frameUpdate.currlevel();
           game.data->setlevel = frameUpdate.setlevel();
+          game.data->FPS = frameUpdate.fps();
           for (int x = 0; x < 112; x++)
           {
             for (int y = 0; y < 112; y++)
@@ -494,11 +495,19 @@ namespace DAPI
         auto cancelQText = commandMessage->mutable_cancelqtext();
       }
       break;
+      case CommandType::SETFPS:
+      {
+        auto setFPS = commandMessage->mutable_setfps();
+        setFPS->set_fps(command.param1);
+      }
+      break;
       default:
         break;
       }
       protoClient.queueMessage(std::move(newMessage));
       hasCommand = true;
+      if (command.type == CommandType::SETFPS)
+        hasCommand = false;
       return true;
     }
     return false;

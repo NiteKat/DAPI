@@ -189,6 +189,7 @@ namespace DAPI
     USEITEM,
     IDENTIFYSTOREITEM,
     CANCELQTEXT,
+    SETFPS,
     NUM_CMDS
   };
 

@@ -40,6 +40,7 @@ namespace DAPI
     static Command identifyStoreItem(std::shared_ptr<Item> item);
     static Command castSpellXY(int x, int y);
     static Command cancelQText();
+    static Command setFPS(int fps);
 
     CommandType type;
     int targetX;

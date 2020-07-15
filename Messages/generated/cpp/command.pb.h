@@ -37,7 +37,7 @@ namespace protobuf_command_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[25];
+  static const ::google::protobuf::internal::ParseTable schema[26];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -102,6 +102,9 @@ extern SelectStoreOptionDefaultTypeInternal _SelectStoreOption_default_instance_
 class SellItem;
 class SellItemDefaultTypeInternal;
 extern SellItemDefaultTypeInternal _SellItem_default_instance_;
+class SetFPS;
+class SetFPSDefaultTypeInternal;
+extern SetFPSDefaultTypeInternal _SetFPS_default_instance_;
 class SetSpell;
 class SetSpellDefaultTypeInternal;
 extern SetSpellDefaultTypeInternal _SetSpell_default_instance_;
@@ -143,6 +146,7 @@ template<> ::dapi::commands::RechargeItem* Arena::CreateMaybeMessage<::dapi::com
 template<> ::dapi::commands::RepairItem* Arena::CreateMaybeMessage<::dapi::commands::RepairItem>(Arena*);
 template<> ::dapi::commands::SelectStoreOption* Arena::CreateMaybeMessage<::dapi::commands::SelectStoreOption>(Arena*);
 template<> ::dapi::commands::SellItem* Arena::CreateMaybeMessage<::dapi::commands::SellItem>(Arena*);
+template<> ::dapi::commands::SetFPS* Arena::CreateMaybeMessage<::dapi::commands::SetFPS>(Arena*);
 template<> ::dapi::commands::SetSpell* Arena::CreateMaybeMessage<::dapi::commands::SetSpell>(Arena*);
 template<> ::dapi::commands::Talk* Arena::CreateMaybeMessage<::dapi::commands::Talk>(Arena*);
 template<> ::dapi::commands::ToggleCharacterSheet* Arena::CreateMaybeMessage<::dapi::commands::ToggleCharacterSheet>(Arena*);
@@ -155,6 +159,107 @@ namespace dapi {
 namespace commands {
 
 // ===================================================================
+
+class SetFPS : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.commands.SetFPS) */ {
+ public:
+  SetFPS();
+  virtual ~SetFPS();
+
+  SetFPS(const SetFPS& from);
+
+  inline SetFPS& operator=(const SetFPS& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  SetFPS(SetFPS&& from) noexcept
+    : SetFPS() {
+    *this = ::std::move(from);
+  }
+
+  inline SetFPS& operator=(SetFPS&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const SetFPS& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const SetFPS* internal_default_instance() {
+    return reinterpret_cast<const SetFPS*>(
+               &_SetFPS_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  void Swap(SetFPS* other);
+  friend void swap(SetFPS& a, SetFPS& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SetFPS* New() const final {
+    return CreateMaybeMessage<SetFPS>(NULL);
+  }
+
+  SetFPS* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<SetFPS>(arena);
+  }
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    final;
+  void CopyFrom(const SetFPS& from);
+  void MergeFrom(const SetFPS& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  void DiscardUnknownFields();
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(SetFPS* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::std::string GetTypeName() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // uint32 FPS = 1;
+  void clear_fps();
+  static const int kFPSFieldNumber = 1;
+  ::google::protobuf::uint32 fps() const;
+  void set_fps(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:dapi.commands.SetFPS)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::uint32 fps_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_command_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
 
 class CancelQText : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.commands.CancelQText) */ {
  public:
@@ -190,7 +295,7 @@ class CancelQText : public ::google::protobuf::MessageLite /* @@protoc_insertion
                &_CancelQText_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   void Swap(CancelQText* other);
   friend void swap(CancelQText& a, CancelQText& b) {
@@ -284,7 +389,7 @@ class Move : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(
                &_Move_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   void Swap(Move* other);
   friend void swap(Move& a, Move& b) {
@@ -399,7 +504,7 @@ class Talk : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(
                &_Talk_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   void Swap(Talk* other);
   friend void swap(Talk& a, Talk& b) {
@@ -507,7 +612,7 @@ class SelectStoreOption : public ::google::protobuf::MessageLite /* @@protoc_ins
                &_SelectStoreOption_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   void Swap(SelectStoreOption* other);
   friend void swap(SelectStoreOption& a, SelectStoreOption& b) {
@@ -608,7 +713,7 @@ class BuyItem : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
                &_BuyItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   void Swap(BuyItem* other);
   friend void swap(BuyItem& a, BuyItem& b) {
@@ -709,7 +814,7 @@ class SellItem : public ::google::protobuf::MessageLite /* @@protoc_insertion_po
                &_SellItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   void Swap(SellItem* other);
   friend void swap(SellItem& a, SellItem& b) {
@@ -810,7 +915,7 @@ class RechargeItem : public ::google::protobuf::MessageLite /* @@protoc_insertio
                &_RechargeItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   void Swap(RechargeItem* other);
   friend void swap(RechargeItem& a, RechargeItem& b) {
@@ -911,7 +1016,7 @@ class RepairItem : public ::google::protobuf::MessageLite /* @@protoc_insertion_
                &_RepairItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   void Swap(RepairItem* other);
   friend void swap(RepairItem& a, RepairItem& b) {
@@ -1012,7 +1117,7 @@ class AttackMonster : public ::google::protobuf::MessageLite /* @@protoc_inserti
                &_AttackMonster_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   void Swap(AttackMonster* other);
   friend void swap(AttackMonster& a, AttackMonster& b) {
@@ -1113,7 +1218,7 @@ class AttackXY : public ::google::protobuf::MessageLite /* @@protoc_insertion_po
                &_AttackXY_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   void Swap(AttackXY* other);
   friend void swap(AttackXY& a, AttackXY& b) {
@@ -1221,7 +1326,7 @@ class OperateObject : public ::google::protobuf::MessageLite /* @@protoc_inserti
                &_OperateObject_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   void Swap(OperateObject* other);
   friend void swap(OperateObject& a, OperateObject& b) {
@@ -1322,7 +1427,7 @@ class UseBeltItem : public ::google::protobuf::MessageLite /* @@protoc_insertion
                &_UseBeltItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   void Swap(UseBeltItem* other);
   friend void swap(UseBeltItem& a, UseBeltItem& b) {
@@ -1423,7 +1528,7 @@ class ToggleCharacterSheet : public ::google::protobuf::MessageLite /* @@protoc_
                &_ToggleCharacterSheet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   void Swap(ToggleCharacterSheet* other);
   friend void swap(ToggleCharacterSheet& a, ToggleCharacterSheet& b) {
@@ -1517,7 +1622,7 @@ class IncreaseStat : public ::google::protobuf::MessageLite /* @@protoc_insertio
                &_IncreaseStat_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   void Swap(IncreaseStat* other);
   friend void swap(IncreaseStat& a, IncreaseStat& b) {
@@ -1618,7 +1723,7 @@ class GetItem : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
                &_GetItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   void Swap(GetItem* other);
   friend void swap(GetItem& a, GetItem& b) {
@@ -1719,7 +1824,7 @@ class SetSpell : public ::google::protobuf::MessageLite /* @@protoc_insertion_po
                &_SetSpell_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   void Swap(SetSpell* other);
   friend void swap(SetSpell& a, SetSpell& b) {
@@ -1827,7 +1932,7 @@ class CastMonster : public ::google::protobuf::MessageLite /* @@protoc_insertion
                &_CastMonster_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   void Swap(CastMonster* other);
   friend void swap(CastMonster& a, CastMonster& b) {
@@ -1928,7 +2033,7 @@ class CastXY : public ::google::protobuf::MessageLite /* @@protoc_insertion_poin
                &_CastXY_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   void Swap(CastXY* other);
   friend void swap(CastXY& a, CastXY& b) {
@@ -2036,7 +2141,7 @@ class ToggleInventory : public ::google::protobuf::MessageLite /* @@protoc_inser
                &_ToggleInventory_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   void Swap(ToggleInventory* other);
   friend void swap(ToggleInventory& a, ToggleInventory& b) {
@@ -2130,7 +2235,7 @@ class PutInCursor : public ::google::protobuf::MessageLite /* @@protoc_insertion
                &_PutInCursor_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   void Swap(PutInCursor* other);
   friend void swap(PutInCursor& a, PutInCursor& b) {
@@ -2231,7 +2336,7 @@ class PutCursorItem : public ::google::protobuf::MessageLite /* @@protoc_inserti
                &_PutCursorItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   void Swap(PutCursorItem* other);
   friend void swap(PutCursorItem& a, PutCursorItem& b) {
@@ -2332,7 +2437,7 @@ class DropCursorItem : public ::google::protobuf::MessageLite /* @@protoc_insert
                &_DropCursorItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   void Swap(DropCursorItem* other);
   friend void swap(DropCursorItem& a, DropCursorItem& b) {
@@ -2426,7 +2531,7 @@ class UseItem : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
                &_UseItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   void Swap(UseItem* other);
   friend void swap(UseItem& a, UseItem& b) {
@@ -2527,7 +2632,7 @@ class IdentifyStoreItem : public ::google::protobuf::MessageLite /* @@protoc_ins
                &_IdentifyStoreItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   void Swap(IdentifyStoreItem* other);
   friend void swap(IdentifyStoreItem& a, IdentifyStoreItem& b) {
@@ -2647,6 +2752,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
     kUseItem = 22,
     kIdentifyStoreItem = 23,
     kCancelQText = 24,
+    kSetFPS = 25,
     COMMAND_NOT_SET = 0,
   };
 
@@ -2656,7 +2762,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
                &_Command_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   void Swap(Command* other);
   friend void swap(Command& a, Command& b) {
@@ -2995,6 +3101,18 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   ::dapi::commands::CancelQText* mutable_cancelqtext();
   void set_allocated_cancelqtext(::dapi::commands::CancelQText* cancelqtext);
 
+  // .dapi.commands.SetFPS setFPS = 25;
+  bool has_setfps() const;
+  void clear_setfps();
+  static const int kSetFPSFieldNumber = 25;
+  private:
+  const ::dapi::commands::SetFPS& _internal_setfps() const;
+  public:
+  const ::dapi::commands::SetFPS& setfps() const;
+  ::dapi::commands::SetFPS* release_setfps();
+  ::dapi::commands::SetFPS* mutable_setfps();
+  void set_allocated_setfps(::dapi::commands::SetFPS* setfps);
+
   void clear_command();
   CommandCase command_case() const;
   // @@protoc_insertion_point(class_scope:dapi.commands.Command)
@@ -3023,6 +3141,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   void set_has_useitem();
   void set_has_identifystoreitem();
   void set_has_cancelqtext();
+  void set_has_setfps();
 
   inline bool has_command() const;
   inline void clear_has_command();
@@ -3054,6 +3173,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
     ::dapi::commands::UseItem* useitem_;
     ::dapi::commands::IdentifyStoreItem* identifystoreitem_;
     ::dapi::commands::CancelQText* cancelqtext_;
+    ::dapi::commands::SetFPS* setfps_;
   } command_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -3069,6 +3189,24 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// SetFPS
+
+// uint32 FPS = 1;
+inline void SetFPS::clear_fps() {
+  fps_ = 0u;
+}
+inline ::google::protobuf::uint32 SetFPS::fps() const {
+  // @@protoc_insertion_point(field_get:dapi.commands.SetFPS.FPS)
+  return fps_;
+}
+inline void SetFPS::set_fps(::google::protobuf::uint32 value) {
+  
+  fps_ = value;
+  // @@protoc_insertion_point(field_set:dapi.commands.SetFPS.FPS)
+}
+
+// -------------------------------------------------------------------
+
 // CancelQText
 
 // -------------------------------------------------------------------
@@ -4587,6 +4725,50 @@ inline ::dapi::commands::CancelQText* Command::mutable_cancelqtext() {
   return command_.cancelqtext_;
 }
 
+// .dapi.commands.SetFPS setFPS = 25;
+inline bool Command::has_setfps() const {
+  return command_case() == kSetFPS;
+}
+inline void Command::set_has_setfps() {
+  _oneof_case_[0] = kSetFPS;
+}
+inline void Command::clear_setfps() {
+  if (has_setfps()) {
+    delete command_.setfps_;
+    clear_has_command();
+  }
+}
+inline const ::dapi::commands::SetFPS& Command::_internal_setfps() const {
+  return *command_.setfps_;
+}
+inline ::dapi::commands::SetFPS* Command::release_setfps() {
+  // @@protoc_insertion_point(field_release:dapi.commands.Command.setFPS)
+  if (has_setfps()) {
+    clear_has_command();
+      ::dapi::commands::SetFPS* temp = command_.setfps_;
+    command_.setfps_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::dapi::commands::SetFPS& Command::setfps() const {
+  // @@protoc_insertion_point(field_get:dapi.commands.Command.setFPS)
+  return has_setfps()
+      ? *command_.setfps_
+      : *reinterpret_cast< ::dapi::commands::SetFPS*>(&::dapi::commands::_SetFPS_default_instance_);
+}
+inline ::dapi::commands::SetFPS* Command::mutable_setfps() {
+  if (!has_setfps()) {
+    clear_command();
+    set_has_setfps();
+    command_.setfps_ = CreateMaybeMessage< ::dapi::commands::SetFPS >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:dapi.commands.Command.setFPS)
+  return command_.setfps_;
+}
+
 inline bool Command::has_command() const {
   return command_case() != COMMAND_NOT_SET;
 }
@@ -4599,6 +4781,8 @@ inline Command::CommandCase Command::command_case() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -192,6 +192,13 @@ namespace DAPI
     return c;
   }
 
+  Command Command::setFPS(int fps)
+  {
+    Command c{ CommandType::SETFPS };
+    c.param1 = fps;
+    return c;
+  }
+
   Command Command::increaseStat(int stat)
   {
     Command c;

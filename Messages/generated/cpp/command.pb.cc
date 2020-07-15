@@ -35,6 +35,7 @@ extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::int
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_RepairItem;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SelectStoreOption;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SellItem;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SetFPS;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SetSpell;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Talk;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_ToggleCharacterSheet;
@@ -44,6 +45,11 @@ extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::int
 }  // namespace protobuf_command_2eproto
 namespace dapi {
 namespace commands {
+class SetFPSDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<SetFPS>
+      _instance;
+} _SetFPS_default_instance_;
 class CancelQTextDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<CancelQText>
@@ -192,10 +198,25 @@ class CommandDefaultTypeInternal {
   const ::dapi::commands::UseItem* useitem_;
   const ::dapi::commands::IdentifyStoreItem* identifystoreitem_;
   const ::dapi::commands::CancelQText* cancelqtext_;
+  const ::dapi::commands::SetFPS* setfps_;
 } _Command_default_instance_;
 }  // namespace commands
 }  // namespace dapi
 namespace protobuf_command_2eproto {
+static void InitDefaultsSetFPS() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::dapi::commands::_SetFPS_default_instance_;
+    new (ptr) ::dapi::commands::SetFPS();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::dapi::commands::SetFPS::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_SetFPS =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsSetFPS}, {}};
+
 static void InitDefaultsCancelQText() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -543,8 +564,8 @@ static void InitDefaultsCommand() {
   ::dapi::commands::Command::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<24> scc_info_Command =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 24, InitDefaultsCommand}, {
+::google::protobuf::internal::SCCInfo<25> scc_info_Command =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 25, InitDefaultsCommand}, {
       &protobuf_command_2eproto::scc_info_Move.base,
       &protobuf_command_2eproto::scc_info_Talk.base,
       &protobuf_command_2eproto::scc_info_SelectStoreOption.base,
@@ -568,9 +589,11 @@ static void InitDefaultsCommand() {
       &protobuf_command_2eproto::scc_info_DropCursorItem.base,
       &protobuf_command_2eproto::scc_info_UseItem.base,
       &protobuf_command_2eproto::scc_info_IdentifyStoreItem.base,
-      &protobuf_command_2eproto::scc_info_CancelQText.base,}};
+      &protobuf_command_2eproto::scc_info_CancelQText.base,
+      &protobuf_command_2eproto::scc_info_SetFPS.base,}};
 
 void InitDefaults() {
+  ::google::protobuf::internal::InitSCC(&scc_info_SetFPS.base);
   ::google::protobuf::internal::InitSCC(&scc_info_CancelQText.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Move.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Talk.base);
@@ -601,6 +624,187 @@ void InitDefaults() {
 }  // namespace protobuf_command_2eproto
 namespace dapi {
 namespace commands {
+
+// ===================================================================
+
+void SetFPS::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int SetFPS::kFPSFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+SetFPS::SetFPS()
+  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_command_2eproto::scc_info_SetFPS.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:dapi.commands.SetFPS)
+}
+SetFPS::SetFPS(const SetFPS& from)
+  : ::google::protobuf::MessageLite(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  fps_ = from.fps_;
+  // @@protoc_insertion_point(copy_constructor:dapi.commands.SetFPS)
+}
+
+void SetFPS::SharedCtor() {
+  fps_ = 0u;
+}
+
+SetFPS::~SetFPS() {
+  // @@protoc_insertion_point(destructor:dapi.commands.SetFPS)
+  SharedDtor();
+}
+
+void SetFPS::SharedDtor() {
+}
+
+void SetFPS::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const SetFPS& SetFPS::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_command_2eproto::scc_info_SetFPS.base);
+  return *internal_default_instance();
+}
+
+
+void SetFPS::Clear() {
+// @@protoc_insertion_point(message_clear_start:dapi.commands.SetFPS)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  fps_ = 0u;
+  _internal_metadata_.Clear();
+}
+
+bool SetFPS::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
+      &_internal_metadata_);
+  ::google::protobuf::io::StringOutputStream unknown_fields_output(
+      unknown_fields_setter.buffer());
+  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
+      &unknown_fields_output, false);
+  // @@protoc_insertion_point(parse_start:dapi.commands.SetFPS)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // uint32 FPS = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &fps_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+            input, tag, &unknown_fields_stream));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:dapi.commands.SetFPS)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:dapi.commands.SetFPS)
+  return false;
+#undef DO_
+}
+
+void SetFPS::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:dapi.commands.SetFPS)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 FPS = 1;
+  if (this->fps() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->fps(), output);
+  }
+
+  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
+                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  // @@protoc_insertion_point(serialize_end:dapi.commands.SetFPS)
+}
+
+size_t SetFPS::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dapi.commands.SetFPS)
+  size_t total_size = 0;
+
+  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
+
+  // uint32 FPS = 1;
+  if (this->fps() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->fps());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SetFPS::CheckTypeAndMergeFrom(
+    const ::google::protobuf::MessageLite& from) {
+  MergeFrom(*::google::protobuf::down_cast<const SetFPS*>(&from));
+}
+
+void SetFPS::MergeFrom(const SetFPS& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:dapi.commands.SetFPS)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.fps() != 0) {
+    set_fps(from.fps());
+  }
+}
+
+void SetFPS::CopyFrom(const SetFPS& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dapi.commands.SetFPS)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SetFPS::IsInitialized() const {
+  return true;
+}
+
+void SetFPS::Swap(SetFPS* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void SetFPS::InternalSwap(SetFPS* other) {
+  using std::swap;
+  swap(fps_, other->fps_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::std::string SetFPS::GetTypeName() const {
+  return "dapi.commands.SetFPS";
+}
+
 
 // ===================================================================
 
@@ -5346,6 +5550,20 @@ void Command::set_allocated_cancelqtext(::dapi::commands::CancelQText* cancelqte
   }
   // @@protoc_insertion_point(field_set_allocated:dapi.commands.Command.cancelQText)
 }
+void Command::set_allocated_setfps(::dapi::commands::SetFPS* setfps) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  clear_command();
+  if (setfps) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      setfps = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, setfps, submessage_arena);
+    }
+    set_has_setfps();
+    command_.setfps_ = setfps;
+  }
+  // @@protoc_insertion_point(field_set_allocated:dapi.commands.Command.setFPS)
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Command::kMoveFieldNumber;
 const int Command::kTalkFieldNumber;
@@ -5371,6 +5589,7 @@ const int Command::kDropCursorItemFieldNumber;
 const int Command::kUseItemFieldNumber;
 const int Command::kIdentifyStoreItemFieldNumber;
 const int Command::kCancelQTextFieldNumber;
+const int Command::kSetFPSFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Command::Command()
@@ -5480,6 +5699,10 @@ Command::Command(const Command& from)
     }
     case kCancelQText: {
       mutable_cancelqtext()->::dapi::commands::CancelQText::MergeFrom(from.cancelqtext());
+      break;
+    }
+    case kSetFPS: {
+      mutable_setfps()->::dapi::commands::SetFPS::MergeFrom(from.setfps());
       break;
     }
     case COMMAND_NOT_SET: {
@@ -5610,6 +5833,10 @@ void Command::clear_command() {
     }
     case kCancelQText: {
       delete command_.cancelqtext_;
+      break;
+    }
+    case kSetFPS: {
+      delete command_.setfps_;
       break;
     }
     case COMMAND_NOT_SET: {
@@ -5934,6 +6161,18 @@ bool Command::MergePartialFromCodedStream(
         break;
       }
 
+      // .dapi.commands.SetFPS setFPS = 25;
+      case 25: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(202u /* 202 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_setfps()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -6102,6 +6341,12 @@ void Command::SerializeWithCachedSizes(
   if (has_cancelqtext()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
       24, this->_internal_cancelqtext(), output);
+  }
+
+  // .dapi.commands.SetFPS setFPS = 25;
+  if (has_setfps()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      25, this->_internal_setfps(), output);
   }
 
   output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
@@ -6284,6 +6529,13 @@ size_t Command::ByteSizeLong() const {
           *command_.cancelqtext_);
       break;
     }
+    // .dapi.commands.SetFPS setFPS = 25;
+    case kSetFPS: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *command_.setfps_);
+      break;
+    }
     case COMMAND_NOT_SET: {
       break;
     }
@@ -6402,6 +6654,10 @@ void Command::MergeFrom(const Command& from) {
       mutable_cancelqtext()->::dapi::commands::CancelQText::MergeFrom(from.cancelqtext());
       break;
     }
+    case kSetFPS: {
+      mutable_setfps()->::dapi::commands::SetFPS::MergeFrom(from.setfps());
+      break;
+    }
     case COMMAND_NOT_SET: {
       break;
     }
@@ -6440,6 +6696,9 @@ void Command::InternalSwap(Command* other) {
 }  // namespace dapi
 namespace google {
 namespace protobuf {
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::SetFPS* Arena::CreateMaybeMessage< ::dapi::commands::SetFPS >(Arena* arena) {
+  return Arena::CreateInternal< ::dapi::commands::SetFPS >(arena);
+}
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::CancelQText* Arena::CreateMaybeMessage< ::dapi::commands::CancelQText >(Arena* arena) {
   return Arena::CreateInternal< ::dapi::commands::CancelQText >(arena);
 }

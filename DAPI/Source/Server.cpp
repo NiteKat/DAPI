@@ -4,8 +4,9 @@
 
 namespace DAPI
 {
-  Server::Server()
+  Server::Server() : FPS(20), gameClock(0)
   {
+    output.open("output.csv");
     data = std::make_unique<GameData>();
     for (int x = -8; x < 9; x++)
     {
@@ -83,8 +84,13 @@ namespace DAPI
 
   void Server::update()
   {
+    gameClock += 1000 / FPS;
     if (isConnected())
     {
+      //std::stringstream test;
+      //test << "\\x" << std::hex << msDelay;
+      //Patch((char*)0x440EBE, test.str().c_str(), 1);
+      //Patch((char*)0x440F53, test.str().c_str(), 1);
       updateGameData();
       protoClient.transmitMessages();
       protoClient.receiveMessages();
@@ -237,6 +243,12 @@ namespace DAPI
           this->cancelQText();
         }
         issuedCommand = true;
+        if (command.has_setfps())
+        {
+          auto setfps = command.setfps();
+          this->setFPS(setfps.fps());
+          issuedCommand = false;
+        }
       }
     }
   }
@@ -530,6 +542,7 @@ namespace DAPI
       update->set_qtext(*qtextptr);
     else
       update->set_qtext("");
+    update->set_fps(FPS);
 
     int range = 10;
     if (ScrollInfo->_sdir != 0) {
@@ -2711,5 +2724,10 @@ namespace DAPI
     *qtextflag = FALSE;
     data->qtextflag = false;
     stream_stop();
+  }
+
+  void Server::setFPS(int newFPS)
+  {
+    FPS = newFPS;
   }
 }

@@ -3,6 +3,10 @@ option optimize_for = LITE_RUNTIME;
 
 package dapi.commands;
 
+message SetFPS {
+	uint32 FPS = 1;
+}
+
 message CancelQText {
 
 }
@@ -131,5 +135,6 @@ message Command {
 		UseItem useItem = 22;
 		IdentifyStoreItem identifyStoreItem = 23;
 		CancelQText cancelQText = 24;
+		SetFPS setFPS = 25;
 	}
 }

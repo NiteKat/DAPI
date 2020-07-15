@@ -756,6 +756,11 @@ namespace DAPI
     return this->issueCommand(Command::cancelQText());
   }
 
+  bool Game::setFPS(int fps)
+  {
+    return this->issueCommand(Command::setFPS(fps));
+  }
+
   bool Game::issueCommand(Command command)
   {
     return client.issueCommand(command);

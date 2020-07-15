@@ -16,18 +16,19 @@ message FrameUpdate {
 	string qtext = 9;
 	uint32 currlevel = 10;
 	bool setlevel = 11;
+	uint32 fps = 12;
 	
-	repeated dapi.data.TileData dPiece = 12;
-	repeated dapi.data.PlayerData playerData = 13;
-	repeated dapi.data.ItemData itemData = 14;
-	repeated uint32 groundItemID = 15;
-	repeated dapi.data.TownerData townerData = 16;
-	repeated uint32 storeOption = 17;
-	repeated uint32 storeItems = 18;
-	repeated dapi.data.TriggerData triggerData = 19;
-	repeated dapi.data.MonsterData monsterData = 20;
-	repeated dapi.data.ObjectData objectData = 21;
-	repeated dapi.data.MissileData missileData = 22;
-	repeated dapi.data.PortalData portalData = 23;
-	repeated dapi.data.QuestData questData = 24;
+	repeated dapi.data.TileData dPiece = 13;
+	repeated dapi.data.PlayerData playerData = 14;
+	repeated dapi.data.ItemData itemData = 15;
+	repeated uint32 groundItemID = 16;
+	repeated dapi.data.TownerData townerData = 17;
+	repeated uint32 storeOption = 18;
+	repeated uint32 storeItems = 19;
+	repeated dapi.data.TriggerData triggerData = 20;
+	repeated dapi.data.MonsterData monsterData = 21;
+	repeated dapi.data.ObjectData objectData = 22;
+	repeated dapi.data.MissileData missileData = 23;
+	repeated dapi.data.PortalData portalData = 24;
+	repeated dapi.data.QuestData questData = 25;
 }

@@ -1,9 +1,13 @@
 #pragma once
 
 #include <memory>
+#include <fstream>
+#include <sstream>
 
 #include "GameData.h"
 #include "../../DAPIBackendCore/DAPIProtoClient.h"
+
+
 
 namespace DAPI
 {
@@ -183,6 +187,10 @@ namespace DAPI
     void update();
     bool isConnected() const;
 
+    int FPS;
+    int gameClock;
+    std::ofstream output;
+
   private:
     void processMessages();
     void checkForConnections();
@@ -213,6 +221,7 @@ namespace DAPI
     void identifyStoreItem(int itemID);
     void castSpell(int x, int y);
     void cancelQText();
+    void setFPS(int newFPS);
 
     bool listening = false;
 

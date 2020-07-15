@@ -8,9 +8,11 @@
 typedef unsigned __int32 u32;
 
 static const u32 hook_function = 0x408A06;
-static const u32 speed_offset = 0x441219;
+static const u32 speed_offset = 0x4411EF;
 
 DAPI::Game Diablo;
+
+bool speedHackResult;
 
 HANDLE CreateUniqueEvent()
 {
@@ -27,6 +29,62 @@ HANDLE CreateUniqueEvent()
 void __declspec(noinline) updateGameData()
 {
   return;
+}
+
+BOOL new_nthread_has_500ms_passed()
+{
+  auto gbMaxPlayers = reinterpret_cast<int(*)>(0x679660);
+
+  DWORD currentTickCount;
+  int ticksElapsed;
+
+  currentTickCount = GetTickCount();
+  ticksElapsed = currentTickCount - Diablo.server.gameClock;
+  //Diablo.server.output << currentTickCount << "," << *last_tick << std::endl;
+  if (*gbMaxPlayers == 1 && ticksElapsed > 500 ) {
+    Diablo.server.gameClock = currentTickCount;
+    ticksElapsed = 0;
+  }
+  return ticksElapsed >= 0;
+}
+
+[[noreturn]] __declspec(naked) void trampoline2()
+{
+  //Save Registers
+  //__asm { pushad }
+  //{
+    //Enter trampoline
+    /*__asm {
+      push ebp
+      mov ebp, esp
+    }*/
+
+    speedHackResult = new_nthread_has_500ms_passed();
+
+    //Simulate return
+    /*__asm {
+      pop ebp
+    }*/
+  //}
+
+  //restore registers
+  //__asm { popad }
+
+  static auto target2 = reinterpret_cast<void(*)>(0x44121C);
+  if (speedHackResult)
+  {
+    __asm {
+      mov al, 0x1
+      jmp target2
+    }
+  }
+  else
+  {
+    __asm {
+      mov al, 0x0
+      jmp target2
+    }
+  }
 }
 
 [[noreturn]] __declspec(naked) void trampoline()
@@ -80,7 +138,7 @@ BOOL APIENTRY DllMain(HMODULE, DWORD ul_reason_for_call, LPVOID)
       return FALSE;
     auto process = GetCurrentProcess();
     PlaceDetour(hook_function, (DWORD)trampoline, 0, true);
-    Patch(speed_offset, "\xB0\x01\x90", 0);
+    PlaceDetour(speed_offset, (DWORD)trampoline2, 0, true);
     break;
   }
   return TRUE;

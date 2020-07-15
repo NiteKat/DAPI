@@ -32,6 +32,7 @@ namespace DAPI
     std::string qtext;
     int currlevel;
     bool setlevel;
+    int FPS;
     
     std::map<int, Player> playerList;
     std::map<int, Item> itemList;
