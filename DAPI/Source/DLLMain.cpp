@@ -51,24 +51,24 @@ BOOL new_nthread_has_500ms_passed()
 [[noreturn]] __declspec(naked) void trampoline2()
 {
   //Save Registers
-  //__asm { pushad }
-  //{
+  __asm { pushad }
+  {
     //Enter trampoline
-    /*__asm {
+    __asm {
       push ebp
       mov ebp, esp
-    }*/
+    }
 
     speedHackResult = new_nthread_has_500ms_passed();
 
     //Simulate return
-    /*__asm {
+    __asm {
       pop ebp
-    }*/
-  //}
+    }
+  }
 
   //restore registers
-  //__asm { popad }
+  __asm { popad }
 
   static auto target2 = reinterpret_cast<void(*)>(0x44121C);
   if (speedHackResult)
