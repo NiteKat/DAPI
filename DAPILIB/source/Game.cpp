@@ -407,6 +407,19 @@ namespace DAPI
     if (!OKToAct())
       return false;
 
+    bool found = false;
+    for (auto ob : data->objectList)
+    {
+      if (ob.data->index == object.data->index)
+      {
+        found = true;
+        break;
+      }
+    }
+
+    if (!found)
+      return false;
+
     return this->issueCommand(Command::operateObject(object));
   }
 

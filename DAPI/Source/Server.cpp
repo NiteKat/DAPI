@@ -313,6 +313,7 @@ namespace DAPI
     auto setlvlnum = reinterpret_cast<BYTE(*)>(0x5CCB10);
     auto numtrigs = reinterpret_cast<int(*)>(0x6ABAD8);
     auto quests = reinterpret_cast<DiabloInternal::QuestStruct(*)>(0x69BD10);
+    auto dObject = reinterpret_cast<char(*)[112][112]>(0x539C48);
 
     auto fullFillItemInfo = [&](int itemID, DiabloInternal::ItemStruct* item) {
 
@@ -1428,7 +1429,8 @@ namespace DAPI
     {
       for (int i = 0; i < *nobjects; i++)
       {
-        if (isOnScreen(object[objectactive[i]]._ox, object[objectactive[i]]._oy))
+        if (isOnScreen(object[objectactive[i]]._ox, object[objectactive[i]]._oy) &&
+            (*dObject)[object[objectactive[i]]._ox][object[objectactive[i]]._oy] == objectactive[i] + 1)
         {
           fillObject(objectactive[i], object[objectactive[i]]);
           /*switch (static_cast<DiabloInternal::ObjectID>(object[i]._otype))
@@ -2195,6 +2197,8 @@ namespace DAPI
   void Server::operateObject(int index)
   {
     auto object = reinterpret_cast<DiabloInternal::ObjectStruct(*)>(0x679C38);
+    auto nobjects = reinterpret_cast<int(*)>(0x679A34);
+    auto objectactive = reinterpret_cast<int(*)>(0x679838);
     auto NetSendCmdLocParam1 = reinterpret_cast<void(__fastcall*)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1)>(0x43C8F3);
 
     if (index < 0 || 126 < index)
@@ -2204,6 +2208,19 @@ namespace DAPI
       return;
 
     if (!OKToAct())
+      return;
+
+    bool found = false;
+    for (int i = 0; i < *nobjects; i++)
+    {
+      if (objectactive[i] == index)
+      {
+        found = true;
+        break;
+      }
+    }
+
+    if (!found)
       return;
 
     NetSendCmdLocParam1(1u, static_cast<unsigned char>(CommandType::OPOBJXY), object[index]._ox, object[index]._oy, index);
