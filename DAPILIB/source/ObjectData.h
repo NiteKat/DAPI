@@ -151,5 +151,6 @@ namespace DAPI
     DoorState doorState;
     bool selectable;
     int index;
+    bool trapped;
   };
 }

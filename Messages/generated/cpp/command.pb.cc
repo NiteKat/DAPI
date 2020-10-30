@@ -23,6 +23,7 @@ extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::int
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_CancelQText;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_CastMonster;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_CastXY;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_DisarmTrap;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_DropCursorItem;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_GetItem;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_IdentifyStoreItem;
@@ -170,6 +171,11 @@ class IdentifyStoreItemDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<IdentifyStoreItem>
       _instance;
 } _IdentifyStoreItem_default_instance_;
+class DisarmTrapDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<DisarmTrap>
+      _instance;
+} _DisarmTrap_default_instance_;
 class CommandDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<Command>
@@ -199,6 +205,7 @@ class CommandDefaultTypeInternal {
   const ::dapi::commands::IdentifyStoreItem* identifystoreitem_;
   const ::dapi::commands::CancelQText* cancelqtext_;
   const ::dapi::commands::SetFPS* setfps_;
+  const ::dapi::commands::DisarmTrap* disarmtrap_;
 } _Command_default_instance_;
 }  // namespace commands
 }  // namespace dapi
@@ -553,6 +560,20 @@ static void InitDefaultsIdentifyStoreItem() {
 ::google::protobuf::internal::SCCInfo<0> scc_info_IdentifyStoreItem =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsIdentifyStoreItem}, {}};
 
+static void InitDefaultsDisarmTrap() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::dapi::commands::_DisarmTrap_default_instance_;
+    new (ptr) ::dapi::commands::DisarmTrap();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::dapi::commands::DisarmTrap::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_DisarmTrap =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsDisarmTrap}, {}};
+
 static void InitDefaultsCommand() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -564,8 +585,8 @@ static void InitDefaultsCommand() {
   ::dapi::commands::Command::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<25> scc_info_Command =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 25, InitDefaultsCommand}, {
+::google::protobuf::internal::SCCInfo<26> scc_info_Command =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 26, InitDefaultsCommand}, {
       &protobuf_command_2eproto::scc_info_Move.base,
       &protobuf_command_2eproto::scc_info_Talk.base,
       &protobuf_command_2eproto::scc_info_SelectStoreOption.base,
@@ -590,7 +611,8 @@ static void InitDefaultsCommand() {
       &protobuf_command_2eproto::scc_info_UseItem.base,
       &protobuf_command_2eproto::scc_info_IdentifyStoreItem.base,
       &protobuf_command_2eproto::scc_info_CancelQText.base,
-      &protobuf_command_2eproto::scc_info_SetFPS.base,}};
+      &protobuf_command_2eproto::scc_info_SetFPS.base,
+      &protobuf_command_2eproto::scc_info_DisarmTrap.base,}};
 
 void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_SetFPS.base);
@@ -618,6 +640,7 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_DropCursorItem.base);
   ::google::protobuf::internal::InitSCC(&scc_info_UseItem.base);
   ::google::protobuf::internal::InitSCC(&scc_info_IdentifyStoreItem.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_DisarmTrap.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Command.base);
 }
 
@@ -5212,6 +5235,187 @@ void IdentifyStoreItem::InternalSwap(IdentifyStoreItem* other) {
 
 // ===================================================================
 
+void DisarmTrap::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int DisarmTrap::kIndexFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+DisarmTrap::DisarmTrap()
+  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_command_2eproto::scc_info_DisarmTrap.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:dapi.commands.DisarmTrap)
+}
+DisarmTrap::DisarmTrap(const DisarmTrap& from)
+  : ::google::protobuf::MessageLite(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  index_ = from.index_;
+  // @@protoc_insertion_point(copy_constructor:dapi.commands.DisarmTrap)
+}
+
+void DisarmTrap::SharedCtor() {
+  index_ = 0u;
+}
+
+DisarmTrap::~DisarmTrap() {
+  // @@protoc_insertion_point(destructor:dapi.commands.DisarmTrap)
+  SharedDtor();
+}
+
+void DisarmTrap::SharedDtor() {
+}
+
+void DisarmTrap::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const DisarmTrap& DisarmTrap::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_command_2eproto::scc_info_DisarmTrap.base);
+  return *internal_default_instance();
+}
+
+
+void DisarmTrap::Clear() {
+// @@protoc_insertion_point(message_clear_start:dapi.commands.DisarmTrap)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  index_ = 0u;
+  _internal_metadata_.Clear();
+}
+
+bool DisarmTrap::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
+      &_internal_metadata_);
+  ::google::protobuf::io::StringOutputStream unknown_fields_output(
+      unknown_fields_setter.buffer());
+  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
+      &unknown_fields_output, false);
+  // @@protoc_insertion_point(parse_start:dapi.commands.DisarmTrap)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // uint32 index = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &index_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+            input, tag, &unknown_fields_stream));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:dapi.commands.DisarmTrap)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:dapi.commands.DisarmTrap)
+  return false;
+#undef DO_
+}
+
+void DisarmTrap::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:dapi.commands.DisarmTrap)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 index = 1;
+  if (this->index() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->index(), output);
+  }
+
+  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
+                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  // @@protoc_insertion_point(serialize_end:dapi.commands.DisarmTrap)
+}
+
+size_t DisarmTrap::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dapi.commands.DisarmTrap)
+  size_t total_size = 0;
+
+  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
+
+  // uint32 index = 1;
+  if (this->index() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->index());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void DisarmTrap::CheckTypeAndMergeFrom(
+    const ::google::protobuf::MessageLite& from) {
+  MergeFrom(*::google::protobuf::down_cast<const DisarmTrap*>(&from));
+}
+
+void DisarmTrap::MergeFrom(const DisarmTrap& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:dapi.commands.DisarmTrap)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.index() != 0) {
+    set_index(from.index());
+  }
+}
+
+void DisarmTrap::CopyFrom(const DisarmTrap& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dapi.commands.DisarmTrap)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DisarmTrap::IsInitialized() const {
+  return true;
+}
+
+void DisarmTrap::Swap(DisarmTrap* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void DisarmTrap::InternalSwap(DisarmTrap* other) {
+  using std::swap;
+  swap(index_, other->index_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::std::string DisarmTrap::GetTypeName() const {
+  return "dapi.commands.DisarmTrap";
+}
+
+
+// ===================================================================
+
 void Command::InitAsDefaultInstance() {
 }
 void Command::set_allocated_move(::dapi::commands::Move* move) {
@@ -5564,6 +5768,20 @@ void Command::set_allocated_setfps(::dapi::commands::SetFPS* setfps) {
   }
   // @@protoc_insertion_point(field_set_allocated:dapi.commands.Command.setFPS)
 }
+void Command::set_allocated_disarmtrap(::dapi::commands::DisarmTrap* disarmtrap) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  clear_command();
+  if (disarmtrap) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      disarmtrap = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, disarmtrap, submessage_arena);
+    }
+    set_has_disarmtrap();
+    command_.disarmtrap_ = disarmtrap;
+  }
+  // @@protoc_insertion_point(field_set_allocated:dapi.commands.Command.disarmTrap)
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Command::kMoveFieldNumber;
 const int Command::kTalkFieldNumber;
@@ -5590,6 +5808,7 @@ const int Command::kUseItemFieldNumber;
 const int Command::kIdentifyStoreItemFieldNumber;
 const int Command::kCancelQTextFieldNumber;
 const int Command::kSetFPSFieldNumber;
+const int Command::kDisarmTrapFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Command::Command()
@@ -5703,6 +5922,10 @@ Command::Command(const Command& from)
     }
     case kSetFPS: {
       mutable_setfps()->::dapi::commands::SetFPS::MergeFrom(from.setfps());
+      break;
+    }
+    case kDisarmTrap: {
+      mutable_disarmtrap()->::dapi::commands::DisarmTrap::MergeFrom(from.disarmtrap());
       break;
     }
     case COMMAND_NOT_SET: {
@@ -5837,6 +6060,10 @@ void Command::clear_command() {
     }
     case kSetFPS: {
       delete command_.setfps_;
+      break;
+    }
+    case kDisarmTrap: {
+      delete command_.disarmtrap_;
       break;
     }
     case COMMAND_NOT_SET: {
@@ -6173,6 +6400,18 @@ bool Command::MergePartialFromCodedStream(
         break;
       }
 
+      // .dapi.commands.DisarmTrap disarmTrap = 26;
+      case 26: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(210u /* 210 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_disarmtrap()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -6347,6 +6586,12 @@ void Command::SerializeWithCachedSizes(
   if (has_setfps()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
       25, this->_internal_setfps(), output);
+  }
+
+  // .dapi.commands.DisarmTrap disarmTrap = 26;
+  if (has_disarmtrap()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      26, this->_internal_disarmtrap(), output);
   }
 
   output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
@@ -6536,6 +6781,13 @@ size_t Command::ByteSizeLong() const {
           *command_.setfps_);
       break;
     }
+    // .dapi.commands.DisarmTrap disarmTrap = 26;
+    case kDisarmTrap: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *command_.disarmtrap_);
+      break;
+    }
     case COMMAND_NOT_SET: {
       break;
     }
@@ -6658,6 +6910,10 @@ void Command::MergeFrom(const Command& from) {
       mutable_setfps()->::dapi::commands::SetFPS::MergeFrom(from.setfps());
       break;
     }
+    case kDisarmTrap: {
+      mutable_disarmtrap()->::dapi::commands::DisarmTrap::MergeFrom(from.disarmtrap());
+      break;
+    }
     case COMMAND_NOT_SET: {
       break;
     }
@@ -6770,6 +7026,9 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::UseItem* Arena::
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::IdentifyStoreItem* Arena::CreateMaybeMessage< ::dapi::commands::IdentifyStoreItem >(Arena* arena) {
   return Arena::CreateInternal< ::dapi::commands::IdentifyStoreItem >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::DisarmTrap* Arena::CreateMaybeMessage< ::dapi::commands::DisarmTrap >(Arena* arena) {
+  return Arena::CreateInternal< ::dapi::commands::DisarmTrap >(arena);
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::Command* Arena::CreateMaybeMessage< ::dapi::commands::Command >(Arena* arena) {
   return Arena::CreateInternal< ::dapi::commands::Command >(arena);

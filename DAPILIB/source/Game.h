@@ -22,6 +22,7 @@ namespace DAPI
     bool isSetLevel() { return data->setlevel; }
     Quest getQuest(QuestID id);
     int getFPS() { return data->FPS; }
+    int getCursor() { return data->cursor; }
 
     std::vector<std::shared_ptr<Item>> getItemsOnGround();
     std::vector<std::shared_ptr<Towner>> getTowners();
@@ -69,6 +70,7 @@ namespace DAPI
     bool castSpellXY(int x, int y);
     bool cancelQText();
     bool setFPS(int fps);
+    bool disarmTrap(Object object);
     bool issueCommand(Command command);
     
     std::map<std::pair<int, int>, bool> panelScreenCheck;

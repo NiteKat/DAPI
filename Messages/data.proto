@@ -33,6 +33,7 @@ message ObjectData {
 	sint32 doorState = 6;
 	bool selectable = 7;
 	uint32 index = 8;
+	bool trapped = 9;
 }
 
 message MonsterData {

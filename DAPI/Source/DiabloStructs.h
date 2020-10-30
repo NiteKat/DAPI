@@ -225,6 +225,22 @@ enum struct ObjectID {
   NULL_98 = 0x62,
 };
 
+enum struct cursor_id {
+  CURSOR_NONE = 0x0,
+  CURSOR_HAND = 0x1,
+  CURSOR_IDENTIFY = 0x2,
+  CURSOR_REPAIR = 0x3,
+  CURSOR_RECHARGE = 0x4,
+  CURSOR_DISARM = 0x5,
+  CURSOR_OIL = 0x6,
+  CURSOR_TELEKINESIS = 0x7,
+  CURSOR_RESURRECT = 0x8,
+  CURSOR_TELEPORT = 0x9,
+  CURSOR_HEALOTHER = 0xA,
+  CURSOR_HOURGLASS = 0xB,
+  CURSOR_FIRSTITEM = 0xC,
+};
+
   typedef struct ObjectStruct {
     int _otype;
     int _ox;

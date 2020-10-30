@@ -1081,6 +1081,7 @@ const int ObjectData::kSolidFieldNumber;
 const int ObjectData::kDoorStateFieldNumber;
 const int ObjectData::kSelectableFieldNumber;
 const int ObjectData::kIndexFieldNumber;
+const int ObjectData::kTrappedFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 ObjectData::ObjectData()
@@ -1263,6 +1264,20 @@ bool ObjectData::MergePartialFromCodedStream(
         break;
       }
 
+      // bool trapped = 9;
+      case 9: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(72u /* 72 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &trapped_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -1329,6 +1344,11 @@ void ObjectData::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(8, this->index(), output);
   }
 
+  // bool trapped = 9;
+  if (this->trapped() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(9, this->trapped(), output);
+  }
+
   output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
                    static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
   // @@protoc_insertion_point(serialize_end:dapi.data.ObjectData)
@@ -1385,6 +1405,11 @@ size_t ObjectData::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
+  // bool trapped = 9;
+  if (this->trapped() != 0) {
+    total_size += 1 + 1;
+  }
+
   // uint32 index = 8;
   if (this->index() != 0) {
     total_size += 1 +
@@ -1430,6 +1455,9 @@ void ObjectData::MergeFrom(const ObjectData& from) {
   if (from.selectable() != 0) {
     set_selectable(from.selectable());
   }
+  if (from.trapped() != 0) {
+    set_trapped(from.trapped());
+  }
   if (from.index() != 0) {
     set_index(from.index());
   }
@@ -1459,6 +1487,7 @@ void ObjectData::InternalSwap(ObjectData* other) {
   swap(doorstate_, other->doorstate_);
   swap(solid_, other->solid_);
   swap(selectable_, other->selectable_);
+  swap(trapped_, other->trapped_);
   swap(index_, other->index_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }

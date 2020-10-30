@@ -14,6 +14,7 @@ namespace DAPI
     bool isSolid() { return data->solid; }
     DoorState getDoorState() { return data->doorState; }
     bool isSelectable() { return data->selectable; }
+    bool isTrapped() { return data->trapped; }
 
     std::shared_ptr<ObjectData> data;
   };

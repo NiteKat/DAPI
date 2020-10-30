@@ -199,6 +199,13 @@ namespace DAPI
     return c;
   }
 
+  Command Command::disarmTrap(Object object)
+  {
+    Command c{ CommandType::DISARMXY };
+    c.param1 = object.data->index;
+    return c;
+  }
+
   Command Command::increaseStat(int stat)
   {
     Command c;

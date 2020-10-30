@@ -37,7 +37,7 @@ namespace protobuf_command_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[26];
+  static const ::google::protobuf::internal::ParseTable schema[27];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -66,6 +66,9 @@ extern CastXYDefaultTypeInternal _CastXY_default_instance_;
 class Command;
 class CommandDefaultTypeInternal;
 extern CommandDefaultTypeInternal _Command_default_instance_;
+class DisarmTrap;
+class DisarmTrapDefaultTypeInternal;
+extern DisarmTrapDefaultTypeInternal _DisarmTrap_default_instance_;
 class DropCursorItem;
 class DropCursorItemDefaultTypeInternal;
 extern DropCursorItemDefaultTypeInternal _DropCursorItem_default_instance_;
@@ -134,6 +137,7 @@ template<> ::dapi::commands::CancelQText* Arena::CreateMaybeMessage<::dapi::comm
 template<> ::dapi::commands::CastMonster* Arena::CreateMaybeMessage<::dapi::commands::CastMonster>(Arena*);
 template<> ::dapi::commands::CastXY* Arena::CreateMaybeMessage<::dapi::commands::CastXY>(Arena*);
 template<> ::dapi::commands::Command* Arena::CreateMaybeMessage<::dapi::commands::Command>(Arena*);
+template<> ::dapi::commands::DisarmTrap* Arena::CreateMaybeMessage<::dapi::commands::DisarmTrap>(Arena*);
 template<> ::dapi::commands::DropCursorItem* Arena::CreateMaybeMessage<::dapi::commands::DropCursorItem>(Arena*);
 template<> ::dapi::commands::GetItem* Arena::CreateMaybeMessage<::dapi::commands::GetItem>(Arena*);
 template<> ::dapi::commands::IdentifyStoreItem* Arena::CreateMaybeMessage<::dapi::commands::IdentifyStoreItem>(Arena*);
@@ -2699,6 +2703,107 @@ class IdentifyStoreItem : public ::google::protobuf::MessageLite /* @@protoc_ins
 };
 // -------------------------------------------------------------------
 
+class DisarmTrap : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.commands.DisarmTrap) */ {
+ public:
+  DisarmTrap();
+  virtual ~DisarmTrap();
+
+  DisarmTrap(const DisarmTrap& from);
+
+  inline DisarmTrap& operator=(const DisarmTrap& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  DisarmTrap(DisarmTrap&& from) noexcept
+    : DisarmTrap() {
+    *this = ::std::move(from);
+  }
+
+  inline DisarmTrap& operator=(DisarmTrap&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const DisarmTrap& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const DisarmTrap* internal_default_instance() {
+    return reinterpret_cast<const DisarmTrap*>(
+               &_DisarmTrap_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    25;
+
+  void Swap(DisarmTrap* other);
+  friend void swap(DisarmTrap& a, DisarmTrap& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DisarmTrap* New() const final {
+    return CreateMaybeMessage<DisarmTrap>(NULL);
+  }
+
+  DisarmTrap* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<DisarmTrap>(arena);
+  }
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    final;
+  void CopyFrom(const DisarmTrap& from);
+  void MergeFrom(const DisarmTrap& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  void DiscardUnknownFields();
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(DisarmTrap* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::std::string GetTypeName() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // uint32 index = 1;
+  void clear_index();
+  static const int kIndexFieldNumber = 1;
+  ::google::protobuf::uint32 index() const;
+  void set_index(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:dapi.commands.DisarmTrap)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::uint32 index_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_command_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.commands.Command) */ {
  public:
   Command();
@@ -2753,6 +2858,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
     kIdentifyStoreItem = 23,
     kCancelQText = 24,
     kSetFPS = 25,
+    kDisarmTrap = 26,
     COMMAND_NOT_SET = 0,
   };
 
@@ -2762,7 +2868,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
                &_Command_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    26;
 
   void Swap(Command* other);
   friend void swap(Command& a, Command& b) {
@@ -3113,6 +3219,18 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   ::dapi::commands::SetFPS* mutable_setfps();
   void set_allocated_setfps(::dapi::commands::SetFPS* setfps);
 
+  // .dapi.commands.DisarmTrap disarmTrap = 26;
+  bool has_disarmtrap() const;
+  void clear_disarmtrap();
+  static const int kDisarmTrapFieldNumber = 26;
+  private:
+  const ::dapi::commands::DisarmTrap& _internal_disarmtrap() const;
+  public:
+  const ::dapi::commands::DisarmTrap& disarmtrap() const;
+  ::dapi::commands::DisarmTrap* release_disarmtrap();
+  ::dapi::commands::DisarmTrap* mutable_disarmtrap();
+  void set_allocated_disarmtrap(::dapi::commands::DisarmTrap* disarmtrap);
+
   void clear_command();
   CommandCase command_case() const;
   // @@protoc_insertion_point(class_scope:dapi.commands.Command)
@@ -3142,6 +3260,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   void set_has_identifystoreitem();
   void set_has_cancelqtext();
   void set_has_setfps();
+  void set_has_disarmtrap();
 
   inline bool has_command() const;
   inline void clear_has_command();
@@ -3174,6 +3293,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
     ::dapi::commands::IdentifyStoreItem* identifystoreitem_;
     ::dapi::commands::CancelQText* cancelqtext_;
     ::dapi::commands::SetFPS* setfps_;
+    ::dapi::commands::DisarmTrap* disarmtrap_;
   } command_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -3663,6 +3783,24 @@ inline void IdentifyStoreItem::set_id(::google::protobuf::uint32 value) {
   
   id_ = value;
   // @@protoc_insertion_point(field_set:dapi.commands.IdentifyStoreItem.ID)
+}
+
+// -------------------------------------------------------------------
+
+// DisarmTrap
+
+// uint32 index = 1;
+inline void DisarmTrap::clear_index() {
+  index_ = 0u;
+}
+inline ::google::protobuf::uint32 DisarmTrap::index() const {
+  // @@protoc_insertion_point(field_get:dapi.commands.DisarmTrap.index)
+  return index_;
+}
+inline void DisarmTrap::set_index(::google::protobuf::uint32 value) {
+  
+  index_ = value;
+  // @@protoc_insertion_point(field_set:dapi.commands.DisarmTrap.index)
 }
 
 // -------------------------------------------------------------------
@@ -4769,6 +4907,50 @@ inline ::dapi::commands::SetFPS* Command::mutable_setfps() {
   return command_.setfps_;
 }
 
+// .dapi.commands.DisarmTrap disarmTrap = 26;
+inline bool Command::has_disarmtrap() const {
+  return command_case() == kDisarmTrap;
+}
+inline void Command::set_has_disarmtrap() {
+  _oneof_case_[0] = kDisarmTrap;
+}
+inline void Command::clear_disarmtrap() {
+  if (has_disarmtrap()) {
+    delete command_.disarmtrap_;
+    clear_has_command();
+  }
+}
+inline const ::dapi::commands::DisarmTrap& Command::_internal_disarmtrap() const {
+  return *command_.disarmtrap_;
+}
+inline ::dapi::commands::DisarmTrap* Command::release_disarmtrap() {
+  // @@protoc_insertion_point(field_release:dapi.commands.Command.disarmTrap)
+  if (has_disarmtrap()) {
+    clear_has_command();
+      ::dapi::commands::DisarmTrap* temp = command_.disarmtrap_;
+    command_.disarmtrap_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::dapi::commands::DisarmTrap& Command::disarmtrap() const {
+  // @@protoc_insertion_point(field_get:dapi.commands.Command.disarmTrap)
+  return has_disarmtrap()
+      ? *command_.disarmtrap_
+      : *reinterpret_cast< ::dapi::commands::DisarmTrap*>(&::dapi::commands::_DisarmTrap_default_instance_);
+}
+inline ::dapi::commands::DisarmTrap* Command::mutable_disarmtrap() {
+  if (!has_disarmtrap()) {
+    clear_command();
+    set_has_disarmtrap();
+    command_.disarmtrap_ = CreateMaybeMessage< ::dapi::commands::DisarmTrap >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:dapi.commands.Command.disarmTrap)
+  return command_.disarmtrap_;
+}
+
 inline bool Command::has_command() const {
   return command_case() != COMMAND_NOT_SET;
 }
@@ -4781,6 +4963,8 @@ inline Command::CommandCase Command::command_case() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

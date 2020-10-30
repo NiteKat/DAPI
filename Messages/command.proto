@@ -109,6 +109,10 @@ message IdentifyStoreItem {
 	uint32 ID = 1;
 }
 
+message DisarmTrap {
+	uint32 index = 1;
+}
+
 message Command {
 	oneof command {
 		Move move = 1;
@@ -136,5 +140,6 @@ message Command {
 		IdentifyStoreItem identifyStoreItem = 23;
 		CancelQText cancelQText = 24;
 		SetFPS setFPS = 25;
+		DisarmTrap disarmTrap = 26;
 	}
 }

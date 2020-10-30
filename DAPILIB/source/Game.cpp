@@ -774,6 +774,18 @@ namespace DAPI
     return this->issueCommand(Command::setFPS(fps));
   }
 
+  bool Game::disarmTrap(Object object)
+  {
+    if (static_cast<DAPI::CursorType>(data->cursor) != DAPI::CursorType::DISARM)
+      return false;
+
+    if (data->playerList[data->player].getClass().getID() != DAPI::ClassID::ROGUE)
+      return false;
+
+    return this->issueCommand(Command::disarmTrap(object));
+
+  }
+
   bool Game::issueCommand(Command command)
   {
     return client.issueCommand(command);

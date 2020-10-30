@@ -475,7 +475,7 @@ int main(int argc, const char* argv[])
         //  Diablo.selectStoreOption(DAPI::StoreOption::RECHARGE);
         //testStore(Diablo);
         displaySolidMap(Diablo);
-        //displayTriggers(Diablo);
+        displayTriggers(Diablo);
         //displayMonsters(Diablo);
         //output << Diablo.self().getX() << ", " << Diablo.self().getY();
         //displayInvGrid(Diablo);

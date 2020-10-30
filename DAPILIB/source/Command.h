@@ -41,6 +41,7 @@ namespace DAPI
     static Command castSpellXY(int x, int y);
     static Command cancelQText();
     static Command setFPS(int fps);
+    static Command disarmTrap(Object object);
 
     CommandType type;
     int targetX;

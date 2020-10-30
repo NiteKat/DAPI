@@ -589,6 +589,12 @@ class ObjectData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   bool selectable() const;
   void set_selectable(bool value);
 
+  // bool trapped = 9;
+  void clear_trapped();
+  static const int kTrappedFieldNumber = 9;
+  bool trapped() const;
+  void set_trapped(bool value);
+
   // uint32 index = 8;
   void clear_index();
   static const int kIndexFieldNumber = 8;
@@ -606,6 +612,7 @@ class ObjectData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::google::protobuf::int32 doorstate_;
   bool solid_;
   bool selectable_;
+  bool trapped_;
   ::google::protobuf::uint32 index_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_data_2eproto::TableStruct;
@@ -2390,6 +2397,20 @@ inline void ObjectData::set_index(::google::protobuf::uint32 value) {
   
   index_ = value;
   // @@protoc_insertion_point(field_set:dapi.data.ObjectData.index)
+}
+
+// bool trapped = 9;
+inline void ObjectData::clear_trapped() {
+  trapped_ = false;
+}
+inline bool ObjectData::trapped() const {
+  // @@protoc_insertion_point(field_get:dapi.data.ObjectData.trapped)
+  return trapped_;
+}
+inline void ObjectData::set_trapped(bool value) {
+  
+  trapped_ = value;
+  // @@protoc_insertion_point(field_set:dapi.data.ObjectData.trapped)
 }
 
 // -------------------------------------------------------------------

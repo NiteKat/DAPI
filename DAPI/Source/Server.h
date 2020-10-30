@@ -222,6 +222,7 @@ namespace DAPI
     void castSpell(int x, int y);
     void cancelQText();
     void setFPS(int newFPS);
+    void disarmTrap(int index);
 
     bool listening = false;
 

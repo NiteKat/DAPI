@@ -242,6 +242,11 @@ namespace DAPI
         {
           this->cancelQText();
         }
+        else if (command.has_disarmtrap())
+        {
+          auto disarmTrap = command.disarmtrap();
+          this->disarmTrap(disarmTrap.index());
+        }
         issuedCommand = true;
         if (command.has_setfps())
         {
@@ -1404,6 +1409,10 @@ namespace DAPI
         o->set_doorstate(ob._oVar4);
         break;
       }
+      if (static_cast<DiabloInternal::PlayerClasses>(plr[*myplr]._pClass) == DiabloInternal::PlayerClasses::ROGUE)
+        o->set_trapped(ob._oTrapFlag);
+      else
+        o->set_trapped(false);
     };
 
     auto fillMissile = [&](DiabloInternal::MissileStruct& ms) {
@@ -2746,5 +2755,19 @@ namespace DAPI
   void Server::setFPS(int newFPS)
   {
     FPS = newFPS;
+  }
+
+  void Server::disarmTrap(int index)
+  {
+    auto NetSendCmdLocParam1 = reinterpret_cast<void(__fastcall*)(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1)>(0x43C8F3);
+    auto object = reinterpret_cast<DiabloInternal::ObjectStruct(*)>(0x679C38);
+
+    if (static_cast<DiabloInternal::cursor_id>(data->pcurs) != DiabloInternal::cursor_id::CURSOR_DISARM)
+      return;
+
+    if (static_cast<DiabloInternal::PlayerClasses>(data->playerList[data->player]._pClass) != DiabloInternal::PlayerClasses::ROGUE)
+      return;
+
+    NetSendCmdLocParam1(TRUE, static_cast<unsigned char>(CommandType::DISARMXY), object[index]._ox, object[index]._oy, index);
   }
 }

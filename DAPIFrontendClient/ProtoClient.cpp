@@ -303,6 +303,7 @@ namespace DAPI
             game.data->objectList[index].data->doorState = static_cast<DoorState>(object.doorstate());
             game.data->objectList[index].data->selectable = object.selectable();
             game.data->objectList[index].data->index = object.index();
+            game.data->objectList[index].data->trapped = object.trapped();
           }
           game.data->missileList.clear();
           for (auto& missile : frameUpdate.missiledata())
@@ -499,6 +500,12 @@ namespace DAPI
       {
         auto setFPS = commandMessage->mutable_setfps();
         setFPS->set_fps(command.param1);
+      }
+      break;
+      case CommandType::DISARMXY:
+      {
+        auto disarmTrap = commandMessage->mutable_disarmtrap();
+        disarmTrap->set_index(command.param1);
       }
       break;
       default:
