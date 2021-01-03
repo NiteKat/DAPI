@@ -190,6 +190,7 @@ namespace DAPI
     IDENTIFYSTOREITEM,
     CANCELQTEXT,
     SETFPS,
+    SKILLREPAIR,
     NUM_CMDS
   };
 

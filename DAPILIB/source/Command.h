@@ -42,6 +42,7 @@ namespace DAPI
     static Command cancelQText();
     static Command setFPS(int fps);
     static Command disarmTrap(Object object);
+    static Command skillRepair(std::shared_ptr<Item> item);
 
     CommandType type;
     int targetX;

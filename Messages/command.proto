@@ -113,6 +113,10 @@ message DisarmTrap {
 	uint32 index = 1;
 }
 
+message SkillRepair {
+	uint32 ID = 1;
+}
+
 message Command {
 	oneof command {
 		Move move = 1;
@@ -141,5 +145,6 @@ message Command {
 		CancelQText cancelQText = 24;
 		SetFPS setFPS = 25;
 		DisarmTrap disarmTrap = 26;
+		SkillRepair skillRepair = 27;
 	}
 }

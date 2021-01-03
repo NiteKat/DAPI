@@ -508,6 +508,11 @@ namespace DAPI
         disarmTrap->set_index(command.param1);
       }
       break;
+      case CommandType::SKILLREPAIR:
+      {
+        auto skillRepair = commandMessage->mutable_skillrepair();
+        skillRepair->set_id(command.param1);
+      }
       default:
         break;
       }

@@ -206,6 +206,13 @@ namespace DAPI
     return c;
   }
 
+  Command Command::skillRepair(std::shared_ptr<Item> item)
+  {
+    Command c{ CommandType::SKILLREPAIR };
+    c.param1 = item->data->ID;
+    return c;
+  }
+
   Command Command::increaseStat(int stat)
   {
     Command c;

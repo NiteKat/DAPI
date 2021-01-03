@@ -38,6 +38,7 @@ extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::int
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SellItem;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SetFPS;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SetSpell;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SkillRepair;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Talk;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_ToggleCharacterSheet;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_ToggleInventory;
@@ -176,6 +177,11 @@ class DisarmTrapDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<DisarmTrap>
       _instance;
 } _DisarmTrap_default_instance_;
+class SkillRepairDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<SkillRepair>
+      _instance;
+} _SkillRepair_default_instance_;
 class CommandDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<Command>
@@ -206,6 +212,7 @@ class CommandDefaultTypeInternal {
   const ::dapi::commands::CancelQText* cancelqtext_;
   const ::dapi::commands::SetFPS* setfps_;
   const ::dapi::commands::DisarmTrap* disarmtrap_;
+  const ::dapi::commands::SkillRepair* skillrepair_;
 } _Command_default_instance_;
 }  // namespace commands
 }  // namespace dapi
@@ -574,6 +581,20 @@ static void InitDefaultsDisarmTrap() {
 ::google::protobuf::internal::SCCInfo<0> scc_info_DisarmTrap =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsDisarmTrap}, {}};
 
+static void InitDefaultsSkillRepair() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::dapi::commands::_SkillRepair_default_instance_;
+    new (ptr) ::dapi::commands::SkillRepair();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::dapi::commands::SkillRepair::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_SkillRepair =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsSkillRepair}, {}};
+
 static void InitDefaultsCommand() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -585,8 +606,8 @@ static void InitDefaultsCommand() {
   ::dapi::commands::Command::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<26> scc_info_Command =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 26, InitDefaultsCommand}, {
+::google::protobuf::internal::SCCInfo<27> scc_info_Command =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 27, InitDefaultsCommand}, {
       &protobuf_command_2eproto::scc_info_Move.base,
       &protobuf_command_2eproto::scc_info_Talk.base,
       &protobuf_command_2eproto::scc_info_SelectStoreOption.base,
@@ -612,7 +633,8 @@ static void InitDefaultsCommand() {
       &protobuf_command_2eproto::scc_info_IdentifyStoreItem.base,
       &protobuf_command_2eproto::scc_info_CancelQText.base,
       &protobuf_command_2eproto::scc_info_SetFPS.base,
-      &protobuf_command_2eproto::scc_info_DisarmTrap.base,}};
+      &protobuf_command_2eproto::scc_info_DisarmTrap.base,
+      &protobuf_command_2eproto::scc_info_SkillRepair.base,}};
 
 void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_SetFPS.base);
@@ -641,6 +663,7 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_UseItem.base);
   ::google::protobuf::internal::InitSCC(&scc_info_IdentifyStoreItem.base);
   ::google::protobuf::internal::InitSCC(&scc_info_DisarmTrap.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_SkillRepair.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Command.base);
 }
 
@@ -5416,6 +5439,187 @@ void DisarmTrap::InternalSwap(DisarmTrap* other) {
 
 // ===================================================================
 
+void SkillRepair::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int SkillRepair::kIDFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+SkillRepair::SkillRepair()
+  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_command_2eproto::scc_info_SkillRepair.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:dapi.commands.SkillRepair)
+}
+SkillRepair::SkillRepair(const SkillRepair& from)
+  : ::google::protobuf::MessageLite(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  id_ = from.id_;
+  // @@protoc_insertion_point(copy_constructor:dapi.commands.SkillRepair)
+}
+
+void SkillRepair::SharedCtor() {
+  id_ = 0u;
+}
+
+SkillRepair::~SkillRepair() {
+  // @@protoc_insertion_point(destructor:dapi.commands.SkillRepair)
+  SharedDtor();
+}
+
+void SkillRepair::SharedDtor() {
+}
+
+void SkillRepair::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const SkillRepair& SkillRepair::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_command_2eproto::scc_info_SkillRepair.base);
+  return *internal_default_instance();
+}
+
+
+void SkillRepair::Clear() {
+// @@protoc_insertion_point(message_clear_start:dapi.commands.SkillRepair)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  id_ = 0u;
+  _internal_metadata_.Clear();
+}
+
+bool SkillRepair::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
+      &_internal_metadata_);
+  ::google::protobuf::io::StringOutputStream unknown_fields_output(
+      unknown_fields_setter.buffer());
+  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
+      &unknown_fields_output, false);
+  // @@protoc_insertion_point(parse_start:dapi.commands.SkillRepair)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // uint32 ID = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &id_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+            input, tag, &unknown_fields_stream));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:dapi.commands.SkillRepair)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:dapi.commands.SkillRepair)
+  return false;
+#undef DO_
+}
+
+void SkillRepair::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:dapi.commands.SkillRepair)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 ID = 1;
+  if (this->id() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->id(), output);
+  }
+
+  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
+                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  // @@protoc_insertion_point(serialize_end:dapi.commands.SkillRepair)
+}
+
+size_t SkillRepair::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dapi.commands.SkillRepair)
+  size_t total_size = 0;
+
+  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
+
+  // uint32 ID = 1;
+  if (this->id() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->id());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SkillRepair::CheckTypeAndMergeFrom(
+    const ::google::protobuf::MessageLite& from) {
+  MergeFrom(*::google::protobuf::down_cast<const SkillRepair*>(&from));
+}
+
+void SkillRepair::MergeFrom(const SkillRepair& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:dapi.commands.SkillRepair)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.id() != 0) {
+    set_id(from.id());
+  }
+}
+
+void SkillRepair::CopyFrom(const SkillRepair& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dapi.commands.SkillRepair)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SkillRepair::IsInitialized() const {
+  return true;
+}
+
+void SkillRepair::Swap(SkillRepair* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void SkillRepair::InternalSwap(SkillRepair* other) {
+  using std::swap;
+  swap(id_, other->id_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::std::string SkillRepair::GetTypeName() const {
+  return "dapi.commands.SkillRepair";
+}
+
+
+// ===================================================================
+
 void Command::InitAsDefaultInstance() {
 }
 void Command::set_allocated_move(::dapi::commands::Move* move) {
@@ -5782,6 +5986,20 @@ void Command::set_allocated_disarmtrap(::dapi::commands::DisarmTrap* disarmtrap)
   }
   // @@protoc_insertion_point(field_set_allocated:dapi.commands.Command.disarmTrap)
 }
+void Command::set_allocated_skillrepair(::dapi::commands::SkillRepair* skillrepair) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  clear_command();
+  if (skillrepair) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      skillrepair = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, skillrepair, submessage_arena);
+    }
+    set_has_skillrepair();
+    command_.skillrepair_ = skillrepair;
+  }
+  // @@protoc_insertion_point(field_set_allocated:dapi.commands.Command.skillRepair)
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Command::kMoveFieldNumber;
 const int Command::kTalkFieldNumber;
@@ -5809,6 +6027,7 @@ const int Command::kIdentifyStoreItemFieldNumber;
 const int Command::kCancelQTextFieldNumber;
 const int Command::kSetFPSFieldNumber;
 const int Command::kDisarmTrapFieldNumber;
+const int Command::kSkillRepairFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Command::Command()
@@ -5926,6 +6145,10 @@ Command::Command(const Command& from)
     }
     case kDisarmTrap: {
       mutable_disarmtrap()->::dapi::commands::DisarmTrap::MergeFrom(from.disarmtrap());
+      break;
+    }
+    case kSkillRepair: {
+      mutable_skillrepair()->::dapi::commands::SkillRepair::MergeFrom(from.skillrepair());
       break;
     }
     case COMMAND_NOT_SET: {
@@ -6064,6 +6287,10 @@ void Command::clear_command() {
     }
     case kDisarmTrap: {
       delete command_.disarmtrap_;
+      break;
+    }
+    case kSkillRepair: {
+      delete command_.skillrepair_;
       break;
     }
     case COMMAND_NOT_SET: {
@@ -6412,6 +6639,18 @@ bool Command::MergePartialFromCodedStream(
         break;
       }
 
+      // .dapi.commands.SkillRepair skillRepair = 27;
+      case 27: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(218u /* 218 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_skillrepair()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -6592,6 +6831,12 @@ void Command::SerializeWithCachedSizes(
   if (has_disarmtrap()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
       26, this->_internal_disarmtrap(), output);
+  }
+
+  // .dapi.commands.SkillRepair skillRepair = 27;
+  if (has_skillrepair()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      27, this->_internal_skillrepair(), output);
   }
 
   output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
@@ -6788,6 +7033,13 @@ size_t Command::ByteSizeLong() const {
           *command_.disarmtrap_);
       break;
     }
+    // .dapi.commands.SkillRepair skillRepair = 27;
+    case kSkillRepair: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *command_.skillrepair_);
+      break;
+    }
     case COMMAND_NOT_SET: {
       break;
     }
@@ -6914,6 +7166,10 @@ void Command::MergeFrom(const Command& from) {
       mutable_disarmtrap()->::dapi::commands::DisarmTrap::MergeFrom(from.disarmtrap());
       break;
     }
+    case kSkillRepair: {
+      mutable_skillrepair()->::dapi::commands::SkillRepair::MergeFrom(from.skillrepair());
+      break;
+    }
     case COMMAND_NOT_SET: {
       break;
     }
@@ -7029,6 +7285,9 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::IdentifyStoreIte
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::DisarmTrap* Arena::CreateMaybeMessage< ::dapi::commands::DisarmTrap >(Arena* arena) {
   return Arena::CreateInternal< ::dapi::commands::DisarmTrap >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::SkillRepair* Arena::CreateMaybeMessage< ::dapi::commands::SkillRepair >(Arena* arena) {
+  return Arena::CreateInternal< ::dapi::commands::SkillRepair >(arena);
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::Command* Arena::CreateMaybeMessage< ::dapi::commands::Command >(Arena* arena) {
   return Arena::CreateInternal< ::dapi::commands::Command >(arena);

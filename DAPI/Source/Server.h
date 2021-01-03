@@ -223,6 +223,7 @@ namespace DAPI
     void cancelQText();
     void setFPS(int newFPS);
     void disarmTrap(int index);
+    void skillRepair(int itemID);
 
     bool listening = false;
 

@@ -37,7 +37,7 @@ namespace protobuf_command_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[27];
+  static const ::google::protobuf::internal::ParseTable schema[28];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -111,6 +111,9 @@ extern SetFPSDefaultTypeInternal _SetFPS_default_instance_;
 class SetSpell;
 class SetSpellDefaultTypeInternal;
 extern SetSpellDefaultTypeInternal _SetSpell_default_instance_;
+class SkillRepair;
+class SkillRepairDefaultTypeInternal;
+extern SkillRepairDefaultTypeInternal _SkillRepair_default_instance_;
 class Talk;
 class TalkDefaultTypeInternal;
 extern TalkDefaultTypeInternal _Talk_default_instance_;
@@ -152,6 +155,7 @@ template<> ::dapi::commands::SelectStoreOption* Arena::CreateMaybeMessage<::dapi
 template<> ::dapi::commands::SellItem* Arena::CreateMaybeMessage<::dapi::commands::SellItem>(Arena*);
 template<> ::dapi::commands::SetFPS* Arena::CreateMaybeMessage<::dapi::commands::SetFPS>(Arena*);
 template<> ::dapi::commands::SetSpell* Arena::CreateMaybeMessage<::dapi::commands::SetSpell>(Arena*);
+template<> ::dapi::commands::SkillRepair* Arena::CreateMaybeMessage<::dapi::commands::SkillRepair>(Arena*);
 template<> ::dapi::commands::Talk* Arena::CreateMaybeMessage<::dapi::commands::Talk>(Arena*);
 template<> ::dapi::commands::ToggleCharacterSheet* Arena::CreateMaybeMessage<::dapi::commands::ToggleCharacterSheet>(Arena*);
 template<> ::dapi::commands::ToggleInventory* Arena::CreateMaybeMessage<::dapi::commands::ToggleInventory>(Arena*);
@@ -2804,6 +2808,107 @@ class DisarmTrap : public ::google::protobuf::MessageLite /* @@protoc_insertion_
 };
 // -------------------------------------------------------------------
 
+class SkillRepair : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.commands.SkillRepair) */ {
+ public:
+  SkillRepair();
+  virtual ~SkillRepair();
+
+  SkillRepair(const SkillRepair& from);
+
+  inline SkillRepair& operator=(const SkillRepair& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  SkillRepair(SkillRepair&& from) noexcept
+    : SkillRepair() {
+    *this = ::std::move(from);
+  }
+
+  inline SkillRepair& operator=(SkillRepair&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const SkillRepair& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const SkillRepair* internal_default_instance() {
+    return reinterpret_cast<const SkillRepair*>(
+               &_SkillRepair_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    26;
+
+  void Swap(SkillRepair* other);
+  friend void swap(SkillRepair& a, SkillRepair& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SkillRepair* New() const final {
+    return CreateMaybeMessage<SkillRepair>(NULL);
+  }
+
+  SkillRepair* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<SkillRepair>(arena);
+  }
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    final;
+  void CopyFrom(const SkillRepair& from);
+  void MergeFrom(const SkillRepair& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  void DiscardUnknownFields();
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(SkillRepair* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::std::string GetTypeName() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // uint32 ID = 1;
+  void clear_id();
+  static const int kIDFieldNumber = 1;
+  ::google::protobuf::uint32 id() const;
+  void set_id(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:dapi.commands.SkillRepair)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::uint32 id_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_command_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.commands.Command) */ {
  public:
   Command();
@@ -2859,6 +2964,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
     kCancelQText = 24,
     kSetFPS = 25,
     kDisarmTrap = 26,
+    kSkillRepair = 27,
     COMMAND_NOT_SET = 0,
   };
 
@@ -2868,7 +2974,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
                &_Command_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    27;
 
   void Swap(Command* other);
   friend void swap(Command& a, Command& b) {
@@ -3231,6 +3337,18 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   ::dapi::commands::DisarmTrap* mutable_disarmtrap();
   void set_allocated_disarmtrap(::dapi::commands::DisarmTrap* disarmtrap);
 
+  // .dapi.commands.SkillRepair skillRepair = 27;
+  bool has_skillrepair() const;
+  void clear_skillrepair();
+  static const int kSkillRepairFieldNumber = 27;
+  private:
+  const ::dapi::commands::SkillRepair& _internal_skillrepair() const;
+  public:
+  const ::dapi::commands::SkillRepair& skillrepair() const;
+  ::dapi::commands::SkillRepair* release_skillrepair();
+  ::dapi::commands::SkillRepair* mutable_skillrepair();
+  void set_allocated_skillrepair(::dapi::commands::SkillRepair* skillrepair);
+
   void clear_command();
   CommandCase command_case() const;
   // @@protoc_insertion_point(class_scope:dapi.commands.Command)
@@ -3261,6 +3379,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   void set_has_cancelqtext();
   void set_has_setfps();
   void set_has_disarmtrap();
+  void set_has_skillrepair();
 
   inline bool has_command() const;
   inline void clear_has_command();
@@ -3294,6 +3413,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
     ::dapi::commands::CancelQText* cancelqtext_;
     ::dapi::commands::SetFPS* setfps_;
     ::dapi::commands::DisarmTrap* disarmtrap_;
+    ::dapi::commands::SkillRepair* skillrepair_;
   } command_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -3801,6 +3921,24 @@ inline void DisarmTrap::set_index(::google::protobuf::uint32 value) {
   
   index_ = value;
   // @@protoc_insertion_point(field_set:dapi.commands.DisarmTrap.index)
+}
+
+// -------------------------------------------------------------------
+
+// SkillRepair
+
+// uint32 ID = 1;
+inline void SkillRepair::clear_id() {
+  id_ = 0u;
+}
+inline ::google::protobuf::uint32 SkillRepair::id() const {
+  // @@protoc_insertion_point(field_get:dapi.commands.SkillRepair.ID)
+  return id_;
+}
+inline void SkillRepair::set_id(::google::protobuf::uint32 value) {
+  
+  id_ = value;
+  // @@protoc_insertion_point(field_set:dapi.commands.SkillRepair.ID)
 }
 
 // -------------------------------------------------------------------
@@ -4951,6 +5089,50 @@ inline ::dapi::commands::DisarmTrap* Command::mutable_disarmtrap() {
   return command_.disarmtrap_;
 }
 
+// .dapi.commands.SkillRepair skillRepair = 27;
+inline bool Command::has_skillrepair() const {
+  return command_case() == kSkillRepair;
+}
+inline void Command::set_has_skillrepair() {
+  _oneof_case_[0] = kSkillRepair;
+}
+inline void Command::clear_skillrepair() {
+  if (has_skillrepair()) {
+    delete command_.skillrepair_;
+    clear_has_command();
+  }
+}
+inline const ::dapi::commands::SkillRepair& Command::_internal_skillrepair() const {
+  return *command_.skillrepair_;
+}
+inline ::dapi::commands::SkillRepair* Command::release_skillrepair() {
+  // @@protoc_insertion_point(field_release:dapi.commands.Command.skillRepair)
+  if (has_skillrepair()) {
+    clear_has_command();
+      ::dapi::commands::SkillRepair* temp = command_.skillrepair_;
+    command_.skillrepair_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::dapi::commands::SkillRepair& Command::skillrepair() const {
+  // @@protoc_insertion_point(field_get:dapi.commands.Command.skillRepair)
+  return has_skillrepair()
+      ? *command_.skillrepair_
+      : *reinterpret_cast< ::dapi::commands::SkillRepair*>(&::dapi::commands::_SkillRepair_default_instance_);
+}
+inline ::dapi::commands::SkillRepair* Command::mutable_skillrepair() {
+  if (!has_skillrepair()) {
+    clear_command();
+    set_has_skillrepair();
+    command_.skillrepair_ = CreateMaybeMessage< ::dapi::commands::SkillRepair >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:dapi.commands.Command.skillRepair)
+  return command_.skillrepair_;
+}
+
 inline bool Command::has_command() const {
   return command_case() != COMMAND_NOT_SET;
 }
@@ -4963,6 +5145,8 @@ inline Command::CommandCase Command::command_case() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

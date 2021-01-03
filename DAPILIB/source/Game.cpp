@@ -564,7 +564,7 @@ namespace DAPI
       break;
     }
 
-    if (data->playerList[data->player].getBaseDexterity() < maxValue)
+    if (data->playerList[data->player].getBaseVitality() < maxValue)
       return this->issueCommand(Command::increaseStat(3));
 
     return false;
@@ -784,6 +784,33 @@ namespace DAPI
 
     return this->issueCommand(Command::disarmTrap(object));
 
+  }
+
+  bool Game::skillRepair(std::shared_ptr<Item> item)
+  {
+    if (static_cast<DAPI::CursorType>(data->cursor) != DAPI::CursorType::REPAIR)
+      return false;
+
+    if (data->playerList[data->player].getClass().getID() != DAPI::ClassID::WARRIOR)
+      return false;
+
+    if (!data->invflag)
+      return false;
+
+    for (auto &bodyItem : data->playerList[data->player].data->InvBody)
+    {
+      if (!bodyItem.second)
+        continue;
+
+      if (bodyItem.second->getID() == item->getID())
+        return client.issueCommand(Command::skillRepair(item));
+    }
+    for (auto& invItem : data->playerList[data->player].data->InvList)
+    {
+      if (invItem->getID() == item->getID())
+        return client.issueCommand(Command::skillRepair(item));
+    }
+    return false;
   }
 
   bool Game::issueCommand(Command command)
