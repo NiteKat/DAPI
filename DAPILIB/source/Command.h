@@ -43,6 +43,7 @@ namespace DAPI
     static Command setFPS(int fps);
     static Command disarmTrap(Object object);
     static Command skillRepair(std::shared_ptr<Item> item);
+    static Command skillRecharge(std::shared_ptr<Item> item);
 
     CommandType type;
     int targetX;

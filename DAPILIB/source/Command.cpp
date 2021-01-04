@@ -213,6 +213,13 @@ namespace DAPI
     return c;
   }
 
+  Command Command::skillRecharge(std::shared_ptr<Item> item)
+  {
+    Command c{ CommandType::SKILLRECHARGE };
+    c.param1 = item->data->ID;
+    return c;
+  }
+
   Command Command::increaseStat(int stat)
   {
     Command c;

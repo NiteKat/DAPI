@@ -191,6 +191,7 @@ namespace DAPI
     CANCELQTEXT,
     SETFPS,
     SKILLREPAIR,
+    SKILLRECHARGE,
     NUM_CMDS
   };
 

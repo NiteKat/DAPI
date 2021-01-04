@@ -513,6 +513,13 @@ namespace DAPI
         auto skillRepair = commandMessage->mutable_skillrepair();
         skillRepair->set_id(command.param1);
       }
+      break;
+      case CommandType::SKILLRECHARGE:
+      {
+        auto skillRecharge = commandMessage->mutable_skillrecharge();
+        skillRecharge->set_id(command.param1);
+      }
+      break;
       default:
         break;
       }

@@ -252,6 +252,11 @@ namespace DAPI
           auto skillRepair = command.skillrepair();
           this->skillRepair(skillRepair.id());
         }
+        else if (command.has_skillrecharge())
+        {
+          auto skillRecharge = command.skillrecharge();
+          this->skillRecharge(skillRecharge.id());
+        }
         issuedCommand = true;
         if (command.has_setfps())
         {
@@ -2804,6 +2809,36 @@ namespace DAPI
       if (data->itemList[itemID].compare(plr[*myplr].InvList[i]))
       {
         DoRepair(*myplr, i + 7);
+        return;
+      }
+    }
+  }
+
+  void Server::skillRecharge(int itemID)
+  {
+    auto plr = reinterpret_cast<DiabloInternal::PlayerStruct(*)>(0x686448);
+    auto myplr = reinterpret_cast<int(*)>(0x686444);
+    auto DoRecharge = reinterpret_cast<void(__fastcall*)(int pnum, int cii)>(0x422D6C);
+
+    if (static_cast<DiabloInternal::cursor_id>(data->pcurs) != DiabloInternal::cursor_id::CURSOR_RECHARGE)
+      return;
+
+    if (static_cast<DiabloInternal::PlayerClasses>(data->playerList[data->player]._pClass) != DiabloInternal::PlayerClasses::SORCERER)
+      return;
+
+    for (int i = 0; i < 7; i++)
+    {
+      if (data->itemList[itemID].compare(plr[*myplr].InvBody[i]))
+      {
+        DoRecharge(*myplr, i);
+        return;
+      }
+    }
+    for (int i = 0; i < MAXINV; i++)
+    {
+      if (data->itemList[itemID].compare(plr[*myplr].InvList[i]))
+      {
+        DoRecharge(*myplr, i + 7);
         return;
       }
     }

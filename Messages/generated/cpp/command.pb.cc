@@ -38,6 +38,7 @@ extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::int
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SellItem;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SetFPS;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SetSpell;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SkillRecharge;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SkillRepair;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Talk;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_ToggleCharacterSheet;
@@ -182,6 +183,11 @@ class SkillRepairDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<SkillRepair>
       _instance;
 } _SkillRepair_default_instance_;
+class SkillRechargeDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<SkillRecharge>
+      _instance;
+} _SkillRecharge_default_instance_;
 class CommandDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<Command>
@@ -213,6 +219,7 @@ class CommandDefaultTypeInternal {
   const ::dapi::commands::SetFPS* setfps_;
   const ::dapi::commands::DisarmTrap* disarmtrap_;
   const ::dapi::commands::SkillRepair* skillrepair_;
+  const ::dapi::commands::SkillRecharge* skillrecharge_;
 } _Command_default_instance_;
 }  // namespace commands
 }  // namespace dapi
@@ -595,6 +602,20 @@ static void InitDefaultsSkillRepair() {
 ::google::protobuf::internal::SCCInfo<0> scc_info_SkillRepair =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsSkillRepair}, {}};
 
+static void InitDefaultsSkillRecharge() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::dapi::commands::_SkillRecharge_default_instance_;
+    new (ptr) ::dapi::commands::SkillRecharge();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::dapi::commands::SkillRecharge::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_SkillRecharge =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsSkillRecharge}, {}};
+
 static void InitDefaultsCommand() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -606,8 +627,8 @@ static void InitDefaultsCommand() {
   ::dapi::commands::Command::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<27> scc_info_Command =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 27, InitDefaultsCommand}, {
+::google::protobuf::internal::SCCInfo<28> scc_info_Command =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 28, InitDefaultsCommand}, {
       &protobuf_command_2eproto::scc_info_Move.base,
       &protobuf_command_2eproto::scc_info_Talk.base,
       &protobuf_command_2eproto::scc_info_SelectStoreOption.base,
@@ -634,7 +655,8 @@ static void InitDefaultsCommand() {
       &protobuf_command_2eproto::scc_info_CancelQText.base,
       &protobuf_command_2eproto::scc_info_SetFPS.base,
       &protobuf_command_2eproto::scc_info_DisarmTrap.base,
-      &protobuf_command_2eproto::scc_info_SkillRepair.base,}};
+      &protobuf_command_2eproto::scc_info_SkillRepair.base,
+      &protobuf_command_2eproto::scc_info_SkillRecharge.base,}};
 
 void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_SetFPS.base);
@@ -664,6 +686,7 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_IdentifyStoreItem.base);
   ::google::protobuf::internal::InitSCC(&scc_info_DisarmTrap.base);
   ::google::protobuf::internal::InitSCC(&scc_info_SkillRepair.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_SkillRecharge.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Command.base);
 }
 
@@ -5620,6 +5643,187 @@ void SkillRepair::InternalSwap(SkillRepair* other) {
 
 // ===================================================================
 
+void SkillRecharge::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int SkillRecharge::kIDFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+SkillRecharge::SkillRecharge()
+  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_command_2eproto::scc_info_SkillRecharge.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:dapi.commands.SkillRecharge)
+}
+SkillRecharge::SkillRecharge(const SkillRecharge& from)
+  : ::google::protobuf::MessageLite(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  id_ = from.id_;
+  // @@protoc_insertion_point(copy_constructor:dapi.commands.SkillRecharge)
+}
+
+void SkillRecharge::SharedCtor() {
+  id_ = 0u;
+}
+
+SkillRecharge::~SkillRecharge() {
+  // @@protoc_insertion_point(destructor:dapi.commands.SkillRecharge)
+  SharedDtor();
+}
+
+void SkillRecharge::SharedDtor() {
+}
+
+void SkillRecharge::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const SkillRecharge& SkillRecharge::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_command_2eproto::scc_info_SkillRecharge.base);
+  return *internal_default_instance();
+}
+
+
+void SkillRecharge::Clear() {
+// @@protoc_insertion_point(message_clear_start:dapi.commands.SkillRecharge)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  id_ = 0u;
+  _internal_metadata_.Clear();
+}
+
+bool SkillRecharge::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
+      &_internal_metadata_);
+  ::google::protobuf::io::StringOutputStream unknown_fields_output(
+      unknown_fields_setter.buffer());
+  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
+      &unknown_fields_output, false);
+  // @@protoc_insertion_point(parse_start:dapi.commands.SkillRecharge)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // uint32 ID = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &id_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+            input, tag, &unknown_fields_stream));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:dapi.commands.SkillRecharge)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:dapi.commands.SkillRecharge)
+  return false;
+#undef DO_
+}
+
+void SkillRecharge::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:dapi.commands.SkillRecharge)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 ID = 1;
+  if (this->id() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->id(), output);
+  }
+
+  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
+                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  // @@protoc_insertion_point(serialize_end:dapi.commands.SkillRecharge)
+}
+
+size_t SkillRecharge::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dapi.commands.SkillRecharge)
+  size_t total_size = 0;
+
+  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
+
+  // uint32 ID = 1;
+  if (this->id() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->id());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SkillRecharge::CheckTypeAndMergeFrom(
+    const ::google::protobuf::MessageLite& from) {
+  MergeFrom(*::google::protobuf::down_cast<const SkillRecharge*>(&from));
+}
+
+void SkillRecharge::MergeFrom(const SkillRecharge& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:dapi.commands.SkillRecharge)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.id() != 0) {
+    set_id(from.id());
+  }
+}
+
+void SkillRecharge::CopyFrom(const SkillRecharge& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dapi.commands.SkillRecharge)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SkillRecharge::IsInitialized() const {
+  return true;
+}
+
+void SkillRecharge::Swap(SkillRecharge* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void SkillRecharge::InternalSwap(SkillRecharge* other) {
+  using std::swap;
+  swap(id_, other->id_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::std::string SkillRecharge::GetTypeName() const {
+  return "dapi.commands.SkillRecharge";
+}
+
+
+// ===================================================================
+
 void Command::InitAsDefaultInstance() {
 }
 void Command::set_allocated_move(::dapi::commands::Move* move) {
@@ -6000,6 +6204,20 @@ void Command::set_allocated_skillrepair(::dapi::commands::SkillRepair* skillrepa
   }
   // @@protoc_insertion_point(field_set_allocated:dapi.commands.Command.skillRepair)
 }
+void Command::set_allocated_skillrecharge(::dapi::commands::SkillRecharge* skillrecharge) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  clear_command();
+  if (skillrecharge) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      skillrecharge = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, skillrecharge, submessage_arena);
+    }
+    set_has_skillrecharge();
+    command_.skillrecharge_ = skillrecharge;
+  }
+  // @@protoc_insertion_point(field_set_allocated:dapi.commands.Command.skillRecharge)
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Command::kMoveFieldNumber;
 const int Command::kTalkFieldNumber;
@@ -6028,6 +6246,7 @@ const int Command::kCancelQTextFieldNumber;
 const int Command::kSetFPSFieldNumber;
 const int Command::kDisarmTrapFieldNumber;
 const int Command::kSkillRepairFieldNumber;
+const int Command::kSkillRechargeFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Command::Command()
@@ -6149,6 +6368,10 @@ Command::Command(const Command& from)
     }
     case kSkillRepair: {
       mutable_skillrepair()->::dapi::commands::SkillRepair::MergeFrom(from.skillrepair());
+      break;
+    }
+    case kSkillRecharge: {
+      mutable_skillrecharge()->::dapi::commands::SkillRecharge::MergeFrom(from.skillrecharge());
       break;
     }
     case COMMAND_NOT_SET: {
@@ -6291,6 +6514,10 @@ void Command::clear_command() {
     }
     case kSkillRepair: {
       delete command_.skillrepair_;
+      break;
+    }
+    case kSkillRecharge: {
+      delete command_.skillrecharge_;
       break;
     }
     case COMMAND_NOT_SET: {
@@ -6651,6 +6878,18 @@ bool Command::MergePartialFromCodedStream(
         break;
       }
 
+      // .dapi.commands.SkillRecharge skillRecharge = 28;
+      case 28: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(226u /* 226 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_skillrecharge()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -6837,6 +7076,12 @@ void Command::SerializeWithCachedSizes(
   if (has_skillrepair()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
       27, this->_internal_skillrepair(), output);
+  }
+
+  // .dapi.commands.SkillRecharge skillRecharge = 28;
+  if (has_skillrecharge()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      28, this->_internal_skillrecharge(), output);
   }
 
   output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
@@ -7040,6 +7285,13 @@ size_t Command::ByteSizeLong() const {
           *command_.skillrepair_);
       break;
     }
+    // .dapi.commands.SkillRecharge skillRecharge = 28;
+    case kSkillRecharge: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *command_.skillrecharge_);
+      break;
+    }
     case COMMAND_NOT_SET: {
       break;
     }
@@ -7170,6 +7422,10 @@ void Command::MergeFrom(const Command& from) {
       mutable_skillrepair()->::dapi::commands::SkillRepair::MergeFrom(from.skillrepair());
       break;
     }
+    case kSkillRecharge: {
+      mutable_skillrecharge()->::dapi::commands::SkillRecharge::MergeFrom(from.skillrecharge());
+      break;
+    }
     case COMMAND_NOT_SET: {
       break;
     }
@@ -7288,6 +7544,9 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::DisarmTrap* Aren
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::SkillRepair* Arena::CreateMaybeMessage< ::dapi::commands::SkillRepair >(Arena* arena) {
   return Arena::CreateInternal< ::dapi::commands::SkillRepair >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::SkillRecharge* Arena::CreateMaybeMessage< ::dapi::commands::SkillRecharge >(Arena* arena) {
+  return Arena::CreateInternal< ::dapi::commands::SkillRecharge >(arena);
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::Command* Arena::CreateMaybeMessage< ::dapi::commands::Command >(Arena* arena) {
   return Arena::CreateInternal< ::dapi::commands::Command >(arena);

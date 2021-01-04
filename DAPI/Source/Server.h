@@ -224,6 +224,7 @@ namespace DAPI
     void setFPS(int newFPS);
     void disarmTrap(int index);
     void skillRepair(int itemID);
+    void skillRecharge(int itemID);
 
     bool listening = false;
 

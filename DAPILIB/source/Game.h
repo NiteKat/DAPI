@@ -72,6 +72,7 @@ namespace DAPI
     bool setFPS(int fps);
     bool disarmTrap(Object object);
     bool skillRepair(std::shared_ptr<Item> item);
+    bool skillRecharge(std::shared_ptr<Item> item);
     bool issueCommand(Command command);
     
     std::map<std::pair<int, int>, bool> panelScreenCheck;

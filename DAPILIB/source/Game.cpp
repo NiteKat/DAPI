@@ -813,6 +813,30 @@ namespace DAPI
     return false;
   }
 
+  bool Game::skillRecharge(std::shared_ptr<Item> item)
+  {
+    if (static_cast<DAPI::CursorType>(data->cursor) != DAPI::CursorType::RECHARGE)
+      return false;
+
+    if (data->playerList[data->player].getClass().getID() != DAPI::ClassID::SORCERER)
+      return false;
+
+    for (auto& bodyItem : data->playerList[data->player].data->InvBody)
+    {
+      if (!bodyItem.second)
+        continue;
+
+      if (bodyItem.second->getID() == item->getID())
+        return client.issueCommand(Command::skillRecharge(item));
+    }
+    for (auto& invItem : data->playerList[data->player].data->InvList)
+    {
+      if (invItem->getID() == item->getID())
+        return client.issueCommand(Command::skillRecharge(item));
+    }
+    return false;
+  }
+
   bool Game::issueCommand(Command command)
   {
     return client.issueCommand(command);

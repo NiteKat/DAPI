@@ -37,7 +37,7 @@ namespace protobuf_command_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[28];
+  static const ::google::protobuf::internal::ParseTable schema[29];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -111,6 +111,9 @@ extern SetFPSDefaultTypeInternal _SetFPS_default_instance_;
 class SetSpell;
 class SetSpellDefaultTypeInternal;
 extern SetSpellDefaultTypeInternal _SetSpell_default_instance_;
+class SkillRecharge;
+class SkillRechargeDefaultTypeInternal;
+extern SkillRechargeDefaultTypeInternal _SkillRecharge_default_instance_;
 class SkillRepair;
 class SkillRepairDefaultTypeInternal;
 extern SkillRepairDefaultTypeInternal _SkillRepair_default_instance_;
@@ -155,6 +158,7 @@ template<> ::dapi::commands::SelectStoreOption* Arena::CreateMaybeMessage<::dapi
 template<> ::dapi::commands::SellItem* Arena::CreateMaybeMessage<::dapi::commands::SellItem>(Arena*);
 template<> ::dapi::commands::SetFPS* Arena::CreateMaybeMessage<::dapi::commands::SetFPS>(Arena*);
 template<> ::dapi::commands::SetSpell* Arena::CreateMaybeMessage<::dapi::commands::SetSpell>(Arena*);
+template<> ::dapi::commands::SkillRecharge* Arena::CreateMaybeMessage<::dapi::commands::SkillRecharge>(Arena*);
 template<> ::dapi::commands::SkillRepair* Arena::CreateMaybeMessage<::dapi::commands::SkillRepair>(Arena*);
 template<> ::dapi::commands::Talk* Arena::CreateMaybeMessage<::dapi::commands::Talk>(Arena*);
 template<> ::dapi::commands::ToggleCharacterSheet* Arena::CreateMaybeMessage<::dapi::commands::ToggleCharacterSheet>(Arena*);
@@ -2909,6 +2913,107 @@ class SkillRepair : public ::google::protobuf::MessageLite /* @@protoc_insertion
 };
 // -------------------------------------------------------------------
 
+class SkillRecharge : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.commands.SkillRecharge) */ {
+ public:
+  SkillRecharge();
+  virtual ~SkillRecharge();
+
+  SkillRecharge(const SkillRecharge& from);
+
+  inline SkillRecharge& operator=(const SkillRecharge& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  SkillRecharge(SkillRecharge&& from) noexcept
+    : SkillRecharge() {
+    *this = ::std::move(from);
+  }
+
+  inline SkillRecharge& operator=(SkillRecharge&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const SkillRecharge& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const SkillRecharge* internal_default_instance() {
+    return reinterpret_cast<const SkillRecharge*>(
+               &_SkillRecharge_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    27;
+
+  void Swap(SkillRecharge* other);
+  friend void swap(SkillRecharge& a, SkillRecharge& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SkillRecharge* New() const final {
+    return CreateMaybeMessage<SkillRecharge>(NULL);
+  }
+
+  SkillRecharge* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<SkillRecharge>(arena);
+  }
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    final;
+  void CopyFrom(const SkillRecharge& from);
+  void MergeFrom(const SkillRecharge& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  void DiscardUnknownFields();
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(SkillRecharge* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::std::string GetTypeName() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // uint32 ID = 1;
+  void clear_id();
+  static const int kIDFieldNumber = 1;
+  ::google::protobuf::uint32 id() const;
+  void set_id(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:dapi.commands.SkillRecharge)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::uint32 id_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_command_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.commands.Command) */ {
  public:
   Command();
@@ -2965,6 +3070,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
     kSetFPS = 25,
     kDisarmTrap = 26,
     kSkillRepair = 27,
+    kSkillRecharge = 28,
     COMMAND_NOT_SET = 0,
   };
 
@@ -2974,7 +3080,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
                &_Command_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    28;
 
   void Swap(Command* other);
   friend void swap(Command& a, Command& b) {
@@ -3349,6 +3455,18 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   ::dapi::commands::SkillRepair* mutable_skillrepair();
   void set_allocated_skillrepair(::dapi::commands::SkillRepair* skillrepair);
 
+  // .dapi.commands.SkillRecharge skillRecharge = 28;
+  bool has_skillrecharge() const;
+  void clear_skillrecharge();
+  static const int kSkillRechargeFieldNumber = 28;
+  private:
+  const ::dapi::commands::SkillRecharge& _internal_skillrecharge() const;
+  public:
+  const ::dapi::commands::SkillRecharge& skillrecharge() const;
+  ::dapi::commands::SkillRecharge* release_skillrecharge();
+  ::dapi::commands::SkillRecharge* mutable_skillrecharge();
+  void set_allocated_skillrecharge(::dapi::commands::SkillRecharge* skillrecharge);
+
   void clear_command();
   CommandCase command_case() const;
   // @@protoc_insertion_point(class_scope:dapi.commands.Command)
@@ -3380,6 +3498,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   void set_has_setfps();
   void set_has_disarmtrap();
   void set_has_skillrepair();
+  void set_has_skillrecharge();
 
   inline bool has_command() const;
   inline void clear_has_command();
@@ -3414,6 +3533,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
     ::dapi::commands::SetFPS* setfps_;
     ::dapi::commands::DisarmTrap* disarmtrap_;
     ::dapi::commands::SkillRepair* skillrepair_;
+    ::dapi::commands::SkillRecharge* skillrecharge_;
   } command_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -3939,6 +4059,24 @@ inline void SkillRepair::set_id(::google::protobuf::uint32 value) {
   
   id_ = value;
   // @@protoc_insertion_point(field_set:dapi.commands.SkillRepair.ID)
+}
+
+// -------------------------------------------------------------------
+
+// SkillRecharge
+
+// uint32 ID = 1;
+inline void SkillRecharge::clear_id() {
+  id_ = 0u;
+}
+inline ::google::protobuf::uint32 SkillRecharge::id() const {
+  // @@protoc_insertion_point(field_get:dapi.commands.SkillRecharge.ID)
+  return id_;
+}
+inline void SkillRecharge::set_id(::google::protobuf::uint32 value) {
+  
+  id_ = value;
+  // @@protoc_insertion_point(field_set:dapi.commands.SkillRecharge.ID)
 }
 
 // -------------------------------------------------------------------
@@ -5133,6 +5271,50 @@ inline ::dapi::commands::SkillRepair* Command::mutable_skillrepair() {
   return command_.skillrepair_;
 }
 
+// .dapi.commands.SkillRecharge skillRecharge = 28;
+inline bool Command::has_skillrecharge() const {
+  return command_case() == kSkillRecharge;
+}
+inline void Command::set_has_skillrecharge() {
+  _oneof_case_[0] = kSkillRecharge;
+}
+inline void Command::clear_skillrecharge() {
+  if (has_skillrecharge()) {
+    delete command_.skillrecharge_;
+    clear_has_command();
+  }
+}
+inline const ::dapi::commands::SkillRecharge& Command::_internal_skillrecharge() const {
+  return *command_.skillrecharge_;
+}
+inline ::dapi::commands::SkillRecharge* Command::release_skillrecharge() {
+  // @@protoc_insertion_point(field_release:dapi.commands.Command.skillRecharge)
+  if (has_skillrecharge()) {
+    clear_has_command();
+      ::dapi::commands::SkillRecharge* temp = command_.skillrecharge_;
+    command_.skillrecharge_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::dapi::commands::SkillRecharge& Command::skillrecharge() const {
+  // @@protoc_insertion_point(field_get:dapi.commands.Command.skillRecharge)
+  return has_skillrecharge()
+      ? *command_.skillrecharge_
+      : *reinterpret_cast< ::dapi::commands::SkillRecharge*>(&::dapi::commands::_SkillRecharge_default_instance_);
+}
+inline ::dapi::commands::SkillRecharge* Command::mutable_skillrecharge() {
+  if (!has_skillrecharge()) {
+    clear_command();
+    set_has_skillrecharge();
+    command_.skillrecharge_ = CreateMaybeMessage< ::dapi::commands::SkillRecharge >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:dapi.commands.Command.skillRecharge)
+  return command_.skillrecharge_;
+}
+
 inline bool Command::has_command() const {
   return command_case() != COMMAND_NOT_SET;
 }
@@ -5145,6 +5327,8 @@ inline Command::CommandCase Command::command_case() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
