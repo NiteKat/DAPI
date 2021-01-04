@@ -73,6 +73,8 @@ namespace DAPI
     bool disarmTrap(Object object);
     bool skillRepair(std::shared_ptr<Item> item);
     bool skillRecharge(std::shared_ptr<Item> item);
+    bool isMenuOpen();
+    bool toggleMenu();
     bool issueCommand(Command command);
     
     std::map<std::pair<int, int>, bool> panelScreenCheck;

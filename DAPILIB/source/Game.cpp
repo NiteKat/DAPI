@@ -837,6 +837,11 @@ namespace DAPI
     return false;
   }
 
+  bool Game::isMenuOpen()
+  {
+    return data->menuOpen;
+  }
+
   bool Game::issueCommand(Command command)
   {
     return client.issueCommand(command);
