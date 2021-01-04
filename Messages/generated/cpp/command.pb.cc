@@ -43,6 +43,7 @@ extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::int
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Talk;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_ToggleCharacterSheet;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_ToggleInventory;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_ToggleMenu;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_UseBeltItem;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_UseItem;
 }  // namespace protobuf_command_2eproto
@@ -188,6 +189,11 @@ class SkillRechargeDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<SkillRecharge>
       _instance;
 } _SkillRecharge_default_instance_;
+class ToggleMenuDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<ToggleMenu>
+      _instance;
+} _ToggleMenu_default_instance_;
 class CommandDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<Command>
@@ -220,6 +226,7 @@ class CommandDefaultTypeInternal {
   const ::dapi::commands::DisarmTrap* disarmtrap_;
   const ::dapi::commands::SkillRepair* skillrepair_;
   const ::dapi::commands::SkillRecharge* skillrecharge_;
+  const ::dapi::commands::ToggleMenu* togglemenu_;
 } _Command_default_instance_;
 }  // namespace commands
 }  // namespace dapi
@@ -616,6 +623,20 @@ static void InitDefaultsSkillRecharge() {
 ::google::protobuf::internal::SCCInfo<0> scc_info_SkillRecharge =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsSkillRecharge}, {}};
 
+static void InitDefaultsToggleMenu() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::dapi::commands::_ToggleMenu_default_instance_;
+    new (ptr) ::dapi::commands::ToggleMenu();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::dapi::commands::ToggleMenu::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_ToggleMenu =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsToggleMenu}, {}};
+
 static void InitDefaultsCommand() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -627,8 +648,8 @@ static void InitDefaultsCommand() {
   ::dapi::commands::Command::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<28> scc_info_Command =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 28, InitDefaultsCommand}, {
+::google::protobuf::internal::SCCInfo<29> scc_info_Command =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 29, InitDefaultsCommand}, {
       &protobuf_command_2eproto::scc_info_Move.base,
       &protobuf_command_2eproto::scc_info_Talk.base,
       &protobuf_command_2eproto::scc_info_SelectStoreOption.base,
@@ -656,7 +677,8 @@ static void InitDefaultsCommand() {
       &protobuf_command_2eproto::scc_info_SetFPS.base,
       &protobuf_command_2eproto::scc_info_DisarmTrap.base,
       &protobuf_command_2eproto::scc_info_SkillRepair.base,
-      &protobuf_command_2eproto::scc_info_SkillRecharge.base,}};
+      &protobuf_command_2eproto::scc_info_SkillRecharge.base,
+      &protobuf_command_2eproto::scc_info_ToggleMenu.base,}};
 
 void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_SetFPS.base);
@@ -687,6 +709,7 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_DisarmTrap.base);
   ::google::protobuf::internal::InitSCC(&scc_info_SkillRepair.base);
   ::google::protobuf::internal::InitSCC(&scc_info_SkillRecharge.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_ToggleMenu.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Command.base);
 }
 
@@ -5824,6 +5847,148 @@ void SkillRecharge::InternalSwap(SkillRecharge* other) {
 
 // ===================================================================
 
+void ToggleMenu::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+ToggleMenu::ToggleMenu()
+  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_command_2eproto::scc_info_ToggleMenu.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:dapi.commands.ToggleMenu)
+}
+ToggleMenu::ToggleMenu(const ToggleMenu& from)
+  : ::google::protobuf::MessageLite(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:dapi.commands.ToggleMenu)
+}
+
+void ToggleMenu::SharedCtor() {
+}
+
+ToggleMenu::~ToggleMenu() {
+  // @@protoc_insertion_point(destructor:dapi.commands.ToggleMenu)
+  SharedDtor();
+}
+
+void ToggleMenu::SharedDtor() {
+}
+
+void ToggleMenu::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ToggleMenu& ToggleMenu::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_command_2eproto::scc_info_ToggleMenu.base);
+  return *internal_default_instance();
+}
+
+
+void ToggleMenu::Clear() {
+// @@protoc_insertion_point(message_clear_start:dapi.commands.ToggleMenu)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear();
+}
+
+bool ToggleMenu::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
+      &_internal_metadata_);
+  ::google::protobuf::io::StringOutputStream unknown_fields_output(
+      unknown_fields_setter.buffer());
+  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
+      &unknown_fields_output, false);
+  // @@protoc_insertion_point(parse_start:dapi.commands.ToggleMenu)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+  handle_unusual:
+    if (tag == 0) {
+      goto success;
+    }
+    DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+        input, tag, &unknown_fields_stream));
+  }
+success:
+  // @@protoc_insertion_point(parse_success:dapi.commands.ToggleMenu)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:dapi.commands.ToggleMenu)
+  return false;
+#undef DO_
+}
+
+void ToggleMenu::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:dapi.commands.ToggleMenu)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
+                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  // @@protoc_insertion_point(serialize_end:dapi.commands.ToggleMenu)
+}
+
+size_t ToggleMenu::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dapi.commands.ToggleMenu)
+  size_t total_size = 0;
+
+  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ToggleMenu::CheckTypeAndMergeFrom(
+    const ::google::protobuf::MessageLite& from) {
+  MergeFrom(*::google::protobuf::down_cast<const ToggleMenu*>(&from));
+}
+
+void ToggleMenu::MergeFrom(const ToggleMenu& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:dapi.commands.ToggleMenu)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void ToggleMenu::CopyFrom(const ToggleMenu& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dapi.commands.ToggleMenu)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ToggleMenu::IsInitialized() const {
+  return true;
+}
+
+void ToggleMenu::Swap(ToggleMenu* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void ToggleMenu::InternalSwap(ToggleMenu* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::std::string ToggleMenu::GetTypeName() const {
+  return "dapi.commands.ToggleMenu";
+}
+
+
+// ===================================================================
+
 void Command::InitAsDefaultInstance() {
 }
 void Command::set_allocated_move(::dapi::commands::Move* move) {
@@ -6218,6 +6383,20 @@ void Command::set_allocated_skillrecharge(::dapi::commands::SkillRecharge* skill
   }
   // @@protoc_insertion_point(field_set_allocated:dapi.commands.Command.skillRecharge)
 }
+void Command::set_allocated_togglemenu(::dapi::commands::ToggleMenu* togglemenu) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  clear_command();
+  if (togglemenu) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      togglemenu = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, togglemenu, submessage_arena);
+    }
+    set_has_togglemenu();
+    command_.togglemenu_ = togglemenu;
+  }
+  // @@protoc_insertion_point(field_set_allocated:dapi.commands.Command.toggleMenu)
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Command::kMoveFieldNumber;
 const int Command::kTalkFieldNumber;
@@ -6247,6 +6426,7 @@ const int Command::kSetFPSFieldNumber;
 const int Command::kDisarmTrapFieldNumber;
 const int Command::kSkillRepairFieldNumber;
 const int Command::kSkillRechargeFieldNumber;
+const int Command::kToggleMenuFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Command::Command()
@@ -6372,6 +6552,10 @@ Command::Command(const Command& from)
     }
     case kSkillRecharge: {
       mutable_skillrecharge()->::dapi::commands::SkillRecharge::MergeFrom(from.skillrecharge());
+      break;
+    }
+    case kToggleMenu: {
+      mutable_togglemenu()->::dapi::commands::ToggleMenu::MergeFrom(from.togglemenu());
       break;
     }
     case COMMAND_NOT_SET: {
@@ -6518,6 +6702,10 @@ void Command::clear_command() {
     }
     case kSkillRecharge: {
       delete command_.skillrecharge_;
+      break;
+    }
+    case kToggleMenu: {
+      delete command_.togglemenu_;
       break;
     }
     case COMMAND_NOT_SET: {
@@ -6890,6 +7078,18 @@ bool Command::MergePartialFromCodedStream(
         break;
       }
 
+      // .dapi.commands.ToggleMenu toggleMenu = 29;
+      case 29: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(234u /* 234 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_togglemenu()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -7082,6 +7282,12 @@ void Command::SerializeWithCachedSizes(
   if (has_skillrecharge()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
       28, this->_internal_skillrecharge(), output);
+  }
+
+  // .dapi.commands.ToggleMenu toggleMenu = 29;
+  if (has_togglemenu()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      29, this->_internal_togglemenu(), output);
   }
 
   output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
@@ -7292,6 +7498,13 @@ size_t Command::ByteSizeLong() const {
           *command_.skillrecharge_);
       break;
     }
+    // .dapi.commands.ToggleMenu toggleMenu = 29;
+    case kToggleMenu: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *command_.togglemenu_);
+      break;
+    }
     case COMMAND_NOT_SET: {
       break;
     }
@@ -7426,6 +7639,10 @@ void Command::MergeFrom(const Command& from) {
       mutable_skillrecharge()->::dapi::commands::SkillRecharge::MergeFrom(from.skillrecharge());
       break;
     }
+    case kToggleMenu: {
+      mutable_togglemenu()->::dapi::commands::ToggleMenu::MergeFrom(from.togglemenu());
+      break;
+    }
     case COMMAND_NOT_SET: {
       break;
     }
@@ -7547,6 +7764,9 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::SkillRepair* Are
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::SkillRecharge* Arena::CreateMaybeMessage< ::dapi::commands::SkillRecharge >(Arena* arena) {
   return Arena::CreateInternal< ::dapi::commands::SkillRecharge >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::ToggleMenu* Arena::CreateMaybeMessage< ::dapi::commands::ToggleMenu >(Arena* arena) {
+  return Arena::CreateInternal< ::dapi::commands::ToggleMenu >(arena);
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::Command* Arena::CreateMaybeMessage< ::dapi::commands::Command >(Arena* arena) {
   return Arena::CreateInternal< ::dapi::commands::Command >(arena);

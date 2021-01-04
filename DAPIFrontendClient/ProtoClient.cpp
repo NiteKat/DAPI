@@ -520,6 +520,9 @@ namespace DAPI
         skillRecharge->set_id(command.param1);
       }
       break;
+      case CommandType::TOGGLEMENU:
+        commandMessage->mutable_togglemenu();
+        break;
       default:
         break;
       }

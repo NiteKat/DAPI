@@ -257,6 +257,10 @@ namespace DAPI
           auto skillRecharge = command.skillrecharge();
           this->skillRecharge(skillRecharge.id());
         }
+        else if (command.has_togglemenu())
+        {
+          this->toggleMenu();
+        }
         issuedCommand = true;
         if (command.has_setfps())
         {
@@ -2842,5 +2846,15 @@ namespace DAPI
         return;
       }
     }
+  }
+
+  void Server::toggleMenu()
+  {
+    auto qtextflag = reinterpret_cast<BOOLEAN(*)>(0x646D00);
+    auto gamemenu_handle_previous = reinterpret_cast<void(__fastcall*)()>(0x418866);
+
+    qtextflag = FALSE;
+    gamemenu_handle_previous();
+    return;
   }
 }

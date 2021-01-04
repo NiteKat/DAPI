@@ -842,6 +842,11 @@ namespace DAPI
     return data->menuOpen;
   }
 
+  bool Game::toggleMenu()
+  {
+    client.issueCommand(Command::toggleMenu());
+  }
+
   bool Game::issueCommand(Command command)
   {
     return client.issueCommand(command);

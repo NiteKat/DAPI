@@ -44,6 +44,7 @@ namespace DAPI
     static Command disarmTrap(Object object);
     static Command skillRepair(std::shared_ptr<Item> item);
     static Command skillRecharge(std::shared_ptr<Item> item);
+    static Command toggleMenu();
 
     CommandType type;
     int targetX;

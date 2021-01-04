@@ -192,6 +192,7 @@ namespace DAPI
     SETFPS,
     SKILLREPAIR,
     SKILLRECHARGE,
+    TOGGLEMENU,
     NUM_CMDS
   };
 

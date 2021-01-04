@@ -37,7 +37,7 @@ namespace protobuf_command_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[29];
+  static const ::google::protobuf::internal::ParseTable schema[30];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -126,6 +126,9 @@ extern ToggleCharacterSheetDefaultTypeInternal _ToggleCharacterSheet_default_ins
 class ToggleInventory;
 class ToggleInventoryDefaultTypeInternal;
 extern ToggleInventoryDefaultTypeInternal _ToggleInventory_default_instance_;
+class ToggleMenu;
+class ToggleMenuDefaultTypeInternal;
+extern ToggleMenuDefaultTypeInternal _ToggleMenu_default_instance_;
 class UseBeltItem;
 class UseBeltItemDefaultTypeInternal;
 extern UseBeltItemDefaultTypeInternal _UseBeltItem_default_instance_;
@@ -163,6 +166,7 @@ template<> ::dapi::commands::SkillRepair* Arena::CreateMaybeMessage<::dapi::comm
 template<> ::dapi::commands::Talk* Arena::CreateMaybeMessage<::dapi::commands::Talk>(Arena*);
 template<> ::dapi::commands::ToggleCharacterSheet* Arena::CreateMaybeMessage<::dapi::commands::ToggleCharacterSheet>(Arena*);
 template<> ::dapi::commands::ToggleInventory* Arena::CreateMaybeMessage<::dapi::commands::ToggleInventory>(Arena*);
+template<> ::dapi::commands::ToggleMenu* Arena::CreateMaybeMessage<::dapi::commands::ToggleMenu>(Arena*);
 template<> ::dapi::commands::UseBeltItem* Arena::CreateMaybeMessage<::dapi::commands::UseBeltItem>(Arena*);
 template<> ::dapi::commands::UseItem* Arena::CreateMaybeMessage<::dapi::commands::UseItem>(Arena*);
 }  // namespace protobuf
@@ -3014,6 +3018,100 @@ class SkillRecharge : public ::google::protobuf::MessageLite /* @@protoc_inserti
 };
 // -------------------------------------------------------------------
 
+class ToggleMenu : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.commands.ToggleMenu) */ {
+ public:
+  ToggleMenu();
+  virtual ~ToggleMenu();
+
+  ToggleMenu(const ToggleMenu& from);
+
+  inline ToggleMenu& operator=(const ToggleMenu& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  ToggleMenu(ToggleMenu&& from) noexcept
+    : ToggleMenu() {
+    *this = ::std::move(from);
+  }
+
+  inline ToggleMenu& operator=(ToggleMenu&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ToggleMenu& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ToggleMenu* internal_default_instance() {
+    return reinterpret_cast<const ToggleMenu*>(
+               &_ToggleMenu_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    28;
+
+  void Swap(ToggleMenu* other);
+  friend void swap(ToggleMenu& a, ToggleMenu& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ToggleMenu* New() const final {
+    return CreateMaybeMessage<ToggleMenu>(NULL);
+  }
+
+  ToggleMenu* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<ToggleMenu>(arena);
+  }
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    final;
+  void CopyFrom(const ToggleMenu& from);
+  void MergeFrom(const ToggleMenu& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  void DiscardUnknownFields();
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(ToggleMenu* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::std::string GetTypeName() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:dapi.commands.ToggleMenu)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_command_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.commands.Command) */ {
  public:
   Command();
@@ -3071,6 +3169,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
     kDisarmTrap = 26,
     kSkillRepair = 27,
     kSkillRecharge = 28,
+    kToggleMenu = 29,
     COMMAND_NOT_SET = 0,
   };
 
@@ -3080,7 +3179,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
                &_Command_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    29;
 
   void Swap(Command* other);
   friend void swap(Command& a, Command& b) {
@@ -3467,6 +3566,18 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   ::dapi::commands::SkillRecharge* mutable_skillrecharge();
   void set_allocated_skillrecharge(::dapi::commands::SkillRecharge* skillrecharge);
 
+  // .dapi.commands.ToggleMenu toggleMenu = 29;
+  bool has_togglemenu() const;
+  void clear_togglemenu();
+  static const int kToggleMenuFieldNumber = 29;
+  private:
+  const ::dapi::commands::ToggleMenu& _internal_togglemenu() const;
+  public:
+  const ::dapi::commands::ToggleMenu& togglemenu() const;
+  ::dapi::commands::ToggleMenu* release_togglemenu();
+  ::dapi::commands::ToggleMenu* mutable_togglemenu();
+  void set_allocated_togglemenu(::dapi::commands::ToggleMenu* togglemenu);
+
   void clear_command();
   CommandCase command_case() const;
   // @@protoc_insertion_point(class_scope:dapi.commands.Command)
@@ -3499,6 +3610,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   void set_has_disarmtrap();
   void set_has_skillrepair();
   void set_has_skillrecharge();
+  void set_has_togglemenu();
 
   inline bool has_command() const;
   inline void clear_has_command();
@@ -3534,6 +3646,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
     ::dapi::commands::DisarmTrap* disarmtrap_;
     ::dapi::commands::SkillRepair* skillrepair_;
     ::dapi::commands::SkillRecharge* skillrecharge_;
+    ::dapi::commands::ToggleMenu* togglemenu_;
   } command_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -4078,6 +4191,10 @@ inline void SkillRecharge::set_id(::google::protobuf::uint32 value) {
   id_ = value;
   // @@protoc_insertion_point(field_set:dapi.commands.SkillRecharge.ID)
 }
+
+// -------------------------------------------------------------------
+
+// ToggleMenu
 
 // -------------------------------------------------------------------
 
@@ -5315,6 +5432,50 @@ inline ::dapi::commands::SkillRecharge* Command::mutable_skillrecharge() {
   return command_.skillrecharge_;
 }
 
+// .dapi.commands.ToggleMenu toggleMenu = 29;
+inline bool Command::has_togglemenu() const {
+  return command_case() == kToggleMenu;
+}
+inline void Command::set_has_togglemenu() {
+  _oneof_case_[0] = kToggleMenu;
+}
+inline void Command::clear_togglemenu() {
+  if (has_togglemenu()) {
+    delete command_.togglemenu_;
+    clear_has_command();
+  }
+}
+inline const ::dapi::commands::ToggleMenu& Command::_internal_togglemenu() const {
+  return *command_.togglemenu_;
+}
+inline ::dapi::commands::ToggleMenu* Command::release_togglemenu() {
+  // @@protoc_insertion_point(field_release:dapi.commands.Command.toggleMenu)
+  if (has_togglemenu()) {
+    clear_has_command();
+      ::dapi::commands::ToggleMenu* temp = command_.togglemenu_;
+    command_.togglemenu_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::dapi::commands::ToggleMenu& Command::togglemenu() const {
+  // @@protoc_insertion_point(field_get:dapi.commands.Command.toggleMenu)
+  return has_togglemenu()
+      ? *command_.togglemenu_
+      : *reinterpret_cast< ::dapi::commands::ToggleMenu*>(&::dapi::commands::_ToggleMenu_default_instance_);
+}
+inline ::dapi::commands::ToggleMenu* Command::mutable_togglemenu() {
+  if (!has_togglemenu()) {
+    clear_command();
+    set_has_togglemenu();
+    command_.togglemenu_ = CreateMaybeMessage< ::dapi::commands::ToggleMenu >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:dapi.commands.Command.toggleMenu)
+  return command_.togglemenu_;
+}
+
 inline bool Command::has_command() const {
   return command_case() != COMMAND_NOT_SET;
 }
@@ -5327,6 +5488,8 @@ inline Command::CommandCase Command::command_case() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

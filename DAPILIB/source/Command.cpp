@@ -220,6 +220,12 @@ namespace DAPI
     return c;
   }
 
+  Command Command::toggleMenu()
+  {
+    Command c{ CommandType::TOGGLEMENU };
+    return c;
+  }
+
   Command Command::increaseStat(int stat)
   {
     Command c;

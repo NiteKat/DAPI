@@ -225,6 +225,7 @@ namespace DAPI
     void disarmTrap(int index);
     void skillRepair(int itemID);
     void skillRecharge(int itemID);
+    void toggleMenu();
 
     bool listening = false;
 

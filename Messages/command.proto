@@ -121,6 +121,10 @@ message SkillRecharge {
 	uint32 ID = 1;
 }
 
+message ToggleMenu {
+
+}
+
 message Command {
 	oneof command {
 		Move move = 1;
@@ -151,5 +155,6 @@ message Command {
 		DisarmTrap disarmTrap = 26;
 		SkillRepair skillRepair = 27;
 		SkillRecharge skillRecharge = 28;
+		ToggleMenu toggleMenu = 29;
 	}
 }
