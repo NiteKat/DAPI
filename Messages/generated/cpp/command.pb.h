@@ -37,7 +37,7 @@ namespace protobuf_command_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[30];
+  static const ::google::protobuf::internal::ParseTable schema[32];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -93,12 +93,18 @@ extern PutCursorItemDefaultTypeInternal _PutCursorItem_default_instance_;
 class PutInCursor;
 class PutInCursorDefaultTypeInternal;
 extern PutInCursorDefaultTypeInternal _PutInCursor_default_instance_;
+class Quit;
+class QuitDefaultTypeInternal;
+extern QuitDefaultTypeInternal _Quit_default_instance_;
 class RechargeItem;
 class RechargeItemDefaultTypeInternal;
 extern RechargeItemDefaultTypeInternal _RechargeItem_default_instance_;
 class RepairItem;
 class RepairItemDefaultTypeInternal;
 extern RepairItemDefaultTypeInternal _RepairItem_default_instance_;
+class SaveGame;
+class SaveGameDefaultTypeInternal;
+extern SaveGameDefaultTypeInternal _SaveGame_default_instance_;
 class SelectStoreOption;
 class SelectStoreOptionDefaultTypeInternal;
 extern SelectStoreOptionDefaultTypeInternal _SelectStoreOption_default_instance_;
@@ -155,8 +161,10 @@ template<> ::dapi::commands::Move* Arena::CreateMaybeMessage<::dapi::commands::M
 template<> ::dapi::commands::OperateObject* Arena::CreateMaybeMessage<::dapi::commands::OperateObject>(Arena*);
 template<> ::dapi::commands::PutCursorItem* Arena::CreateMaybeMessage<::dapi::commands::PutCursorItem>(Arena*);
 template<> ::dapi::commands::PutInCursor* Arena::CreateMaybeMessage<::dapi::commands::PutInCursor>(Arena*);
+template<> ::dapi::commands::Quit* Arena::CreateMaybeMessage<::dapi::commands::Quit>(Arena*);
 template<> ::dapi::commands::RechargeItem* Arena::CreateMaybeMessage<::dapi::commands::RechargeItem>(Arena*);
 template<> ::dapi::commands::RepairItem* Arena::CreateMaybeMessage<::dapi::commands::RepairItem>(Arena*);
+template<> ::dapi::commands::SaveGame* Arena::CreateMaybeMessage<::dapi::commands::SaveGame>(Arena*);
 template<> ::dapi::commands::SelectStoreOption* Arena::CreateMaybeMessage<::dapi::commands::SelectStoreOption>(Arena*);
 template<> ::dapi::commands::SellItem* Arena::CreateMaybeMessage<::dapi::commands::SellItem>(Arena*);
 template<> ::dapi::commands::SetFPS* Arena::CreateMaybeMessage<::dapi::commands::SetFPS>(Arena*);
@@ -3112,6 +3120,194 @@ class ToggleMenu : public ::google::protobuf::MessageLite /* @@protoc_insertion_
 };
 // -------------------------------------------------------------------
 
+class SaveGame : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.commands.SaveGame) */ {
+ public:
+  SaveGame();
+  virtual ~SaveGame();
+
+  SaveGame(const SaveGame& from);
+
+  inline SaveGame& operator=(const SaveGame& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  SaveGame(SaveGame&& from) noexcept
+    : SaveGame() {
+    *this = ::std::move(from);
+  }
+
+  inline SaveGame& operator=(SaveGame&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const SaveGame& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const SaveGame* internal_default_instance() {
+    return reinterpret_cast<const SaveGame*>(
+               &_SaveGame_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    29;
+
+  void Swap(SaveGame* other);
+  friend void swap(SaveGame& a, SaveGame& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SaveGame* New() const final {
+    return CreateMaybeMessage<SaveGame>(NULL);
+  }
+
+  SaveGame* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<SaveGame>(arena);
+  }
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    final;
+  void CopyFrom(const SaveGame& from);
+  void MergeFrom(const SaveGame& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  void DiscardUnknownFields();
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(SaveGame* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::std::string GetTypeName() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:dapi.commands.SaveGame)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_command_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class Quit : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.commands.Quit) */ {
+ public:
+  Quit();
+  virtual ~Quit();
+
+  Quit(const Quit& from);
+
+  inline Quit& operator=(const Quit& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Quit(Quit&& from) noexcept
+    : Quit() {
+    *this = ::std::move(from);
+  }
+
+  inline Quit& operator=(Quit&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const Quit& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Quit* internal_default_instance() {
+    return reinterpret_cast<const Quit*>(
+               &_Quit_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    30;
+
+  void Swap(Quit* other);
+  friend void swap(Quit& a, Quit& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Quit* New() const final {
+    return CreateMaybeMessage<Quit>(NULL);
+  }
+
+  Quit* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Quit>(arena);
+  }
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    final;
+  void CopyFrom(const Quit& from);
+  void MergeFrom(const Quit& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  void DiscardUnknownFields();
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(Quit* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::std::string GetTypeName() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:dapi.commands.Quit)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_command_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.commands.Command) */ {
  public:
   Command();
@@ -3170,6 +3366,8 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
     kSkillRepair = 27,
     kSkillRecharge = 28,
     kToggleMenu = 29,
+    kSaveGame = 30,
+    kQuit = 31,
     COMMAND_NOT_SET = 0,
   };
 
@@ -3179,7 +3377,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
                &_Command_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    31;
 
   void Swap(Command* other);
   friend void swap(Command& a, Command& b) {
@@ -3578,6 +3776,30 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   ::dapi::commands::ToggleMenu* mutable_togglemenu();
   void set_allocated_togglemenu(::dapi::commands::ToggleMenu* togglemenu);
 
+  // .dapi.commands.SaveGame saveGame = 30;
+  bool has_savegame() const;
+  void clear_savegame();
+  static const int kSaveGameFieldNumber = 30;
+  private:
+  const ::dapi::commands::SaveGame& _internal_savegame() const;
+  public:
+  const ::dapi::commands::SaveGame& savegame() const;
+  ::dapi::commands::SaveGame* release_savegame();
+  ::dapi::commands::SaveGame* mutable_savegame();
+  void set_allocated_savegame(::dapi::commands::SaveGame* savegame);
+
+  // .dapi.commands.Quit quit = 31;
+  bool has_quit() const;
+  void clear_quit();
+  static const int kQuitFieldNumber = 31;
+  private:
+  const ::dapi::commands::Quit& _internal_quit() const;
+  public:
+  const ::dapi::commands::Quit& quit() const;
+  ::dapi::commands::Quit* release_quit();
+  ::dapi::commands::Quit* mutable_quit();
+  void set_allocated_quit(::dapi::commands::Quit* quit);
+
   void clear_command();
   CommandCase command_case() const;
   // @@protoc_insertion_point(class_scope:dapi.commands.Command)
@@ -3611,6 +3833,8 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   void set_has_skillrepair();
   void set_has_skillrecharge();
   void set_has_togglemenu();
+  void set_has_savegame();
+  void set_has_quit();
 
   inline bool has_command() const;
   inline void clear_has_command();
@@ -3647,6 +3871,8 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
     ::dapi::commands::SkillRepair* skillrepair_;
     ::dapi::commands::SkillRecharge* skillrecharge_;
     ::dapi::commands::ToggleMenu* togglemenu_;
+    ::dapi::commands::SaveGame* savegame_;
+    ::dapi::commands::Quit* quit_;
   } command_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -4195,6 +4421,14 @@ inline void SkillRecharge::set_id(::google::protobuf::uint32 value) {
 // -------------------------------------------------------------------
 
 // ToggleMenu
+
+// -------------------------------------------------------------------
+
+// SaveGame
+
+// -------------------------------------------------------------------
+
+// Quit
 
 // -------------------------------------------------------------------
 
@@ -5476,6 +5710,94 @@ inline ::dapi::commands::ToggleMenu* Command::mutable_togglemenu() {
   return command_.togglemenu_;
 }
 
+// .dapi.commands.SaveGame saveGame = 30;
+inline bool Command::has_savegame() const {
+  return command_case() == kSaveGame;
+}
+inline void Command::set_has_savegame() {
+  _oneof_case_[0] = kSaveGame;
+}
+inline void Command::clear_savegame() {
+  if (has_savegame()) {
+    delete command_.savegame_;
+    clear_has_command();
+  }
+}
+inline const ::dapi::commands::SaveGame& Command::_internal_savegame() const {
+  return *command_.savegame_;
+}
+inline ::dapi::commands::SaveGame* Command::release_savegame() {
+  // @@protoc_insertion_point(field_release:dapi.commands.Command.saveGame)
+  if (has_savegame()) {
+    clear_has_command();
+      ::dapi::commands::SaveGame* temp = command_.savegame_;
+    command_.savegame_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::dapi::commands::SaveGame& Command::savegame() const {
+  // @@protoc_insertion_point(field_get:dapi.commands.Command.saveGame)
+  return has_savegame()
+      ? *command_.savegame_
+      : *reinterpret_cast< ::dapi::commands::SaveGame*>(&::dapi::commands::_SaveGame_default_instance_);
+}
+inline ::dapi::commands::SaveGame* Command::mutable_savegame() {
+  if (!has_savegame()) {
+    clear_command();
+    set_has_savegame();
+    command_.savegame_ = CreateMaybeMessage< ::dapi::commands::SaveGame >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:dapi.commands.Command.saveGame)
+  return command_.savegame_;
+}
+
+// .dapi.commands.Quit quit = 31;
+inline bool Command::has_quit() const {
+  return command_case() == kQuit;
+}
+inline void Command::set_has_quit() {
+  _oneof_case_[0] = kQuit;
+}
+inline void Command::clear_quit() {
+  if (has_quit()) {
+    delete command_.quit_;
+    clear_has_command();
+  }
+}
+inline const ::dapi::commands::Quit& Command::_internal_quit() const {
+  return *command_.quit_;
+}
+inline ::dapi::commands::Quit* Command::release_quit() {
+  // @@protoc_insertion_point(field_release:dapi.commands.Command.quit)
+  if (has_quit()) {
+    clear_has_command();
+      ::dapi::commands::Quit* temp = command_.quit_;
+    command_.quit_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::dapi::commands::Quit& Command::quit() const {
+  // @@protoc_insertion_point(field_get:dapi.commands.Command.quit)
+  return has_quit()
+      ? *command_.quit_
+      : *reinterpret_cast< ::dapi::commands::Quit*>(&::dapi::commands::_Quit_default_instance_);
+}
+inline ::dapi::commands::Quit* Command::mutable_quit() {
+  if (!has_quit()) {
+    clear_command();
+    set_has_quit();
+    command_.quit_ = CreateMaybeMessage< ::dapi::commands::Quit >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:dapi.commands.Command.quit)
+  return command_.quit_;
+}
+
 inline bool Command::has_command() const {
   return command_case() != COMMAND_NOT_SET;
 }
@@ -5488,6 +5810,10 @@ inline Command::CommandCase Command::command_case() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

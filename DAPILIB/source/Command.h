@@ -45,6 +45,8 @@ namespace DAPI
     static Command skillRepair(std::shared_ptr<Item> item);
     static Command skillRecharge(std::shared_ptr<Item> item);
     static Command toggleMenu();
+    static Command saveGame();
+    static Command quit();
 
     CommandType type;
     int targetX;

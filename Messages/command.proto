@@ -125,6 +125,14 @@ message ToggleMenu {
 
 }
 
+message SaveGame {
+
+}
+
+message Quit {
+
+}
+
 message Command {
 	oneof command {
 		Move move = 1;
@@ -156,5 +164,7 @@ message Command {
 		SkillRepair skillRepair = 27;
 		SkillRecharge skillRecharge = 28;
 		ToggleMenu toggleMenu = 29;
+		SaveGame saveGame = 30;
+		Quit quit = 31;
 	}
 }

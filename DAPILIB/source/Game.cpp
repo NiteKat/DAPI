@@ -746,7 +746,7 @@ namespace DAPI
 
     return this->issueCommand(Command::identifyStoreItem(item));
   }
-  
+
   bool Game::castSpellXY(int x, int y)
   {
     if (!isOnScreen(x, y))
@@ -797,7 +797,7 @@ namespace DAPI
     if (!data->invflag)
       return false;
 
-    for (auto &bodyItem : data->playerList[data->player].data->InvBody)
+    for (auto& bodyItem : data->playerList[data->player].data->InvBody)
     {
       if (!bodyItem.second)
         continue;
@@ -844,7 +844,27 @@ namespace DAPI
 
   bool Game::toggleMenu()
   {
-    client.issueCommand(Command::toggleMenu());
+    if (static_cast<DAPI::CursorType>(data->cursor) != DAPI::CursorType::HAND)
+      return false;
+
+    return client.issueCommand(Command::toggleMenu());
+  }
+
+  bool Game::saveGame()
+  {
+    if (!data->menuOpen)
+      return false;
+
+    //Should probably verify we are in single player, but server side will catch this.
+    return client.issueCommand(Command::saveGame());
+  }
+
+  bool Game::quit()
+  {
+    if (!data->menuOpen)
+      return false;
+
+    return client.issueCommand(Command::quit());
   }
 
   bool Game::issueCommand(Command command)

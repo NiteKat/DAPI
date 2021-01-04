@@ -261,6 +261,14 @@ namespace DAPI
         {
           this->toggleMenu();
         }
+        else if (command.has_savegame())
+        {
+          this->saveGame();
+        }
+        else if (command.has_quit())
+        {
+          this->quit();
+        }
         issuedCommand = true;
         if (command.has_setfps())
         {
@@ -2855,6 +2863,40 @@ namespace DAPI
 
     qtextflag = FALSE;
     gamemenu_handle_previous();
+    return;
+  }
+
+  void Server::saveGame()
+  {
+    auto sgpCurrentMenu = reinterpret_cast<DiabloInternal::TMenuItem(**)>(0x634480);
+    auto sgSingleMenu = reinterpret_cast<DiabloInternal::TMenuItem(*)>(0x48E1B8);
+    auto PlaySFX = reinterpret_cast<void(__fastcall*)(int)>(0x415B59);
+
+    if (*sgpCurrentMenu != sgSingleMenu)
+      return;
+
+    PlaySFX(69);
+    sgSingleMenu[0].fnMenu(TRUE);
+    return;
+  }
+
+  void Server::quit()
+  {
+    auto sgpCurrentMenu = reinterpret_cast<DiabloInternal::TMenuItem(**)>(0x634480);
+    auto sgSingleMenu = reinterpret_cast<DiabloInternal::TMenuItem(*)>(0x48E1B8);
+    auto PlaySFX = reinterpret_cast<void(__fastcall*)(int)>(0x415B59);
+    auto sgMultiMenu = reinterpret_cast<DiabloInternal::TMenuItem(*)>(0x48E200);
+
+    if (*sgpCurrentMenu == sgSingleMenu)
+    {
+      PlaySFX(69);
+      sgSingleMenu[4].fnMenu(TRUE);
+    }
+    else if (*sgpCurrentMenu == sgMultiMenu)
+    {
+      PlaySFX(69);
+      sgMultiMenu[3].fnMenu(TRUE);
+    }
     return;
   }
 }

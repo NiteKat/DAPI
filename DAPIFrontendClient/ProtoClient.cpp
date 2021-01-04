@@ -523,6 +523,12 @@ namespace DAPI
       case CommandType::TOGGLEMENU:
         commandMessage->mutable_togglemenu();
         break;
+      case CommandType::SAVEGAME:
+        commandMessage->mutable_savegame();
+        break;
+      case CommandType::QUIT:
+        commandMessage->mutable_quit();
+        break;
       default:
         break;
       }

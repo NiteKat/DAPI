@@ -226,6 +226,8 @@ namespace DAPI
     void skillRepair(int itemID);
     void skillRecharge(int itemID);
     void toggleMenu();
+    void saveGame();
+    void quit();
 
     bool listening = false;
 

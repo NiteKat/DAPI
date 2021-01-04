@@ -226,6 +226,18 @@ namespace DAPI
     return c;
   }
 
+  Command Command::saveGame()
+  {
+    Command c{ CommandType::SAVEGAME };
+    return c;
+  }
+
+  Command Command::quit()
+  {
+    Command c{ CommandType::QUIT };
+    return c;
+  }
+
   Command Command::increaseStat(int stat)
   {
     Command c;

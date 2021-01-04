@@ -24,6 +24,12 @@ namespace DiabloInternal
 
   #define MAXQUESTS 16
 
+  typedef struct TMenuItem {
+    DWORD dwFlags;
+    char* pszStr;
+    void (*fnMenu)(BOOL); /* fix, should have one arg */
+  } TMenuItem;
+
   enum struct QuestState {
     NOTAVAIL = 0,
     INIT = 1,

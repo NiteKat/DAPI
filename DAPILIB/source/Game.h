@@ -75,7 +75,10 @@ namespace DAPI
     bool skillRecharge(std::shared_ptr<Item> item);
     bool isMenuOpen();
     bool toggleMenu();
+    bool saveGame();
+    bool quit();
     bool issueCommand(Command command);
+
     
     std::map<std::pair<int, int>, bool> panelScreenCheck;
 

@@ -193,6 +193,8 @@ namespace DAPI
     SKILLREPAIR,
     SKILLRECHARGE,
     TOGGLEMENU,
+    SAVEGAME,
+    QUIT,
     NUM_CMDS
   };
 

@@ -32,8 +32,10 @@ extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::int
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_OperateObject;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_PutCursorItem;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_PutInCursor;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Quit;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_RechargeItem;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_RepairItem;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SaveGame;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SelectStoreOption;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SellItem;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SetFPS;
@@ -194,6 +196,16 @@ class ToggleMenuDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<ToggleMenu>
       _instance;
 } _ToggleMenu_default_instance_;
+class SaveGameDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<SaveGame>
+      _instance;
+} _SaveGame_default_instance_;
+class QuitDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<Quit>
+      _instance;
+} _Quit_default_instance_;
 class CommandDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<Command>
@@ -227,6 +239,8 @@ class CommandDefaultTypeInternal {
   const ::dapi::commands::SkillRepair* skillrepair_;
   const ::dapi::commands::SkillRecharge* skillrecharge_;
   const ::dapi::commands::ToggleMenu* togglemenu_;
+  const ::dapi::commands::SaveGame* savegame_;
+  const ::dapi::commands::Quit* quit_;
 } _Command_default_instance_;
 }  // namespace commands
 }  // namespace dapi
@@ -637,6 +651,34 @@ static void InitDefaultsToggleMenu() {
 ::google::protobuf::internal::SCCInfo<0> scc_info_ToggleMenu =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsToggleMenu}, {}};
 
+static void InitDefaultsSaveGame() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::dapi::commands::_SaveGame_default_instance_;
+    new (ptr) ::dapi::commands::SaveGame();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::dapi::commands::SaveGame::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_SaveGame =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsSaveGame}, {}};
+
+static void InitDefaultsQuit() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::dapi::commands::_Quit_default_instance_;
+    new (ptr) ::dapi::commands::Quit();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::dapi::commands::Quit::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_Quit =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsQuit}, {}};
+
 static void InitDefaultsCommand() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -648,8 +690,8 @@ static void InitDefaultsCommand() {
   ::dapi::commands::Command::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<29> scc_info_Command =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 29, InitDefaultsCommand}, {
+::google::protobuf::internal::SCCInfo<31> scc_info_Command =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 31, InitDefaultsCommand}, {
       &protobuf_command_2eproto::scc_info_Move.base,
       &protobuf_command_2eproto::scc_info_Talk.base,
       &protobuf_command_2eproto::scc_info_SelectStoreOption.base,
@@ -678,7 +720,9 @@ static void InitDefaultsCommand() {
       &protobuf_command_2eproto::scc_info_DisarmTrap.base,
       &protobuf_command_2eproto::scc_info_SkillRepair.base,
       &protobuf_command_2eproto::scc_info_SkillRecharge.base,
-      &protobuf_command_2eproto::scc_info_ToggleMenu.base,}};
+      &protobuf_command_2eproto::scc_info_ToggleMenu.base,
+      &protobuf_command_2eproto::scc_info_SaveGame.base,
+      &protobuf_command_2eproto::scc_info_Quit.base,}};
 
 void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_SetFPS.base);
@@ -710,6 +754,8 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_SkillRepair.base);
   ::google::protobuf::internal::InitSCC(&scc_info_SkillRecharge.base);
   ::google::protobuf::internal::InitSCC(&scc_info_ToggleMenu.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_SaveGame.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_Quit.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Command.base);
 }
 
@@ -5989,6 +6035,290 @@ void ToggleMenu::InternalSwap(ToggleMenu* other) {
 
 // ===================================================================
 
+void SaveGame::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+SaveGame::SaveGame()
+  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_command_2eproto::scc_info_SaveGame.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:dapi.commands.SaveGame)
+}
+SaveGame::SaveGame(const SaveGame& from)
+  : ::google::protobuf::MessageLite(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:dapi.commands.SaveGame)
+}
+
+void SaveGame::SharedCtor() {
+}
+
+SaveGame::~SaveGame() {
+  // @@protoc_insertion_point(destructor:dapi.commands.SaveGame)
+  SharedDtor();
+}
+
+void SaveGame::SharedDtor() {
+}
+
+void SaveGame::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const SaveGame& SaveGame::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_command_2eproto::scc_info_SaveGame.base);
+  return *internal_default_instance();
+}
+
+
+void SaveGame::Clear() {
+// @@protoc_insertion_point(message_clear_start:dapi.commands.SaveGame)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear();
+}
+
+bool SaveGame::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
+      &_internal_metadata_);
+  ::google::protobuf::io::StringOutputStream unknown_fields_output(
+      unknown_fields_setter.buffer());
+  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
+      &unknown_fields_output, false);
+  // @@protoc_insertion_point(parse_start:dapi.commands.SaveGame)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+  handle_unusual:
+    if (tag == 0) {
+      goto success;
+    }
+    DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+        input, tag, &unknown_fields_stream));
+  }
+success:
+  // @@protoc_insertion_point(parse_success:dapi.commands.SaveGame)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:dapi.commands.SaveGame)
+  return false;
+#undef DO_
+}
+
+void SaveGame::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:dapi.commands.SaveGame)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
+                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  // @@protoc_insertion_point(serialize_end:dapi.commands.SaveGame)
+}
+
+size_t SaveGame::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dapi.commands.SaveGame)
+  size_t total_size = 0;
+
+  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SaveGame::CheckTypeAndMergeFrom(
+    const ::google::protobuf::MessageLite& from) {
+  MergeFrom(*::google::protobuf::down_cast<const SaveGame*>(&from));
+}
+
+void SaveGame::MergeFrom(const SaveGame& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:dapi.commands.SaveGame)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void SaveGame::CopyFrom(const SaveGame& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dapi.commands.SaveGame)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SaveGame::IsInitialized() const {
+  return true;
+}
+
+void SaveGame::Swap(SaveGame* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void SaveGame::InternalSwap(SaveGame* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::std::string SaveGame::GetTypeName() const {
+  return "dapi.commands.SaveGame";
+}
+
+
+// ===================================================================
+
+void Quit::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Quit::Quit()
+  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_command_2eproto::scc_info_Quit.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:dapi.commands.Quit)
+}
+Quit::Quit(const Quit& from)
+  : ::google::protobuf::MessageLite(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:dapi.commands.Quit)
+}
+
+void Quit::SharedCtor() {
+}
+
+Quit::~Quit() {
+  // @@protoc_insertion_point(destructor:dapi.commands.Quit)
+  SharedDtor();
+}
+
+void Quit::SharedDtor() {
+}
+
+void Quit::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const Quit& Quit::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_command_2eproto::scc_info_Quit.base);
+  return *internal_default_instance();
+}
+
+
+void Quit::Clear() {
+// @@protoc_insertion_point(message_clear_start:dapi.commands.Quit)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear();
+}
+
+bool Quit::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
+      &_internal_metadata_);
+  ::google::protobuf::io::StringOutputStream unknown_fields_output(
+      unknown_fields_setter.buffer());
+  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
+      &unknown_fields_output, false);
+  // @@protoc_insertion_point(parse_start:dapi.commands.Quit)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+  handle_unusual:
+    if (tag == 0) {
+      goto success;
+    }
+    DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+        input, tag, &unknown_fields_stream));
+  }
+success:
+  // @@protoc_insertion_point(parse_success:dapi.commands.Quit)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:dapi.commands.Quit)
+  return false;
+#undef DO_
+}
+
+void Quit::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:dapi.commands.Quit)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
+                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  // @@protoc_insertion_point(serialize_end:dapi.commands.Quit)
+}
+
+size_t Quit::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dapi.commands.Quit)
+  size_t total_size = 0;
+
+  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Quit::CheckTypeAndMergeFrom(
+    const ::google::protobuf::MessageLite& from) {
+  MergeFrom(*::google::protobuf::down_cast<const Quit*>(&from));
+}
+
+void Quit::MergeFrom(const Quit& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:dapi.commands.Quit)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void Quit::CopyFrom(const Quit& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dapi.commands.Quit)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Quit::IsInitialized() const {
+  return true;
+}
+
+void Quit::Swap(Quit* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Quit::InternalSwap(Quit* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::std::string Quit::GetTypeName() const {
+  return "dapi.commands.Quit";
+}
+
+
+// ===================================================================
+
 void Command::InitAsDefaultInstance() {
 }
 void Command::set_allocated_move(::dapi::commands::Move* move) {
@@ -6397,6 +6727,34 @@ void Command::set_allocated_togglemenu(::dapi::commands::ToggleMenu* togglemenu)
   }
   // @@protoc_insertion_point(field_set_allocated:dapi.commands.Command.toggleMenu)
 }
+void Command::set_allocated_savegame(::dapi::commands::SaveGame* savegame) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  clear_command();
+  if (savegame) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      savegame = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, savegame, submessage_arena);
+    }
+    set_has_savegame();
+    command_.savegame_ = savegame;
+  }
+  // @@protoc_insertion_point(field_set_allocated:dapi.commands.Command.saveGame)
+}
+void Command::set_allocated_quit(::dapi::commands::Quit* quit) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  clear_command();
+  if (quit) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      quit = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, quit, submessage_arena);
+    }
+    set_has_quit();
+    command_.quit_ = quit;
+  }
+  // @@protoc_insertion_point(field_set_allocated:dapi.commands.Command.quit)
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Command::kMoveFieldNumber;
 const int Command::kTalkFieldNumber;
@@ -6427,6 +6785,8 @@ const int Command::kDisarmTrapFieldNumber;
 const int Command::kSkillRepairFieldNumber;
 const int Command::kSkillRechargeFieldNumber;
 const int Command::kToggleMenuFieldNumber;
+const int Command::kSaveGameFieldNumber;
+const int Command::kQuitFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Command::Command()
@@ -6556,6 +6916,14 @@ Command::Command(const Command& from)
     }
     case kToggleMenu: {
       mutable_togglemenu()->::dapi::commands::ToggleMenu::MergeFrom(from.togglemenu());
+      break;
+    }
+    case kSaveGame: {
+      mutable_savegame()->::dapi::commands::SaveGame::MergeFrom(from.savegame());
+      break;
+    }
+    case kQuit: {
+      mutable_quit()->::dapi::commands::Quit::MergeFrom(from.quit());
       break;
     }
     case COMMAND_NOT_SET: {
@@ -6706,6 +7074,14 @@ void Command::clear_command() {
     }
     case kToggleMenu: {
       delete command_.togglemenu_;
+      break;
+    }
+    case kSaveGame: {
+      delete command_.savegame_;
+      break;
+    }
+    case kQuit: {
+      delete command_.quit_;
       break;
     }
     case COMMAND_NOT_SET: {
@@ -7090,6 +7466,30 @@ bool Command::MergePartialFromCodedStream(
         break;
       }
 
+      // .dapi.commands.SaveGame saveGame = 30;
+      case 30: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(242u /* 242 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_savegame()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .dapi.commands.Quit quit = 31;
+      case 31: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(250u /* 250 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_quit()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -7288,6 +7688,18 @@ void Command::SerializeWithCachedSizes(
   if (has_togglemenu()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
       29, this->_internal_togglemenu(), output);
+  }
+
+  // .dapi.commands.SaveGame saveGame = 30;
+  if (has_savegame()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      30, this->_internal_savegame(), output);
+  }
+
+  // .dapi.commands.Quit quit = 31;
+  if (has_quit()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      31, this->_internal_quit(), output);
   }
 
   output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
@@ -7505,6 +7917,20 @@ size_t Command::ByteSizeLong() const {
           *command_.togglemenu_);
       break;
     }
+    // .dapi.commands.SaveGame saveGame = 30;
+    case kSaveGame: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *command_.savegame_);
+      break;
+    }
+    // .dapi.commands.Quit quit = 31;
+    case kQuit: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *command_.quit_);
+      break;
+    }
     case COMMAND_NOT_SET: {
       break;
     }
@@ -7643,6 +8069,14 @@ void Command::MergeFrom(const Command& from) {
       mutable_togglemenu()->::dapi::commands::ToggleMenu::MergeFrom(from.togglemenu());
       break;
     }
+    case kSaveGame: {
+      mutable_savegame()->::dapi::commands::SaveGame::MergeFrom(from.savegame());
+      break;
+    }
+    case kQuit: {
+      mutable_quit()->::dapi::commands::Quit::MergeFrom(from.quit());
+      break;
+    }
     case COMMAND_NOT_SET: {
       break;
     }
@@ -7767,6 +8201,12 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::SkillRecharge* A
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::ToggleMenu* Arena::CreateMaybeMessage< ::dapi::commands::ToggleMenu >(Arena* arena) {
   return Arena::CreateInternal< ::dapi::commands::ToggleMenu >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::SaveGame* Arena::CreateMaybeMessage< ::dapi::commands::SaveGame >(Arena* arena) {
+  return Arena::CreateInternal< ::dapi::commands::SaveGame >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::Quit* Arena::CreateMaybeMessage< ::dapi::commands::Quit >(Arena* arena) {
+  return Arena::CreateInternal< ::dapi::commands::Quit >(arena);
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::Command* Arena::CreateMaybeMessage< ::dapi::commands::Command >(Arena* arena) {
   return Arena::CreateInternal< ::dapi::commands::Command >(arena);

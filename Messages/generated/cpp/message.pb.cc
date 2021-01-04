@@ -17,7 +17,7 @@
 // @@protoc_insertion_point(includes)
 
 namespace protobuf_command_2eproto {
-extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<29> scc_info_Command;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<31> scc_info_Command;
 }  // namespace protobuf_command_2eproto
 namespace protobuf_game_2eproto {
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_game_2eproto ::google::protobuf::internal::SCCInfo<10> scc_info_FrameUpdate;
