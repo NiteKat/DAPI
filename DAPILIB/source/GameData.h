@@ -18,6 +18,12 @@ namespace DAPI
 
   enum struct StoreOption;
 
+  enum struct GameMode
+  {
+    SINGLEPLAYER,
+    MULTIPLAYER
+  };
+
   struct GameData
   {
     int player;
@@ -33,6 +39,7 @@ namespace DAPI
     int currlevel;
     bool setlevel;
     int FPS;
+    GameMode gameMode;
     
     std::map<int, Player> playerList;
     std::map<int, Item> itemList;

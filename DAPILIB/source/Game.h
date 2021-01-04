@@ -23,6 +23,7 @@ namespace DAPI
     Quest getQuest(QuestID id);
     int getFPS() { return data->FPS; }
     int getCursor() { return data->cursor; }
+    GameMode getGameMode() { return data->gameMode; }
 
     std::vector<std::shared_ptr<Item>> getItemsOnGround();
     std::vector<std::shared_ptr<Towner>> getTowners();

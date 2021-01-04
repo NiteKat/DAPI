@@ -341,6 +341,7 @@ namespace DAPI
     auto numtrigs = reinterpret_cast<int(*)>(0x6ABAD8);
     auto quests = reinterpret_cast<DiabloInternal::QuestStruct(*)>(0x69BD10);
     auto dObject = reinterpret_cast<char(*)[112][112]>(0x539C48);
+    auto gbMaxPlayers = reinterpret_cast<BYTE(*)>(0x679660);
 
     auto fullFillItemInfo = [&](int itemID, DiabloInternal::ItemStruct* item) {
 
@@ -571,6 +572,10 @@ namespace DAPI
     else
       update->set_qtext("");
     update->set_fps(FPS);
+    if (*gbMaxPlayers == 1)
+      update->set_gamemode(0);
+    else
+      update->set_gamemode(1);
 
     int range = 10;
     if (ScrollInfo->_sdir != 0) {
