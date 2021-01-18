@@ -47,6 +47,7 @@ namespace DAPI
     static Command toggleMenu();
     static Command saveGame();
     static Command quit();
+    static Command clearCursor();
 
     CommandType type;
     int targetX;

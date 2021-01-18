@@ -238,6 +238,12 @@ namespace DAPI
     return c;
   }
 
+  Command Command::clearCursor()
+  {
+    Command c{ CommandType::CLEARCURSOR };
+    return c;
+  }
+
   Command Command::increaseStat(int stat)
   {
     Command c;

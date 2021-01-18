@@ -867,6 +867,16 @@ namespace DAPI
     return client.issueCommand(Command::quit());
   }
 
+  bool Game::clearCursor()
+  {
+    if (data->cursor != static_cast<int>(CursorType::REPAIR) &&
+      data->cursor != static_cast<int>(CursorType::DISARM) &&
+      data->cursor != static_cast<int>(CursorType::RECHARGE))
+      return false;
+
+    return client.issueCommand(Command::clearCursor());
+  }
+
   bool Game::issueCommand(Command command)
   {
     return client.issueCommand(command);

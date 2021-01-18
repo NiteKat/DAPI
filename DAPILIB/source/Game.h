@@ -78,6 +78,7 @@ namespace DAPI
     bool toggleMenu();
     bool saveGame();
     bool quit();
+    bool clearCursor();
     bool issueCommand(Command command);
 
     

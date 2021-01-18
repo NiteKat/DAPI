@@ -228,6 +228,7 @@ namespace DAPI
     void toggleMenu();
     void saveGame();
     void quit();
+    void clearCursor();
 
     bool listening = false;
 

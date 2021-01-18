@@ -269,6 +269,10 @@ namespace DAPI
         {
           this->quit();
         }
+        else if (command.has_clearcursor())
+        {
+          this->clearCursor();
+        }
         issuedCommand = true;
         if (command.has_setfps())
         {
@@ -2608,16 +2612,16 @@ namespace DAPI
         my = InvRect[0].Y - 1;
         break;
       case EquipSlot::LEFTRING:
-        mx = InvRect[4].X + 1;
-        my = InvRect[4].Y - 1;
+        mx = InvRect[4].X + 2;
+        my = InvRect[4].Y - 20;
         break;
       case EquipSlot::RIGHTRING:
-        mx = InvRect[5].X + 1;
-        my = InvRect[5].Y - 1;
+        mx = InvRect[5].X + 2;
+        my = InvRect[5].Y - 20;
         break;
       case EquipSlot::AMULET:
-        mx = InvRect[6].X + 1;
-        my = InvRect[6].Y - 1;
+        mx = InvRect[6].X + 2;
+        my = InvRect[6].Y - 20;
         break;
       case EquipSlot::LEFTHAND:
         mx = InvRect[7].X + 1;
@@ -2902,6 +2906,19 @@ namespace DAPI
       PlaySFX(69);
       sgMultiMenu[3].fnMenu(TRUE);
     }
+    return;
+  }
+
+  void Server::clearCursor()
+  {
+    auto pcurs = reinterpret_cast<int(*)>(0x4B8CD0);
+    auto NewCursor = reinterpret_cast<int(__fastcall*)(int)>(0x40748E);
+
+    if (*pcurs == static_cast<int>(DiabloInternal::cursor_id::CURSOR_REPAIR) ||
+      *pcurs == static_cast<int>(DiabloInternal::cursor_id::CURSOR_DISARM) ||
+      *pcurs == static_cast<int>(DiabloInternal::cursor_id::CURSOR_RECHARGE))
+      NewCursor(static_cast<int>(DiabloInternal::cursor_id::CURSOR_HAND));
+
     return;
   }
 }

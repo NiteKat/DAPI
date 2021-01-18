@@ -23,6 +23,7 @@ extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::int
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_CancelQText;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_CastMonster;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_CastXY;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_ClearCursor;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_DisarmTrap;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_DropCursorItem;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_GetItem;
@@ -206,6 +207,11 @@ class QuitDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<Quit>
       _instance;
 } _Quit_default_instance_;
+class ClearCursorDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<ClearCursor>
+      _instance;
+} _ClearCursor_default_instance_;
 class CommandDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<Command>
@@ -241,6 +247,7 @@ class CommandDefaultTypeInternal {
   const ::dapi::commands::ToggleMenu* togglemenu_;
   const ::dapi::commands::SaveGame* savegame_;
   const ::dapi::commands::Quit* quit_;
+  const ::dapi::commands::ClearCursor* clearcursor_;
 } _Command_default_instance_;
 }  // namespace commands
 }  // namespace dapi
@@ -679,6 +686,20 @@ static void InitDefaultsQuit() {
 ::google::protobuf::internal::SCCInfo<0> scc_info_Quit =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsQuit}, {}};
 
+static void InitDefaultsClearCursor() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::dapi::commands::_ClearCursor_default_instance_;
+    new (ptr) ::dapi::commands::ClearCursor();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::dapi::commands::ClearCursor::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_ClearCursor =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsClearCursor}, {}};
+
 static void InitDefaultsCommand() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -690,8 +711,8 @@ static void InitDefaultsCommand() {
   ::dapi::commands::Command::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<31> scc_info_Command =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 31, InitDefaultsCommand}, {
+::google::protobuf::internal::SCCInfo<32> scc_info_Command =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 32, InitDefaultsCommand}, {
       &protobuf_command_2eproto::scc_info_Move.base,
       &protobuf_command_2eproto::scc_info_Talk.base,
       &protobuf_command_2eproto::scc_info_SelectStoreOption.base,
@@ -722,7 +743,8 @@ static void InitDefaultsCommand() {
       &protobuf_command_2eproto::scc_info_SkillRecharge.base,
       &protobuf_command_2eproto::scc_info_ToggleMenu.base,
       &protobuf_command_2eproto::scc_info_SaveGame.base,
-      &protobuf_command_2eproto::scc_info_Quit.base,}};
+      &protobuf_command_2eproto::scc_info_Quit.base,
+      &protobuf_command_2eproto::scc_info_ClearCursor.base,}};
 
 void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_SetFPS.base);
@@ -756,6 +778,7 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_ToggleMenu.base);
   ::google::protobuf::internal::InitSCC(&scc_info_SaveGame.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Quit.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_ClearCursor.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Command.base);
 }
 
@@ -6319,6 +6342,148 @@ void Quit::InternalSwap(Quit* other) {
 
 // ===================================================================
 
+void ClearCursor::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+ClearCursor::ClearCursor()
+  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_command_2eproto::scc_info_ClearCursor.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:dapi.commands.ClearCursor)
+}
+ClearCursor::ClearCursor(const ClearCursor& from)
+  : ::google::protobuf::MessageLite(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:dapi.commands.ClearCursor)
+}
+
+void ClearCursor::SharedCtor() {
+}
+
+ClearCursor::~ClearCursor() {
+  // @@protoc_insertion_point(destructor:dapi.commands.ClearCursor)
+  SharedDtor();
+}
+
+void ClearCursor::SharedDtor() {
+}
+
+void ClearCursor::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ClearCursor& ClearCursor::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_command_2eproto::scc_info_ClearCursor.base);
+  return *internal_default_instance();
+}
+
+
+void ClearCursor::Clear() {
+// @@protoc_insertion_point(message_clear_start:dapi.commands.ClearCursor)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear();
+}
+
+bool ClearCursor::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
+      &_internal_metadata_);
+  ::google::protobuf::io::StringOutputStream unknown_fields_output(
+      unknown_fields_setter.buffer());
+  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
+      &unknown_fields_output, false);
+  // @@protoc_insertion_point(parse_start:dapi.commands.ClearCursor)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+  handle_unusual:
+    if (tag == 0) {
+      goto success;
+    }
+    DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+        input, tag, &unknown_fields_stream));
+  }
+success:
+  // @@protoc_insertion_point(parse_success:dapi.commands.ClearCursor)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:dapi.commands.ClearCursor)
+  return false;
+#undef DO_
+}
+
+void ClearCursor::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:dapi.commands.ClearCursor)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
+                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  // @@protoc_insertion_point(serialize_end:dapi.commands.ClearCursor)
+}
+
+size_t ClearCursor::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dapi.commands.ClearCursor)
+  size_t total_size = 0;
+
+  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ClearCursor::CheckTypeAndMergeFrom(
+    const ::google::protobuf::MessageLite& from) {
+  MergeFrom(*::google::protobuf::down_cast<const ClearCursor*>(&from));
+}
+
+void ClearCursor::MergeFrom(const ClearCursor& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:dapi.commands.ClearCursor)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void ClearCursor::CopyFrom(const ClearCursor& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dapi.commands.ClearCursor)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ClearCursor::IsInitialized() const {
+  return true;
+}
+
+void ClearCursor::Swap(ClearCursor* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void ClearCursor::InternalSwap(ClearCursor* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::std::string ClearCursor::GetTypeName() const {
+  return "dapi.commands.ClearCursor";
+}
+
+
+// ===================================================================
+
 void Command::InitAsDefaultInstance() {
 }
 void Command::set_allocated_move(::dapi::commands::Move* move) {
@@ -6755,6 +6920,20 @@ void Command::set_allocated_quit(::dapi::commands::Quit* quit) {
   }
   // @@protoc_insertion_point(field_set_allocated:dapi.commands.Command.quit)
 }
+void Command::set_allocated_clearcursor(::dapi::commands::ClearCursor* clearcursor) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  clear_command();
+  if (clearcursor) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      clearcursor = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, clearcursor, submessage_arena);
+    }
+    set_has_clearcursor();
+    command_.clearcursor_ = clearcursor;
+  }
+  // @@protoc_insertion_point(field_set_allocated:dapi.commands.Command.clearCursor)
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Command::kMoveFieldNumber;
 const int Command::kTalkFieldNumber;
@@ -6787,6 +6966,7 @@ const int Command::kSkillRechargeFieldNumber;
 const int Command::kToggleMenuFieldNumber;
 const int Command::kSaveGameFieldNumber;
 const int Command::kQuitFieldNumber;
+const int Command::kClearCursorFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Command::Command()
@@ -6924,6 +7104,10 @@ Command::Command(const Command& from)
     }
     case kQuit: {
       mutable_quit()->::dapi::commands::Quit::MergeFrom(from.quit());
+      break;
+    }
+    case kClearCursor: {
+      mutable_clearcursor()->::dapi::commands::ClearCursor::MergeFrom(from.clearcursor());
       break;
     }
     case COMMAND_NOT_SET: {
@@ -7082,6 +7266,10 @@ void Command::clear_command() {
     }
     case kQuit: {
       delete command_.quit_;
+      break;
+    }
+    case kClearCursor: {
+      delete command_.clearcursor_;
       break;
     }
     case COMMAND_NOT_SET: {
@@ -7490,6 +7678,18 @@ bool Command::MergePartialFromCodedStream(
         break;
       }
 
+      // .dapi.commands.ClearCursor clearCursor = 32;
+      case 32: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(2u /* 258 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_clearcursor()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -7700,6 +7900,12 @@ void Command::SerializeWithCachedSizes(
   if (has_quit()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
       31, this->_internal_quit(), output);
+  }
+
+  // .dapi.commands.ClearCursor clearCursor = 32;
+  if (has_clearcursor()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      32, this->_internal_clearcursor(), output);
   }
 
   output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
@@ -7931,6 +8137,13 @@ size_t Command::ByteSizeLong() const {
           *command_.quit_);
       break;
     }
+    // .dapi.commands.ClearCursor clearCursor = 32;
+    case kClearCursor: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *command_.clearcursor_);
+      break;
+    }
     case COMMAND_NOT_SET: {
       break;
     }
@@ -8077,6 +8290,10 @@ void Command::MergeFrom(const Command& from) {
       mutable_quit()->::dapi::commands::Quit::MergeFrom(from.quit());
       break;
     }
+    case kClearCursor: {
+      mutable_clearcursor()->::dapi::commands::ClearCursor::MergeFrom(from.clearcursor());
+      break;
+    }
     case COMMAND_NOT_SET: {
       break;
     }
@@ -8207,6 +8424,9 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::SaveGame* Arena:
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::Quit* Arena::CreateMaybeMessage< ::dapi::commands::Quit >(Arena* arena) {
   return Arena::CreateInternal< ::dapi::commands::Quit >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::ClearCursor* Arena::CreateMaybeMessage< ::dapi::commands::ClearCursor >(Arena* arena) {
+  return Arena::CreateInternal< ::dapi::commands::ClearCursor >(arena);
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::Command* Arena::CreateMaybeMessage< ::dapi::commands::Command >(Arena* arena) {
   return Arena::CreateInternal< ::dapi::commands::Command >(arena);

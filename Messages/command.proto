@@ -133,6 +133,10 @@ message Quit {
 
 }
 
+message ClearCursor {
+
+}
+
 message Command {
 	oneof command {
 		Move move = 1;
@@ -166,5 +170,6 @@ message Command {
 		ToggleMenu toggleMenu = 29;
 		SaveGame saveGame = 30;
 		Quit quit = 31;
+		ClearCursor clearCursor = 32;
 	}
 }

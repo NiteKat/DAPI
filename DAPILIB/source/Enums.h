@@ -195,6 +195,7 @@ namespace DAPI
     TOGGLEMENU,
     SAVEGAME,
     QUIT,
+    CLEARCURSOR,
     NUM_CMDS
   };
 

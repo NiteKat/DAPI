@@ -530,6 +530,9 @@ namespace DAPI
       case CommandType::QUIT:
         commandMessage->mutable_quit();
         break;
+      case CommandType::CLEARCURSOR:
+        commandMessage->mutable_clearcursor();
+        break;
       default:
         break;
       }
