@@ -2868,7 +2868,7 @@ namespace DAPI
   void Server::toggleMenu()
   {
     auto qtextflag = reinterpret_cast<BOOLEAN(*)>(0x646D00);
-    auto gamemenu_handle_previous = reinterpret_cast<void(__fastcall*)()>(0x418866);
+    auto gamemenu_handle_previous = reinterpret_cast<void(__fastcall*)()>(0x4188E1);
 
     qtextflag = FALSE;
     gamemenu_handle_previous();
