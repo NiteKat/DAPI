@@ -63,6 +63,7 @@ namespace DAPI
     std::vector<std::shared_ptr<Item>> getInventoryItems();
     std::vector<std::shared_ptr<Item>> getSpeedItems();
     std::shared_ptr<Item> getCursorItem() { return data->HoldItem; }
+    bool hasManaShield() { return data->pManaShield; }
 
     std::shared_ptr<PlayerData> data;
   };

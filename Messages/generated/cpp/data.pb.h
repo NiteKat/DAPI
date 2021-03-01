@@ -2035,6 +2035,12 @@ class PlayerData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::google::protobuf::uint32 _pibonusdammod() const;
   void set__pibonusdammod(::google::protobuf::uint32 value);
 
+  // bool pManaShield = 50;
+  void clear_pmanashield();
+  static const int kPManaShieldFieldNumber = 50;
+  bool pmanashield() const;
+  void set_pmanashield(bool value);
+
   // @@protoc_insertion_point(class_scope:dapi.data.PlayerData)
  private:
 
@@ -2093,6 +2099,7 @@ class PlayerData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::google::protobuf::uint32 _pibonustohit_;
   ::google::protobuf::uint32 _pibonusac_;
   ::google::protobuf::uint32 _pibonusdammod_;
+  bool pmanashield_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_data_2eproto::TableStruct;
 };
@@ -4390,6 +4397,20 @@ inline void PlayerData::set__pibonusdammod(::google::protobuf::uint32 value) {
   
   _pibonusdammod_ = value;
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pIBonusDamMod)
+}
+
+// bool pManaShield = 50;
+inline void PlayerData::clear_pmanashield() {
+  pmanashield_ = false;
+}
+inline bool PlayerData::pmanashield() const {
+  // @@protoc_insertion_point(field_get:dapi.data.PlayerData.pManaShield)
+  return pmanashield_;
+}
+inline void PlayerData::set_pmanashield(bool value) {
+  
+  pmanashield_ = value;
+  // @@protoc_insertion_point(field_set:dapi.data.PlayerData.pManaShield)
 }
 
 #ifdef __GNUC__

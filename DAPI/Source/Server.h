@@ -188,7 +188,6 @@ namespace DAPI
     bool isConnected() const;
 
     int FPS;
-    int gameClock;
     std::ofstream output;
 
   private:

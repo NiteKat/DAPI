@@ -270,6 +270,7 @@ namespace DAPI
             game.data->playerList[pnum].data->_pIBonusToHit = player._pibonustohit();
             game.data->playerList[pnum].data->_pIBonusAC = player._pibonusac();
             game.data->playerList[pnum].data->_pIBonusDamMod = player._pibonusdammod();
+            game.data->playerList[pnum].data->pManaShield = player.pmanashield();
           }
           game.data->groundItems.clear();
           for (auto& itemID : frameUpdate.grounditemid())

@@ -4,7 +4,7 @@
 
 namespace DAPI
 {
-  Server::Server() : FPS(20), gameClock(0)
+  Server::Server() : FPS(20)
   {
     output.open("output.csv");
     data = std::make_unique<GameData>();
@@ -84,13 +84,10 @@ namespace DAPI
 
   void Server::update()
   {
-    gameClock += 1000 / FPS;
+    auto gbMaxPlayers = reinterpret_cast<int(*)>(0x679660);
+
     if (isConnected())
     {
-      //std::stringstream test;
-      //test << "\\x" << std::hex << msDelay;
-      //Patch((char*)0x440EBE, test.str().c_str(), 1);
-      //Patch((char*)0x440F53, test.str().c_str(), 1);
       updateGameData();
       protoClient.transmitMessages();
       protoClient.receiveMessages();
@@ -346,6 +343,8 @@ namespace DAPI
     auto quests = reinterpret_cast<DiabloInternal::QuestStruct(*)>(0x69BD10);
     auto dObject = reinterpret_cast<char(*)[112][112]>(0x539C48);
     auto gbMaxPlayers = reinterpret_cast<BYTE(*)>(0x679660);
+    auto storenumh = reinterpret_cast<int(*)>(0x69F10C);
+    auto storehidx = reinterpret_cast<int(*)>(0x6A89F0);
 
     auto fullFillItemInfo = [&](int itemID, DiabloInternal::ItemStruct* item) {
 
@@ -855,6 +854,7 @@ namespace DAPI
         data->playerList[i]._pIBonusToHit = plr[i]._pIBonusToHit;
         data->playerList[i]._pIBonusAC = plr[i]._pIBonusAC;
         data->playerList[i]._pIBonusDamMod = plr[i]._pIBonusDamMod;
+        data->playerList[i].pManaShield = plr[i].pManaShield;
       }
       else if ((*dFlags)[plr[i]._px][plr[i]._py] & 0x40)
       {
@@ -919,6 +919,7 @@ namespace DAPI
         data->playerList[i]._pIBonusToHit = -1;
         data->playerList[i]._pIBonusAC = -1;
         data->playerList[i]._pIBonusDamMod = -1;
+        data->playerList[i].pManaShield = plr[i].pManaShield;
       }
       else
       {
@@ -983,6 +984,7 @@ namespace DAPI
         data->playerList[i]._pIBonusToHit = -1;
         data->playerList[i]._pIBonusAC = -1;
         data->playerList[i]._pIBonusDamMod = -1;
+        data->playerList[i].pManaShield = false;
       }
 
       playerData->set__pmode(data->playerList[i]._pmode);
@@ -1048,6 +1050,7 @@ namespace DAPI
       playerData->set__pibonustohit(data->playerList[i]._pIBonusToHit);
       playerData->set__pibonusac(data->playerList[i]._pIBonusAC);
       playerData->set__pibonusdammod(data->playerList[i]._pIBonusDamMod);
+      playerData->set_pmanashield(data->playerList[i].pManaShield);
     }
 
     auto emptyFillItemInfo = [&](int itemID, DiabloInternal::ItemStruct* item) {
@@ -1190,6 +1193,34 @@ namespace DAPI
         }
       }
       break;
+    /*case TalkID::SREPAIR:
+      for (int i = 0; i < *storenumh; i++)
+      {
+        if (storehold[storehidx[i]]._itype != -1)
+        {
+          int itemID = data->itemList.size();
+          for (auto& item : data->itemList)
+          {
+            if (item.compare(storehold[storehidx[i]]))
+            {
+              itemID = item.ID;
+              break;
+            }
+          }
+          if (itemID == data->itemList.size())
+          {
+            data->itemList.push_back(ItemData{});
+            fullFillItemInfo(itemID, &storehold[storehidx[i]]);
+          }
+          data->itemList[itemID]._ivalue = storehold[storehidx[i]]._ivalue;
+          if (storehold[storehidx[i]]._ivalue != 0)
+          {
+            data->storeItems.push_back(itemID);
+            update->add_storeitems(itemID);
+          }
+        }
+      }
+      break;*/
     case TalkID::WBUY:
       for (int i = 0; i < 20; i++)
       {

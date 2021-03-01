@@ -4586,6 +4586,7 @@ const int PlayerData::kPIBonusDamFieldNumber;
 const int PlayerData::kPIBonusToHitFieldNumber;
 const int PlayerData::kPIBonusACFieldNumber;
 const int PlayerData::kPIBonusDamModFieldNumber;
+const int PlayerData::kPManaShieldFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 PlayerData::PlayerData()
@@ -4609,16 +4610,16 @@ PlayerData::PlayerData(const PlayerData& from)
     _pname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from._pname_);
   }
   ::memcpy(&_pmode_, &from._pmode_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_pibonusdammod_) -
-    reinterpret_cast<char*>(&_pmode_)) + sizeof(_pibonusdammod_));
+    static_cast<size_t>(reinterpret_cast<char*>(&pmanashield_) -
+    reinterpret_cast<char*>(&_pmode_)) + sizeof(pmanashield_));
   // @@protoc_insertion_point(copy_constructor:dapi.data.PlayerData)
 }
 
 void PlayerData::SharedCtor() {
   _pname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&_pmode_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_pibonusdammod_) -
-      reinterpret_cast<char*>(&_pmode_)) + sizeof(_pibonusdammod_));
+      reinterpret_cast<char*>(&pmanashield_) -
+      reinterpret_cast<char*>(&_pmode_)) + sizeof(pmanashield_));
 }
 
 PlayerData::~PlayerData() {
@@ -4652,8 +4653,8 @@ void PlayerData::Clear() {
   spdlist_.Clear();
   _pname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&_pmode_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_pibonusdammod_) -
-      reinterpret_cast<char*>(&_pmode_)) + sizeof(_pibonusdammod_));
+      reinterpret_cast<char*>(&pmanashield_) -
+      reinterpret_cast<char*>(&_pmode_)) + sizeof(pmanashield_));
   _internal_metadata_.Clear();
 }
 
@@ -5386,6 +5387,20 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
+      // bool pManaShield = 50;
+      case 50: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(144u /* 400 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &pmanashield_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -5690,6 +5705,11 @@ void PlayerData::SerializeWithCachedSizes(
   // uint32 _pIBonusDamMod = 49;
   if (this->_pibonusdammod() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(49, this->_pibonusdammod(), output);
+  }
+
+  // bool pManaShield = 50;
+  if (this->pmanashield() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(50, this->pmanashield(), output);
   }
 
   output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
@@ -6091,6 +6111,11 @@ size_t PlayerData::ByteSizeLong() const {
         this->_pibonusdammod());
   }
 
+  // bool pManaShield = 50;
+  if (this->pmanashield() != 0) {
+    total_size += 2 + 1;
+  }
+
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
@@ -6246,6 +6271,9 @@ void PlayerData::MergeFrom(const PlayerData& from) {
   if (from._pibonusdammod() != 0) {
     set__pibonusdammod(from._pibonusdammod());
   }
+  if (from.pmanashield() != 0) {
+    set_pmanashield(from.pmanashield());
+  }
 }
 
 void PlayerData::CopyFrom(const PlayerData& from) {
@@ -6315,6 +6343,7 @@ void PlayerData::InternalSwap(PlayerData* other) {
   swap(_pibonustohit_, other->_pibonustohit_);
   swap(_pibonusac_, other->_pibonusac_);
   swap(_pibonusdammod_, other->_pibonusdammod_);
+  swap(pmanashield_, other->pmanashield_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
