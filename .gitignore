@@ -1,13 +1,9 @@
 *.user
 *.sdf
-*.opensdf
 *.suo
 *.log
-*.ncb
 Debug
 Release
-*.swp
-*.bak
 *.VC.db
 *.VC.opendb
 .vs
