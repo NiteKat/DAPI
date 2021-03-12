@@ -75,6 +75,8 @@ namespace DAPI
     int getManaCost();
     int getMinimumDamage() { return minDamage; }
     int getMaximumDamage() { return maxDamage; }
+    int getLevel() { return level; }
+    int getRawManaCost();
   private:
     SpellID ID;
     SpellType type;
