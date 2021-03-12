@@ -21,6 +21,7 @@ namespace DAPI
   struct Player
   {
     Player();
+    bool canCast(Spell spell);
     int getID() { return data->pnum; }
     int getX() { return data->_px; }
     int getY() { return data->_py; }
