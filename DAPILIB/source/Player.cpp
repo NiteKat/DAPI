@@ -67,7 +67,7 @@ namespace DAPI
     if (spell.getLevel() == 0)
       return false;
 
-    if (spell.getRawManaCost() < data->_pMana)
+    if (data->_pMana < spell.getRawManaCost())
       return false;
 
     return true;
