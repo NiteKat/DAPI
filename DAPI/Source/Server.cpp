@@ -346,7 +346,10 @@ namespace DAPI
     auto storenumh = reinterpret_cast<int(*)>(0x69F10C);
     auto storehidx = reinterpret_cast<int(*)>(0x6A89F0);
 
+    std::vector<int> itemsModified;
+
     auto fullFillItemInfo = [&](int itemID, DiabloInternal::ItemStruct* item) {
+      itemsModified.push_back(itemID);
 
       data->itemList[itemID].ID = itemID;
       data->itemList[itemID]._iSeed = item->_iSeed;
@@ -440,6 +443,7 @@ namespace DAPI
     };
 
     auto partialFillItemInfo = [&](int itemID, DiabloInternal::ItemStruct* item) {
+      itemsModified.push_back(itemID);
 
       data->itemList[itemID].ID = itemID;
       data->itemList[itemID]._iSeed = item->_iSeed;
@@ -1054,6 +1058,7 @@ namespace DAPI
     }
 
     auto emptyFillItemInfo = [&](int itemID, DiabloInternal::ItemStruct* item) {
+      itemsModified.push_back(itemID);
 
       data->itemList[itemID].ID = itemID;
       data->itemList[itemID]._iSeed = item->_iSeed;
@@ -1171,6 +1176,7 @@ namespace DAPI
         if (storehold[i]._itype != -1)
         {
           int itemID = data->itemList.size();
+          
           for (auto& item : data->itemList)
           {
             if (item.compare(storehold[i]))
@@ -1371,8 +1377,10 @@ namespace DAPI
       townerData->set__tname(townie._tName);
     }
 
-    for (auto& item : data->itemList)
+    for (auto& itemID : itemsModified)
+    //for (auto& item : data->itemList)
     {
+      auto& item = data->itemList[itemID];
       auto itemData = update->add_itemdata();
       itemData->set_id(item.ID);
       itemData->set__itype(item._itype);
