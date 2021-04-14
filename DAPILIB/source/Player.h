@@ -28,7 +28,7 @@ namespace DAPI
     int getFutureX() { return data->_pfutx; }
     int getFutureY() { return data->_pfuty; }
     int getDirection() { return data->_pdir; }
-    Spell getRightClickSpell() { return Spell{ static_cast<SpellID>(data->_pRSpell), static_cast<SpellTypeID>(data->_pRSplType) }; }
+    Spell getRightClickSpell() { return Spell{ static_cast<SpellID>(data->_pRSpell), static_cast<SpellTypeID>(data->_pRSplType), getSpellLevel(static_cast<SpellID>(data->_pRSpell)), static_cast<ClassID>(data->_pClass), data->_pLevel, data->_pMagic }; }
     int getSpellLevel(Spell spell) { return data->_pSplLvl[static_cast<int>(spell.getID())]; }
     int getSpellLevel(SpellID spellID) { return data->_pSplLvl[static_cast<int>(spellID)]; }
     CharacterClass getClass();
