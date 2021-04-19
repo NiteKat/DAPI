@@ -62,6 +62,17 @@ namespace DAPI
     data = std::make_unique<PlayerData>();
   }
 
+  bool Player::canCast(Spell spell)
+  {
+    if (spell.getLevel() == 0)
+      return false;
+
+    if (data->_pMana < spell.getRawManaCost())
+      return false;
+
+    return true;
+  }
+
   std::vector<Spell> Player::getAvailableSpells()
   {
     std::vector<Spell> returnValue;

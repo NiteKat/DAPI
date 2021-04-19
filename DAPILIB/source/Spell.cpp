@@ -233,4 +233,53 @@ namespace DAPI
     return ma >> 6;
   }
 
+  int Spell::getRawManaCost()
+  {
+    if (type.getID() != SpellTypeID::SPELL)
+      return 0;
+
+    int ma; // mana amount
+
+    // mana adjust
+    int adj = 0;
+
+    // spell level
+    int sl = level - 1;
+
+    if (sl < 0) {
+      sl = 0;
+    }
+
+    if (sl > 0) {
+      adj = sl * spellManaAdj[static_cast<int>(ID)];
+    }
+    if (ID == SpellID::FIREBOLT) {
+      adj >>= 1;
+    }
+    if (ID == SpellID::RESURRECT && sl > 0) {
+      adj = sl * (spellManaCost[static_cast<int>(SpellID::RESURRECT)] / 8);
+    }
+
+    ma = (spellManaCost[static_cast<int>(ID)] - adj);
+
+    ma <<= 6;
+
+    if (ID == SpellID::HEAL) {
+      ma = (spellManaCost[static_cast<int>(SpellID::HEAL)] + 2 * playerLevel - adj) << 6;
+    }
+    if (ID == SpellID::HEALOTHER) {
+      ma = (spellManaCost[static_cast<int>(SpellID::HEAL)] + 2 * playerLevel - adj) << 6;
+    }
+
+    if (playerClass == ClassID::ROGUE) {
+      ma -= ma >> 2;
+    }
+
+    if (spellMinMana[static_cast<int>(ID)] > ma >> 6) {
+      ma = spellMinMana[static_cast<int>(ID)] << 6;
+    }
+
+    return ma;
+  }
+
 }
