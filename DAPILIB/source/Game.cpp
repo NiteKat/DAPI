@@ -655,7 +655,14 @@ namespace DAPI
       return false;
 
     if (!data->invflag)
+    {
+      for (auto& i : data->playerList[data->player].getSpeedItems())
+      {
+        if (i && item->getID() == i->getID())
+          return this->issueCommand(Command::putInCursor(item->getID()));
+      }
       return false;
+    }
 
     if (!OKToAct())
       return false;
@@ -669,11 +676,6 @@ namespace DAPI
     for (auto& i : data->playerList[data->player].getInventoryItems())
     {
       if (item->getID() == i->getID())
-        return this->issueCommand(Command::putInCursor(item->getID()));
-    }
-    for (auto& i : data->playerList[data->player].getSpeedItems())
-    {
-      if (i && item->getID() == i->getID())
         return this->issueCommand(Command::putInCursor(item->getID()));
     }
 
