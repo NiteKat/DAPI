@@ -654,17 +654,16 @@ namespace DAPI
     if (!item)
       return false;
 
-    if (!data->invflag)
-    {
-      for (auto& i : data->playerList[data->player].getSpeedItems())
-      {
-        if (i && item->getID() == i->getID())
-          return this->issueCommand(Command::putInCursor(item->getID()));
-      }
+    if (!OKToAct())
       return false;
+
+    for (auto& i : data->playerList[data->player].getSpeedItems())
+    {
+      if (i && item->getID() == i->getID())
+        return this->issueCommand(Command::putInCursor(item->getID()));
     }
 
-    if (!OKToAct())
+    if (!data->invflag)
       return false;
 
     for (int i = 0; i < 7; i++)

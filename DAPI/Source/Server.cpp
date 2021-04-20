@@ -2542,9 +2542,6 @@ namespace DAPI
     auto InvRect = reinterpret_cast<DiabloInternal::InvXY(*)>(0x47AE60);
     auto CheckInvCut = reinterpret_cast<void(__fastcall*)(int, int, int)>(0x41D378);
 
-    if (!*invflag)
-      return;
-
     if (!OKToAct())
       return;
 
@@ -2562,6 +2559,9 @@ namespace DAPI
       {
         if (item.compare(plr[*myplr].InvBody[i]) && plr[*myplr].InvBody[i]._itype != -1)
         {
+          if (!*invflag)
+            return;
+
           switch (static_cast<EquipSlot>(i))
           {
           case EquipSlot::HEAD:
@@ -2600,6 +2600,9 @@ namespace DAPI
       {
         if (item.compare(plr[*myplr].InvList[i - 7]) && plr[*myplr].InvList[i - 7]._itype != -1 && i - 7 < plr[*myplr]._pNumInv)
         {
+          if (!*invflag)
+            return;
+
           for (int rect_index = 0; rect_index < 40; rect_index++)
           {
             if (plr[*myplr].InvGrid[rect_index] == i - 6)
