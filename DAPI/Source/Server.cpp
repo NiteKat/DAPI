@@ -2709,8 +2709,6 @@ namespace DAPI
 
     if (12 <= data->pcurs)
     {
-      if (!TryInvPut())
-        return;
       NetSendCmdPItem(1u, static_cast<unsigned char>(CommandType::PUTITEM), plr[*myplr]._px, plr[*myplr]._py);
       SetCursor(1);
     }
