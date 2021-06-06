@@ -305,9 +305,9 @@ BOOL APIENTRY DllMain(HMODULE, DWORD ul_reason_for_call, LPVOID)
       return FALSE;
     auto process = GetCurrentProcess();
     PlaceDetour(hook_function, (DWORD)trampoline, 0, true);
-    PlaceDetour(speed_offset, (DWORD)trampoline2, 0, true);
-    PlaceDetour(mp_speed_offset, (DWORD)trampoline3, 0, false);
-    PlaceDetour(mp_speed_offset2, (DWORD)trampoline4, 0, false);
+    //PlaceDetour(speed_offset, (DWORD)trampoline2, 0, true);
+    //PlaceDetour(mp_speed_offset, (DWORD)trampoline3, 0, false);
+    //PlaceDetour(mp_speed_offset2, (DWORD)trampoline4, 0, false);
     break;
   }
   return TRUE;
