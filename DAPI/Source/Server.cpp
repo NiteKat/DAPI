@@ -1170,7 +1170,6 @@ namespace DAPI
     case TalkID::WSELL:
     case TalkID::WRECHARGE:
     case TalkID::SSELL:
-    case TalkID::SREPAIR:
       for (int i = 0; i < 48; i++)
       {
         if (storehold[i]._itype != -1)
@@ -1199,15 +1198,15 @@ namespace DAPI
         }
       }
       break;
-    /*case TalkID::SREPAIR:
+    case TalkID::SREPAIR:
       for (int i = 0; i < *storenumh; i++)
       {
-        if (storehold[storehidx[i]]._itype != -1)
+        if (storehold[i]._itype != -1)
         {
           int itemID = data->itemList.size();
           for (auto& item : data->itemList)
           {
-            if (item.compare(storehold[storehidx[i]]))
+            if (item.compare(storehold[i]))
             {
               itemID = item.ID;
               break;
@@ -1216,17 +1215,14 @@ namespace DAPI
           if (itemID == data->itemList.size())
           {
             data->itemList.push_back(ItemData{});
-            fullFillItemInfo(itemID, &storehold[storehidx[i]]);
+            fullFillItemInfo(itemID, &storehold[i]);
           }
-          data->itemList[itemID]._ivalue = storehold[storehidx[i]]._ivalue;
-          if (storehold[storehidx[i]]._ivalue != 0)
-          {
-            data->storeItems.push_back(itemID);
-            update->add_storeitems(itemID);
-          }
+          data->itemList[itemID]._ivalue = storehold[i]._ivalue;
+          data->storeItems.push_back(itemID);
+          update->add_storeitems(itemID);
         }
       }
-      break;*/
+      break;
     case TalkID::WBUY:
       for (int i = 0; i < 20; i++)
       {
