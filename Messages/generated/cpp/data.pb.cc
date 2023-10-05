@@ -1510,6 +1510,7 @@ const int MonsterData::kFutyFieldNumber;
 const int MonsterData::kNameFieldNumber;
 const int MonsterData::kTypeFieldNumber;
 const int MonsterData::kKillsFieldNumber;
+const int MonsterData::kModeFieldNumber;
 const int MonsterData::kUniqueFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -1702,10 +1703,24 @@ bool MonsterData::MergePartialFromCodedStream(
         break;
       }
 
-      // bool unique = 9;
+      // sint32 mode = 9;
       case 9: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(72u /* 72 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
+                 input, &mode_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // bool unique = 10;
+      case 10: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(80u /* 80 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
@@ -1787,9 +1802,14 @@ void MonsterData::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteSInt32(8, this->kills(), output);
   }
 
-  // bool unique = 9;
+  // sint32 mode = 9;
+  if (this->mode() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteSInt32(9, this->mode(), output);
+  }
+
+  // bool unique = 10;
   if (this->unique() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(9, this->unique(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteBool(10, this->unique(), output);
   }
 
   output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
@@ -1859,7 +1879,14 @@ size_t MonsterData::ByteSizeLong() const {
         this->kills());
   }
 
-  // bool unique = 9;
+  // sint32 mode = 9;
+  if (this->mode() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::SInt32Size(
+        this->mode());
+  }
+
+  // bool unique = 10;
   if (this->unique() != 0) {
     total_size += 1 + 1;
   }
@@ -1906,6 +1933,9 @@ void MonsterData::MergeFrom(const MonsterData& from) {
   if (from.kills() != 0) {
     set_kills(from.kills());
   }
+  if (from.mode() != 0) {
+    set_mode(from.mode());
+  }
   if (from.unique() != 0) {
     set_unique(from.unique());
   }
@@ -1937,6 +1967,7 @@ void MonsterData::InternalSwap(MonsterData* other) {
   swap(futy_, other->futy_);
   swap(type_, other->type_);
   swap(kills_, other->kills_);
+  swap(mode_, other->mode_);
   swap(unique_, other->unique_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }

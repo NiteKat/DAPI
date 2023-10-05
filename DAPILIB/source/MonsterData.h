@@ -119,6 +119,27 @@ namespace DAPI
     NUM_MTYPES,
   };
 
+  enum struct MonsterMode {
+    MM_STAND = 0,
+    MM_WALK = 1,
+    MM_WALK2 = 2,
+    MM_WALK3 = 3,
+    MM_ATTACK = 4,
+    MM_GOTHIT = 5,
+    MM_DEATH = 6,
+    MM_SATTACK = 7,
+    MM_FADEIN = 8,
+    MM_FADEOUT = 9,
+    MM_RATTACK = 10,
+    MM_SPSTAND = 11,
+    MM_RSPATTACK = 12,
+    MM_DELAY = 13,
+    MM_CHARGE = 14,
+    MM_STONE = 15,
+    MM_HEAL = 16,
+    MM_TALK = 17,
+  };
+
   struct MonsterData
   {
     int index;
@@ -129,6 +150,7 @@ namespace DAPI
     int uniqueResistences;
     int immunities;
     int kills;
+    MonsterMode mode;
     int minHP;
     int maxHP;
     int resists[3];
