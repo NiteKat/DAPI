@@ -13,6 +13,7 @@ namespace DAPI
     int getY() { return data->y; }
     int getFutureX() { return data->futx; }
     int getFutureY() { return data->futy; }
+    MonsterMode getMode() { return data->mode; }
     std::string getName() { return data->name; }
     MonsterType getType() { return data->type; }
     int getKills() { return data->kills; }

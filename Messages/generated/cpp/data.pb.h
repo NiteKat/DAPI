@@ -760,9 +760,15 @@ class MonsterData : public ::google::protobuf::MessageLite /* @@protoc_insertion
   ::google::protobuf::int32 kills() const;
   void set_kills(::google::protobuf::int32 value);
 
-  // bool unique = 9;
+  // sint32 mode = 9;
+  void clear_mode();
+  static const int kModeFieldNumber = 9;
+  ::google::protobuf::int32 mode() const;
+  void set_mode(::google::protobuf::int32 value);
+
+  // bool unique = 10;
   void clear_unique();
-  static const int kUniqueFieldNumber = 9;
+  static const int kUniqueFieldNumber = 10;
   bool unique() const;
   void set_unique(bool value);
 
@@ -778,6 +784,7 @@ class MonsterData : public ::google::protobuf::MessageLite /* @@protoc_insertion
   ::google::protobuf::int32 futy_;
   ::google::protobuf::int32 type_;
   ::google::protobuf::int32 kills_;
+  ::google::protobuf::int32 mode_;
   bool unique_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_data_2eproto::TableStruct;
@@ -2575,7 +2582,21 @@ inline void MonsterData::set_kills(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.MonsterData.kills)
 }
 
-// bool unique = 9;
+// sint32 mode = 9;
+inline void MonsterData::clear_mode() {
+  mode_ = 0;
+}
+inline ::google::protobuf::int32 MonsterData::mode() const {
+  // @@protoc_insertion_point(field_get:dapi.data.MonsterData.mode)
+  return mode_;
+}
+inline void MonsterData::set_mode(::google::protobuf::int32 value) {
+  
+  mode_ = value;
+  // @@protoc_insertion_point(field_set:dapi.data.MonsterData.mode)
+}
+
+// bool unique = 10;
 inline void MonsterData::clear_unique() {
   unique_ = false;
 }

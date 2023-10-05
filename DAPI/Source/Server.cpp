@@ -1432,7 +1432,7 @@ namespace DAPI
 
     for (int i = 0; i < *nummonsters; i++)
     {
-      if (isOnScreen(monster[monstactive[i]]._mx, monster[monstactive[i]]._my) && monster[monstactive[i]]._mhitpoints >> 6 > 0 && (*dFlags)[monster[monstactive[i]]._mx][monster[monstactive[i]]._my] & 0x40 && !(monster[monstactive[i]]._mFlags & 0x01))
+      if (isOnScreen(monster[monstactive[i]]._mx, monster[monstactive[i]]._my) && (*dFlags)[monster[monstactive[i]]._mx][monster[monstactive[i]]._my] & 0x40 && !(monster[monstactive[i]]._mFlags & 0x01))
       {
         auto m = update->add_monsterdata();
         m->set_index(monstactive[i]);
@@ -1442,6 +1442,7 @@ namespace DAPI
         m->set_futy(monster[monstactive[i]]._mfuty);
         m->set_type(monster[monstactive[i]].MType->mtype);
         m->set_name(monster[monstactive[i]].mName);
+        m->set_mode(monster[monstactive[i]]._mmode);
         m->set_unique(static_cast<bool>(monster[monstactive[i]]._uniqtype));
       }
     }
