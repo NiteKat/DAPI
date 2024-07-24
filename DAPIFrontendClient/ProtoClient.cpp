@@ -69,6 +69,7 @@ namespace DAPI
           game.data->setlevel = frameUpdate.setlevel();
           game.data->FPS = frameUpdate.fps();
           game.data->gameMode = static_cast<GameMode>(frameUpdate.gamemode());
+          game.data->gnDifficulty = static_cast<Difficulty>(frameUpdate.gndifficulty());
           for (int x = 0; x < 112; x++)
           {
             for (int y = 0; y < 112; y++)

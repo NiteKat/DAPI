@@ -24,6 +24,14 @@ namespace DAPI
     MULTIPLAYER
   };
 
+  enum struct Difficulty
+  {
+    NORMAL,
+    NIGHTMARE,
+    HELL,
+    NUM_DIFFICULTIES
+  };
+
   struct GameData
   {
     int player;
@@ -40,6 +48,7 @@ namespace DAPI
     bool setlevel;
     int FPS;
     GameMode gameMode;
+    Difficulty gnDifficulty;
     
     std::map<int, Player> playerList;
     std::map<int, Item> itemList;

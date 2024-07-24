@@ -345,6 +345,7 @@ namespace DAPI
     auto gbMaxPlayers = reinterpret_cast<BYTE(*)>(0x679660);
     auto storenumh = reinterpret_cast<int(*)>(0x69F10C);
     auto storehidx = reinterpret_cast<int(*)>(0x6A89F0);
+    auto gnDifficulty = reinterpret_cast<int(*)>(0x5B70E4);
 
     std::vector<int> itemsModified;
 
@@ -583,6 +584,8 @@ namespace DAPI
       update->set_gamemode(0);
     else
       update->set_gamemode(1);
+
+    update->set_gndifficulty(*gnDifficulty);
 
     int range = 10;
     if (ScrollInfo->_sdir != 0) {

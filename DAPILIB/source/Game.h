@@ -24,6 +24,7 @@ namespace DAPI
     int getFPS() { return data->FPS; }
     int getCursor() { return data->cursor; }
     GameMode getGameMode() { return data->gameMode; }
+    Difficulty getDifficulty() { return data->gnDifficulty; }
 
     std::vector<std::shared_ptr<Item>> getItemsOnGround();
     std::vector<std::shared_ptr<Towner>> getTowners();
