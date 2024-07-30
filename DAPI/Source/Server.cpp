@@ -572,7 +572,7 @@ namespace DAPI
       data->currlevel = static_cast<int>(*currlevel);
     else
       data->currlevel = static_cast<int>(*setlvlnum);
-    update->set_currlevel(*currlevel);
+    update->set_currlevel(data->currlevel);
     data->setlevel = static_cast<bool>(*setlevel);
     update->set_setlevel(*setlevel);
     if (*qtextflag)
