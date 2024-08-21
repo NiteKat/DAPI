@@ -1243,7 +1243,7 @@ namespace DAPI
           if (itemID == data->itemList.size())
             data->itemList.push_back(ItemData{});
           fullFillItemInfo(itemID, &witchitem[i]);
-          data->itemList[itemID]._ivalue = witchitem[i]._ivalue;
+          data->itemList[itemID]._ivalue = witchitem[i]._iIvalue;
           data->storeItems.push_back(itemID);
           update->add_storeitems(itemID);
         }
