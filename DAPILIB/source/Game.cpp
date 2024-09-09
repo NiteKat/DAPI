@@ -896,7 +896,8 @@ namespace DAPI
   {
     if (data->cursor != static_cast<int>(CursorType::REPAIR) &&
       data->cursor != static_cast<int>(CursorType::DISARM) &&
-      data->cursor != static_cast<int>(CursorType::RECHARGE))
+      data->cursor != static_cast<int>(CursorType::RECHARGE) &&
+      data->cursor != static_cast<int>(CursorType::IDENTIFY))
       return false;
 
     return client.issueCommand(Command::clearCursor());

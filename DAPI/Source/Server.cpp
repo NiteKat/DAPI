@@ -2961,7 +2961,8 @@ namespace DAPI
 
     if (*pcurs == static_cast<int>(DiabloInternal::cursor_id::CURSOR_REPAIR) ||
       *pcurs == static_cast<int>(DiabloInternal::cursor_id::CURSOR_DISARM) ||
-      *pcurs == static_cast<int>(DiabloInternal::cursor_id::CURSOR_RECHARGE))
+      *pcurs == static_cast<int>(DiabloInternal::cursor_id::CURSOR_RECHARGE) ||
+      *pcurs == static_cast<int>(DiabloInternal::cursor_id::CURSOR_IDENTIFY))
       NewCursor(static_cast<int>(DiabloInternal::cursor_id::CURSOR_HAND));
 
     return;
