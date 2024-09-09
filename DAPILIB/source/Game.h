@@ -56,6 +56,7 @@ namespace DAPI
     bool operateObject(Object object);
     bool useBeltItem(int slot);
     bool toggleCharacterScreen();
+    bool identifyItem(std::shared_ptr<Item> item);
     bool increaseStrength();
     bool increaseMagic();
     bool increaseDexterity();

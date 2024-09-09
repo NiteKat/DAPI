@@ -228,6 +228,7 @@ namespace DAPI
     void saveGame();
     void quit();
     void clearCursor();
+    void identifyItem(int itemID);
 
     bool listening = false;
 

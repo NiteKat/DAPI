@@ -196,6 +196,7 @@ namespace DAPI
     SAVEGAME,
     QUIT,
     CLEARCURSOR,
+    IDENTIFYITEM,
     NUM_CMDS
   };
 

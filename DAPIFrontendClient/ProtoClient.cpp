@@ -536,6 +536,12 @@ namespace DAPI
       case CommandType::CLEARCURSOR:
         commandMessage->mutable_clearcursor();
         break;
+      case CommandType::IDENTIFYITEM:
+      {
+        auto itemIdentify = commandMessage->mutable_identifyitem();
+        itemIdentify->set_id(command.param1);
+      }
+        break;
       default:
         break;
       }

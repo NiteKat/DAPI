@@ -244,6 +244,11 @@ namespace DAPI
     return c;
   }
 
+  Command Command::identifyItem(std::shared_ptr<Item> item) {
+    Command c{ CommandType::IDENTIFYITEM };
+    c.param1 = item->data->ID;
+  }
+
   Command Command::increaseStat(int stat)
   {
     Command c;

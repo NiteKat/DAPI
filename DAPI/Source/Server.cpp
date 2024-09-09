@@ -270,6 +270,11 @@ namespace DAPI
         {
           this->clearCursor();
         }
+        else if (command.has_identifyitem())
+        {
+          auto identifyItem = command.identifyitem();
+          this->identifyItem(identifyItem.id());
+        }
         issuedCommand = true;
         if (command.has_setfps())
         {
@@ -2960,5 +2965,35 @@ namespace DAPI
       NewCursor(static_cast<int>(DiabloInternal::cursor_id::CURSOR_HAND));
 
     return;
+  }
+
+  void Server::identifyItem(int itemID)
+  {
+    auto plr = reinterpret_cast<DiabloInternal::PlayerStruct(*)>(0x686448);
+    auto myplr = reinterpret_cast<int(*)>(0x686444);
+    auto CheckIdentify = reinterpret_cast<void(__fastcall*)(int pnum, int cii)>(0x422C63);
+
+    if (static_cast<DiabloInternal::cursor_id>(data->pcurs) != DiabloInternal::cursor_id::CURSOR_IDENTIFY)
+      return;
+
+    if (!data->invflag)
+      return;
+
+    for (int i = 0; i < 7; i++)
+    {
+      if (data->itemList[itemID].compare(plr[*myplr].InvBody[i]))
+      {
+        CheckIdentify(*myplr, i);
+        return;
+      }
+    }
+    for (int i = 0; i < MAXINV; i++)
+    {
+      if (data->itemList[itemID].compare(plr[*myplr].InvList[i]))
+      {
+        CheckIdentify(*myplr, i + 7);
+        return;
+      }
+    }
   }
 }

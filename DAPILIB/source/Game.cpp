@@ -442,6 +442,30 @@ namespace DAPI
     return this->issueCommand(Command::toggleCharacterScreen());
   }
 
+  bool Game::identifyItem(std::shared_ptr<Item> item)
+  {
+    if (static_cast<DAPI::CursorType>(data->cursor) != DAPI::CursorType::IDENTIFY)
+      return false;
+
+    if (!data->invflag)
+      return false;
+
+    for (auto& bodyItem : data->playerList[data->player].data->InvBody)
+    {
+      if (!bodyItem.second)
+        continue;
+
+      if (bodyItem.second->getID() == item->getID())
+        return client.issueCommand(Command::identifyItem(item));
+    }
+    for (auto& invItem : data->playerList[data->player].data->InvList)
+    {
+      if (invItem->getID() == item->getID())
+        return client.issueCommand(Command::identifyItem(item));
+    }
+    return false;
+  }
+
   bool Game::increaseStrength()
   {
     if (!OKToAct())

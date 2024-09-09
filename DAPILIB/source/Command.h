@@ -48,6 +48,7 @@ namespace DAPI
     static Command saveGame();
     static Command quit();
     static Command clearCursor();
+    static Command identifyItem(std::shared_ptr<Item> item);
 
     CommandType type;
     int targetX;

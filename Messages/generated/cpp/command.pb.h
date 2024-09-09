@@ -37,7 +37,7 @@ namespace protobuf_command_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[33];
+  static const ::google::protobuf::internal::ParseTable schema[34];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -78,6 +78,9 @@ extern DropCursorItemDefaultTypeInternal _DropCursorItem_default_instance_;
 class GetItem;
 class GetItemDefaultTypeInternal;
 extern GetItemDefaultTypeInternal _GetItem_default_instance_;
+class IdentifyItem;
+class IdentifyItemDefaultTypeInternal;
+extern IdentifyItemDefaultTypeInternal _IdentifyItem_default_instance_;
 class IdentifyStoreItem;
 class IdentifyStoreItemDefaultTypeInternal;
 extern IdentifyStoreItemDefaultTypeInternal _IdentifyStoreItem_default_instance_;
@@ -159,6 +162,7 @@ template<> ::dapi::commands::Command* Arena::CreateMaybeMessage<::dapi::commands
 template<> ::dapi::commands::DisarmTrap* Arena::CreateMaybeMessage<::dapi::commands::DisarmTrap>(Arena*);
 template<> ::dapi::commands::DropCursorItem* Arena::CreateMaybeMessage<::dapi::commands::DropCursorItem>(Arena*);
 template<> ::dapi::commands::GetItem* Arena::CreateMaybeMessage<::dapi::commands::GetItem>(Arena*);
+template<> ::dapi::commands::IdentifyItem* Arena::CreateMaybeMessage<::dapi::commands::IdentifyItem>(Arena*);
 template<> ::dapi::commands::IdentifyStoreItem* Arena::CreateMaybeMessage<::dapi::commands::IdentifyStoreItem>(Arena*);
 template<> ::dapi::commands::IncreaseStat* Arena::CreateMaybeMessage<::dapi::commands::IncreaseStat>(Arena*);
 template<> ::dapi::commands::Move* Arena::CreateMaybeMessage<::dapi::commands::Move>(Arena*);
@@ -3406,6 +3410,107 @@ class ClearCursor : public ::google::protobuf::MessageLite /* @@protoc_insertion
 };
 // -------------------------------------------------------------------
 
+class IdentifyItem : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.commands.IdentifyItem) */ {
+ public:
+  IdentifyItem();
+  virtual ~IdentifyItem();
+
+  IdentifyItem(const IdentifyItem& from);
+
+  inline IdentifyItem& operator=(const IdentifyItem& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  IdentifyItem(IdentifyItem&& from) noexcept
+    : IdentifyItem() {
+    *this = ::std::move(from);
+  }
+
+  inline IdentifyItem& operator=(IdentifyItem&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const IdentifyItem& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const IdentifyItem* internal_default_instance() {
+    return reinterpret_cast<const IdentifyItem*>(
+               &_IdentifyItem_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    32;
+
+  void Swap(IdentifyItem* other);
+  friend void swap(IdentifyItem& a, IdentifyItem& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline IdentifyItem* New() const final {
+    return CreateMaybeMessage<IdentifyItem>(NULL);
+  }
+
+  IdentifyItem* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<IdentifyItem>(arena);
+  }
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    final;
+  void CopyFrom(const IdentifyItem& from);
+  void MergeFrom(const IdentifyItem& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  void DiscardUnknownFields();
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(IdentifyItem* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::std::string GetTypeName() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // uint32 ID = 1;
+  void clear_id();
+  static const int kIDFieldNumber = 1;
+  ::google::protobuf::uint32 id() const;
+  void set_id(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:dapi.commands.IdentifyItem)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::uint32 id_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_command_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.commands.Command) */ {
  public:
   Command();
@@ -3467,6 +3572,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
     kSaveGame = 30,
     kQuit = 31,
     kClearCursor = 32,
+    kIdentifyItem = 33,
     COMMAND_NOT_SET = 0,
   };
 
@@ -3476,7 +3582,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
                &_Command_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    33;
 
   void Swap(Command* other);
   friend void swap(Command& a, Command& b) {
@@ -3911,6 +4017,18 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   ::dapi::commands::ClearCursor* mutable_clearcursor();
   void set_allocated_clearcursor(::dapi::commands::ClearCursor* clearcursor);
 
+  // .dapi.commands.IdentifyItem identifyItem = 33;
+  bool has_identifyitem() const;
+  void clear_identifyitem();
+  static const int kIdentifyItemFieldNumber = 33;
+  private:
+  const ::dapi::commands::IdentifyItem& _internal_identifyitem() const;
+  public:
+  const ::dapi::commands::IdentifyItem& identifyitem() const;
+  ::dapi::commands::IdentifyItem* release_identifyitem();
+  ::dapi::commands::IdentifyItem* mutable_identifyitem();
+  void set_allocated_identifyitem(::dapi::commands::IdentifyItem* identifyitem);
+
   void clear_command();
   CommandCase command_case() const;
   // @@protoc_insertion_point(class_scope:dapi.commands.Command)
@@ -3947,6 +4065,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   void set_has_savegame();
   void set_has_quit();
   void set_has_clearcursor();
+  void set_has_identifyitem();
 
   inline bool has_command() const;
   inline void clear_has_command();
@@ -3986,6 +4105,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
     ::dapi::commands::SaveGame* savegame_;
     ::dapi::commands::Quit* quit_;
     ::dapi::commands::ClearCursor* clearcursor_;
+    ::dapi::commands::IdentifyItem* identifyitem_;
   } command_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -4546,6 +4666,24 @@ inline void SkillRecharge::set_id(::google::protobuf::uint32 value) {
 // -------------------------------------------------------------------
 
 // ClearCursor
+
+// -------------------------------------------------------------------
+
+// IdentifyItem
+
+// uint32 ID = 1;
+inline void IdentifyItem::clear_id() {
+  id_ = 0u;
+}
+inline ::google::protobuf::uint32 IdentifyItem::id() const {
+  // @@protoc_insertion_point(field_get:dapi.commands.IdentifyItem.ID)
+  return id_;
+}
+inline void IdentifyItem::set_id(::google::protobuf::uint32 value) {
+  
+  id_ = value;
+  // @@protoc_insertion_point(field_set:dapi.commands.IdentifyItem.ID)
+}
 
 // -------------------------------------------------------------------
 
@@ -5959,6 +6097,50 @@ inline ::dapi::commands::ClearCursor* Command::mutable_clearcursor() {
   return command_.clearcursor_;
 }
 
+// .dapi.commands.IdentifyItem identifyItem = 33;
+inline bool Command::has_identifyitem() const {
+  return command_case() == kIdentifyItem;
+}
+inline void Command::set_has_identifyitem() {
+  _oneof_case_[0] = kIdentifyItem;
+}
+inline void Command::clear_identifyitem() {
+  if (has_identifyitem()) {
+    delete command_.identifyitem_;
+    clear_has_command();
+  }
+}
+inline const ::dapi::commands::IdentifyItem& Command::_internal_identifyitem() const {
+  return *command_.identifyitem_;
+}
+inline ::dapi::commands::IdentifyItem* Command::release_identifyitem() {
+  // @@protoc_insertion_point(field_release:dapi.commands.Command.identifyItem)
+  if (has_identifyitem()) {
+    clear_has_command();
+      ::dapi::commands::IdentifyItem* temp = command_.identifyitem_;
+    command_.identifyitem_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::dapi::commands::IdentifyItem& Command::identifyitem() const {
+  // @@protoc_insertion_point(field_get:dapi.commands.Command.identifyItem)
+  return has_identifyitem()
+      ? *command_.identifyitem_
+      : *reinterpret_cast< ::dapi::commands::IdentifyItem*>(&::dapi::commands::_IdentifyItem_default_instance_);
+}
+inline ::dapi::commands::IdentifyItem* Command::mutable_identifyitem() {
+  if (!has_identifyitem()) {
+    clear_command();
+    set_has_identifyitem();
+    command_.identifyitem_ = CreateMaybeMessage< ::dapi::commands::IdentifyItem >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:dapi.commands.Command.identifyItem)
+  return command_.identifyitem_;
+}
+
 inline bool Command::has_command() const {
   return command_case() != COMMAND_NOT_SET;
 }
@@ -5971,6 +6153,8 @@ inline Command::CommandCase Command::command_case() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
