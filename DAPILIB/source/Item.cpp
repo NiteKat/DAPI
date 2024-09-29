@@ -42,7 +42,7 @@ namespace DAPI
           returnValue << "+";
         else
           returnValue << "-";
-        returnValue << "% damage";
+        returnValue << data->_iPLDam << "% damage";
         break;
       case ItemEffectID::TOHIT_DAMP:
       case ItemEffectID::TOHIT_DAMP_CURSE:
