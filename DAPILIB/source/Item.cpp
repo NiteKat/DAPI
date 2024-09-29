@@ -24,6 +24,20 @@ namespace DAPI
     return data->_ivalue;
   }
 
+  ItemSpecialEffect Item::getFasterAttack()
+  {
+    if (data->_iFlags & static_cast<int>(ItemSpecialEffect::QUICKATTACK))
+      return ItemSpecialEffect::QUICKATTACK;
+    else if (data->_iFlags & static_cast<int>(ItemSpecialEffect::FASTATTACK))
+      return ItemSpecialEffect::FASTATTACK;
+    else if (data->_iFlags & static_cast<int>(ItemSpecialEffect::FASTERATTACK))
+      return ItemSpecialEffect::FASTERATTACK;
+    else if (data->_iFlags & static_cast<int>(ItemSpecialEffect::FASTESTATTACK))
+      return ItemSpecialEffect::FASTESTATTACK;
+    else
+      return ItemSpecialEffect::NONE;
+  }
+
   std::string Item::getEffectText()
   {
     std::stringstream returnValue;

@@ -49,6 +49,7 @@ namespace DAPI
     int getAddedMana() { return data->_iPLMana >> 6; }
     int getAddedLightRadius() { return data->_iPLLight; }
     int getAddedDamage() { return data->_iPLDamMod; }
+    ItemSpecialEffect getFasterAttack();
     bool meetRequirements() { return data->_iStatFlag; }
 
     int getCharges() { return data->_iCharges; }
