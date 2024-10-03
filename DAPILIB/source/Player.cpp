@@ -64,11 +64,22 @@ namespace DAPI
 
   bool Player::canCast(Spell spell)
   {
-    if (spell.getLevel() == 0)
+    if (spell.getType().getID() == DAPI::SpellTypeID::CHARGES &&
+        data->InvBody[4] && data->InvBody[4]->getSpell() != spell.getID())
+        return false;
+
+    if (spell.getType().getID() == DAPI::SpellTypeID::SPELL &&
+      (spell.getLevel() == 0 || data->_pMana < spell.getRawManaCost()))
       return false;
 
-    if (data->_pMana < spell.getRawManaCost())
-      return false;
+    if (spell.getType().getID() == DAPI::SpellTypeID::SCROLL)
+    {
+      int i = static_cast<int>(spell.getID()) + 1;
+      auto scrollSpells = data->_pScrlSpells;
+      scrollSpells = scrollSpells >> i;
+      if (!(scrollSpells & 0x1))
+        return false;
+    }
 
     return true;
   }
