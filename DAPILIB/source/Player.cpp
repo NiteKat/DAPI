@@ -74,7 +74,7 @@ namespace DAPI
 
     if (spell.getType().getID() == DAPI::SpellTypeID::SCROLL)
     {
-      int i = static_cast<int>(spell.getID()) + 1;
+      int i = static_cast<int>(spell.getID()) - 1;
       auto scrollSpells = data->_pScrlSpells;
       scrollSpells = scrollSpells >> i;
       if (!(scrollSpells & 0x1))
