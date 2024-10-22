@@ -22,11 +22,11 @@ void PlaceDetour(DWORD dwAddressToPatch, DWORD dwDetourAddress, DWORD dwPadSize,
   VirtualProtect((LPVOID)dwAddressToPatch, (dwPadSize + 5), dwOldProtect, &dwOldProtect);
 }
 
-void Patch(char* dst, const char* src, int size)
+void Patch(DWORD dst, const char* src, int size)
 {
   //return;
   DWORD oldprotect;
-  VirtualProtect(dst, size, PAGE_EXECUTE_READWRITE, &oldprotect);
-  memcpy(dst, src, size);
-  VirtualProtect(dst, size, oldprotect, &oldprotect);
+  VirtualProtect((LPVOID)dst, size, PAGE_EXECUTE_READWRITE, &oldprotect);
+  memcpy((LPVOID)dst, src, size);
+  VirtualProtect((LPVOID)dst, size, oldprotect, &oldprotect);
 }

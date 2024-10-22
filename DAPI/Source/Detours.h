@@ -7,4 +7,4 @@
 
 void PlaceDetour(DWORD dwAddressToPatch, DWORD dwDetourAddress, DWORD dwPadSize, BOOL bFlag);
 
-void Patch(char* dst, const char* src, int size);
+void Patch(DWORD dst, const char* src, int size);

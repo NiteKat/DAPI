@@ -11,6 +11,8 @@ static const u32 hook_function = 0x408A06;
 static const u32 speed_offset = 0x4411EF;
 static const u32 mp_speed_offset = 0x440EAA;
 static const u32 mp_speed_offset2 = 0x4410CF;
+static const u32 check_inv_paste_set_cursor_pos_offset = 0x41D29A;
+static const u32 check_inv_cut_set_cursor_pos_offset = 0x41D6DC;
 
 DAPI::Game Diablo;
 
@@ -308,6 +310,8 @@ BOOL APIENTRY DllMain(HMODULE, DWORD ul_reason_for_call, LPVOID)
     PlaceDetour(speed_offset, (DWORD)trampoline2, 0, true);
     PlaceDetour(mp_speed_offset, (DWORD)trampoline3, 0, false);
     PlaceDetour(mp_speed_offset2, (DWORD)trampoline4, 0, false);
+    Patch(check_inv_paste_set_cursor_pos_offset, "\x83\xc4\x08\x90\x90\x90", 6);
+    Patch(check_inv_cut_set_cursor_pos_offset, "\x83\xc4\x08\x90\x90\x90", 6);
     break;
   }
   return TRUE;
