@@ -2515,6 +2515,8 @@ namespace DAPI
 
   void Server::castSpell(int index)
   {
+    auto pcursmonst = reinterpret_cast<int(*)>(0x4B8CA8);
+    auto pcursplr = reinterpret_cast<int(*)>(0x4B8CC2);
     auto cursmx = reinterpret_cast<int(*)>(0x4B8CC4);
     auto monster = reinterpret_cast<DiabloInternal::MonsterStruct(*)>(0x64D330);
     auto cursmy = reinterpret_cast<int(*)>(0x4B8CC8);
@@ -2523,6 +2525,8 @@ namespace DAPI
     if (!OKToAct())
       return;
 
+    *pcursmonst = index;
+    *pcursplr = -1;
     *cursmx = monster[index]._mx;
     *cursmy = monster[index]._my;
 
@@ -2799,6 +2803,8 @@ namespace DAPI
 
   void Server::castSpell(int x, int y)
   {
+    auto pcursplr = reinterpret_cast<int(*)>(0x4B8CC2);
+    auto pcursmonst = reinterpret_cast<int(*)>(0x4B8CA8);
     auto cursmx = reinterpret_cast<int(*)>(0x4B8CC4);
     auto cursmy = reinterpret_cast<int(*)>(0x4B8CC8);
     auto CheckPlrSpell = reinterpret_cast<void(__fastcall*)()>(0x44FF6F);
@@ -2809,6 +2815,8 @@ namespace DAPI
     if (!isOnScreen(x, y))
       return;
 
+    *pcursmonst = -1;
+    *pcursplr = -1;
     *cursmx = x;
     *cursmy = y;
 
