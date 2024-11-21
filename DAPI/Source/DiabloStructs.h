@@ -802,4 +802,16 @@ enum struct cursor_id {
     unsigned char* _pBData;
     void* pReserved;
   } PlayerStruct;
+
+  typedef struct _SNETCAPS {
+    DWORD size;
+    DWORD flags;
+    DWORD maxmessagesize;
+    DWORD maxqueuesize;
+    DWORD maxplayers;
+    DWORD bytessec;
+    DWORD latencyms;
+    DWORD defaultturnssec;
+    DWORD defaultturnsintransit;
+  } _SNETCAPS;
 }
