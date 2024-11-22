@@ -2838,41 +2838,6 @@ namespace DAPI
 
   void Server::setFPS(int newFPS)
   {
-    auto gdwNormalMsgSize = reinterpret_cast<DWORD(*)>(0X679760);
-    auto gdwTurnsInTransit = reinterpret_cast<DWORD(*)>(0x679738);
-    auto sgbNetUpdateRate = reinterpret_cast<BYTE(*)>(0x679738);
-    auto SNetGetProviderCaps = reinterpret_cast<int(__stdcall*)(DiabloInternal::_SNETCAPS*)>(0x4698C4);
-    auto gdwDeltaBytesSec = reinterpret_cast<DWORD(*)>(0x679730);
-    auto gdwLargestMsgSize = reinterpret_cast<DWORD(*)>(0x67975C);
-    DWORD largestMsgSize;
-    DiabloInternal::_SNETCAPS caps;
-
-    caps.size = 36;
-    SNetGetProviderCaps(&caps);
-    *gdwTurnsInTransit = caps.defaultturnsintransit;
-    if (!caps.defaultturnsintransit)
-      *gdwTurnsInTransit = 1;
-    if (caps.defaultturnssec <= newFPS && caps.defaultturnssec)
-      *sgbNetUpdateRate = newFPS / caps.defaultturnssec;
-    else
-      *sgbNetUpdateRate = 1;
-    largestMsgSize = 512;
-    if (caps.maxmessagesize < 0x200)
-      largestMsgSize = caps.maxmessagesize;
-    *gdwDeltaBytesSec = caps.bytessec >> 2;
-    *gdwLargestMsgSize = largestMsgSize;
-    *gdwNormalMsgSize = caps.bytessec * *sgbNetUpdateRate / newFPS;
-    *gdwNormalMsgSize *= 3;
-    *gdwNormalMsgSize >>= 2;
-    if (caps.maxplayers > 4)
-      caps.maxplayers = 4;
-    *gdwNormalMsgSize /= caps.maxplayers;
-    while (*gdwNormalMsgSize < 0x80) {
-      *gdwNormalMsgSize *= 2;
-      *sgbNetUpdateRate *= 2;
-    }
-    if (*gdwNormalMsgSize > largestMsgSize)
-      *gdwNormalMsgSize = largestMsgSize;
     FPS = newFPS;
   }
 

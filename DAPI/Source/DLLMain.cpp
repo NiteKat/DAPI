@@ -32,29 +32,6 @@ HANDLE CreateUniqueEvent()
   return hEvent;
 }
 
-void __declspec(noinline) updateGameData()
-{
-  return;
-}
-
-BOOL new_nthread_has_500ms_passed()
-{
-  auto gbMaxPlayers = reinterpret_cast<int(*)>(0x679660);
-  auto nthread_has_500ms_passed = reinterpret_cast<BOOL(__fastcall*)()>(0x4411EF);
-  auto last_tick = reinterpret_cast<int(*)>(0x679764);
-
-  DWORD currentTickCount;
-  int ticksElapsed;
-
-  currentTickCount = GetTickCount();
-  ticksElapsed = currentTickCount - *last_tick;
-  if (*gbMaxPlayers == 1 && ticksElapsed > (1000 / Diablo.server.FPS) * 10 ) {
-    *last_tick = currentTickCount;
-    ticksElapsed = 0;
-  }
-  return ticksElapsed >= 0;
-}
-
 BOOL new_nthread_recv_turns(BOOL* pfSendAsync)
 {
   auto sgbPacketCountdown = reinterpret_cast<char(*)>(0x679759);
@@ -105,73 +82,6 @@ BOOL new_nthread_recv_turns(BOOL* pfSendAsync)
   }
 }
 
-unsigned int __stdcall new_nthread_handler(void* data)
-{
-  auto nthread_should_run = reinterpret_cast<BOOLEAN(*)>(0x679734);
-  auto nthread_send_and_recv_turn = reinterpret_cast<DWORD(*__fastcall)(DWORD, int)>(0x440E28);
-  auto last_tick = reinterpret_cast<int(*)>(0x679764);
-  
-
-  int delta;
-  BOOL received;
-
-  if (*nthread_should_run)
-  {
-    while (1)
-    {
-      EnterCriticalSection((LPCRITICAL_SECTION)0x679718);
-      if (!*nthread_should_run)
-        break;
-      nthread_send_and_recv_turn(0, 0);
-      if (new_nthread_recv_turns(&received))
-        delta = *last_tick - GetTickCount();
-      else
-        delta = 1000 / Diablo.server.FPS;
-      LeaveCriticalSection((LPCRITICAL_SECTION)0x679718);
-      if (delta > 0)
-        Sleep(delta);
-      if (!*nthread_should_run)
-        return 0;
-    }
-    LeaveCriticalSection((LPCRITICAL_SECTION)0X679718);
-  }
-  return 0;
-}
-
-[[noreturn]] __declspec(naked) void trampoline4()
-{
-  //Save Registers
-  __asm { pushad }
-  {
-    //Enter trampoline
-    __asm {
-      push ebp
-      mov ebp, esp
-    }
-
-    new_nthread_handler(nullptr);
-
-    //simulate return
-    __asm {
-      pop ebp
-    }
-  }
-
-  //restore registers
-  __asm { popad }
-
-  static auto target4 = reinterpret_cast<void(*)>(0x441142);
-
-  __asm { 
-    pop edi
-    pop esi
-    xor eax,eax
-    pop ebx
-    pop ecx
-    jmp target4
-  }
-}
-
 [[noreturn]] __declspec(naked) void trampoline3()
 {
   //Save Registers
@@ -215,45 +125,6 @@ unsigned int __stdcall new_nthread_handler(void* data)
     }
   }
 
-}
-
-[[noreturn]] __declspec(naked) void trampoline2()
-{
-  //Save Registers
-  __asm { pushad }
-  {
-    //Enter trampoline
-    __asm {
-      push ebp
-      mov ebp, esp
-    }
-
-    speedHackResult = new_nthread_has_500ms_passed();
-
-    //Simulate return
-    __asm {
-      pop ebp
-    }
-  }
-
-  //restore registers
-  __asm { popad }
-
-  static auto target2 = reinterpret_cast<void(*)>(0x44121C);
-  if (speedHackResult)
-  {
-    __asm {
-      mov al, 0x1
-      jmp target2
-    }
-  }
-  else
-  {
-    __asm {
-      mov al, 0x0
-      jmp target2
-    }
-  }
 }
 
 [[noreturn]] __declspec(naked) void trampoline()
@@ -307,9 +178,7 @@ BOOL APIENTRY DllMain(HMODULE, DWORD ul_reason_for_call, LPVOID)
       return FALSE;
     auto process = GetCurrentProcess();
     PlaceDetour(hook_function, (DWORD)trampoline, 0, true);
-    PlaceDetour(speed_offset, (DWORD)trampoline2, 0, true);
     PlaceDetour(mp_speed_offset, (DWORD)trampoline3, 0, false);
-    PlaceDetour(mp_speed_offset2, (DWORD)trampoline4, 0, false);
     Patch(check_inv_paste_set_cursor_pos_offset, "\x83\xc4\x08\x90\x90\x90", 6);
     Patch(check_inv_cut_set_cursor_pos_offset, "\x83\xc4\x08\x90\x90\x90", 6);
     break;
