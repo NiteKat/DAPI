@@ -1134,6 +1134,9 @@ namespace DAPI
           break;
         }
       }
+
+      if ((*dItem)[item[itemactive[i]]._ix][item[itemactive[i]]._iy] != static_cast<char>(itemactive[i] + 1))
+        continue;
       if (itemID == data->itemList.size())
         data->itemList.push_back(ItemData{});
       int dx = plr[*myplr]._px - item[itemactive[i]]._ix;
