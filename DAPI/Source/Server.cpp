@@ -1134,6 +1134,9 @@ namespace DAPI
           break;
         }
       }
+
+      if ((*dItem)[item[itemactive[i]]._ix][item[itemactive[i]]._iy] != static_cast<char>(itemactive[i] + 1))
+        continue;
       if (itemID == data->itemList.size())
         data->itemList.push_back(ItemData{});
       int dx = plr[*myplr]._px - item[itemactive[i]]._ix;
@@ -2068,7 +2071,7 @@ namespace DAPI
 
     idx = -1;
 
-    for (int i = 0; i < 20; i++)
+    for (int i = 0; i < 48; i++)
     {
       if (data->itemList[itemID].compare(storehold[i]))
       {
