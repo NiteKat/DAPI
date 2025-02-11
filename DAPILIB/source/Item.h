@@ -50,6 +50,7 @@ namespace DAPI
     int getAddedLightRadius() { return data->_iPLLight; }
     int getAddedDamage() { return data->_iPLDamMod; }
     ItemSpecialEffect getFasterAttack();
+    ItemSpecialEffect getHitRecovery();
     bool meetRequirements() { return data->_iStatFlag; }
 
     int getCharges() { return data->_iCharges; }

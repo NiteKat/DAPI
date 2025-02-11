@@ -38,6 +38,18 @@ namespace DAPI
       return ItemSpecialEffect::NONE;
   }
 
+  ItemSpecialEffect Item::getHitRecovery()
+  {
+    if (data->_iFlags & static_cast<int>(ItemSpecialEffect::FASTRECOVER))
+      return ItemSpecialEffect::FASTRECOVER;
+    else if (data->_iFlags & static_cast<int>(ItemSpecialEffect::FASTERRECOVER))
+      return ItemSpecialEffect::FASTERRECOVER;
+    else if (data->_iFlags & static_cast<int>(ItemSpecialEffect::FASTESTRECOVER))
+      return ItemSpecialEffect::FASTESTRECOVER;
+    else
+      return ItemSpecialEffect::NONE;
+  }
+
   std::string Item::getEffectText()
   {
     std::stringstream returnValue;
