@@ -26,6 +26,9 @@ namespace DAPI
 
   ItemSpecialEffect Item::getFasterAttack()
   {
+    if (data->_iFlags == -1)
+      return ItemSpecialEffect::NONE;
+
     if (data->_iFlags & static_cast<int>(ItemSpecialEffect::QUICKATTACK))
       return ItemSpecialEffect::QUICKATTACK;
     else if (data->_iFlags & static_cast<int>(ItemSpecialEffect::FASTATTACK))
@@ -40,6 +43,9 @@ namespace DAPI
 
   ItemSpecialEffect Item::getHitRecovery()
   {
+    if (data->_iFlags == -1)
+      return ItemSpecialEffect::NONE;
+
     if (data->_iFlags & static_cast<int>(ItemSpecialEffect::FASTRECOVER))
       return ItemSpecialEffect::FASTRECOVER;
     else if (data->_iFlags & static_cast<int>(ItemSpecialEffect::FASTERRECOVER))
