@@ -51,6 +51,7 @@ namespace DAPI
     int getAddedDamage() { return data->_iPLDamMod; }
     ItemSpecialEffect getFasterAttack();
     ItemSpecialEffect getHitRecovery();
+    ItemSpecialEffect getZeroesResistance();
     bool meetRequirements() { return data->_iStatFlag; }
 
     int getCharges() { return data->_iCharges; }

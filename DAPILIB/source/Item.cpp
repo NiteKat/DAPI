@@ -56,6 +56,17 @@ namespace DAPI
       return ItemSpecialEffect::NONE;
   }
 
+  ItemSpecialEffect Item::getZeroesResistance()
+  {
+    if (data->_iFlags == -1)
+      return ItemSpecialEffect::NONE;
+
+    if (data->_iFlags & static_cast<int>(ItemSpecialEffect::ALLRESZERO))
+      return ItemSpecialEffect::ALLRESZERO;
+    else
+      return ItemSpecialEffect::NONE;
+  }
+
   std::string Item::getEffectText()
   {
     std::stringstream returnValue;
