@@ -284,7 +284,7 @@ namespace DAPI
 
   bool Game::buyItem(std::shared_ptr<Item> item)
   {
-    if (static_cast<TalkID>(data->stextflag) != TalkID::WBUY && static_cast<TalkID>(data->stextflag) != TalkID::SBUY && static_cast<TalkID>(data->stextflag) != TalkID::SPBUY && static_cast<TalkID>(data->stextflag) != TalkID::HBUY)
+    if (static_cast<TalkID>(data->stextflag) != TalkID::WBUY && static_cast<TalkID>(data->stextflag) != TalkID::SBUY && static_cast<TalkID>(data->stextflag) != TalkID::SPBUY && static_cast<TalkID>(data->stextflag) != TalkID::HBUY && static_cast<TalkID>(data->stextflag) != TalkID::BBOY)
       return false;
 
     if (!OKToActStore())

@@ -351,6 +351,7 @@ namespace DAPI
     auto storenumh = reinterpret_cast<int(*)>(0x69F10C);
     auto storehidx = reinterpret_cast<int(*)>(0x6A89F0);
     auto gnDifficulty = reinterpret_cast<int(*)>(0x5B70E4);
+    auto boyitem = reinterpret_cast<DiabloInternal::ItemStruct(*)>(0x69F118);
 
     std::vector<int> itemsModified;
 
@@ -655,7 +656,7 @@ namespace DAPI
             data->storeList.push_back(StoreOption::TALK);
           else if (!strcmp(stext[i]._sstr, "Identify an item"))
             data->storeList.push_back(StoreOption::IDENTIFYANITEM);
-          else if (!strcmp(stext[i]._sstr, "Say goodbye") || !strcmp(stext[i]._sstr, "Say Goodbye") || !strcmp(stext[i]._sstr, "Leave Healer's home") || !strcmp(stext[i]._sstr, "Leave the shop") || !strcmp(stext[i]._sstr, "Leave the shack") || !strcmp(stext[i]._sstr, "Leave the tavern"))
+          else if (!strcmp(stext[i]._sstr, "Say goodbye") || !strcmp(stext[i]._sstr, "Say Goodbye") || !strcmp(stext[i]._sstr, "Leave Healer's home") || !strcmp(stext[i]._sstr, "Leave the shop") || !strcmp(stext[i]._sstr, "Leave the shack") || !strcmp(stext[i]._sstr, "Leave the tavern") || !strcmp(stext[i]._sstr, "Leave"))
             data->storeList.push_back(StoreOption::EXIT);
           else if (!strcmp(stext[i]._sstr, "Receive healing"))
             data->storeList.push_back(StoreOption::HEAL);
@@ -1325,10 +1326,29 @@ namespace DAPI
           update->add_storeitems(itemID);
         }
       }
+      break;
+    case TalkID::BBOY:
+      if (boyitem->_itype != -1)
+      {
+        int itemID = data->itemList.size();
+        for (int i = 0; i < data->itemList.size(); i++)
+        {
+          if (data->itemList[i].compare(*boyitem))
+          {
+            itemID = i;
+            break;
+          }
+        }
+        if (itemID == data->itemList.size())
+          data->itemList.push_back(ItemData{});
+        fullFillItemInfo(itemID, boyitem);
+        data->itemList[itemID]._ivalue = boyitem->_iIvalue + (boyitem->_iIvalue >> 1);
+        data->storeItems.push_back(itemID);
+        update->add_storeitems(itemID);
+      }
     }
 
     
-
     if (*currlevel != 0)
     {
       for (auto &townerData : data->townerList)
@@ -1628,6 +1648,8 @@ namespace DAPI
   {
     auto stextflag = reinterpret_cast<char(*)>(0x6AA705);
     auto stextlhold = reinterpret_cast<int(*)>(0x69F110);
+    auto stextvhold = reinterpret_cast<int(*)>(0x6A8A24);
+    auto stextsval = reinterpret_cast<int(*)>(0x6A8A38);
     auto talker = reinterpret_cast<int(*)>(0x69FB38);
     auto stextshold = reinterpret_cast<int(*)>(0x69F288);
     auto gossipstart = reinterpret_cast<int(*)>(0x6A4EF0);
@@ -1637,6 +1659,7 @@ namespace DAPI
     auto myplr = reinterpret_cast<int(*)>(0x686444);
     auto plr = reinterpret_cast<DiabloInternal::PlayerStruct(*)>(0x686448);
     auto drawhpflag = reinterpret_cast<BOOL(*)>(0x4B84D8);
+    auto TakePlrsMoney = reinterpret_cast<void(__fastcall*)(int)>(0x45A990);
     switch (option)
     {
     case StoreOption::TALK:
@@ -1730,6 +1753,24 @@ namespace DAPI
         StartStore(static_cast<char>(TalkID::WRECHARGE));
       }
       break;
+    case StoreOption::WIRTPEEK:
+      if (static_cast<TalkID>(*stextflag) == TalkID::BOY)
+      {
+        if (50 <= plr[*myplr]._pGold)
+        {
+          TakePlrsMoney(50);
+          PlaySFX(70);
+          StartStore(static_cast<char>(TalkID::BBOY));
+        }
+        else
+        {
+          *stextshold = static_cast<int>(TalkID::BOY);
+          *stextlhold = 18;
+          *stextvhold = *stextsval;
+          StartStore(static_cast<char>(TalkID::NOMONEY));
+        }
+      }
+      break;
     case StoreOption::BACK:
       switch (static_cast<TalkID>(*stextflag))
       {
@@ -1782,6 +1823,7 @@ namespace DAPI
     auto SpawnPremium = reinterpret_cast<void(__fastcall*)(int)>(0x4245A0);
     auto healitem = reinterpret_cast<DiabloInternal::ItemStruct(*)>(0x6A6BC0);
     auto gbMaxPlayers = reinterpret_cast<BYTE(*)>(0x679660);
+    auto boyitem = reinterpret_cast<DiabloInternal::ItemStruct(*)>(0x69F118);
 
     int idx, i;
     BOOL done, ok;
@@ -2044,6 +2086,33 @@ namespace DAPI
           PlaySFX(70);
           StartStore(static_cast<char>(TalkID::NOROOM));
         }
+        SetCursor_(1);
+      }
+    }
+    else if (static_cast<TalkID>(*stextflag) == TalkID::BBOY)
+    {
+      if (plr[*myplr]._pGold < boyitem->_iIvalue + (boyitem->_iIvalue >> 1))
+      {
+        StartStore(static_cast<char>(TalkID::NOMONEY));
+      }
+      else {
+        plr[*myplr].HoldItem = *boyitem;
+        plr[*myplr].HoldItem._iIvalue += plr[*myplr].HoldItem._iIvalue >> 1;
+        SetCursor_(plr[*myplr].HoldItem._iCurs + 12);
+        done = FALSE;
+        for (i = 0; i < 40 && !done; i++) {
+          done = AutoPlace(*myplr, i, *cursW / 28, *cursH / 28, FALSE);
+        }
+        if (done)
+        {
+          TakePlrsMoney(plr[*myplr].HoldItem._iIvalue);
+          StoreAutoPlace();
+          boyitem->_itype = -1;
+          *stextshold = static_cast<int>(TalkID::BOY);
+          CalcPlrInv(*myplr, TRUE);
+        }
+        else
+          StartStore(static_cast<char>(TalkID::NOROOM));
         SetCursor_(1);
       }
     }
