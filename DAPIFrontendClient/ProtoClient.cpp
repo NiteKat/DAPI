@@ -56,6 +56,7 @@ namespace DAPI
         if (message->has_frameupdate())
         {
           auto frameUpdate = message->frameupdate();
+          game.data->backend = static_cast<Backend>(frameUpdate.connectedto());
           game.data->player = frameUpdate.player();
           game.data->stextflag = static_cast<char>(frameUpdate.stextflag());
           game.data->pauseMode = frameUpdate.pausemode();

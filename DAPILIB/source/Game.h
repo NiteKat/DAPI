@@ -13,6 +13,7 @@ namespace DAPI
     friend struct ProtoClient;
     Game(ProtoClient& client);
 
+    const Backend connectedTo() { return data->backend; }
     Player& self() { return data->playerList[data->player]; }
     TalkID getTalkID() { return static_cast<TalkID>(data->stextflag); }
     std::shared_ptr<Tile> getDungeonPiece(int x, int y);

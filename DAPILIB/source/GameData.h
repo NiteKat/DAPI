@@ -32,8 +32,14 @@ namespace DAPI
     NUM_DIFFICULTIES
   };
 
+  enum struct Backend {
+    Vanilla109,
+    DevilutionX
+  };
+
   struct GameData
   {
+    Backend backend;
     int player;
     char stextflag;
     int pauseMode;

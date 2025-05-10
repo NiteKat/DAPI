@@ -552,10 +552,10 @@ namespace DAPI
     auto message = std::make_unique<dapi::message::Message>();
     auto update = message->mutable_frameupdate();
 
+    update->set_connectedto(0);
+
     data->player = *myplr;
     update->set_player(data->player);
-
-
 
     data->stextflag = *stextflag;
     update->set_stextflag(data->stextflag);
