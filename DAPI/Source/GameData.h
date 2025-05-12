@@ -69,7 +69,7 @@ namespace DAPI
     std::map<int, PlayerData> playerList;
     std::vector<ItemData> itemList;
     std::vector<int> groundItems;
-    std::vector<TownerData> townerList;
+    std::map<int, TownerData> townerList;
     std::vector<StoreOption> storeList;
     std::vector<int> storeItems;
     std::vector<TriggerData> triggerList;

@@ -1351,8 +1351,9 @@ namespace DAPI
     
     if (*currlevel != 0)
     {
-      for (auto &townerData : data->townerList)
+      for (auto &townerEntry : data->townerList)
       {
+        auto& townerData = townerEntry.second;
         strcpy_s(townerData._tName, "");
         townerData._tx = -1;
         townerData._ty = -1;
@@ -1362,37 +1363,29 @@ namespace DAPI
     {
       for (auto i = 0; i < *numtowners; i++)
       {
-        auto townerID = data->townerList.size();
-        for (int j = 0; j < data->townerList.size(); j++)
-        {
-          if (data->townerList[j]._ttype == static_cast<TalkerType>(towner[i]._ttype))
-          {
-            townerID = j;
-            break;
-          }
-        }
-        if (townerID == data->townerList.size())
-          data->townerList.push_back(TownerData{});
-        data->townerList[townerID].ID = townerID;
+        auto townerID = i;
+        auto& townie = data->townerList[townerID];
+        townie.ID = static_cast<int>(townerID);
         if (isOnScreen(towner[i]._tx, towner[i]._ty))
         {
-          data->townerList[townerID]._ttype = static_cast<TalkerType>(towner[i]._ttype);
-          data->townerList[townerID]._tx = towner[i]._tx;
-          data->townerList[townerID]._ty = towner[i]._ty;
-          strcpy_s(data->townerList[townerID]._tName, towner[i]._tName);
+          townie._ttype = static_cast<TalkerType>(towner[i]._ttype);
+          townie._tx = towner[i]._tx;
+          townie._ty = towner[i]._ty;
+          strcpy_s(townie._tName, towner[i]._tName);
         }
-        else
+        else 
         {
-          data->townerList[townerID]._ttype = static_cast<TalkerType>(towner[i]._ttype);
-          data->townerList[townerID]._tx = -1;
-          data->townerList[townerID]._ty = -1;
-          strcpy_s(data->townerList[townerID]._tName, "");
+          townie._ttype = static_cast<TalkerType>(towner[i]._ttype);
+          townie._tx = -1;
+          townie._ty = -1;
+          strcpy_s(townie._tName, "");
         }
       }
     }
 
-    for (auto& townie : data->townerList)
+    for (auto& townieEntry : data->townerList)
     {
+      auto& townie = townieEntry.second;
       auto townerData = update->add_townerdata();
       townerData->set_id(townie.ID);
       if (townie._tx != -1)
