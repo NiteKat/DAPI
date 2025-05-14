@@ -157,6 +157,16 @@ namespace DAPI
     return returnValue;
   }
 
+  std::vector<std::shared_ptr<Player>> Game::getPlayers()
+  {
+    std::vector<std::shared_ptr<Player>> returnValue;
+    for (auto& player : data->playerList)
+    {
+      returnValue.push_back(std::make_shared<Player>(player.second));
+    }
+    return returnValue;
+  }
+
   std::vector<Object> Game::getObjects()
   {
     std::vector<Object> returnValue;

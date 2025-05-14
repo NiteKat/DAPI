@@ -33,6 +33,7 @@ namespace DAPI
     std::vector<std::shared_ptr<Item>> getStoreItems();
     std::vector<Trigger> getTriggers();
     std::vector<Monster> getMonsters();
+    std::vector<std::shared_ptr<Player>> getPlayers();
     std::vector<Object> getObjects();
     std::vector<Missile> getMissiles();
     std::vector<Portal> getPortals();
