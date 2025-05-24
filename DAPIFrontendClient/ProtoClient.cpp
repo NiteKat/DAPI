@@ -542,6 +542,7 @@ namespace DAPI
         auto itemIdentify = commandMessage->mutable_identifyitem();
         itemIdentify->set_id(command.param1);
       }
+      break;
       case CommandType::SENDCHAT:
       {
         auto sendChat = commandMessage->mutable_sendchat();
