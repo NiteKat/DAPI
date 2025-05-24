@@ -197,6 +197,7 @@ namespace DAPI
     QUIT,
     CLEARCURSOR,
     IDENTIFYITEM,
+    SENDCHAT,
     NUM_CMDS
   };
 

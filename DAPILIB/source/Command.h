@@ -49,11 +49,13 @@ namespace DAPI
     static Command quit();
     static Command clearCursor();
     static Command identifyItem(std::shared_ptr<Item> item);
+    static Command sendChat(std::string message);
 
     CommandType type;
     int targetX;
     int targetY;
     int param1;
     int param2;
+    std::string message;
   };
 }

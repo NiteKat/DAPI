@@ -913,6 +913,14 @@ namespace DAPI
     return client.issueCommand(Command::clearCursor());
   }
 
+  bool Game::sendChat(std::string message)
+  {
+    if (79 < message.length())
+      message = message.substr(0, 79);
+
+    return client.issueCommand(Command::sendChat(message));
+  }
+
   bool Game::issueCommand(Command command)
   {
     return client.issueCommand(command);

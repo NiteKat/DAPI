@@ -40,6 +40,7 @@ extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::int
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SaveGame;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SelectStoreOption;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SellItem;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SendChat;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SetFPS;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SetSpell;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_command_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_SkillRecharge;
@@ -218,6 +219,11 @@ class IdentifyItemDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<IdentifyItem>
       _instance;
 } _IdentifyItem_default_instance_;
+class SendChatDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<SendChat>
+      _instance;
+} _SendChat_default_instance_;
 class CommandDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<Command>
@@ -255,6 +261,7 @@ class CommandDefaultTypeInternal {
   const ::dapi::commands::Quit* quit_;
   const ::dapi::commands::ClearCursor* clearcursor_;
   const ::dapi::commands::IdentifyItem* identifyitem_;
+  const ::dapi::commands::SendChat* sendchat_;
 } _Command_default_instance_;
 }  // namespace commands
 }  // namespace dapi
@@ -721,6 +728,20 @@ static void InitDefaultsIdentifyItem() {
 ::google::protobuf::internal::SCCInfo<0> scc_info_IdentifyItem =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsIdentifyItem}, {}};
 
+static void InitDefaultsSendChat() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::dapi::commands::_SendChat_default_instance_;
+    new (ptr) ::dapi::commands::SendChat();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::dapi::commands::SendChat::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_SendChat =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsSendChat}, {}};
+
 static void InitDefaultsCommand() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -732,8 +753,8 @@ static void InitDefaultsCommand() {
   ::dapi::commands::Command::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<33> scc_info_Command =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 33, InitDefaultsCommand}, {
+::google::protobuf::internal::SCCInfo<34> scc_info_Command =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 34, InitDefaultsCommand}, {
       &protobuf_command_2eproto::scc_info_Move.base,
       &protobuf_command_2eproto::scc_info_Talk.base,
       &protobuf_command_2eproto::scc_info_SelectStoreOption.base,
@@ -766,7 +787,8 @@ static void InitDefaultsCommand() {
       &protobuf_command_2eproto::scc_info_SaveGame.base,
       &protobuf_command_2eproto::scc_info_Quit.base,
       &protobuf_command_2eproto::scc_info_ClearCursor.base,
-      &protobuf_command_2eproto::scc_info_IdentifyItem.base,}};
+      &protobuf_command_2eproto::scc_info_IdentifyItem.base,
+      &protobuf_command_2eproto::scc_info_SendChat.base,}};
 
 void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_SetFPS.base);
@@ -802,6 +824,7 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_Quit.base);
   ::google::protobuf::internal::InitSCC(&scc_info_ClearCursor.base);
   ::google::protobuf::internal::InitSCC(&scc_info_IdentifyItem.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_SendChat.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Command.base);
 }
 
@@ -6688,6 +6711,200 @@ void IdentifyItem::InternalSwap(IdentifyItem* other) {
 
 // ===================================================================
 
+void SendChat::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int SendChat::kMessageFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+SendChat::SendChat()
+  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_command_2eproto::scc_info_SendChat.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:dapi.commands.SendChat)
+}
+SendChat::SendChat(const SendChat& from)
+  : ::google::protobuf::MessageLite(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  message_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.message().size() > 0) {
+    message_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.message_);
+  }
+  // @@protoc_insertion_point(copy_constructor:dapi.commands.SendChat)
+}
+
+void SendChat::SharedCtor() {
+  message_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+SendChat::~SendChat() {
+  // @@protoc_insertion_point(destructor:dapi.commands.SendChat)
+  SharedDtor();
+}
+
+void SendChat::SharedDtor() {
+  message_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+void SendChat::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const SendChat& SendChat::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_command_2eproto::scc_info_SendChat.base);
+  return *internal_default_instance();
+}
+
+
+void SendChat::Clear() {
+// @@protoc_insertion_point(message_clear_start:dapi.commands.SendChat)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  message_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _internal_metadata_.Clear();
+}
+
+bool SendChat::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
+      &_internal_metadata_);
+  ::google::protobuf::io::StringOutputStream unknown_fields_output(
+      unknown_fields_setter.buffer());
+  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
+      &unknown_fields_output, false);
+  // @@protoc_insertion_point(parse_start:dapi.commands.SendChat)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // string message = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_message()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->message().data(), static_cast<int>(this->message().length()),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "dapi.commands.SendChat.message"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+            input, tag, &unknown_fields_stream));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:dapi.commands.SendChat)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:dapi.commands.SendChat)
+  return false;
+#undef DO_
+}
+
+void SendChat::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:dapi.commands.SendChat)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string message = 1;
+  if (this->message().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->message().data(), static_cast<int>(this->message().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "dapi.commands.SendChat.message");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->message(), output);
+  }
+
+  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
+                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  // @@protoc_insertion_point(serialize_end:dapi.commands.SendChat)
+}
+
+size_t SendChat::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dapi.commands.SendChat)
+  size_t total_size = 0;
+
+  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
+
+  // string message = 1;
+  if (this->message().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->message());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SendChat::CheckTypeAndMergeFrom(
+    const ::google::protobuf::MessageLite& from) {
+  MergeFrom(*::google::protobuf::down_cast<const SendChat*>(&from));
+}
+
+void SendChat::MergeFrom(const SendChat& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:dapi.commands.SendChat)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.message().size() > 0) {
+
+    message_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.message_);
+  }
+}
+
+void SendChat::CopyFrom(const SendChat& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dapi.commands.SendChat)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SendChat::IsInitialized() const {
+  return true;
+}
+
+void SendChat::Swap(SendChat* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void SendChat::InternalSwap(SendChat* other) {
+  using std::swap;
+  message_.Swap(&other->message_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::std::string SendChat::GetTypeName() const {
+  return "dapi.commands.SendChat";
+}
+
+
+// ===================================================================
+
 void Command::InitAsDefaultInstance() {
 }
 void Command::set_allocated_move(::dapi::commands::Move* move) {
@@ -7152,6 +7369,20 @@ void Command::set_allocated_identifyitem(::dapi::commands::IdentifyItem* identif
   }
   // @@protoc_insertion_point(field_set_allocated:dapi.commands.Command.identifyItem)
 }
+void Command::set_allocated_sendchat(::dapi::commands::SendChat* sendchat) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  clear_command();
+  if (sendchat) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      sendchat = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, sendchat, submessage_arena);
+    }
+    set_has_sendchat();
+    command_.sendchat_ = sendchat;
+  }
+  // @@protoc_insertion_point(field_set_allocated:dapi.commands.Command.sendChat)
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Command::kMoveFieldNumber;
 const int Command::kTalkFieldNumber;
@@ -7186,6 +7417,7 @@ const int Command::kSaveGameFieldNumber;
 const int Command::kQuitFieldNumber;
 const int Command::kClearCursorFieldNumber;
 const int Command::kIdentifyItemFieldNumber;
+const int Command::kSendChatFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Command::Command()
@@ -7331,6 +7563,10 @@ Command::Command(const Command& from)
     }
     case kIdentifyItem: {
       mutable_identifyitem()->::dapi::commands::IdentifyItem::MergeFrom(from.identifyitem());
+      break;
+    }
+    case kSendChat: {
+      mutable_sendchat()->::dapi::commands::SendChat::MergeFrom(from.sendchat());
       break;
     }
     case COMMAND_NOT_SET: {
@@ -7497,6 +7733,10 @@ void Command::clear_command() {
     }
     case kIdentifyItem: {
       delete command_.identifyitem_;
+      break;
+    }
+    case kSendChat: {
+      delete command_.sendchat_;
       break;
     }
     case COMMAND_NOT_SET: {
@@ -7929,6 +8169,18 @@ bool Command::MergePartialFromCodedStream(
         break;
       }
 
+      // .dapi.commands.SendChat sendChat = 34;
+      case 34: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(18u /* 274 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_sendchat()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -8151,6 +8403,12 @@ void Command::SerializeWithCachedSizes(
   if (has_identifyitem()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
       33, this->_internal_identifyitem(), output);
+  }
+
+  // .dapi.commands.SendChat sendChat = 34;
+  if (has_sendchat()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      34, this->_internal_sendchat(), output);
   }
 
   output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
@@ -8396,6 +8654,13 @@ size_t Command::ByteSizeLong() const {
           *command_.identifyitem_);
       break;
     }
+    // .dapi.commands.SendChat sendChat = 34;
+    case kSendChat: {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *command_.sendchat_);
+      break;
+    }
     case COMMAND_NOT_SET: {
       break;
     }
@@ -8550,6 +8815,10 @@ void Command::MergeFrom(const Command& from) {
       mutable_identifyitem()->::dapi::commands::IdentifyItem::MergeFrom(from.identifyitem());
       break;
     }
+    case kSendChat: {
+      mutable_sendchat()->::dapi::commands::SendChat::MergeFrom(from.sendchat());
+      break;
+    }
     case COMMAND_NOT_SET: {
       break;
     }
@@ -8686,6 +8955,9 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::ClearCursor* Are
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::IdentifyItem* Arena::CreateMaybeMessage< ::dapi::commands::IdentifyItem >(Arena* arena) {
   return Arena::CreateInternal< ::dapi::commands::IdentifyItem >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::SendChat* Arena::CreateMaybeMessage< ::dapi::commands::SendChat >(Arena* arena) {
+  return Arena::CreateInternal< ::dapi::commands::SendChat >(arena);
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::dapi::commands::Command* Arena::CreateMaybeMessage< ::dapi::commands::Command >(Arena* arena) {
   return Arena::CreateInternal< ::dapi::commands::Command >(arena);

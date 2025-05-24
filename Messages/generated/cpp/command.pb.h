@@ -37,7 +37,7 @@ namespace protobuf_command_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[34];
+  static const ::google::protobuf::internal::ParseTable schema[35];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -117,6 +117,9 @@ extern SelectStoreOptionDefaultTypeInternal _SelectStoreOption_default_instance_
 class SellItem;
 class SellItemDefaultTypeInternal;
 extern SellItemDefaultTypeInternal _SellItem_default_instance_;
+class SendChat;
+class SendChatDefaultTypeInternal;
+extern SendChatDefaultTypeInternal _SendChat_default_instance_;
 class SetFPS;
 class SetFPSDefaultTypeInternal;
 extern SetFPSDefaultTypeInternal _SetFPS_default_instance_;
@@ -175,6 +178,7 @@ template<> ::dapi::commands::RepairItem* Arena::CreateMaybeMessage<::dapi::comma
 template<> ::dapi::commands::SaveGame* Arena::CreateMaybeMessage<::dapi::commands::SaveGame>(Arena*);
 template<> ::dapi::commands::SelectStoreOption* Arena::CreateMaybeMessage<::dapi::commands::SelectStoreOption>(Arena*);
 template<> ::dapi::commands::SellItem* Arena::CreateMaybeMessage<::dapi::commands::SellItem>(Arena*);
+template<> ::dapi::commands::SendChat* Arena::CreateMaybeMessage<::dapi::commands::SendChat>(Arena*);
 template<> ::dapi::commands::SetFPS* Arena::CreateMaybeMessage<::dapi::commands::SetFPS>(Arena*);
 template<> ::dapi::commands::SetSpell* Arena::CreateMaybeMessage<::dapi::commands::SetSpell>(Arena*);
 template<> ::dapi::commands::SkillRecharge* Arena::CreateMaybeMessage<::dapi::commands::SkillRecharge>(Arena*);
@@ -3511,6 +3515,115 @@ class IdentifyItem : public ::google::protobuf::MessageLite /* @@protoc_insertio
 };
 // -------------------------------------------------------------------
 
+class SendChat : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.commands.SendChat) */ {
+ public:
+  SendChat();
+  virtual ~SendChat();
+
+  SendChat(const SendChat& from);
+
+  inline SendChat& operator=(const SendChat& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  SendChat(SendChat&& from) noexcept
+    : SendChat() {
+    *this = ::std::move(from);
+  }
+
+  inline SendChat& operator=(SendChat&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const SendChat& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const SendChat* internal_default_instance() {
+    return reinterpret_cast<const SendChat*>(
+               &_SendChat_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    33;
+
+  void Swap(SendChat* other);
+  friend void swap(SendChat& a, SendChat& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SendChat* New() const final {
+    return CreateMaybeMessage<SendChat>(NULL);
+  }
+
+  SendChat* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<SendChat>(arena);
+  }
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    final;
+  void CopyFrom(const SendChat& from);
+  void MergeFrom(const SendChat& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  void DiscardUnknownFields();
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(SendChat* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::std::string GetTypeName() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string message = 1;
+  void clear_message();
+  static const int kMessageFieldNumber = 1;
+  const ::std::string& message() const;
+  void set_message(const ::std::string& value);
+  #if LANG_CXX11
+  void set_message(::std::string&& value);
+  #endif
+  void set_message(const char* value);
+  void set_message(const char* value, size_t size);
+  ::std::string* mutable_message();
+  ::std::string* release_message();
+  void set_allocated_message(::std::string* message);
+
+  // @@protoc_insertion_point(class_scope:dapi.commands.SendChat)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr message_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_command_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:dapi.commands.Command) */ {
  public:
   Command();
@@ -3573,6 +3686,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
     kQuit = 31,
     kClearCursor = 32,
     kIdentifyItem = 33,
+    kSendChat = 34,
     COMMAND_NOT_SET = 0,
   };
 
@@ -3582,7 +3696,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
                &_Command_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    34;
 
   void Swap(Command* other);
   friend void swap(Command& a, Command& b) {
@@ -4029,6 +4143,18 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   ::dapi::commands::IdentifyItem* mutable_identifyitem();
   void set_allocated_identifyitem(::dapi::commands::IdentifyItem* identifyitem);
 
+  // .dapi.commands.SendChat sendChat = 34;
+  bool has_sendchat() const;
+  void clear_sendchat();
+  static const int kSendChatFieldNumber = 34;
+  private:
+  const ::dapi::commands::SendChat& _internal_sendchat() const;
+  public:
+  const ::dapi::commands::SendChat& sendchat() const;
+  ::dapi::commands::SendChat* release_sendchat();
+  ::dapi::commands::SendChat* mutable_sendchat();
+  void set_allocated_sendchat(::dapi::commands::SendChat* sendchat);
+
   void clear_command();
   CommandCase command_case() const;
   // @@protoc_insertion_point(class_scope:dapi.commands.Command)
@@ -4066,6 +4192,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
   void set_has_quit();
   void set_has_clearcursor();
   void set_has_identifyitem();
+  void set_has_sendchat();
 
   inline bool has_command() const;
   inline void clear_has_command();
@@ -4106,6 +4233,7 @@ class Command : public ::google::protobuf::MessageLite /* @@protoc_insertion_poi
     ::dapi::commands::Quit* quit_;
     ::dapi::commands::ClearCursor* clearcursor_;
     ::dapi::commands::IdentifyItem* identifyitem_;
+    ::dapi::commands::SendChat* sendchat_;
   } command_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -4683,6 +4811,63 @@ inline void IdentifyItem::set_id(::google::protobuf::uint32 value) {
   
   id_ = value;
   // @@protoc_insertion_point(field_set:dapi.commands.IdentifyItem.ID)
+}
+
+// -------------------------------------------------------------------
+
+// SendChat
+
+// string message = 1;
+inline void SendChat::clear_message() {
+  message_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& SendChat::message() const {
+  // @@protoc_insertion_point(field_get:dapi.commands.SendChat.message)
+  return message_.GetNoArena();
+}
+inline void SendChat::set_message(const ::std::string& value) {
+  
+  message_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:dapi.commands.SendChat.message)
+}
+#if LANG_CXX11
+inline void SendChat::set_message(::std::string&& value) {
+  
+  message_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:dapi.commands.SendChat.message)
+}
+#endif
+inline void SendChat::set_message(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  message_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:dapi.commands.SendChat.message)
+}
+inline void SendChat::set_message(const char* value, size_t size) {
+  
+  message_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:dapi.commands.SendChat.message)
+}
+inline ::std::string* SendChat::mutable_message() {
+  
+  // @@protoc_insertion_point(field_mutable:dapi.commands.SendChat.message)
+  return message_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* SendChat::release_message() {
+  // @@protoc_insertion_point(field_release:dapi.commands.SendChat.message)
+  
+  return message_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void SendChat::set_allocated_message(::std::string* message) {
+  if (message != NULL) {
+    
+  } else {
+    
+  }
+  message_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), message);
+  // @@protoc_insertion_point(field_set_allocated:dapi.commands.SendChat.message)
 }
 
 // -------------------------------------------------------------------
@@ -6141,6 +6326,50 @@ inline ::dapi::commands::IdentifyItem* Command::mutable_identifyitem() {
   return command_.identifyitem_;
 }
 
+// .dapi.commands.SendChat sendChat = 34;
+inline bool Command::has_sendchat() const {
+  return command_case() == kSendChat;
+}
+inline void Command::set_has_sendchat() {
+  _oneof_case_[0] = kSendChat;
+}
+inline void Command::clear_sendchat() {
+  if (has_sendchat()) {
+    delete command_.sendchat_;
+    clear_has_command();
+  }
+}
+inline const ::dapi::commands::SendChat& Command::_internal_sendchat() const {
+  return *command_.sendchat_;
+}
+inline ::dapi::commands::SendChat* Command::release_sendchat() {
+  // @@protoc_insertion_point(field_release:dapi.commands.Command.sendChat)
+  if (has_sendchat()) {
+    clear_has_command();
+      ::dapi::commands::SendChat* temp = command_.sendchat_;
+    command_.sendchat_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::dapi::commands::SendChat& Command::sendchat() const {
+  // @@protoc_insertion_point(field_get:dapi.commands.Command.sendChat)
+  return has_sendchat()
+      ? *command_.sendchat_
+      : *reinterpret_cast< ::dapi::commands::SendChat*>(&::dapi::commands::_SendChat_default_instance_);
+}
+inline ::dapi::commands::SendChat* Command::mutable_sendchat() {
+  if (!has_sendchat()) {
+    clear_command();
+    set_has_sendchat();
+    command_.sendchat_ = CreateMaybeMessage< ::dapi::commands::SendChat >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:dapi.commands.Command.sendChat)
+  return command_.sendchat_;
+}
+
 inline bool Command::has_command() const {
   return command_case() != COMMAND_NOT_SET;
 }
@@ -6153,6 +6382,8 @@ inline Command::CommandCase Command::command_case() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

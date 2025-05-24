@@ -250,6 +250,12 @@ namespace DAPI
     return c;
   }
 
+  Command Command::sendChat(std::string message) {
+    Command c{ CommandType::SENDCHAT };
+    c.message = message;
+    return c;
+  }
+
   Command Command::increaseStat(int stat)
   {
     Command c;

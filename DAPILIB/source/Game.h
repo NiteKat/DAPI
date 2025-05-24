@@ -83,6 +83,7 @@ namespace DAPI
     bool saveGame();
     bool quit();
     bool clearCursor();
+    bool sendChat(std::string message);
     bool issueCommand(Command command);
 
     
