@@ -190,6 +190,11 @@ namespace DAPI
     return data->questList;
   }
 
+  const std::vector<std::string>& Game::getMessageLog()
+  {
+    return data->chatMessages;
+  }
+
   bool Game::OKToAct()
   {
     return !data->stextflag && data->pauseMode != 2 && !data->menuOpen && static_cast<CursorType>(data->cursor) == CursorType::HAND && !data->qtextflag;

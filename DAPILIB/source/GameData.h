@@ -68,5 +68,6 @@ namespace DAPI
     std::vector<Missile> missileList;
     std::vector<Portal> portalList;
     std::vector<Quest> questList;
+    std::vector<std::string> chatMessages;
   };
 };

@@ -38,6 +38,7 @@ namespace DAPI
     std::vector<Missile> getMissiles();
     std::vector<Portal> getPortals();
     std::vector<Quest> getQuests();
+    const std::vector<std::string>& getMessageLog();
 
     bool isOnScreen(int x, int y);
     bool OKToAct();
@@ -85,6 +86,7 @@ namespace DAPI
     bool clearCursor();
     bool sendChat(std::string message);
     bool issueCommand(Command command);
+    
 
     
     std::map<std::pair<int, int>, bool> panelScreenCheck;

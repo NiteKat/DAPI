@@ -71,6 +71,10 @@ namespace DAPI
           game.data->FPS = frameUpdate.fps();
           game.data->gameMode = static_cast<GameMode>(frameUpdate.gamemode());
           game.data->gnDifficulty = static_cast<Difficulty>(frameUpdate.gndifficulty());
+          for (auto chatMessage : frameUpdate.chatmessages())
+          {
+            game.data->chatMessages.push_back(chatMessage);
+          }
           for (int x = 0; x < 112; x++)
           {
             for (int y = 0; y < 112; y++)

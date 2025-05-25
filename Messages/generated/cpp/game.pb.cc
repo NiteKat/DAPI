@@ -133,6 +133,7 @@ const int FrameUpdate::kObjectDataFieldNumber;
 const int FrameUpdate::kMissileDataFieldNumber;
 const int FrameUpdate::kPortalDataFieldNumber;
 const int FrameUpdate::kQuestDataFieldNumber;
+const int FrameUpdate::kChatMessagesFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 FrameUpdate::FrameUpdate()
@@ -157,7 +158,8 @@ FrameUpdate::FrameUpdate(const FrameUpdate& from)
       objectdata_(from.objectdata_),
       missiledata_(from.missiledata_),
       portaldata_(from.portaldata_),
-      questdata_(from.questdata_) {
+      questdata_(from.questdata_),
+      chatmessages_(from.chatmessages_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   qtext_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (from.qtext().size() > 0) {
@@ -213,6 +215,7 @@ void FrameUpdate::Clear() {
   missiledata_.Clear();
   portaldata_.Clear();
   questdata_.Clear();
+  chatmessages_.Clear();
   qtext_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&player_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&connectedto_) -
@@ -625,6 +628,23 @@ bool FrameUpdate::MergePartialFromCodedStream(
         break;
       }
 
+      // repeated string chatMessages = 29;
+      case 29: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(234u /* 234 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->add_chatmessages()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->chatmessages(this->chatmessages_size() - 1).data(),
+            static_cast<int>(this->chatmessages(this->chatmessages_size() - 1).length()),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "dapi.game.FrameUpdate.chatMessages"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -854,6 +874,16 @@ void FrameUpdate::SerializeWithCachedSizes(
       output);
   }
 
+  // repeated string chatMessages = 29;
+  for (int i = 0, n = this->chatmessages_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->chatmessages(i).data(), static_cast<int>(this->chatmessages(i).length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "dapi.game.FrameUpdate.chatMessages");
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      29, this->chatmessages(i), output);
+  }
+
   output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
                    static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
   // @@protoc_insertion_point(serialize_end:dapi.game.FrameUpdate)
@@ -1023,6 +1053,14 @@ size_t FrameUpdate::ByteSizeLong() const {
     }
   }
 
+  // repeated string chatMessages = 29;
+  total_size += 2 *
+      ::google::protobuf::internal::FromIntSize(this->chatmessages_size());
+  for (int i = 0, n = this->chatmessages_size(); i < n; i++) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+      this->chatmessages(i));
+  }
+
   // string qtext = 9;
   if (this->qtext().size() > 0) {
     total_size += 1 +
@@ -1148,6 +1186,7 @@ void FrameUpdate::MergeFrom(const FrameUpdate& from) {
   missiledata_.MergeFrom(from.missiledata_);
   portaldata_.MergeFrom(from.portaldata_);
   questdata_.MergeFrom(from.questdata_);
+  chatmessages_.MergeFrom(from.chatmessages_);
   if (from.qtext().size() > 0) {
 
     qtext_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.qtext_);
@@ -1226,6 +1265,7 @@ void FrameUpdate::InternalSwap(FrameUpdate* other) {
   CastToBase(&missiledata_)->InternalSwap(CastToBase(&other->missiledata_));
   CastToBase(&portaldata_)->InternalSwap(CastToBase(&other->portaldata_));
   CastToBase(&questdata_)->InternalSwap(CastToBase(&other->questdata_));
+  chatmessages_.InternalSwap(CastToBase(&other->chatmessages_));
   qtext_.Swap(&other->qtext_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   swap(player_, other->player_);

@@ -302,6 +302,28 @@ class FrameUpdate : public ::google::protobuf::MessageLite /* @@protoc_insertion
   const ::google::protobuf::RepeatedPtrField< ::dapi::data::QuestData >&
       questdata() const;
 
+  // repeated string chatMessages = 29;
+  int chatmessages_size() const;
+  void clear_chatmessages();
+  static const int kChatMessagesFieldNumber = 29;
+  const ::std::string& chatmessages(int index) const;
+  ::std::string* mutable_chatmessages(int index);
+  void set_chatmessages(int index, const ::std::string& value);
+  #if LANG_CXX11
+  void set_chatmessages(int index, ::std::string&& value);
+  #endif
+  void set_chatmessages(int index, const char* value);
+  void set_chatmessages(int index, const char* value, size_t size);
+  ::std::string* add_chatmessages();
+  void add_chatmessages(const ::std::string& value);
+  #if LANG_CXX11
+  void add_chatmessages(::std::string&& value);
+  #endif
+  void add_chatmessages(const char* value);
+  void add_chatmessages(const char* value, size_t size);
+  const ::google::protobuf::RepeatedPtrField< ::std::string>& chatmessages() const;
+  ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_chatmessages();
+
   // string qtext = 9;
   void clear_qtext();
   static const int kQtextFieldNumber = 9;
@@ -420,6 +442,7 @@ class FrameUpdate : public ::google::protobuf::MessageLite /* @@protoc_insertion
   ::google::protobuf::RepeatedPtrField< ::dapi::data::MissileData > missiledata_;
   ::google::protobuf::RepeatedPtrField< ::dapi::data::PortalData > portaldata_;
   ::google::protobuf::RepeatedPtrField< ::dapi::data::QuestData > questdata_;
+  ::google::protobuf::RepeatedPtrField< ::std::string> chatmessages_;
   ::google::protobuf::internal::ArenaStringPtr qtext_;
   ::google::protobuf::uint32 player_;
   ::google::protobuf::int32 stextflag_;
@@ -1056,6 +1079,75 @@ inline const ::google::protobuf::RepeatedPtrField< ::dapi::data::QuestData >&
 FrameUpdate::questdata() const {
   // @@protoc_insertion_point(field_list:dapi.game.FrameUpdate.questData)
   return questdata_;
+}
+
+// repeated string chatMessages = 29;
+inline int FrameUpdate::chatmessages_size() const {
+  return chatmessages_.size();
+}
+inline void FrameUpdate::clear_chatmessages() {
+  chatmessages_.Clear();
+}
+inline const ::std::string& FrameUpdate::chatmessages(int index) const {
+  // @@protoc_insertion_point(field_get:dapi.game.FrameUpdate.chatMessages)
+  return chatmessages_.Get(index);
+}
+inline ::std::string* FrameUpdate::mutable_chatmessages(int index) {
+  // @@protoc_insertion_point(field_mutable:dapi.game.FrameUpdate.chatMessages)
+  return chatmessages_.Mutable(index);
+}
+inline void FrameUpdate::set_chatmessages(int index, const ::std::string& value) {
+  // @@protoc_insertion_point(field_set:dapi.game.FrameUpdate.chatMessages)
+  chatmessages_.Mutable(index)->assign(value);
+}
+#if LANG_CXX11
+inline void FrameUpdate::set_chatmessages(int index, ::std::string&& value) {
+  // @@protoc_insertion_point(field_set:dapi.game.FrameUpdate.chatMessages)
+  chatmessages_.Mutable(index)->assign(std::move(value));
+}
+#endif
+inline void FrameUpdate::set_chatmessages(int index, const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  chatmessages_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:dapi.game.FrameUpdate.chatMessages)
+}
+inline void FrameUpdate::set_chatmessages(int index, const char* value, size_t size) {
+  chatmessages_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:dapi.game.FrameUpdate.chatMessages)
+}
+inline ::std::string* FrameUpdate::add_chatmessages() {
+  // @@protoc_insertion_point(field_add_mutable:dapi.game.FrameUpdate.chatMessages)
+  return chatmessages_.Add();
+}
+inline void FrameUpdate::add_chatmessages(const ::std::string& value) {
+  chatmessages_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:dapi.game.FrameUpdate.chatMessages)
+}
+#if LANG_CXX11
+inline void FrameUpdate::add_chatmessages(::std::string&& value) {
+  chatmessages_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:dapi.game.FrameUpdate.chatMessages)
+}
+#endif
+inline void FrameUpdate::add_chatmessages(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  chatmessages_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:dapi.game.FrameUpdate.chatMessages)
+}
+inline void FrameUpdate::add_chatmessages(const char* value, size_t size) {
+  chatmessages_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:dapi.game.FrameUpdate.chatMessages)
+}
+inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
+FrameUpdate::chatmessages() const {
+  // @@protoc_insertion_point(field_list:dapi.game.FrameUpdate.chatMessages)
+  return chatmessages_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::std::string>*
+FrameUpdate::mutable_chatmessages() {
+  // @@protoc_insertion_point(field_mutable_list:dapi.game.FrameUpdate.chatMessages)
+  return &chatmessages_;
 }
 
 #ifdef __GNUC__
