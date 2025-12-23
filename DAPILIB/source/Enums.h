@@ -314,7 +314,8 @@ namespace DAPI
     SELL,
     REPAIR,
     RECHARGE,
-    BACK
+    BACK,
+    ACCESSSTORAGE
   };
 
   enum struct TalkID {
