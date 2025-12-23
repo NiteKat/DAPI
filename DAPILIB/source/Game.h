@@ -24,6 +24,7 @@ namespace DAPI
     Quest getQuest(QuestID id);
     int getFPS() { return data->FPS; }
     int getCursor() { return data->cursor; }
+    int getStashGold() { return data->stashGold; }
     GameMode getGameMode() { return data->gameMode; }
     Difficulty getDifficulty() { return data->gnDifficulty; }
 
