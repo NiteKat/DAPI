@@ -288,6 +288,7 @@ namespace DAPI
           game.data->stashItems.clear();
           for (auto& itemID : frameUpdate.stashitems())
             game.data->stashItems.push_back(itemID);
+          game.data->stashGold = frameUpdate.stashgold();
           game.data->monsterList.clear();
           for (auto& monster : frameUpdate.monsterdata())
           {

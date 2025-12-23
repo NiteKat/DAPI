@@ -53,6 +53,7 @@ namespace DAPI
     int currlevel;
     bool setlevel;
     int FPS;
+    int stashGold;
     GameMode gameMode;
     Difficulty gnDifficulty;
     
