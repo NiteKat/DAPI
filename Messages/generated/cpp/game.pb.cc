@@ -127,6 +127,7 @@ const int FrameUpdate::kGroundItemIDFieldNumber;
 const int FrameUpdate::kTownerDataFieldNumber;
 const int FrameUpdate::kStoreOptionFieldNumber;
 const int FrameUpdate::kStoreItemsFieldNumber;
+const int FrameUpdate::kStashItemsFieldNumber;
 const int FrameUpdate::kTriggerDataFieldNumber;
 const int FrameUpdate::kMonsterDataFieldNumber;
 const int FrameUpdate::kObjectDataFieldNumber;
@@ -153,6 +154,7 @@ FrameUpdate::FrameUpdate(const FrameUpdate& from)
       townerdata_(from.townerdata_),
       storeoption_(from.storeoption_),
       storeitems_(from.storeitems_),
+      stashitems_(from.stashitems_),
       triggerdata_(from.triggerdata_),
       monsterdata_(from.monsterdata_),
       objectdata_(from.objectdata_),
@@ -209,6 +211,7 @@ void FrameUpdate::Clear() {
   townerdata_.Clear();
   storeoption_.Clear();
   storeitems_.Clear();
+  stashitems_.Clear();
   triggerdata_.Clear();
   monsterdata_.Clear();
   objectdata_.Clear();
@@ -556,10 +559,29 @@ bool FrameUpdate::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated .dapi.data.TriggerData triggerData = 23;
+      // repeated uint32 stashItems = 23;
       case 23: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(186u /* 186 & 0xFF */)) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, this->mutable_stashitems())));
+        } else if (
+            static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(184u /* 184 & 0xFF */)) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 2, 186u, input, this->mutable_stashitems())));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated .dapi.data.TriggerData triggerData = 24;
+      case 24: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(194u /* 194 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
                 input, add_triggerdata()));
         } else {
@@ -568,10 +590,10 @@ bool FrameUpdate::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated .dapi.data.MonsterData monsterData = 24;
-      case 24: {
+      // repeated .dapi.data.MonsterData monsterData = 25;
+      case 25: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(194u /* 194 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(202u /* 202 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
                 input, add_monsterdata()));
         } else {
@@ -580,10 +602,10 @@ bool FrameUpdate::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated .dapi.data.ObjectData objectData = 25;
-      case 25: {
+      // repeated .dapi.data.ObjectData objectData = 26;
+      case 26: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(202u /* 202 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(210u /* 210 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
                 input, add_objectdata()));
         } else {
@@ -592,10 +614,10 @@ bool FrameUpdate::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated .dapi.data.MissileData missileData = 26;
-      case 26: {
+      // repeated .dapi.data.MissileData missileData = 27;
+      case 27: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(210u /* 210 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(218u /* 218 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
                 input, add_missiledata()));
         } else {
@@ -604,10 +626,10 @@ bool FrameUpdate::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated .dapi.data.PortalData portalData = 27;
-      case 27: {
+      // repeated .dapi.data.PortalData portalData = 28;
+      case 28: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(218u /* 218 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(226u /* 226 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
                 input, add_portaldata()));
         } else {
@@ -616,10 +638,10 @@ bool FrameUpdate::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated .dapi.data.QuestData questData = 28;
-      case 28: {
+      // repeated .dapi.data.QuestData questData = 29;
+      case 29: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(226u /* 226 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(234u /* 234 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
                 input, add_questdata()));
         } else {
@@ -628,10 +650,10 @@ bool FrameUpdate::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated string chatMessages = 29;
-      case 29: {
+      // repeated string chatMessages = 30;
+      case 30: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(234u /* 234 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(242u /* 242 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->add_chatmessages()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -820,68 +842,79 @@ void FrameUpdate::SerializeWithCachedSizes(
       this->storeitems(i), output);
   }
 
-  // repeated .dapi.data.TriggerData triggerData = 23;
+  // repeated uint32 stashItems = 23;
+  if (this->stashitems_size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteTag(23, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
+        _stashitems_cached_byte_size_));
+  }
+  for (int i = 0, n = this->stashitems_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32NoTag(
+      this->stashitems(i), output);
+  }
+
+  // repeated .dapi.data.TriggerData triggerData = 24;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->triggerdata_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      23,
+      24,
       this->triggerdata(static_cast<int>(i)),
       output);
   }
 
-  // repeated .dapi.data.MonsterData monsterData = 24;
+  // repeated .dapi.data.MonsterData monsterData = 25;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->monsterdata_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      24,
+      25,
       this->monsterdata(static_cast<int>(i)),
       output);
   }
 
-  // repeated .dapi.data.ObjectData objectData = 25;
+  // repeated .dapi.data.ObjectData objectData = 26;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->objectdata_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      25,
+      26,
       this->objectdata(static_cast<int>(i)),
       output);
   }
 
-  // repeated .dapi.data.MissileData missileData = 26;
+  // repeated .dapi.data.MissileData missileData = 27;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->missiledata_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      26,
+      27,
       this->missiledata(static_cast<int>(i)),
       output);
   }
 
-  // repeated .dapi.data.PortalData portalData = 27;
+  // repeated .dapi.data.PortalData portalData = 28;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->portaldata_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      27,
+      28,
       this->portaldata(static_cast<int>(i)),
       output);
   }
 
-  // repeated .dapi.data.QuestData questData = 28;
+  // repeated .dapi.data.QuestData questData = 29;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->questdata_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessage(
-      28,
+      29,
       this->questdata(static_cast<int>(i)),
       output);
   }
 
-  // repeated string chatMessages = 29;
+  // repeated string chatMessages = 30;
   for (int i = 0, n = this->chatmessages_size(); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->chatmessages(i).data(), static_cast<int>(this->chatmessages(i).length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "dapi.game.FrameUpdate.chatMessages");
     ::google::protobuf::internal::WireFormatLite::WriteString(
-      29, this->chatmessages(i), output);
+      30, this->chatmessages(i), output);
   }
 
   output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
@@ -987,7 +1020,23 @@ size_t FrameUpdate::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  // repeated .dapi.data.TriggerData triggerData = 23;
+  // repeated uint32 stashItems = 23;
+  {
+    size_t data_size = ::google::protobuf::internal::WireFormatLite::
+      UInt32Size(this->stashitems_);
+    if (data_size > 0) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+            static_cast< ::google::protobuf::int32>(data_size));
+    }
+    int cached_size = ::google::protobuf::internal::ToCachedSize(data_size);
+    GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+    _stashitems_cached_byte_size_ = cached_size;
+    GOOGLE_SAFE_CONCURRENT_WRITES_END();
+    total_size += data_size;
+  }
+
+  // repeated .dapi.data.TriggerData triggerData = 24;
   {
     unsigned int count = static_cast<unsigned int>(this->triggerdata_size());
     total_size += 2UL * count;
@@ -998,7 +1047,7 @@ size_t FrameUpdate::ByteSizeLong() const {
     }
   }
 
-  // repeated .dapi.data.MonsterData monsterData = 24;
+  // repeated .dapi.data.MonsterData monsterData = 25;
   {
     unsigned int count = static_cast<unsigned int>(this->monsterdata_size());
     total_size += 2UL * count;
@@ -1009,7 +1058,7 @@ size_t FrameUpdate::ByteSizeLong() const {
     }
   }
 
-  // repeated .dapi.data.ObjectData objectData = 25;
+  // repeated .dapi.data.ObjectData objectData = 26;
   {
     unsigned int count = static_cast<unsigned int>(this->objectdata_size());
     total_size += 2UL * count;
@@ -1020,7 +1069,7 @@ size_t FrameUpdate::ByteSizeLong() const {
     }
   }
 
-  // repeated .dapi.data.MissileData missileData = 26;
+  // repeated .dapi.data.MissileData missileData = 27;
   {
     unsigned int count = static_cast<unsigned int>(this->missiledata_size());
     total_size += 2UL * count;
@@ -1031,7 +1080,7 @@ size_t FrameUpdate::ByteSizeLong() const {
     }
   }
 
-  // repeated .dapi.data.PortalData portalData = 27;
+  // repeated .dapi.data.PortalData portalData = 28;
   {
     unsigned int count = static_cast<unsigned int>(this->portaldata_size());
     total_size += 2UL * count;
@@ -1042,7 +1091,7 @@ size_t FrameUpdate::ByteSizeLong() const {
     }
   }
 
-  // repeated .dapi.data.QuestData questData = 28;
+  // repeated .dapi.data.QuestData questData = 29;
   {
     unsigned int count = static_cast<unsigned int>(this->questdata_size());
     total_size += 2UL * count;
@@ -1053,7 +1102,7 @@ size_t FrameUpdate::ByteSizeLong() const {
     }
   }
 
-  // repeated string chatMessages = 29;
+  // repeated string chatMessages = 30;
   total_size += 2 *
       ::google::protobuf::internal::FromIntSize(this->chatmessages_size());
   for (int i = 0, n = this->chatmessages_size(); i < n; i++) {
@@ -1180,6 +1229,7 @@ void FrameUpdate::MergeFrom(const FrameUpdate& from) {
   townerdata_.MergeFrom(from.townerdata_);
   storeoption_.MergeFrom(from.storeoption_);
   storeitems_.MergeFrom(from.storeitems_);
+  stashitems_.MergeFrom(from.stashitems_);
   triggerdata_.MergeFrom(from.triggerdata_);
   monsterdata_.MergeFrom(from.monsterdata_);
   objectdata_.MergeFrom(from.objectdata_);
@@ -1259,6 +1309,7 @@ void FrameUpdate::InternalSwap(FrameUpdate* other) {
   CastToBase(&townerdata_)->InternalSwap(CastToBase(&other->townerdata_));
   storeoption_.InternalSwap(&other->storeoption_);
   storeitems_.InternalSwap(&other->storeitems_);
+  stashitems_.InternalSwap(&other->stashitems_);
   CastToBase(&triggerdata_)->InternalSwap(CastToBase(&other->triggerdata_));
   CastToBase(&monsterdata_)->InternalSwap(CastToBase(&other->monsterdata_));
   CastToBase(&objectdata_)->InternalSwap(CastToBase(&other->objectdata_));

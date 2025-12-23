@@ -230,10 +230,22 @@ class FrameUpdate : public ::google::protobuf::MessageLite /* @@protoc_insertion
   ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
       mutable_storeitems();
 
-  // repeated .dapi.data.TriggerData triggerData = 23;
+  // repeated uint32 stashItems = 23;
+  int stashitems_size() const;
+  void clear_stashitems();
+  static const int kStashItemsFieldNumber = 23;
+  ::google::protobuf::uint32 stashitems(int index) const;
+  void set_stashitems(int index, ::google::protobuf::uint32 value);
+  void add_stashitems(::google::protobuf::uint32 value);
+  const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+      stashitems() const;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+      mutable_stashitems();
+
+  // repeated .dapi.data.TriggerData triggerData = 24;
   int triggerdata_size() const;
   void clear_triggerdata();
-  static const int kTriggerDataFieldNumber = 23;
+  static const int kTriggerDataFieldNumber = 24;
   ::dapi::data::TriggerData* mutable_triggerdata(int index);
   ::google::protobuf::RepeatedPtrField< ::dapi::data::TriggerData >*
       mutable_triggerdata();
@@ -242,10 +254,10 @@ class FrameUpdate : public ::google::protobuf::MessageLite /* @@protoc_insertion
   const ::google::protobuf::RepeatedPtrField< ::dapi::data::TriggerData >&
       triggerdata() const;
 
-  // repeated .dapi.data.MonsterData monsterData = 24;
+  // repeated .dapi.data.MonsterData monsterData = 25;
   int monsterdata_size() const;
   void clear_monsterdata();
-  static const int kMonsterDataFieldNumber = 24;
+  static const int kMonsterDataFieldNumber = 25;
   ::dapi::data::MonsterData* mutable_monsterdata(int index);
   ::google::protobuf::RepeatedPtrField< ::dapi::data::MonsterData >*
       mutable_monsterdata();
@@ -254,10 +266,10 @@ class FrameUpdate : public ::google::protobuf::MessageLite /* @@protoc_insertion
   const ::google::protobuf::RepeatedPtrField< ::dapi::data::MonsterData >&
       monsterdata() const;
 
-  // repeated .dapi.data.ObjectData objectData = 25;
+  // repeated .dapi.data.ObjectData objectData = 26;
   int objectdata_size() const;
   void clear_objectdata();
-  static const int kObjectDataFieldNumber = 25;
+  static const int kObjectDataFieldNumber = 26;
   ::dapi::data::ObjectData* mutable_objectdata(int index);
   ::google::protobuf::RepeatedPtrField< ::dapi::data::ObjectData >*
       mutable_objectdata();
@@ -266,10 +278,10 @@ class FrameUpdate : public ::google::protobuf::MessageLite /* @@protoc_insertion
   const ::google::protobuf::RepeatedPtrField< ::dapi::data::ObjectData >&
       objectdata() const;
 
-  // repeated .dapi.data.MissileData missileData = 26;
+  // repeated .dapi.data.MissileData missileData = 27;
   int missiledata_size() const;
   void clear_missiledata();
-  static const int kMissileDataFieldNumber = 26;
+  static const int kMissileDataFieldNumber = 27;
   ::dapi::data::MissileData* mutable_missiledata(int index);
   ::google::protobuf::RepeatedPtrField< ::dapi::data::MissileData >*
       mutable_missiledata();
@@ -278,10 +290,10 @@ class FrameUpdate : public ::google::protobuf::MessageLite /* @@protoc_insertion
   const ::google::protobuf::RepeatedPtrField< ::dapi::data::MissileData >&
       missiledata() const;
 
-  // repeated .dapi.data.PortalData portalData = 27;
+  // repeated .dapi.data.PortalData portalData = 28;
   int portaldata_size() const;
   void clear_portaldata();
-  static const int kPortalDataFieldNumber = 27;
+  static const int kPortalDataFieldNumber = 28;
   ::dapi::data::PortalData* mutable_portaldata(int index);
   ::google::protobuf::RepeatedPtrField< ::dapi::data::PortalData >*
       mutable_portaldata();
@@ -290,10 +302,10 @@ class FrameUpdate : public ::google::protobuf::MessageLite /* @@protoc_insertion
   const ::google::protobuf::RepeatedPtrField< ::dapi::data::PortalData >&
       portaldata() const;
 
-  // repeated .dapi.data.QuestData questData = 28;
+  // repeated .dapi.data.QuestData questData = 29;
   int questdata_size() const;
   void clear_questdata();
-  static const int kQuestDataFieldNumber = 28;
+  static const int kQuestDataFieldNumber = 29;
   ::dapi::data::QuestData* mutable_questdata(int index);
   ::google::protobuf::RepeatedPtrField< ::dapi::data::QuestData >*
       mutable_questdata();
@@ -302,10 +314,10 @@ class FrameUpdate : public ::google::protobuf::MessageLite /* @@protoc_insertion
   const ::google::protobuf::RepeatedPtrField< ::dapi::data::QuestData >&
       questdata() const;
 
-  // repeated string chatMessages = 29;
+  // repeated string chatMessages = 30;
   int chatmessages_size() const;
   void clear_chatmessages();
-  static const int kChatMessagesFieldNumber = 29;
+  static const int kChatMessagesFieldNumber = 30;
   const ::std::string& chatmessages(int index) const;
   ::std::string* mutable_chatmessages(int index);
   void set_chatmessages(int index, const ::std::string& value);
@@ -436,6 +448,8 @@ class FrameUpdate : public ::google::protobuf::MessageLite /* @@protoc_insertion
   mutable int _storeoption_cached_byte_size_;
   ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > storeitems_;
   mutable int _storeitems_cached_byte_size_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > stashitems_;
+  mutable int _stashitems_cached_byte_size_;
   ::google::protobuf::RepeatedPtrField< ::dapi::data::TriggerData > triggerdata_;
   ::google::protobuf::RepeatedPtrField< ::dapi::data::MonsterData > monsterdata_;
   ::google::protobuf::RepeatedPtrField< ::dapi::data::ObjectData > objectdata_;
@@ -919,7 +933,37 @@ FrameUpdate::mutable_storeitems() {
   return &storeitems_;
 }
 
-// repeated .dapi.data.TriggerData triggerData = 23;
+// repeated uint32 stashItems = 23;
+inline int FrameUpdate::stashitems_size() const {
+  return stashitems_.size();
+}
+inline void FrameUpdate::clear_stashitems() {
+  stashitems_.Clear();
+}
+inline ::google::protobuf::uint32 FrameUpdate::stashitems(int index) const {
+  // @@protoc_insertion_point(field_get:dapi.game.FrameUpdate.stashItems)
+  return stashitems_.Get(index);
+}
+inline void FrameUpdate::set_stashitems(int index, ::google::protobuf::uint32 value) {
+  stashitems_.Set(index, value);
+  // @@protoc_insertion_point(field_set:dapi.game.FrameUpdate.stashItems)
+}
+inline void FrameUpdate::add_stashitems(::google::protobuf::uint32 value) {
+  stashitems_.Add(value);
+  // @@protoc_insertion_point(field_add:dapi.game.FrameUpdate.stashItems)
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+FrameUpdate::stashitems() const {
+  // @@protoc_insertion_point(field_list:dapi.game.FrameUpdate.stashItems)
+  return stashitems_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+FrameUpdate::mutable_stashitems() {
+  // @@protoc_insertion_point(field_mutable_list:dapi.game.FrameUpdate.stashItems)
+  return &stashitems_;
+}
+
+// repeated .dapi.data.TriggerData triggerData = 24;
 inline int FrameUpdate::triggerdata_size() const {
   return triggerdata_.size();
 }
@@ -946,7 +990,7 @@ FrameUpdate::triggerdata() const {
   return triggerdata_;
 }
 
-// repeated .dapi.data.MonsterData monsterData = 24;
+// repeated .dapi.data.MonsterData monsterData = 25;
 inline int FrameUpdate::monsterdata_size() const {
   return monsterdata_.size();
 }
@@ -973,7 +1017,7 @@ FrameUpdate::monsterdata() const {
   return monsterdata_;
 }
 
-// repeated .dapi.data.ObjectData objectData = 25;
+// repeated .dapi.data.ObjectData objectData = 26;
 inline int FrameUpdate::objectdata_size() const {
   return objectdata_.size();
 }
@@ -1000,7 +1044,7 @@ FrameUpdate::objectdata() const {
   return objectdata_;
 }
 
-// repeated .dapi.data.MissileData missileData = 26;
+// repeated .dapi.data.MissileData missileData = 27;
 inline int FrameUpdate::missiledata_size() const {
   return missiledata_.size();
 }
@@ -1027,7 +1071,7 @@ FrameUpdate::missiledata() const {
   return missiledata_;
 }
 
-// repeated .dapi.data.PortalData portalData = 27;
+// repeated .dapi.data.PortalData portalData = 28;
 inline int FrameUpdate::portaldata_size() const {
   return portaldata_.size();
 }
@@ -1054,7 +1098,7 @@ FrameUpdate::portaldata() const {
   return portaldata_;
 }
 
-// repeated .dapi.data.QuestData questData = 28;
+// repeated .dapi.data.QuestData questData = 29;
 inline int FrameUpdate::questdata_size() const {
   return questdata_.size();
 }
@@ -1081,7 +1125,7 @@ FrameUpdate::questdata() const {
   return questdata_;
 }
 
-// repeated string chatMessages = 29;
+// repeated string chatMessages = 30;
 inline int FrameUpdate::chatmessages_size() const {
   return chatmessages_.size();
 }

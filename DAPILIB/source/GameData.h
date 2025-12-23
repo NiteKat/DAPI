@@ -62,6 +62,7 @@ namespace DAPI
     std::map<int, Towner> townerData;
     std::vector<StoreOption> storeList;
     std::vector<int> storeItems;
+    std::vector<int> stashItems;
     std::vector<Trigger> triggerList;
     std::vector<Monster> monsterList;
     std::vector<Object> objectList;

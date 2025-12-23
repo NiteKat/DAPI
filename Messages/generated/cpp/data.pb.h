@@ -2042,9 +2042,15 @@ class PlayerData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::google::protobuf::uint32 _pibonusdammod() const;
   void set__pibonusdammod(::google::protobuf::uint32 value);
 
-  // bool pManaShield = 50;
+  // int32 _pISplLvlAdd = 50;
+  void clear__pispllvladd();
+  static const int kPISplLvlAddFieldNumber = 50;
+  ::google::protobuf::int32 _pispllvladd() const;
+  void set__pispllvladd(::google::protobuf::int32 value);
+
+  // bool pManaShield = 51;
   void clear_pmanashield();
-  static const int kPManaShieldFieldNumber = 50;
+  static const int kPManaShieldFieldNumber = 51;
   bool pmanashield() const;
   void set_pmanashield(bool value);
 
@@ -2106,6 +2112,7 @@ class PlayerData : public ::google::protobuf::MessageLite /* @@protoc_insertion_
   ::google::protobuf::uint32 _pibonustohit_;
   ::google::protobuf::uint32 _pibonusac_;
   ::google::protobuf::uint32 _pibonusdammod_;
+  ::google::protobuf::int32 _pispllvladd_;
   bool pmanashield_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_data_2eproto::TableStruct;
@@ -4420,7 +4427,21 @@ inline void PlayerData::set__pibonusdammod(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pIBonusDamMod)
 }
 
-// bool pManaShield = 50;
+// int32 _pISplLvlAdd = 50;
+inline void PlayerData::clear__pispllvladd() {
+  _pispllvladd_ = 0;
+}
+inline ::google::protobuf::int32 PlayerData::_pispllvladd() const {
+  // @@protoc_insertion_point(field_get:dapi.data.PlayerData._pISplLvlAdd)
+  return _pispllvladd_;
+}
+inline void PlayerData::set__pispllvladd(::google::protobuf::int32 value) {
+  
+  _pispllvladd_ = value;
+  // @@protoc_insertion_point(field_set:dapi.data.PlayerData._pISplLvlAdd)
+}
+
+// bool pManaShield = 51;
 inline void PlayerData::clear_pmanashield() {
   pmanashield_ = false;
 }

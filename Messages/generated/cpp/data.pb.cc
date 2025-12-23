@@ -4617,6 +4617,7 @@ const int PlayerData::kPIBonusDamFieldNumber;
 const int PlayerData::kPIBonusToHitFieldNumber;
 const int PlayerData::kPIBonusACFieldNumber;
 const int PlayerData::kPIBonusDamModFieldNumber;
+const int PlayerData::kPISplLvlAddFieldNumber;
 const int PlayerData::kPManaShieldFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -5418,10 +5419,24 @@ bool PlayerData::MergePartialFromCodedStream(
         break;
       }
 
-      // bool pManaShield = 50;
+      // int32 _pISplLvlAdd = 50;
       case 50: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(144u /* 400 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &_pispllvladd_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // bool pManaShield = 51;
+      case 51: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(152u /* 408 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
@@ -5738,9 +5753,14 @@ void PlayerData::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(49, this->_pibonusdammod(), output);
   }
 
-  // bool pManaShield = 50;
+  // int32 _pISplLvlAdd = 50;
+  if (this->_pispllvladd() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(50, this->_pispllvladd(), output);
+  }
+
+  // bool pManaShield = 51;
   if (this->pmanashield() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(50, this->pmanashield(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteBool(51, this->pmanashield(), output);
   }
 
   output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
@@ -6142,7 +6162,14 @@ size_t PlayerData::ByteSizeLong() const {
         this->_pibonusdammod());
   }
 
-  // bool pManaShield = 50;
+  // int32 _pISplLvlAdd = 50;
+  if (this->_pispllvladd() != 0) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->_pispllvladd());
+  }
+
+  // bool pManaShield = 51;
   if (this->pmanashield() != 0) {
     total_size += 2 + 1;
   }
@@ -6302,6 +6329,9 @@ void PlayerData::MergeFrom(const PlayerData& from) {
   if (from._pibonusdammod() != 0) {
     set__pibonusdammod(from._pibonusdammod());
   }
+  if (from._pispllvladd() != 0) {
+    set__pispllvladd(from._pispllvladd());
+  }
   if (from.pmanashield() != 0) {
     set_pmanashield(from.pmanashield());
   }
@@ -6374,6 +6404,7 @@ void PlayerData::InternalSwap(PlayerData* other) {
   swap(_pibonustohit_, other->_pibonustohit_);
   swap(_pibonusac_, other->_pibonusac_);
   swap(_pibonusdammod_, other->_pibonusdammod_);
+  swap(_pispllvladd_, other->_pispllvladd_);
   swap(pmanashield_, other->pmanashield_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }

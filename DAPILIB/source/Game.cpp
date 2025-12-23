@@ -137,6 +137,15 @@ namespace DAPI
     return returnValue;
   }
 
+  std::vector<std::shared_ptr<Item>> Game::getStashItems() {
+    std::vector<std::shared_ptr<Item>> returnValue;
+    for (auto& itemID : data->stashItems)
+    {
+      returnValue.push_back(std::make_shared<Item>(data->itemList[itemID]));
+    }
+    return returnValue;
+  }
+
   std::vector<Trigger> Game::getTriggers()
   {
     std::vector<Trigger> returnValue;

@@ -31,6 +31,7 @@ namespace DAPI
     std::vector<std::shared_ptr<Towner>> getTowners();
     std::vector<StoreOption> getStoreOptions();
     std::vector<std::shared_ptr<Item>> getStoreItems();
+    std::vector<std::shared_ptr<Item>> getStashItems();
     std::vector<Trigger> getTriggers();
     std::vector<Monster> getMonsters();
     std::vector<std::shared_ptr<Player>> getPlayers();
