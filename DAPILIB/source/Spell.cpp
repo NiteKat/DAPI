@@ -233,7 +233,7 @@ namespace DAPI
     return ma >> 6;
   }
 
-  int Spell::getRawManaCost()
+  int Spell::getRawManaCost(int splLvlAdd)
   {
     if (type.getID() != SpellTypeID::SPELL)
       return 0;
@@ -244,7 +244,7 @@ namespace DAPI
     int adj = 0;
 
     // spell level
-    int sl = level - 1;
+    int sl = level - 1 + splLvlAdd;
 
     if (sl < 0) {
       sl = 0;

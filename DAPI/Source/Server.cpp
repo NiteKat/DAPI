@@ -734,6 +734,7 @@ namespace DAPI
 
 
         memcpy(data->playerList[i]._pSplLvl, plr[i]._pSplLvl, sizeof(data->playerList[i]._pSplLvl));
+        data->playerList[i]._pISplLvlAdd = plr[i]._pISplLvlAdd;
         data->playerList[i]._pMemSpells = plr[i]._pMemSpells;
         data->playerList[i]._pAblSpells = plr[i]._pAblSpells;
         data->playerList[i]._pScrlSpells = plr[i]._pScrlSpells;
@@ -867,6 +868,7 @@ namespace DAPI
         data->playerList[i]._pIBonusToHit = plr[i]._pIBonusToHit;
         data->playerList[i]._pIBonusAC = plr[i]._pIBonusAC;
         data->playerList[i]._pIBonusDamMod = plr[i]._pIBonusDamMod;
+        data->playerList[i]._pISplLvlAdd = plr[i]._pISplLvlAdd;
         data->playerList[i].pManaShield = plr[i].pManaShield;
       }
       else if ((*dFlags)[plr[i]._px][plr[i]._py] & 0x40)
@@ -932,6 +934,7 @@ namespace DAPI
         data->playerList[i]._pIBonusToHit = -1;
         data->playerList[i]._pIBonusAC = -1;
         data->playerList[i]._pIBonusDamMod = -1;
+        data->playerList[i]._pISplLvlAdd = -1;
         data->playerList[i].pManaShield = plr[i].pManaShield;
       }
       else
@@ -997,6 +1000,7 @@ namespace DAPI
         data->playerList[i]._pIBonusToHit = -1;
         data->playerList[i]._pIBonusAC = -1;
         data->playerList[i]._pIBonusDamMod = -1;
+        data->playerList[i]._pISplLvlAdd = -1;
         data->playerList[i].pManaShield = false;
       }
 
@@ -1063,6 +1067,8 @@ namespace DAPI
       playerData->set__pibonustohit(data->playerList[i]._pIBonusToHit);
       playerData->set__pibonusac(data->playerList[i]._pIBonusAC);
       playerData->set__pibonusdammod(data->playerList[i]._pIBonusDamMod);
+      
+      playerData->set__pispllvladd(data->playerList[i]._pISplLvlAdd);
       playerData->set_pmanashield(data->playerList[i].pManaShield);
     }
 

@@ -26,6 +26,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="generated\cpp\command.pb.cc">
+      <Filter>Generated</Filter>
+    </ClCompile>
     <ClCompile Include="generated\cpp\data.pb.cc">
       <Filter>Generated</Filter>
     </ClCompile>
@@ -38,11 +41,11 @@
     <ClCompile Include="generated\cpp\message.pb.cc">
       <Filter>Generated</Filter>
     </ClCompile>
-    <ClCompile Include="generated\cpp\command.pb.cc">
-      <Filter>Generated</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="generated\cpp\command.pb.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
     <ClInclude Include="generated\cpp\data.pb.h">
       <Filter>Generated</Filter>
     </ClInclude>
@@ -53,9 +56,6 @@
       <Filter>Generated</Filter>
     </ClInclude>
     <ClInclude Include="generated\cpp\message.pb.h">
-      <Filter>Generated</Filter>
-    </ClInclude>
-    <ClInclude Include="generated\cpp\command.pb.h">
       <Filter>Generated</Filter>
     </ClInclude>
   </ItemGroup>

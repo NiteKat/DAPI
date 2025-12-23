@@ -69,7 +69,7 @@ namespace DAPI
         return false;
 
     if (spell.getType().getID() == DAPI::SpellTypeID::SPELL &&
-      (spell.getLevel() == 0 || data->_pMana < spell.getRawManaCost()))
+      (spell.getLevel(data->_pISplLvlAdd) == 0 || data->_pMana < spell.getRawManaCost(data->_pISplLvlAdd)))
       return false;
 
     if (spell.getType().getID() == DAPI::SpellTypeID::SCROLL)

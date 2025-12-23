@@ -102,6 +102,7 @@ namespace DAPI
     int _pIBonusToHit;
     int _pIBonusAC;
     int _pIBonusDamMod;
+    int _pISplLvlAdd;
     bool pManaShield;
   };
 }

@@ -4,6 +4,7 @@
 namespace DAPI
 {
   enum struct TalkerType {
+    temp = -1,
     SMITH = 0x0,
     HEALER = 0x1,
     DEADGUY = 0x2,
