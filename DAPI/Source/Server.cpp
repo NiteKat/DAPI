@@ -2111,7 +2111,8 @@ namespace DAPI
           CalcPlrInv(*myplr, TRUE);
         }
         else
-          StartStore(static_cast<char>(TalkID::NOROOM));
+          *stextshold = static_cast<int>(TalkID::NOROOM);
+        StartStore(static_cast<char>(*stextshold));
         SetCursor_(1);
       }
     }
